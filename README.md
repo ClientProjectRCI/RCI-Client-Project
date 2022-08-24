@@ -28,7 +28,7 @@ CREATE TABLE "user" (
     "password" VARCHAR (1000) NOT NULL
 );
 ```
-NOTE: Nate changed the database name to `client_project`, as to not interfere with the database from our the solo-projects.
+**NOTE:** Nate changed the database name to `client_project`, as to not interfere with the database from our the solo-projects.
 If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
 
 ## Development Setup Instructions
