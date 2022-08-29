@@ -14,9 +14,10 @@ import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
-import LandingPage from '../LandingPage/LandingPage';
+import MHGProfile from '../MHGProfile/MHGProfile';
+import MHPProfile from '../MHPProfile/MHPProfile';
+import ContactPage from '../ContactPage/ContactPage';
+import HomePage from '../HomePage/HomePage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
@@ -53,61 +54,65 @@ function App() {
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
           <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
+            // logged in shows MHGProfile else shows LoginPage
             exact
-            path="/user"
+            path="/mhgprofile"
           >
-            <UserPage />
+            <MHGProfile />
           </ProtectedRoute>
-
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/info"
-          >
-            <InfoPage />
-          </ProtectedRoute>
-
-          <Route
-            exact
-            path="/login"
-          >
-            {user.id ?
-              // If the user is already logged in, 
-              // redirect to the /user page
-              <Redirect to="/user" />
-              :
-              // Otherwise, show the login page
-              <LoginPage />
-            }
-          </Route>
-
-          <Route
-            exact
-            path="/registration"
-          >
-            {user.id ?
-              // If the user is already logged in, 
-              // redirect them to the /user page
-              <Redirect to="/user" />
-              :
-              // Otherwise, show the registration page
-              <RegisterPage />
-            }
-          </Route>
-
-          <Route
+            // logged in shows MHGProfile else shows LoginPage
             exact
             path="/home"
           >
-            {user.id ?
-              // If the user is already logged in, 
+            <HomePage />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows MHGProfile else shows LoginPage
+            exact
+            path="/mhpprofile"
+          >
+            <MHPProfile />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows ContactPage else shows LoginPage
+            exact
+            path="/contact"
+          >
+            <ContactPage />
+          </ProtectedRoute>
+
+          <Route exact path="/login">
+            {user.id ? (
+              // If the user is already logged in,
+              // redirect to the /user page
+              <Redirect to="/mhgprofile" />
+            ) : (
+              // Otherwise, show the login page
+              <LoginPage />
+            )}
+          </Route>
+
+          <Route exact path="/registration">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect them to the /user page
-              <Redirect to="/user" />
-              :
-              // Otherwise, show the Landing page
-              <LandingPage />
-            }
+              <Redirect to="/mhgprofile" />
+            ) : (
+              // Otherwise, show the registration page
+              <RegisterPage />
+            )}
+          </Route>
+
+          <Route exact path="/home">
+            {user.id ? (
+              // If the user is already logged in,
+              // redirect them to the /user page
+              <Redirect to="/mhgprofile" />
+            ) : (
+              // Otherwise, show the Home page
+              <HomePage />
+            )}
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
