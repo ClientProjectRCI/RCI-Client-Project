@@ -17,14 +17,7 @@ export default function Nav() {
           />
         </Link>
         <div>
-          {/* If no user is logged in, show these links */}
-          {!user.id && (
-            // If there's no user, show login/registration links
-            <Link className="navLink" to="/login">
-              Login / Register
-            </Link>
-
-
+  
             <Link className="navLink" to="/home">
                 Home - WORKS!
             </Link>
@@ -66,3 +59,4 @@ export default function Nav() {
       </div>
     );
 }
+
