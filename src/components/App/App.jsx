@@ -13,8 +13,8 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
-import MHGProfile from '../MHGProfile/MHGProfile';
-import MHPProfile from '../MHPProfile/MHPProfile';
+import GroupProfile from '../GroupProfile/GroupProfile';
+import ProviderProfile from '../ProviderProfile/ProviderProfile';
 import ContactPage from '../ContactPage/ContactPage';
 import HomePage from '../HomePage/HomePage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -22,7 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
 
-function App() {
+export default function App() {
     const dispatch = useDispatch();
 
     const user = useSelector((store) => store.user);
@@ -55,25 +55,18 @@ function App() {
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
                     <ProtectedRoute
-                        // logged in shows MHGProfile else shows LoginPage
+                        // logged in shows GroupProfile else shows GroupProfile
                         exact
-                        path="/mhgprofile"
+                        path="/group"
                     >
-                        <MHGProfile />
+                        <GroupProfile />
                     </ProtectedRoute>
                     <ProtectedRoute
-                        // logged in shows MHGProfile else shows LoginPage
+                        // logged in shows ProviderProfile else shows ProviderProfile
                         exact
-                        path="/home"
+                        path="/provider"
                     >
-                        <HomePage />
-                    </ProtectedRoute>
-                    <ProtectedRoute
-                        // logged in shows MHGProfile else shows LoginPage
-                        exact
-                        path="/mhpprofile"
-                    >
-                        <MHPProfile />
+                        <ProviderProfile />
                     </ProtectedRoute>
                     <ProtectedRoute
                         // logged in shows ContactPage else shows LoginPage
@@ -87,7 +80,7 @@ function App() {
                         {user.id ? (
                             // If the user is already logged in,
                             // redirect to the /user page
-                            <Redirect to="/mhgprofile" />
+                            <Redirect to="/profile" />
                         ) : (
                             // Otherwise, show the login page
                             <LoginPage />
@@ -98,7 +91,7 @@ function App() {
                         {user.id ? (
                             // If the user is already logged in,
                             // redirect them to the /user page
-                            <Redirect to="/mhgprofile" />
+                            <Redirect to="/profile" />
                         ) : (
                             // Otherwise, show the registration page
                             <RegisterPage />
@@ -109,7 +102,7 @@ function App() {
                         {user.id ? (
                             // If the user is already logged in,
                             // redirect them to the /user page
-                            <Redirect to="/mhgprofile" />
+                            <Redirect to="/profile" />
                         ) : (
                             // Otherwise, show the Home page
                             <HomePage />
@@ -126,5 +119,3 @@ function App() {
         </Router>
     );
 }
-
-export default App;
