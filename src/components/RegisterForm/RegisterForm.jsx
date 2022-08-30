@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-function RegisterForm() {
+export default function RegisterForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const errors = useSelector((store) => store.errors);
@@ -58,5 +58,3 @@ function RegisterForm() {
         </form>
     );
 }
-
-export default RegisterForm;
