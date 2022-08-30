@@ -19,8 +19,9 @@ import ContactPage from '../ContactPage/ContactPage';
 import HomePage from '../HomePage/HomePage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-
 import './App.css';
+import ProvidersList from '../ProvidersList/ProvidersList';
+
 
 export default function App() {
     const dispatch = useDispatch();
@@ -46,11 +47,16 @@ export default function App() {
                     <Route exact path="/about">
                         <AboutPage />
                     </Route>
-                    <Route exact path="/providers">
-                        {/* <ProviderSearch /> ADD THIS LATER AFTER ISAAC IS DONE */}
-                    </Route>
+                <Route
+            // shows providers at all times (logged in or not)
+            exact
+            path="/providers"
+          >
+            <ProvidersList />
+          </Route>
 
                     {/* For protected routes, the view could show one of several things on the same route.
+
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
