@@ -4,7 +4,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
 
-function Nav() {
+export default function Nav() {
     const user = useSelector((store) => store.user);
 
     return (
@@ -23,33 +23,46 @@ function Nav() {
             <Link className="navLink" to="/login">
               Login / Register
             </Link>
-          )}
 
-          {/* If a user is logged in, show these links */}
-          {user.id && (
-            <>
-              <Link className="navLink" to="/home">
-                Home
-              </Link>
-              <Link className="navLink" to="/mhpprofile">
-                MHPProfile
-              </Link>
-              <Link className="navLink" to="/mhgprofile">
-                MHGProfile
-              </Link>
 
-              <LogOutButton className="navLink" />
-            </>
-          )}
-          <Link className="navLink" to="/providers">
+            <Link className="navLink" to="/home">
+                Home - WORKS!
+            </Link>
+            <Link className="navLink" to="/about">
+                About - WORKS!
+            </Link>
+              <Link className="navLink" to="/providers">
             Providers
           </Link>
-          <Link className="navLink" to="/about">
-            About
-          </Link>
+            <div>
+                {/* If no user is logged in, show these links */}
+                {!user.id && (
+                    // If there's no user, show login/registration links
+                    <button>
+                        <Link className="navLink" to="/login">
+                            Login / Register WORKS!
+                        </Link>
+                    </button>
+                )}
+
+                {/* If a user is logged in, show these links */}
+                {user.id && (
+                    <>
+                        <Link className="navLink" to="/mhpprofile">
+                            MHPProfile
+                        </Link>
+                        <Link className="navLink" to="/mhgprofile">
+                            MHGProfile
+                        </Link>
+                        <Link className="navLink" to="/info">
+                            Info Page
+                        </Link>
+
+                        <LogOutButton className="navLink" />
+                    </>
+                )}
+            </div>
         </div>
       </div>
     );
 }
-
-export default Nav;
