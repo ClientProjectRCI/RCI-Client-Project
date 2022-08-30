@@ -5,12 +5,10 @@ import React from 'react';
 // It doesn't dispatch any redux actions or display any part of redux state
 // or even care what the redux state is
 
-function HomePage() {
-  return (
-    <div className="container">
-      <p>Home Page</p>
-    </div>
-  );
+export default function HomePage() {
+    return (
+        <div className="container">
+            <p>This is what I have in the Home Page</p>
+        </div>
+    );
 }
-
-export default HomePage;
