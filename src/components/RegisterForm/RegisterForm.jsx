@@ -48,13 +48,27 @@ export default function RegisterForm() {
                     onChange={(event) => setPassword(event.target.value)}
                 />
             </div>
-            <div>
+
+            <form>
                 <h2>Are you a Group or Provider?</h2>
-                <input id="provider" type="radio" value="Provider" />
+
+                <input
+                    type="radio"
+                    id="provider"
+                    name="provider_group"
+                    value="provider"
+                />
                 <label for="provider">Provider</label>
-                <input id="group" type="radio" value="Group" />
+
+                <input
+                    type="radio"
+                    id="group"
+                    name="provider_group"
+                    value="group"
+                />
                 <label for="group">Group</label>
-            </div>
+            </form>
+
             <div>
                 <input
                     className="btn"
