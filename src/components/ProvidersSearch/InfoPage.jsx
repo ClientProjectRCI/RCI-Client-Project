@@ -5,6 +5,8 @@ import React from 'react';
 // It doesn't dispatch any redux actions or display any part of redux state
 // or even care what the redux state is
 
+//AVERY: DON'T TOUCH FILE
+
 function InfoPage() {
   return (
     <div className="container">
