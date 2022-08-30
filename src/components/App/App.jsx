@@ -20,8 +20,8 @@ import ContactPage from '../ContactPage/ContactPage';
 import HomePage from '../HomePage/HomePage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-
 import './App.css';
+import ProvidersList from '../ProvidersList/ProvidersList';
 
 function App() {
   const dispatch = useDispatch();
@@ -47,6 +47,13 @@ function App() {
             path="/about"
           >
             <AboutPage />
+          </Route>
+          <Route
+            // shows providers at all times (logged in or not)
+            exact
+            path="/providers"
+          >
+            <ProvidersList />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
