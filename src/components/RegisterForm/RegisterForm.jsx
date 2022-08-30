@@ -15,13 +15,14 @@ export default function RegisterForm() {
             payload: {
                 username: username,
                 password: password,
+                // acccesslevel: set default for group and provider
             },
         });
     }; // end registerUser
 
     return (
         <form className="formPanel" onSubmit={registerUser}>
-            <h1>Register User</h1>
+            <h1>Register</h1>
             {errors.registrationMessage && (
                 <h3 className="alert" role="alert">
                     {errors.registrationMessage}
@@ -46,6 +47,13 @@ export default function RegisterForm() {
                     required
                     onChange={(event) => setPassword(event.target.value)}
                 />
+            </div>
+            <div>
+                <h2>Are you a Group or Provider?</h2>
+                <input id="provider" type="radio" value="Provider" />
+                <label for="provider">Provider</label>
+                <input id="group" type="radio" value="Group" />
+                <label for="group">Group</label>
             </div>
             <div>
                 <input
