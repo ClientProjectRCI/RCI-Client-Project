@@ -14,15 +14,19 @@ import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
 import GroupProfile from '../GroupProfile/GroupProfile';
-import ProviderProfile from '../ProviderProfile/ProviderProfile';
+import ProviderProfile from '../RegisterProvider/RegisterProvider';
+import RegisterGroup from '../RegisterGroup/RegisterGroup';
+import RegisterProvider from '../RegisterProvider/RegisterProvider';
 import ContactPage from '../ContactPage/ContactPage';
 import HomePage from '../HomePage/HomePage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import './App.css';
 import ProvidersList from '../ProvidersList/ProvidersList';
+
 import ProviderDetails from '../ProviderDetails/ProviderDetails';
 import GroupDetails from '../GroupDetails/GroupDetails';
+
 
 export default function App() {
     const dispatch = useDispatch();
@@ -41,21 +45,31 @@ export default function App() {
             {/* Visiting localhost:3000 will redirect to localhost:3000/login */}
             <Redirect exact from="/" to="/home" />
 
-            {/* Logged In or not, these pages should always show */}
-            <Route exact path="/home">
-              <HomePage />
-            </Route>
-            <Route exact path="/about">
-              <AboutPage />
-            </Route>
-            <Route
-              // shows providers at all times (logged in or not)
-              exact
-              path="/providers"
-            >
-              <ProvidersList />
-            </Route>
-            <Route
+
+                    {/* Logged In or not, these pages should always show */}
+                    <Route exact path="/home">
+                        <HomePage />
+                    </Route>
+                    <Route exact path="/about">
+                        <AboutPage />
+                    </Route>
+                    <Route exact path="/provider">
+                        <ProviderProfile />
+                    </Route>
+                    <Route exact path="/register-provider">
+                        <RegisterProvider />
+                    </Route>
+                    <Route exact path="/register-group">
+                        <RegisterGroup />
+                    </Route>
+                    <Route
+                        // shows providers at all times (logged in or not)
+                        exact
+                        path="/providers"
+                    >
+                        <ProvidersList />
+                    </Route>
+                                <Route
               // shows provider-details at all times (logged in or not)
               exact
               path="/provider-details"
@@ -69,6 +83,7 @@ export default function App() {
             >
               <GroupDetails />
             </Route>
+
 
             {/* For protected routes, the view could show one of several things on the same route.
 
@@ -97,16 +112,18 @@ export default function App() {
               <ContactPage />
             </ProtectedRoute>
 
-            <Route exact path="/login">
-              {user.id ? (
-                // If the user is already logged in,
-                // redirect to the /user page
-                <Redirect to="/profile" />
-              ) : (
-                // Otherwise, show the login page
-                <LoginPage />
-              )}
-            </Route>
+
+                    <Route exact path="/login">
+                        {user.id ? (
+                            // If the user is already logged in,
+                            // redirect to the /user page
+                            <Redirect to="/provider" />
+                        ) : (
+                            // Otherwise, show the login page
+                            <LoginPage />
+                        )}
+                    </Route>
+
 
             <Route exact path="/registration">
               {user.id ? (
