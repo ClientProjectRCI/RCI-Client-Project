@@ -9,33 +9,39 @@ export default function RegisterForm() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const registerUser = (event) => {
-        event.preventDefault();
+    // const registerUser = (event) => {
+    //     event.preventDefault();
+    //     dispatch({
+    //         type: 'REGISTER',
+    //         payload: {
+    //             username: username,
+    //             password: password,
+    //         },
+    //     });
+    // }; // end registerUser
 
+    const handleGroupRegister = (event) => {
+        event.preventDefault();
+        // register the group
         dispatch({
             type: 'REGISTER',
             payload: {
                 username: username,
                 password: password,
+                accessLevel: 3,
             },
         });
-    }; // end registerUser
-
-    const handleGroupRegister = (event) => {
-        event.preventDefault();
-        // register the user
-        registerUser(event);
         // navigate to group register profile
         history.push('/register-group');
     };
 
-    const handleProviderRegister = (event) => {
-        event.preventDefault();
-        // register the user
-        registerUser(event);
-        //navigate to provider profile
-        history.push('/register-provider');
-    };
+    // const handleProviderRegister = (event) => {
+    //     event.preventDefault();
+    //     // register the user
+    //     registerUser(event);
+    //     //navigate to provider profile
+    //     history.push('/register-provider');
+    // };
 
     {
         /* <form>
@@ -88,13 +94,13 @@ export default function RegisterForm() {
                 />
             </div>
             <div>
-                <input
+                {/* <input
                     className="btn"
                     type="submit"
                     name="submit"
                     value="Provider"
                     onClick={handleProviderRegister}
-                />
+                /> */}
                 <input
                     className="btn"
                     type="submit"
