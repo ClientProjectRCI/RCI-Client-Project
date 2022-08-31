@@ -14,7 +14,9 @@ import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
 import GroupProfile from '../GroupProfile/GroupProfile';
-import ProviderProfile from '../ProviderProfile/ProviderProfile';
+import ProviderProfile from '../RegisterProvider/RegisterProvider';
+import RegisterGroup from '../RegisterGroup/RegisterGroup';
+import RegisterProvider from '../RegisterProvider/RegisterProvider';
 import ContactPage from '../ContactPage/ContactPage';
 import HomePage from '../HomePage/HomePage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -45,6 +47,15 @@ export default function App() {
                     </Route>
                     <Route exact path="/about">
                         <AboutPage />
+                    </Route>
+                    <Route exact path="/provider">
+                        <ProviderProfile />
+                    </Route>
+                    <Route exact path="/register-provider">
+                        <RegisterProvider />
+                    </Route>
+                    <Route exact path="/register-group">
+                        <RegisterGroup />
                     </Route>
                     <Route
                         // shows providers at all times (logged in or not)
@@ -85,7 +96,7 @@ export default function App() {
                         {user.id ? (
                             // If the user is already logged in,
                             // redirect to the /user page
-                            <Redirect to="/profile" />
+                            <Redirect to="/provider" />
                         ) : (
                             // Otherwise, show the login page
                             <LoginPage />
