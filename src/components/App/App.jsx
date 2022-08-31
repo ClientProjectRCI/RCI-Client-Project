@@ -22,7 +22,6 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import './App.css';
 import ProvidersList from '../ProvidersList/ProvidersList';
 
-
 export default function App() {
     const dispatch = useDispatch();
 
@@ -47,13 +46,13 @@ export default function App() {
                     <Route exact path="/about">
                         <AboutPage />
                     </Route>
-                <Route
-            // shows providers at all times (logged in or not)
-            exact
-            path="/providers"
-          >
-            <ProvidersList />
-          </Route>
+                    <Route
+                        // shows providers at all times (logged in or not)
+                        exact
+                        path="/providers"
+                    >
+                        <ProvidersList />
+                    </Route>
 
                     {/* For protected routes, the view could show one of several things on the same route.
 
