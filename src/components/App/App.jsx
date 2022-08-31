@@ -14,9 +14,9 @@ import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
 import GroupProfile from '../GroupProfile/GroupProfile';
-import ProviderProfile from '../RegisterProvider/RegisterProvider';
-import RegisterGroup from '../RegisterGroup/RegisterGroup';
-import RegisterProvider from '../RegisterProvider/RegisterProvider';
+import ProviderProfile from '../ProviderProfile/ProviderProfile';
+import RegisterGroupForm from '../RegisterGroupForm/RegisterGroupForm';
+import RegisterProviderForm from '../RegisterProviderForm/RegisterProviderForm';
 import ContactPage from '../ContactPage/ContactPage';
 import HomePage from '../HomePage/HomePage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -56,11 +56,12 @@ export default function App() {
                     <Route exact path="/provider">
                         <ProviderProfile />
                     </Route>
+                    {/* Test routes */}
                     <Route exact path="/register-provider">
-                        <RegisterProvider />
+                        <RegisterProviderForm />
                     </Route>
                     <Route exact path="/register-group">
-                        <RegisterGroup />
+                        <RegisterGroupForm />
                     </Route>
                     <Route
                         // shows providers at all times (logged in or not)
@@ -114,12 +115,19 @@ export default function App() {
 
 
                     <Route exact path="/login">
-                        {user.id ? (
+                        {user.id && user.access_level === 2 ? (
                             // If the user is already logged in,
                             // redirect to the /user page
                             <Redirect to="/provider" />
                         ) : (
                             // Otherwise, show the login page
+                            <LoginPage />
+                        )}
+                    </Route>
+                    <Route exact path="/login">
+                        {user.id && user.access_level === 3 ? (
+                            <Redirect to="/group" />
+                        ) : (
                             <LoginPage />
                         )}
                     </Route>
