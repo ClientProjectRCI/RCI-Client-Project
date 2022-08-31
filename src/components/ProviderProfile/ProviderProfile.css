@@ -1,0 +1,17 @@
+div.row {
+    display: flex;
+    flex-direction: row;
+}
+
+div.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.info {
+    list-style-type: none;
+    background-color: #e6e6e6;
+    padding: 1rem;
+    margin: 0.5rem;
+    border-radius: 1rem;
+}
