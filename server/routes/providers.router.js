@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 router.get('/', (req, res) => {
-  const query = `SELECT * FROM "MHP" ORDER BY "name" ASC`;
+  const query = `SELECT * FROM "provider" ORDER BY "name" ASC`;
   pool
     .query(query)
     .then((result) => {
@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   const providerId = req.params.id;
   console.log('here is the providerId in the provider router', providerId);
-  const queryText = `SELECT * FROM "MHP" WHERE "id" = $1 ORDER BY "id" ASC;`;
+  const queryText = `SELECT * FROM "provider" WHERE "id" = $1 ORDER BY "id" ASC;`;
   pool
     .query(queryText, [providerId])
     .then((result) => {
