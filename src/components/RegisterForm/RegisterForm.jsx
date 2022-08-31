@@ -21,18 +21,18 @@ export default function RegisterForm() {
         });
     }; // end registerUser
 
-    const handleGroupProfile = (event) => {
+    const handleGroupRegister = (event) => {
         // register the user
         registerUser(event);
         // navigate to group register profile
-        history.push('/group');
+        history.push('/register-group');
     };
 
-    const handleProviderProfile = (event) => {
+    const handleProviderRegister = (event) => {
         // register the user
         registerUser(event);
         //navigate to provider profile
-        history.push('/provider');
+        history.push('/register-provider');
     };
 
     {
@@ -91,14 +91,14 @@ export default function RegisterForm() {
                     type="submit"
                     name="submit"
                     value="Provider"
-                    onClick={handleProviderProfile}
+                    onClick={handleProviderRegister}
                 />
                 <input
                     className="btn"
                     type="submit"
                     name="submit"
                     value="Group"
-                    onClick={handleGroupProfile}
+                    onClick={handleGroupRegister}
                 />
             </div>
         </form>
