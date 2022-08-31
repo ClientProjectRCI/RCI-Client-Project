@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 export default function RegisterForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const errors = useSelector((store) => store.errors);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const registerUser = (event) => {
         event.preventDefault();
@@ -49,7 +51,7 @@ export default function RegisterForm() {
                 />
             </div>
 
-            <form>
+            {/* <form>
                 <h2>Are you a Group or Provider?</h2>
 
                 <input
@@ -67,14 +69,26 @@ export default function RegisterForm() {
                     value="group"
                 />
                 <label for="group">Group</label>
-            </form>
+            </form> */}
 
             <div>
                 <input
                     className="btn"
                     type="submit"
                     name="submit"
-                    value="Register"
+                    value="Provider"
+                    onClick={() => {
+                        history.push('/group');
+                    }}  //changes made here
+                />
+                <input
+                    className="btn"
+                    type="submit"
+                    name="submit"
+                    value="Group"
+                    onClick={() => {
+                        history.push('/group');
+                    }} //changes made here
                 />
             </div>
         </form>
