@@ -3,15 +3,16 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 
+
 router.get('/', (req, res) => {
-  const query = `SELECT * FROM "MHP" ORDER BY "name" ASC`;
+  const query = `SELECT * FROM "MHG" ORDER BY "name" ASC`;
   pool
     .query(query)
     .then((result) => {
       res.send(result.rows);
     })
     .catch((err) => {
-      console.log('ERROR: Get all Providers', err);
+      console.log('ERROR: Get all Groups', err);
       res.sendStatus(500);
     });
 });
@@ -22,16 +23,16 @@ router.get('/', (req, res) => {
  */
 
 router.get('/:id', (req, res) => {
-  const providerId = req.params.id;
-  console.log('here is the providerId in the provider router', providerId);
-  const queryText = `SELECT * FROM "MHP" WHERE "id" = $1 ORDER BY "id" ASC;`;
+  const groupId = req.params.id;
+  console.log('here is the groupId in the group router', groupId);
+  const queryText = `SELECT * FROM "MHG" WHERE "id" = $1 ORDER BY "id" ASC;`;
   pool
-    .query(queryText, [providerId])
+    .query(queryText, [groupId])
     .then((result) => {
       res.send(result.rows);
     })
     .catch((err) => {
-      console.log('ERROR: Get the provider id', err);
+      console.log('ERROR: Get the group id', err);
       res.sendStatus(500);
     });
 });

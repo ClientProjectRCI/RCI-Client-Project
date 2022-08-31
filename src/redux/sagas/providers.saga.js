@@ -15,10 +15,22 @@ function* fetchProviders(action) {
   }
 }
 
-
+//get all details of one provider
+function* fetchProviderDetails(action) {
+  try {
+    const detailsResponse = yield axios.get(`/api/providers/${action.payload}`);
+    console.log(
+      'In fetchProviderDetails, this is detailsResponse.data',
+      detailsResponse.data
+    );
+    yield put({type: 'SEND_DETAILS', payload: detailsResponse.data[0]}); 
+  } catch (error) {
+    console.log('error in fetchProviderDetails', error);
+  }
+}
 function* providersSaga() {
   yield takeEvery('FETCH_PROVIDERS', fetchProviders);
-
+  yield takeEvery('FETCH_PROVIDER_DETAILS', fetchProviderDetails);
 }
 
 export default providersSaga;
