@@ -17,13 +17,48 @@ export default function RegisterForm() {
             payload: {
                 username: username,
                 password: password,
-                // acccesslevel: set default for group and provider
             },
         });
     }; // end registerUser
 
+    const handleGroupProfile = (event) => {
+        // register the user
+        registerUser(event);
+        // navigate to group register profile
+        history.push('/group');
+    };
+
+    const handleProviderProfile = (event) => {
+        // register the user
+        registerUser(event);
+        //navigate to provider profile
+        history.push('/provider');
+    };
+
+    {
+        /* <form>
+            <h2>Are you a Group or Provider?</h2>
+
+            <input
+                type="radio"
+                id="provider"
+                name="provider_group"
+                value="provider"
+            />
+            <label for="provider">Provider</label>
+
+            <input
+                type="radio"
+                id="group"
+                name="provider_group"
+                value="group"
+            />
+            <label for="group">Group</label>
+        </form> */
+    }
+
     return (
-        <form className="formPanel" onSubmit={registerUser}>
+        <form className="formPanel">
             <h1>Register</h1>
             {errors.registrationMessage && (
                 <h3 className="alert" role="alert">
@@ -50,45 +85,20 @@ export default function RegisterForm() {
                     onChange={(event) => setPassword(event.target.value)}
                 />
             </div>
-
-            {/* <form>
-                <h2>Are you a Group or Provider?</h2>
-
-                <input
-                    type="radio"
-                    id="provider"
-                    name="provider_group"
-                    value="provider"
-                />
-                <label for="provider">Provider</label>
-
-                <input
-                    type="radio"
-                    id="group"
-                    name="provider_group"
-                    value="group"
-                />
-                <label for="group">Group</label>
-            </form> */}
-
             <div>
                 <input
                     className="btn"
                     type="submit"
                     name="submit"
                     value="Provider"
-                    onClick={() => {
-                        history.push('/group');
-                    }}  //changes made here
+                    onClick={handleProviderProfile}
                 />
                 <input
                     className="btn"
                     type="submit"
                     name="submit"
                     value="Group"
-                    onClick={() => {
-                        history.push('/group');
-                    }} //changes made here
+                    onClick={handleGroupProfile}
                 />
             </div>
         </form>
