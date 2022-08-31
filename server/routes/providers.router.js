@@ -17,5 +17,23 @@ router.get('/', (req, res) => {
 });
 
 
+/**
+ * GET route
+ */
+
+router.get('/:id', (req, res) => {
+  const providerId = req.params.id;
+  console.log('here is the providerId in the provider router', providerId);
+  const queryText = `SELECT * FROM "MHP" WHERE "id" = $1 ORDER BY "id" ASC;`;
+  pool
+    .query(queryText, [providerId])
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((err) => {
+      console.log('ERROR: Get the provider id', err);
+      res.sendStatus(500);
+    });
+});
 
 module.exports = router;
