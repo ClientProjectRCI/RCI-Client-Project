@@ -1,7 +1,6 @@
 import React from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
-import { put } from 'redux-saga/effects';
 
 export default function GroupProfile() {
     // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -9,20 +8,23 @@ export default function GroupProfile() {
 
     function registerGroup() {
         console.log('Group registered!');
+        // POST to group table
     }
 
     return (
-        <form className="container" onSubmit={registerGroup}>
-            <h2>Welcome, {user.username}!</h2>
-            <p>GroupProfile: Your ID is: {user.id}</p>
+        <center>
+            <form className="container" onSubmit={registerGroup}>
+                <h2>Welcome, {user.username}!</h2>
+                <p>GroupProfile: Your ID is: {user.id}</p>
+                <input required type="text" placeholder="Name"></input>
+                <input required type="text" placeholder="Description"></input>
+                <input required type="text" placeholder="Address"></input>
+                <input required type="text" placeholder="Website"></input>
+                <input required type="text" placeholder="Email"></input>
+                <input required type="text" placeholder="Phone Number"></input>
+                <button onClick={registerGroup}>Submit</button>
+            </form>
             <LogOutButton className="btn" />
-            <input placeholder="Name"></input>
-            <input placeholder="Description"></input>
-            <input placeholder="Address"></input>
-            <input placeholder="Website"></input>
-            <input placeholder="Email"></input>
-            <input placeholder="Phone Number"></input>
-            {/* <button>Submit</button> */}
-        </form>
+        </center>
     );
 }
