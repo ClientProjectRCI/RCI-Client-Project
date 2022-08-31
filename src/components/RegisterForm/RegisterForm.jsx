@@ -22,6 +22,7 @@ export default function RegisterForm() {
     }; // end registerUser
 
     const handleGroupRegister = (event) => {
+        event.preventDefault();
         // register the user
         registerUser(event);
         // navigate to group register profile
@@ -29,6 +30,7 @@ export default function RegisterForm() {
     };
 
     const handleProviderRegister = (event) => {
+        event.preventDefault();
         // register the user
         registerUser(event);
         //navigate to provider profile

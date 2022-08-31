@@ -1,15 +1,18 @@
 import React from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 export default function RegisterGroupForm() {
     // this component doesn't do much to start, just renders some user reducer info to the DOM
     const user = useSelector((store) => store.user);
+    const history = useHistory();
 
     function registerGroup() {
         console.log('Group registered!');
         // POST to group table
-        // history.push to provider's id
+
+        // history.push to group's profile
         history.push(`/group`);
     }
 

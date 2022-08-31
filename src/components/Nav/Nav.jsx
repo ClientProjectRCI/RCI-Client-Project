@@ -40,11 +40,11 @@ export default function Nav() {
                     {/* If a user is logged in, show these links */}
                     {user.id && (
                         <div>
-                            <Link className="navLink" to="/mhpprofile">
-                                MHPProfile
+                            <Link className="navLink" to="/provider">
+                                Provider
                             </Link>
-                            <Link className="navLink" to="/mhgprofile">
-                                MHGProfile
+                            <Link className="navLink" to="/group">
+                                Group
                             </Link>
                             <Link className="navLink" to="/info">
                                 Info Page
