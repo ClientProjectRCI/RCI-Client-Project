@@ -1,6 +1,5 @@
 import React from 'react';
 import '../ProviderProfile/ProviderProfile.css';
-import { Link } from 'react-router-dom';
 
 export default function ProviderProfile() {
     return (
