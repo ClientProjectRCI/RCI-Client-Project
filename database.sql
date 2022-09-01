@@ -75,7 +75,7 @@ CREATE TABLE "provider_specializations" (
 CREATE TABLE "provider_insurance_plan" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"provider_id" int REFERENCES "provider"("id") NOT NULL,
-	"insruance_plan_id" int REFERENCES "insurance_plan"("id") NOT NULL
+	"insurance_plan_id" int REFERENCES "insurance_plan"("id") NOT NULL
 );
 
 ---- service_type JUNCTION TABLE ----

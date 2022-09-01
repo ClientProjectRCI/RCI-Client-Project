@@ -17,7 +17,7 @@ export default function RegisterProviderForm() {
 
     return (
         <center>
-            <form className="container" onSubmit={registerProvider}>
+            <form className="container" enctype="multipart/form-data" method="post" onSubmit={registerProvider}>
                 <h2>Welcome, {user.username}!</h2>
                 <p>ProviderProfile: Your ID is: {user.id}</p>
                 <input required type="text" placeholder="Name"></input>
@@ -35,6 +35,7 @@ export default function RegisterProviderForm() {
                 <input required type="text" placeholder="Email"></input>
                 <input required type="text" placeholder="Website"></input>
                 <input required type="text" placeholder="Phone Number"></input>
+                <input type="file" class="file-upload" name="uploaded_file"></input>
                 <button onClick={registerProvider}>Submit</button>
             </form>
             <LogOutButton className="btn" />
