@@ -6,6 +6,10 @@ import '../ContactPage/ContactPage.css';
 // or even care what the redux state is
 
 function ContactPage() {
+  const handleSubmitMessage = (event) => {
+    event.preventDefault();
+    // add functionality for submitting messages here.
+  }
   return (
   
 <center> 
@@ -20,7 +24,7 @@ function ContactPage() {
     <input type="text" id="subject" name="subject" placeholder="Reason of inqury.."></input>
     <label for="message">Message</label>
     <input type="text" id="message" name="message" placeholder="How can we help.."></input>
-    {/* <input type="submit" value="Submit"> */}
+    <button onClick={handleSubmitMessage}>Submit</button>
   </form>
   </center>
   );
