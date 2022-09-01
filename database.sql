@@ -145,28 +145,11 @@ INSERT INTO "insurance_plan" ("insurance") VALUES
 ;
 ---- INSERT service_type TABLE ----
 INSERT INTO "service_type" ("service") VALUES
-('LGBTQ Specific'),
-('POC Specific'),
-('Disability Specific'),
-('Addiction'),
-('Anxiety'),
-('ADHD'),
-('Autism'),
-('Bipolar'),
-('Child psychiatry'),
-('Cognitive-behavioral therapy'),
-('COVID-related'),
-('HOH'),
-('Depression'),
-('Crisis response'),
-('Eating disorders'),
-('Grief'),
-('Group Therapy'),
-('Family counseling'),
-('Medication management'),
-('OCD'),
-('PTSD'),
-('Diagnosis')
+('Online'),
+('In-Person'),
+('Over the Phone'),
+('Inpatient'),
+('Outpatient')
 ;
 
 ---- STOP -- COPY -- & -- PASTE -- HERE ----
