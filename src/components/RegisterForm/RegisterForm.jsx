@@ -9,7 +9,7 @@ export default function RegisterForm() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const registerUser = (event) => {
+    const registerGroup = (event) => {
         event.preventDefault();
 
         dispatch({
@@ -17,6 +17,20 @@ export default function RegisterForm() {
             payload: {
                 username: username,
                 password: password,
+                access_level: 3, // hardcode access_level 3 for provider
+            },
+        });
+    }; // end registerUser
+
+    const registerProvider = (event) => {
+        event.preventDefault();
+
+        dispatch({
+            type: 'REGISTER',
+            payload: {
+                username: username,
+                password: password,
+                access_level: 2, // hardcode access_level 2 for provider
             },
         });
     }; // end registerUser
@@ -24,7 +38,7 @@ export default function RegisterForm() {
     const handleGroupRegister = (event) => {
         event.preventDefault();
         // register the user
-        registerUser(event);
+        registerGroup(event); // calls "registersGroup function"
         // navigate to group register profile
         history.push('/register-group');
     };
@@ -32,7 +46,7 @@ export default function RegisterForm() {
     const handleProviderRegister = (event) => {
         event.preventDefault();
         // register the user
-        registerUser(event);
+        registerProvider(event); // calls "registerProvider function"
         //navigate to provider profile
         history.push('/register-provider');
     };
