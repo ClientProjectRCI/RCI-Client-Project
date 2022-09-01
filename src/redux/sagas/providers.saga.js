@@ -28,9 +28,33 @@ function* fetchProviderDetails(action) {
     console.log('error in fetchProviderDetails', error);
   }
 }
+function* fetchSpecializations(action) {
+  try {
+    console.log('FetchSpecializations, action.payload is', action.payload);
+    const response = yield axios.get(`/api/specializations`);
+    console.log('Get all specializations:', response.data);
+    yield put({ type: 'SET_SPECIALIZATIONS', payload: response.data });
+  } catch (error) {
+    console.log('Get all specializations error', error);
+  }
+}
+
+function* fetchInsurances(action) {
+  try {
+    console.log('FetchInsurances, action.payload is', action.payload);
+    const response = yield axios.get(`/api/insurances`);
+    console.log('Get all insurances:', response.data);
+    yield put({ type: 'SET_INSURANCES', payload: response.data });
+  } catch (error) {
+    console.log('Get all insurances error', error);
+  }
+}
+
 function* providersSaga() {
   yield takeEvery('FETCH_PROVIDERS', fetchProviders);
   yield takeEvery('FETCH_PROVIDER_DETAILS', fetchProviderDetails);
+   yield takeEvery('FETCH_SPECIALIZATIONS', fetchSpecializations);
+      yield takeEvery('FETCH_INSURANCES', fetchInsurances);
 }
 
 export default providersSaga;
