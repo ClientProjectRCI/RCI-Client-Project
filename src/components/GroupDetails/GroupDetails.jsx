@@ -38,7 +38,6 @@ function GroupDetail() {
             src={details.picture} alt={details.name}
         />
         <button>Email</button>
-        <button>Edit</button>
     </div>
     <div className="column">
         <div className="info">{details.name}</div>
