@@ -34,55 +34,47 @@ function ProvidersDetail() {
   };
 
   return (
-    <div
-    // className="bColor"
-    >
-      <h1>Details</h1>
-      <Grid
-        container
-        spacing={0}
-        direction="column"
-        alignItems="center"
-        justifyContent="center"
-        style={{ minHeight: '100vh' }}
-      >
-        <Grid item xs="auto">
-          <Card className={classes.detailSize}>
-            <Paper className={classes.detailSize}>
-              <Typography gutterBottom variant="h5" component="h3">
-                {details.name}
-              </Typography>
-              <Typography>
-                {' '}
-                <img src={details.picture} alt={details.name} />
-              </Typography>
-              <CardContent>
-                <Typography gutterBottom variant="body2">
-                  {details.bio}{' '}
-                </Typography>
-                <Typography gutterBottom variant="body2">
-                  {details.availability}{' '}
-                </Typography>
-                <Typography gutterBottom variant="body2">
-                  {details.email}{' '}
-                </Typography>
-                {/* <Typography gutterBottom component="div">
-                  Genres:
-                </Typography> */}
-              </CardContent>
-              <Button
-                size="large"
-                color="primary"
-                variant="contained"
-                onClick={handleClick}
-              >
-                Return to List
-              </Button>
-            </Paper>
-          </Card>
-        </Grid>
-      </Grid>
+
+    <div className="row">
+    <div className="column">
+        <img
+            style={{ borderRadius: 20 }}
+            src={details.picture} alt={details.name}
+        />
+        <button>Email</button>
+        <button>Edit</button>
     </div>
+    <div className="column">
+        <div className="info">{details.name}</div>
+        <div className="info">{details.bio}</div>
+        <div className="info">Insurance</div>
+        <div>
+    <Button
+      size="large"
+      color="primary"
+      variant="contained"
+      onClick={handleClick}>Return to List</Button>
+      </div>
+    </div>
+    <div className="column">
+        <div className="info">Phone number</div>
+        <ul className="info">
+            <h4>Services:</h4>
+            <li>{details.availability}</li>
+            <li>Phone</li>
+            <li>{details.email}</li>
+            <li>Online</li>
+            <li>In-Patient</li>
+            <li>Out-Patient</li>
+
+        </ul>
+        <ul className="info">
+            <h4>Specialialties:</h4>
+        </ul>
+    </div>
+
+</div>
+
   );
 }
 
