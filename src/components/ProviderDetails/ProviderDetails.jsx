@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   },
 });
 function ProvidersDetail() {
-  
+
 const details = useSelector((store) => store.details);
 console.log('In Details');
 //details pertaining to the id of the provider that was clicked on.
@@ -45,7 +45,6 @@ const handleClose = ()=>{
 }
 // upon click btn close the modal/dialog
 
-
   return (
 
     <div className="row">
@@ -54,10 +53,11 @@ const handleClose = ()=>{
             style={{ borderRadius: 20 }}
             src={details.picture} alt={details.name}
         />
+        {/* Start of modal/dialog  */}
         <Button variant="outlined" onClick={handleClickOpen}>
         Email Me!
       </Button>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog style={{ borderRadius: 20 }} open={open} onClose={handleClose}>
         <DialogTitle>{details.name}</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -70,7 +70,7 @@ const handleClose = ()=>{
             label="First Name"
             type="email"
             fullWidth
-            variant="standard"
+            variant="outlined"
           />
           <TextField
             autoFocus
@@ -79,7 +79,7 @@ const handleClose = ()=>{
             label="Last Name"
             type="email"
             fullWidth
-            variant="standard"
+            variant="outlined"
           />
           <TextField
           autoFocus
@@ -88,7 +88,8 @@ const handleClose = ()=>{
           label="Email Address"
           type="email"
           fullWidth
-          variant="standard"
+          variant="outlined"
+          
         />
         <TextField
             autoFocus
@@ -97,7 +98,7 @@ const handleClose = ()=>{
             label="Reason of Inqury"
             type="email"
             fullWidth
-            variant="standard"
+            variant="outlined"
           />
           <TextField
             autoFocus
@@ -106,7 +107,7 @@ const handleClose = ()=>{
             label="Message"
             type="email"
             fullWidth
-            variant="standard"
+            variant="outlined"
           />
         </DialogContent>
         <DialogActions>
@@ -114,17 +115,13 @@ const handleClose = ()=>{
           <Button onClick={handleClose}>Send</Button>
         </DialogActions>
       </Dialog>
-
-
-
-
-
+      {/* End of modal/dialog  */}
     </div>
     <div className="column">
         <div className="info">{details.name}</div>
         <div className="info">{details.bio}</div>
         <div className="info">Insurance</div>
-      
+
     </div>
     <div className="column">
         <div className="info">Phone number</div>
@@ -136,7 +133,6 @@ const handleClose = ()=>{
             <li>Online</li>
             <li>In-Patient</li>
             <li>Out-Patient</li>
-
         </ul>
         <ul className="info">
             <h4>Specialialties:</h4>
