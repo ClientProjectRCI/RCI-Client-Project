@@ -1,12 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import { CardContent } from '@mui/material';
 import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
@@ -48,13 +43,7 @@ function ProvidersDetail() {
         <div className="info">{details.name}</div>
         <div className="info">{details.bio}</div>
         <div className="info">Insurance</div>
-        <div>
-    <Button
-      size="large"
-      color="primary"
-      variant="contained"
-      onClick={handleClick}>Return to List</Button>
-      </div>
+      
     </div>
     <div className="column">
         <div className="info">Phone number</div>
@@ -71,8 +60,14 @@ function ProvidersDetail() {
         <ul className="info">
             <h4>Specialialties:</h4>
         </ul>
+        <div>
+    <Button
+      size="large"
+      color="primary"
+      variant="contained"
+      onClick={handleClick}>Return to List</Button>
+      </div>
     </div>
-
 </div>
 
   );
