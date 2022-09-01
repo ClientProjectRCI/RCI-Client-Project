@@ -13,6 +13,8 @@ const groupsRouter = require('./routes/groups.router');
 const providersRouter = require('./routes/providers.router');
 const specializationsRouter = require('./routes/specializations.router');
 const insurancesRouter = require('./routes/insurances.router');
+const occupationsRouter = require('./routes/occupations.router');
+
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -31,6 +33,7 @@ app.use('/api/groups', groupsRouter);
 app.use('/api/providers', providersRouter);
 app.use('/api/specializations', specializationsRouter);
 app.use('/api/insurances', insurancesRouter);
+app.use('/api/occupations', occupationsRouter);
 
 // Serve static files
 app.use(express.static('build'));

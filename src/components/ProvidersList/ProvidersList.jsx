@@ -29,7 +29,6 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
-
 import Grid from '@material-ui/core/Grid';
 import ProvidersListItem from '../ProvidersListItem/ProvidersListItem';
 import GroupsListItem from '../GroupsListItem/GroupsListItem';
@@ -41,19 +40,20 @@ import './ProvidersList.css';
 
 //AVERY: DON'T TOUCH FILE
 
-
 function ProvidersList() {
   const history = useHistory();
   const dispatch = useDispatch();
   const providers = useSelector((store) => store.providers);
   const groups = useSelector((store) => store.groups);
   const specializations = useSelector((store) => store.specializations);
-   const insurances = useSelector((store) => store.insurances);
+  const insurances = useSelector((store) => store.insurances);
+  const occupations = useSelector((store) => store.occupations);
   useEffect(() => {
     dispatch({ type: 'FETCH_PROVIDERS' });
     dispatch({ type: 'FETCH_GROUPS' });
-     dispatch({ type: 'FETCH_SPECIALIZATIONS' });
-      dispatch({ type: 'FETCH_INSURANCES' });
+    dispatch({ type: 'FETCH_SPECIALIZATIONS' });
+    dispatch({ type: 'FETCH_INSURANCES' });
+    dispatch({ type: 'FETCH_OCCUPATIONS' });
   }, []);
 
   return (
@@ -110,9 +110,7 @@ function ProvidersList() {
                   required
                   id="tags-outlined"
                   options={insurances}
-                  getOptionLabel={(insurances) =>
-                    insurances.insurance
-                  }
+                  getOptionLabel={(insurances) => insurances.insurance}
                   filterSelectedOptions
                   renderInput={(params) => (
                     <TextField
@@ -136,10 +134,35 @@ function ProvidersList() {
               </Box>
             </li>
             <li>
-              <a>Menu Item</a>
-            </li>
-            <li>
-              <a>Menu Item</a>
+              <Box>
+                <Stack spacing={3} sx={{ width: 500 }}></Stack>
+                <Autocomplete
+                  multiple
+                  required
+                  id="tags-outlined"
+                  options={occupations}
+                  getOptionLabel={(occupations) => occupations.occupation}
+                  filterSelectedOptions
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Select Occupations"
+                      value={occupations}
+                      // onChange={(event) =>
+                      //   setInsurances(event.target.value)
+                      // }
+                      placeholder="Occupations"
+                    />
+                  )}
+                />
+                <ButtonGroup
+                  variant="contained"
+                  size="large"
+                  aria-label="outlined primary button group"
+                >
+                  <Button type="submit">filter</Button>
+                </ButtonGroup>
+              </Box>
             </li>
           </ul>
         </nav>
