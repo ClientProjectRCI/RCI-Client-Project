@@ -1,0 +1,14 @@
+/* Style inputs */
+input[type=text], select {
+    width: 50%;
+    padding: 10px 10px;
+    margin: 8px;
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    /* box-sizing: border-box; */
+    box-sizing:content-box
+  }
+
+  /* Style the submit button */
+
