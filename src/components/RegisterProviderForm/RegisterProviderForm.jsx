@@ -54,7 +54,7 @@ export default function RegisterProviderForm() {
                 <input required type="text" placeholder="Email"></input>
                 <input required type="text" placeholder="Website"></input>
                 <input required type="text" placeholder="Phone Number"></input>
-                <input type="file" class="file-upload" name="profile-image" onChange={addFile}></input>
+                <input type="file" className="file-upload" name="profile-image" onChange={addFile}></input>
                 <button onClick={registerProvider}>Submit</button>
             </form>
             <LogOutButton className="btn" />
