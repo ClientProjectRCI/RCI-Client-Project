@@ -35,6 +35,7 @@ CREATE TABLE "provider" (
 	"name" varchar(100),
 	"bio" varchar(1000),
 	"picture" varchar(1000),
+	"phone" varchar(10),
 	"email" varchar(100),
 	"insurance_id" int,
 	"occupation_id" int,
@@ -172,8 +173,8 @@ INSERT INTO "group" ( "id", "user_id", "name", "bio", "website", "email", "phone
 (1, 2, 'group1', 'bio', 'website', 'email', 'phone', 'street', 'city', 'state', 'zipcode');
 
 --  PROVIDER Dummy Data --
-INSERT INTO "provider" ("id", "user_id", "name", "bio", "picture", "email", "insurance_id", "occupation_id", "specialization_id", "service_id", "availability", "group_id") VALUES
-(1, 3, 'provider1', 'bio', 'pic', 'email', 1, 1, 1, 1, 'availability', 1);
+INSERT INTO "provider" ("id", "user_id", "name", "bio", "picture","phone", "email", "insurance_id", "occupation_id", "specialization_id", "service_id", "availability", "group_id") VALUES
+(1, 3, 'provider1', 'bio', 'pic', 'phone', 'email', 1, 1, 1, 1, 'availability', 1);
 
 -- provider_specializations JUNCTION TABLE DUMMY DATA --  
 INSERT INTO "provider_specializations" ( "provider_id", "specializations_id") VALUES 
@@ -251,7 +252,7 @@ WHERE provider_insurance_plan.provider_id = 1;
 SELECT service_type.service FROM service_type
 JOIN provider_service_type 
 ON provider_service_type.service_type_id = service_type.id
-WHERE provider_service_type.provider_id = 2;
+WHERE provider_service_type.provider_id = 1;
 
 -- GET PROVIDER specializations BY PROVIDER.ID --
 SELECT "specializations"."specialization" FROM "specializations"
