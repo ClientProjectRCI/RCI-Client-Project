@@ -10,8 +10,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+// ProtectedRoutes (Admin, Group, Provider)
+import ProtectedRouteAdmin from '../ProtectedRoute/ProtectedRouteAdmin';
+import ProtectedRouteGroup from '../ProtectedRoute/ProtectedRouteGroup';
+import ProtectedRouteProvider from '../ProtectedRoute/ProtectedRouteProvider';
+// Components
 import AboutPage from '../AboutPage/AboutPage';
 import GroupProfile from '../GroupProfile/GroupProfile';
 import ProviderProfile from '../ProviderProfile/ProviderProfile';
@@ -94,26 +97,33 @@ export default function App() {
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
-                    <ProtectedRoute
+                    <ProtectedRouteGroup
                         // logged in shows GroupProfile else shows GroupProfile
                         exact
                         path="/group"
                     >
                         <GroupProfile />
-                    </ProtectedRoute>
-                    <ProtectedRoute
+                    </ProtectedRouteGroup>
+                    <ProtectedRouteProvider
                         // logged in shows ProviderProfile else shows ProviderProfile
                         exact
                         path="/provider"
                     >
                         <ProviderProfile />
-                    </ProtectedRoute>
-                    <ProtectedRoute exact path="/register-group">
+                    </ProtectedRouteProvider>
+
+                    <ProtectedRouteGroup exact path="/register-group">
                         <RegisterGroupForm />
-                    </ProtectedRoute>
-                    <ProtectedRoute exact path="/register-provider">
+                    </ProtectedRouteGroup>
+
+                    <ProtectedRouteProvider exact path="/register-provider">
                         <RegisterProviderForm />
-                    </ProtectedRoute>
+                    </ProtectedRouteProvider>
+
+                    <ProtectedRouteAdmin exact path="/admin">
+                        <AboutPage />
+                    </ProtectedRouteAdmin>
+
                     <Route exact path="/login">
                         {user.id && user.access_level === 2 ? (
                             // If the user is already logged in,

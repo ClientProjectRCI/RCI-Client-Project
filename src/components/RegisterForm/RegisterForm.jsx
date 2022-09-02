@@ -11,20 +11,22 @@ export default function RegisterForm() {
 
     const registerGroup = (event) => {
         event.preventDefault();
-
+        // register group
         dispatch({
             type: 'REGISTER',
             payload: {
                 username: username,
                 password: password,
-                access_level: 3, // hardcode access_level 3 for provider
+                access_level: 3, // hardcode access_level 3 for group
             },
         });
+        // navigate to group  profile
+        history.push('/register-group');
     }; // end registerUser
 
     const registerProvider = (event) => {
         event.preventDefault();
-
+        // register provider
         dispatch({
             type: 'REGISTER',
             payload: {
@@ -33,45 +35,9 @@ export default function RegisterForm() {
                 access_level: 2, // hardcode access_level 2 for provider
             },
         });
-    }; // end registerUser
-
-    const handleGroupRegister = (event) => {
-        event.preventDefault();
-        // register the user
-        registerGroup(event); // calls "registersGroup function"
-        // navigate to group register profile
-        history.push('/register-group');
-    };
-
-    const handleProviderRegister = (event) => {
-        event.preventDefault();
-        // register the user
-        registerProvider(event); // calls "registerProvider function"
         //navigate to provider profile
         history.push('/register-provider');
-    };
-
-    {
-        /* <form>
-            <h2>Are you a Group or Provider?</h2>
-
-            <input
-                type="radio"
-                id="provider"
-                name="provider_group"
-                value="provider"
-            />
-            <label for="provider">Provider</label>
-
-            <input
-                type="radio"
-                id="group"
-                name="provider_group"
-                value="group"
-            />
-            <label for="group">Group</label>
-        </form> */
-    }
+    }; // end provider register
 
     return (
         <form className="formPanel">
@@ -107,14 +73,14 @@ export default function RegisterForm() {
                     type="submit"
                     name="submit"
                     value="Provider"
-                    onClick={handleProviderRegister}
+                    onClick={registerProvider}
                 />
                 <input
                     className="btn"
                     type="submit"
                     name="submit"
                     value="Group"
-                    onClick={handleGroupRegister}
+                    onClick={registerGroup}
                 />
             </div>
         </form>
