@@ -228,6 +228,8 @@ ORDER BY "id";
 SELECT * FROM "occupations" -- GET ALL occupations - alphabetically
 ORDER BY "occupation";
 
+
+
 ---- GET ONE BY ID ---- 
 SELECT * FROM "user" WHERE "user"."id" = 1; -- GET ONE USER BY "id" example: 1
 SELECT * FROM "group" WHERE "group"."id" = 1; -- GET ONE GROUP BY "id" example: 1
@@ -262,9 +264,55 @@ WHERE "provider_specializations"."provider_id" = 1;
 
 -- GET PROVIDER occupations BY PROVIDER.ID --
 SELECT "occupations"."occupation" FROM "occupations"
-JOIN "provider_occupations"
-ON "provider_occupations"."occupations_id" = "occupations"."id"
-WHERE "provider_occupations"."provider_id" = $1;
+JOIN "provider_occupation"
+ON "provider_occupation"."occupation_id" = "occupations"."id"
+WHERE "provider_occupation"."provider_id" = 1;
+
+-- SEARCHS --
+-- SEARCH Providers by NAME -- Ascending and Descending
+SELECT * FROM "provider" WHERE "name" ILIKE '%rovid%' ORDER BY "provider"."name" ASC;
+SELECT * FROM "provider" WHERE "name" ILIKE '%rovid%' ORDER BY "provider"."name" DESC;
+
+-- SEARCH Groups by NAME -- Ascending and Descending
+SELECT * FROM "group" WHERE "name" ILIKE '%group%' ORDER BY "group"."name" ASC;
+SELECT * FROM "group" WHERE "name" ILIKE '%group%' ORDER BY "group"."name" DESC;
+
+
+-- SEARCH Providers by SPECIALIZATION -- 
+SELECT * FROM "provider" 
+JOIN "provider_specializations" 
+ON "provider"."id" = "provider_specializations"."provider_id"
+JOIN "specializations"
+ON "specializations"."id" = "provider_specializations"."id"
+WHERE "specializations"."specialization" ILIKE '%POC Specific%' 
+ORDER BY "provider"."name";
+
+-- SEARCH Providers by OCCUPATION -- 
+SELECT * FROM "provider" 
+JOIN "provider_occupation" 
+ON "provider"."id" = "provider_occupation"."provider_id"
+JOIN "occupations"
+ON "occupations"."id" = "provider_occupation"."id"
+WHERE "occupations"."occupation" ILIKE '%counselor%' 
+ORDER BY "provider"."name";
+
+-- SEARCH Providers by SERVICE_TYPE -- 
+SELECT * FROM "provider" 
+JOIN "provider_service_type" 
+ON "provider"."id" = "provider_service_type"."provider_id"
+JOIN "service_type"
+ON "service_type"."id" = "provider_service_type"."id"
+WHERE "service_type"."service" ILIKE '%line%' 
+ORDER BY "provider"."name";
+
+-- SEARCH Providers by SERVICE_TYPE -- 
+SELECT * FROM "provider" 
+JOIN "provider_insurance_plan" 
+ON "provider"."id" = "provider_insurance_plan"."provider_id"
+JOIN "insurance_plan"
+ON "insurance_plan"."id" = "provider_insurance_plan"."id"
+WHERE "insurance_plan"."insurance" ILIKE '%blue%' 
+ORDER BY "provider"."name";
 
 -----! DELETE/DROP TABLES !-----
 DROP TABLE "provider_specializations";
