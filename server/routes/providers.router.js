@@ -2,6 +2,40 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+// POST route for initial provider registration
+router.post('/', rejectUnauthenticated, (req, res) => {
+  console.log("content is:", req.body);
+  let queryText = `INSERT INTO "provider" (
+  "user_id", "name", "bio", "picture", 
+  "phone", "email", "insurance_id", 
+  "occupation_id", "specialization_id",
+  "service_id", "availability", 
+  "group_id"
+  )
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *;`;
+  pool.query(queryText, 
+      [req.body.userId,
+      req.body.name,
+      req.body.bio, 
+      req.file,
+      req.body.phone,
+      req.body.email,
+      req.body.insuranceId, 
+      req.body.occupationId, 
+      req.body.specializationId,
+      req.body.serviceId, 
+      req.body.availability, 
+      req.body.groupId, 
+      ])
+.then(result => {
+  res.sendStatus(201);
+  })
+.catch(error => {
+  console.log(`Error adding req.body`, error);
+  res.sendStatus(500);
+  });
+});
+
 
 router.get('/', (req, res) => {
   const query = `SELECT * FROM "provider" ORDER BY "name" ASC`;
