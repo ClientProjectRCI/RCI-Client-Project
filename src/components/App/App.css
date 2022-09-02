@@ -131,7 +131,6 @@ input {
     padding: 3rem;
 }
 
-h1,
 h3 {
     text-align: center;
 }
@@ -143,4 +142,14 @@ h3 {
 
 .outline:hover {
     background-color: var(--true-orange);
+}
+
+section {
+    text-align: left;
+    background-color: gray;
+    /* border-radius: 1rem; */
+    width: 70%;
+    height: 10rem;
+    margin: 1rem auto;
+    padding: 1rem;
 }
