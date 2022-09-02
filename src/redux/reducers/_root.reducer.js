@@ -7,6 +7,9 @@ import details from './details.reducer';
 import specializations from './specializations.reducer';
 import insurances from './insurances.reducer';
 import occupations from './occupations.reducer';
+import providerSpecializations from './providerSpecializations.reducer';
+import providerInsurances from './providerInsurances.reducer';
+import providerOccupations from './providerOccupations.reducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -16,12 +19,15 @@ import occupations from './occupations.reducer';
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
-providers, 
-groups,
-details,
-specializations,
-insurances,
-occupations,
+  providers,
+  groups,
+  details,
+  specializations,
+  insurances,
+  occupations,
+  providerSpecializations,
+  providerInsurances,
+  providerOccupations,
 });
 
 export default rootReducer;

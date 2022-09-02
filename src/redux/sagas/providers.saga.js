@@ -61,12 +61,52 @@ function* fetchOccupations(action) {
     console.log('Get all insurances error', error);
   }
 }
+
+
+//fetch provider specializations by id
+function* fetchProviderSpecializations(action) {
+  try {
+    console.log('FetchSpecializations, action.payload is', action.payload);
+    const response = yield axios.get(`/api/specializations/${action.payload}`);
+    console.log('Get Provider specific  specializations:', response.data);
+    yield put({ type: 'SET_PROVIDER_SPECIALIZATIONS', payload: response.data });
+  } catch (error) {
+    console.log('Get Provider specific specializations error', error);
+  }
+}
+//fetch provider insurances by id
+function* fetchProviderInsurances(action) {
+  try {
+    console.log('FetchInsurances, action.payload is', action.payload);
+    const response = yield axios.get(`/api/insurances/${action.payload}`);
+    console.log('Get Provider specific insurances:', response.data);
+    yield put({ type: 'SET_PROVIDER_INSURANCES', payload: response.data });
+  } catch (error) {
+    console.log('Get Provider specific insurances error', error);
+  }
+}
+//fetch provider occupations by id
+function* fetchProviderOccupations(action) {
+  try {
+    console.log('FetchOccupations, action.payload is', action.payload);
+    const response = yield axios.get(`/api/occupations/${action.payload}`);
+    console.log('Get Provider specific occupations:', response.data);
+    yield put({ type: 'SET_PROVIDER_OCCUPATIONS', payload: response.data });
+  } catch (error) {
+    console.log('Get Provider specific insurances error', error);
+  }
+}
+
+
 function* providersSaga() {
   yield takeEvery('FETCH_PROVIDERS', fetchProviders);
   yield takeEvery('FETCH_PROVIDER_DETAILS', fetchProviderDetails);
   yield takeEvery('FETCH_SPECIALIZATIONS', fetchSpecializations);
   yield takeEvery('FETCH_INSURANCES', fetchInsurances);
   yield takeEvery('FETCH_OCCUPATIONS', fetchOccupations);
+  yield takeEvery('FETCH_PROVIDER_SPECIALIZATIONS', fetchProviderSpecializations);
+  yield takeEvery('FETCH_PROVIDER_INSURANCES', fetchProviderInsurances);
+  yield takeEvery('FETCH_PROVIDER_OCCUPATIONS', fetchProviderOccupations);
 }
 
 export default providersSaga;
