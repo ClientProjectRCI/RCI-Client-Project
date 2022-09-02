@@ -18,10 +18,10 @@ export default function Nav() {
             </Link>
             <div>
                 <Link className="navLink" to="/home">
-                    Home - WORKS!
+                    Home
                 </Link>
                 <Link className="navLink" to="/about">
-                    About - WORKS!
+                    About
                 </Link>
                 <Link className="navLink" to="/providers">
                     Providers
