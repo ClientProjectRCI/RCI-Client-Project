@@ -208,17 +208,24 @@ INSERT INTO "provider_occupation" ( "provider_id", "occupation_id") VALUES
 
 ---- GET ALL  ---- 
 SELECT * FROM "user"; -- GET ALL USERS
-SELECT * FROM "group";  -- GET ALL GROUPS
-SELECT * FROM "provider"; -- GET ALL PROVIDERS
 
-SELECT * FROM "specializations"-- GET ALL specializations
+SELECT * FROM "group"  -- GET ALL GROUPS - alphabetically
+ORDER BY "group";
+
+SELECT * FROM "provider" -- GET ALL PROVIDERS - alphabetically
+ORDER BY "provider"; 
+
+SELECT * FROM "specializations" -- GET ALL specializations - alphabetically
 ORDER BY "specialization"; 
 
-SELECT * FROM "insurance_plan" -- GET ALL insurance_plan
+SELECT * FROM "insurance_plan" -- GET ALL insurance_plan - alphabetically
 ORDER BY "insurance"; 
 
 SELECT * FROM "service_type"  -- GET ALL service_type
-ORDER BY "service";
+ORDER BY "id";
+
+SELECT * FROM "occupations" -- GET ALL occupations - alphabetically
+ORDER BY "occupation";
 
 ---- GET ONE BY ID ---- 
 SELECT * FROM "user" WHERE "user"."id" = 1; -- GET ONE USER BY "id" example: 1
@@ -234,10 +241,23 @@ JOIN "user" ON "group"."user_id" = "user"."id" WHERE "user"."id" = 2;
 SELECT * FROM "provider" 
 JOIN "user" ON "provider"."user_id" = "user"."id" WHERE "user"."id" = 3;
 
-SELECT * FROM "provider_specializations" WHERE "provider_id" = 1; -- GET ONE PROVIDERS SPECIALIZATIONS BY "provider_id" example: 1
-SELECT * FROM "provider_insurance_plan" WHERE "provider_id" = 1; -- GET ONE PROVIDERS INSURANCE_PLAN BY "provider_id" example: 1
-SELECT * FROM "provider_service_type" WHERE "provider_id" = 1; -- GET ONE PROVIDERS SPECIALIZATIONS BY "provider_id" example: 1
+-- GET PROVIDER INSURANCE BY PROVIDER.ID -- 
+SELECT insurance_plan.insurance FROM insurance_plan
+JOIN provider_insurance_plan
+ON provider_insurance_plan.insurance_plan_id = insurance_plan.id
+WHERE provider_insurance_plan.provider_id = 1;
 
+-- GET PROVIDER service_type BY PROVIDER.ID -- 
+SELECT service_type.service FROM service_type
+JOIN provider_service_type 
+ON provider_service_type.service_type_id = service_type.id
+WHERE provider_service_type.provider_id = 2;
+
+-- GET PROVIDER specializations BY PROVIDER.ID --
+SELECT "specializations"."specialization" FROM "specializations"
+JOIN "provider_specializations"
+ON "provider_specializations"."specializations_id" = "specializations"."id"
+WHERE "provider_specializations"."provider_id" = 1;
 
 -----! DELETE/DROP TABLES !-----
 DROP TABLE "provider_specializations";
