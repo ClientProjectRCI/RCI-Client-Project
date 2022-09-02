@@ -3,7 +3,7 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--cyan);
+    background-color: var(--true-orange);
     height: 5rem;
     width: 100%;
     position: absolute;
