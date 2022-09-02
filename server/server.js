@@ -4,6 +4,9 @@ require('dotenv').config();
 
 const app = express();
 
+const multer  = require('multer');
+const upload = multer({ dest: '../public/Images' });
+
 const sessionMiddleware = require('./modules/session-middleware');
 const passport = require('./strategies/user.strategy');
 
@@ -26,6 +29,11 @@ app.use(sessionMiddleware);
 // start up passport sessions
 app.use(passport.initialize());
 app.use(passport.session());
+
+//multer
+app.post('../public/Images', upload.single('uploaded_file'), function (req, res) {
+    console.log(req.file, req.body)
+ });
 
 /* Routes */
 app.use('/api/user', userRouter);
