@@ -38,18 +38,27 @@ export default function Nav() {
                     )}
 
                     {/* If a user is logged in, show these links */}
-                    {user.id && (
+                    {user.access_level === 1 && (
+                        <div>
+                            <Link className="navLink" to="/admin">
+                                Admin
+                            </Link>
+                            <LogOutButton className="navLink" />
+                        </div>
+                    )}
+                    {user.access_level === 2 && (
                         <div>
                             <Link className="navLink" to="/provider">
                                 Provider
                             </Link>
+                            <LogOutButton className="navLink" />
+                        </div>
+                    )}
+                    {user.access_level === 3 && (
+                        <div>
                             <Link className="navLink" to="/group">
                                 Group
                             </Link>
-                            <Link className="navLink" to="/info">
-                                Info Page
-                            </Link>
-
                             <LogOutButton className="navLink" />
                         </div>
                     )}
