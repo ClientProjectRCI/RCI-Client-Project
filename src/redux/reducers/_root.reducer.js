@@ -4,6 +4,9 @@ import user from './user.reducer';
 import providers from './providers.reducer';
 import groups from './groups.reducer';
 import details from './details.reducer';
+import specializations from './specializations.reducer';
+import insurances from './insurances.reducer';
+import occupations from './occupations.reducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -16,6 +19,9 @@ const rootReducer = combineReducers({
 providers, 
 groups,
 details,
+specializations,
+insurances,
+occupations,
 });
 
 export default rootReducer;
