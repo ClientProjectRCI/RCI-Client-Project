@@ -119,3 +119,28 @@ input {
     margin: 5px;
     margin-bottom: 10px;
 }
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.w-50 {
+    width: 30%;
+    height: 20rem;
+    padding: 3rem;
+}
+
+h1,
+h3 {
+    text-align: center;
+}
+
+.outline {
+    border: 1px solid #a9a7a7;
+    border-radius: 3rem;
+}
+
+.outline:hover {
+    background-color: var(--true-orange);
+}
