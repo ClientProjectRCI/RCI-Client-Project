@@ -12,7 +12,7 @@ export default function Footer() {
         <footer>
             &copy; Rochester Community Initiative 2022
             <br />
-            <Link to="/contact">Contact RCI -- NOT FUNCTIONAL...YET</Link>
+            <Link to="/contact">Contact RCI</Link>
         </footer>
     );
 }
