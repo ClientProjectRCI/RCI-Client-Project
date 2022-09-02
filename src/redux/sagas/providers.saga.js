@@ -97,6 +97,19 @@ function* fetchProviderOccupations(action) {
   }
 }
 
+//fetch provider services by id
+function* fetchProviderServices(action) {
+  try {
+    console.log('FetchServices, action.payload is', action.payload);
+    const response = yield axios.get(`/api/services/${action.payload}`);
+    console.log('Get Provider specific services:', response.data);
+    yield put({ type: 'SET_PROVIDER_SERVICES', payload: response.data });
+  } catch (error) {
+    console.log('Get Provider specific services error', error);
+  }
+}
+
+
 
 function* providersSaga() {
   yield takeEvery('FETCH_PROVIDERS', fetchProviders);
@@ -107,6 +120,7 @@ function* providersSaga() {
   yield takeEvery('FETCH_PROVIDER_SPECIALIZATIONS', fetchProviderSpecializations);
   yield takeEvery('FETCH_PROVIDER_INSURANCES', fetchProviderInsurances);
   yield takeEvery('FETCH_PROVIDER_OCCUPATIONS', fetchProviderOccupations);
+   yield takeEvery('FETCH_PROVIDER_SERVICES', fetchProviderServices);
 }
 
 export default providersSaga;

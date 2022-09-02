@@ -31,6 +31,7 @@ const handleClick=(id)=>{
      dispatch({ type: 'FETCH_PROVIDER_SPECIALIZATIONS', payload: id });
       dispatch({ type: 'FETCH_PROVIDER_OCCUPATIONS', payload: id });
        dispatch({ type: 'FETCH_PROVIDER_INSURANCES', payload: id });
+           dispatch({ type: 'FETCH_PROVIDER_SERVICES', payload: id });
     history.push('/provider-details')
 }
 
