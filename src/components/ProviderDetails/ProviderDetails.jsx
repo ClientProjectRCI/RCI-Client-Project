@@ -9,7 +9,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-
+import ProviderSpecializations from '../ProviderSpecializations/ProviderSpecializations';
 
 const useStyles = makeStyles({
   backColor: {
@@ -124,11 +124,11 @@ const handleClose = ()=>{
         <div className="info">{details.bio}</div>
         <div className="info">
           Insurance{' '}
-          {insurances.map((insurance) => (
+          {/* {insurances.map((insurance) => (
             <div item key={insurance.id} xs={2}>
-            {insurance}
+              {insurance}
             </div>
-          ))}
+          ))} */}
         </div>
       </div>
       <div className="column">
@@ -144,6 +144,7 @@ const handleClose = ()=>{
         </ul>
         <ul className="info">
           <h4>Specialialties:</h4>
+          <ProviderSpecializations/>
         </ul>
         <div>
           <Button
