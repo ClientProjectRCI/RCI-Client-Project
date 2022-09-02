@@ -260,6 +260,12 @@ JOIN "provider_specializations"
 ON "provider_specializations"."specializations_id" = "specializations"."id"
 WHERE "provider_specializations"."provider_id" = 1;
 
+-- GET PROVIDER occupations BY PROVIDER.ID --
+SELECT "occupations"."occupation" FROM "occupations"
+JOIN "provider_occupations"
+ON "provider_occupations"."occupations_id" = "occupations"."id"
+WHERE "provider_occupations"."provider_id" = $1;
+
 -----! DELETE/DROP TABLES !-----
 DROP TABLE "provider_specializations";
 DROP TABLE "provider_insurance_plan";

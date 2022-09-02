@@ -10,6 +10,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import ProviderSpecializations from '../ProviderSpecializations/ProviderSpecializations';
+import ProviderInsurances from '../ProviderInsurances/ProviderInsurances';
+import ProviderOccupations from '../ProviderOccupations/ProviderOccupations';
+import ProviderServices from '../ProviderServices/ProviderServices';
 
 const useStyles = makeStyles({
   backColor: {
@@ -24,9 +27,7 @@ const useStyles = makeStyles({
 function ProvidersDetail() {
 
 const details = useSelector((store) => store.details);
-const specializations = useSelector((store) => store.providerSpecializations);
-const insurances = useSelector((store) => store.providerInsurances);
-const occupations = useSelector((store) => store.providerOccupations);
+
 console.log('In Details');
 //details pertaining to the id of the provider that was clicked on.
 const [open, SetOpen] = React.useState(false);
@@ -123,12 +124,10 @@ const handleClose = ()=>{
         <div className="info">{details.name}</div>
         <div className="info">{details.bio}</div>
         <div className="info">
-          Insurance{' '}
-          {/* {insurances.map((insurance) => (
-            <div item key={insurance.id} xs={2}>
-              {insurance}
-            </div>
-          ))} */}
+          Insurance <ProviderInsurances />
+        </div>
+        <div className="info">
+          Occupation <ProviderOccupations />
         </div>
       </div>
       <div className="column">
@@ -138,13 +137,11 @@ const handleClose = ()=>{
           <li>{details.availability}</li>
           <li>Phone</li>
           <li>{details.email}</li>
-          <li>Online</li>
-          <li>In-Patient</li>
-          <li>Out-Patient</li>
+          <ProviderServices />
         </ul>
         <ul className="info">
           <h4>Specialialties:</h4>
-          <ProviderSpecializations/>
+          <ProviderSpecializations />
         </ul>
         <div>
           <Button
