@@ -1,8 +1,11 @@
 footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--cyan);
+    height: 5rem;
+    width: 100%;
     position: absolute;
-    text-align: center;
-    width: 90vw;
     bottom: 0;
-    margin: auto;
-    padding: 5rem;
 }
