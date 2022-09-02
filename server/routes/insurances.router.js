@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 //get route for insurances
 router.get('/:id', (req, res) => {
   const providerId = req.params.id;
-  console.log('here is the providerId in the provider router', providerId);
+  console.log('here is the providerId in the insurance router', providerId);
   const query = `SELECT insurance_plan.insurance FROM insurance_plan
 JOIN provider_insurance_plan
 ON provider_insurance_plan.insurance_plan_id = insurance_plan.id
