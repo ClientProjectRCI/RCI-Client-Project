@@ -8,6 +8,16 @@ export default function RegisterProviderForm() {
     const user = useSelector((store) => store.user);
     const history = useHistory();
     const [newPath, setNewPath] = useState('');
+    const [providerName, setProviderName]= useState('');
+    const [providerBio, setProviderBio]= useState('');
+    const [providerPhone, setProviderPhone]= useState('');
+    const [providerEmail, setProviderEmail]= useState('');
+    const [providerWebsite, setProviderWebsite]= useState('');
+    const [providerInsurance, setProviderInsurance]= useState('');
+    const [providerOccupation, setProviderOccupation]= useState('');
+    const [providerSpecialization, setProviderSpecialization]= useState('');
+    const [providerService, setProviderService]= useState('');
+    const [providerAvailability, setProviderAvailability]= useState('');
 
     const addFile = (event) => setNewPath(event.target.files[0]);
 
@@ -26,31 +36,28 @@ export default function RegisterProviderForm() {
 			});
 	};
 
-    function registerProvider() {
+    const registerProvider = () => {
             sendImage();
         // POST to provider table
             axios({
                 method: 'POST',
-                url: '/api/notes',
+                url: '/api/providers',
                 data: {
-                    userId: userId,
-                    date: reviewDate, 
-                    whiskeyName: whiskeyName,
-                    whiskeyAbv: whiskeyAbv,
-                    whiskeyStyle: whiskeyStyle,
-                    whiskeyCountry: whiskeyCountry, 
-                    whyThisWhiskey: whyThisWhiskey, 
-                    aromaRating: aromaRating, 
-                    aromaNotes: aromaNotes, 
-                    flavorRating: flavorRating, 
-                    flavorNotes: flavorNotes,
-                    overallNotes: overallNotes,
-                    buyAgain: buyAgain,
-                    overallRating: overallRating
+                    user_id: user.id,
+                    name: providerName, 
+                    bio: providerBio,
+                    picture: newPath.name,
+                    phone: providerPhone,
+                    email: providerEmail,
+                    insurance_id: providerInsurance,
+                    occupation_id: providerOccupation,
+                    specialization_id: providerSpecialization,
+                    service_id: providerService,
+                    availability: providerAvailability
                 }
             })
             .then(() => {
-                dispatch({ type: 'FETCH_NOTES' });
+                dispatch({ type: 'FETCH_PROVIDER_DETAILS' });
             })
             .catch((err) => {
                 console.log(`ERR in POST`, err)
@@ -64,22 +71,58 @@ export default function RegisterProviderForm() {
             <form className="container" encType="multipart/form-data" onSubmit={registerProvider}>
                 <h2>Welcome, {user.username}!</h2>
                 <p>ProviderProfile: Your ID is: {user.id}</p>
-                <input required type="text" placeholder="Name" value={providerName}></input>
-                <input required type="text" placeholder="Bio" value= {providerBio}></input>
-                {/* picture */}
-                <input required type="text" placeholder="Insurance" value={providerInsurance}></input>
-                <input required type="text" placeholder="Occupation" value={providerOccupation}></input>
+                <input required type="text" 
+                placeholder="Name" 
+                value={providerName}
+                onChange={(event) => setProviderName(event.target.value)}
+                ></input>
+                <input required type="text" 
+                placeholder="Bio" 
+                value= {providerBio}
+                onChange={(event) => setProviderBio(event.target.value)}
+                ></input>
+                <input required type="text" 
+                placeholder="Insurance" 
+                value={providerInsurance}
+                onChange={(event) => setProviderInsurance(event.target.value)}
+                ></input>
+                <input required type="text" 
+                placeholder="Occupation" 
+                value={providerOccupation}
+                onChange={(event) => setProviderOccupation(event.target.value)}
+                ></input>
                 <input
                     required
                     type="text"
                     placeholder="Specialization(s)"
                     value={providerSpecialization}
+                    onChange={(event) => setProviderSpecialization(event.target.value)}
                 ></input>
-                <input required type="text" placeholder="Service" value={providerService}></input>
-                <input required type="date" placeholder="Availability" value={providerAvailability}></input>
-                <input required type="text" placeholder="Email" value={providerEmail}></input>
-                <input required type="text" placeholder="Website" value={providerWebsite}></input>
-                <input required type="text" placeholder="Phone Number" value={providerPhone}></input>
+                <input required type="text" 
+                placeholder="Service" 
+                value={providerService}
+                onChange={(event) => setProviderService(event.target.value)}
+                ></input>
+                <input required type="date" 
+                placeholder="Availability" 
+                value={providerAvailability}
+                onChange={(event) => setProviderAvailability(event.target.value)}
+                ></input>
+                <input required type="text" 
+                placeholder="Email" 
+                value={providerEmail}
+                onChange={(event) => setProviderEmail(event.target.value)}
+                ></input>
+                <input required type="text" 
+                placeholder="Website" 
+                value={providerWebsite}
+                onChange={(event) => setProviderWebsite(event.target.value)}
+                ></input>
+                <input required type="text" 
+                placeholder="Phone Number" 
+                value={providerPhone}
+                onChange={(event) => setProviderPhone(event.target.value)}
+                ></input>
                 <input type="file" className="file-upload" name="profile-image" onChange={addFile}></input>
                 <button onClick={registerProvider}>Submit</button>
             </form>
