@@ -17,7 +17,7 @@ export default function RegisterProviderForm() {
 		data.append('image', newPath);
 
 		axios
-			.post('/provider/image', data)
+			.post('api/provider/image', data)
 			.then((response) => {
 				console.log(response);
 			})
@@ -27,9 +27,34 @@ export default function RegisterProviderForm() {
 	};
 
     function registerProvider() {
-        sendImage();
-        console.log('Provider registered!');
+            sendImage();
         // POST to provider table
+            axios({
+                method: 'POST',
+                url: '/api/notes',
+                data: {
+                    userId: userId,
+                    date: reviewDate, 
+                    whiskeyName: whiskeyName,
+                    whiskeyAbv: whiskeyAbv,
+                    whiskeyStyle: whiskeyStyle,
+                    whiskeyCountry: whiskeyCountry, 
+                    whyThisWhiskey: whyThisWhiskey, 
+                    aromaRating: aromaRating, 
+                    aromaNotes: aromaNotes, 
+                    flavorRating: flavorRating, 
+                    flavorNotes: flavorNotes,
+                    overallNotes: overallNotes,
+                    buyAgain: buyAgain,
+                    overallRating: overallRating
+                }
+            })
+            .then(() => {
+                dispatch({ type: 'FETCH_NOTES' });
+            })
+            .catch((err) => {
+                console.log(`ERR in POST`, err)
+            })
         // history.push to provider's id
         history.push(`/provider`);
     }
@@ -39,21 +64,22 @@ export default function RegisterProviderForm() {
             <form className="container" encType="multipart/form-data" onSubmit={registerProvider}>
                 <h2>Welcome, {user.username}!</h2>
                 <p>ProviderProfile: Your ID is: {user.id}</p>
-                <input required type="text" placeholder="Name"></input>
-                <input required type="text" placeholder="Bio"></input>
+                <input required type="text" placeholder="Name" value={providerName}></input>
+                <input required type="text" placeholder="Bio" value= {providerBio}></input>
                 {/* picture */}
-                <input required type="text" placeholder="Insurance"></input>
-                <input required type="text" placeholder="Occupation"></input>
+                <input required type="text" placeholder="Insurance" value={providerInsurance}></input>
+                <input required type="text" placeholder="Occupation" value={providerOccupation}></input>
                 <input
                     required
                     type="text"
                     placeholder="Specialization(s)"
+                    value={providerSpecialization}
                 ></input>
-                <input required type="text" placeholder="Service"></input>
-                <input required type="date" placeholder="Availability"></input>
-                <input required type="text" placeholder="Email"></input>
-                <input required type="text" placeholder="Website"></input>
-                <input required type="text" placeholder="Phone Number"></input>
+                <input required type="text" placeholder="Service" value={providerService}></input>
+                <input required type="date" placeholder="Availability" value={providerAvailability}></input>
+                <input required type="text" placeholder="Email" value={providerEmail}></input>
+                <input required type="text" placeholder="Website" value={providerWebsite}></input>
+                <input required type="text" placeholder="Phone Number" value={providerPhone}></input>
                 <input type="file" className="file-upload" name="profile-image" onChange={addFile}></input>
                 <button onClick={registerProvider}>Submit</button>
             </form>
