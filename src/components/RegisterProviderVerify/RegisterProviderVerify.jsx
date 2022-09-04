@@ -12,7 +12,7 @@ export default function RegisterProviderForm() {
     const [providerBio, setProviderBio]= useState('');
     const [providerPhone, setProviderPhone]= useState('');
     const [providerEmail, setProviderEmail]= useState('');
-    // const [providerWebsite, setProviderWebsite]= useState('');
+    const [providerWebsite, setProviderWebsite]= useState('');
     const [providerInsurance, setProviderInsurance]= useState('');
     const [providerOccupation, setProviderOccupation]= useState('');
     const [providerSpecialization, setProviderSpecialization]= useState('');
@@ -36,75 +36,35 @@ export default function RegisterProviderForm() {
 			});
 	};
 
-    const verifyProvider = () => {
+    const registerProvider = () => {
             sendImage();
-
-            dispatch ({
-                type: 'ADD_PROVIDER_NAME',
-                payload: providerName
-            });
-            dispatch ({
-                type: 'ADD_PROVIDER_BIO',
-                payload: providerBio
-            });
-            dispatch ({
-                type: 'ADD_PROVIDER_PHONE',
-                payload: providerPhone
-            });
-            dispatch ({
-                type: 'ADD_PROVIDER_EMAIL',
-                payload: providerEmail 
-            });
-            dispatch ({
-                type: 'ADD_PROVIDER_INSURANCE',
-                payload: providerInsurance
-            })
-            dispatch ({
-                type: 'ADD_PROVIDER_OCCUPATION',
-                payload: providerOccupation
-            })
-            dispatch ({
-                type: 'ADD_PROVIDER_SPECIALIZATION',
-                payload: providerSpecialization
-            })
-            dispatch ({
-                type: 'ADD_PROVIDER_SERVICE',
-                payload: providerService
-            })
-            dispatch ({
-                type: 'ADD_PROVIDER_AVAILABILITY',
-                payload: providerAvailability
-            })
-            
-            history.push('/registerproviderverify')
-        }
         // POST to provider table
-    //         axios({
-    //             method: 'POST',
-    //             url: '/api/providers',
-    //             data: {
-    //                 user_id: user.id,
-    //                 name: providerName, 
-    //                 bio: providerBio,
-    //                 picture: newPath.name,
-    //                 phone: providerPhone,
-    //                 email: providerEmail,
-    //                 insurance_id: providerInsurance,
-    //                 occupation_id: providerOccupation,
-    //                 specialization_id: providerSpecialization,
-    //                 service_id: providerService,
-    //                 availability: providerAvailability
-    //             }
-    //         })
-    //         .then(() => {
-    //             dispatch({ type: 'FETCH_PROVIDER_DETAILS' });
-    //         })
-    //         .catch((err) => {
-    //             console.log(`ERR in POST`, err)
-    //         })
-    //     // history.push to provider's id
-    //     history.push(`/provider`);
-    // }
+            axios({
+                method: 'POST',
+                url: '/api/providers',
+                data: {
+                    user_id: user.id,
+                    name: providerName, 
+                    bio: providerBio,
+                    picture: newPath.name,
+                    phone: providerPhone,
+                    email: providerEmail,
+                    insurance_id: providerInsurance,
+                    occupation_id: providerOccupation,
+                    specialization_id: providerSpecialization,
+                    service_id: providerService,
+                    availability: providerAvailability
+                }
+            })
+            .then(() => {
+                dispatch({ type: 'FETCH_PROVIDER_DETAILS' });
+            })
+            .catch((err) => {
+                console.log(`ERR in POST`, err)
+            })
+        // history.push to provider's id
+        history.push(`/provider`);
+    }
 
     return (
         <center>
@@ -153,18 +113,18 @@ export default function RegisterProviderForm() {
                 value={providerEmail}
                 onChange={(event) => setProviderEmail(event.target.value)}
                 ></input>
-                {/* <input required type="text" 
+                <input required type="text" 
                 placeholder="Website" 
                 value={providerWebsite}
                 onChange={(event) => setProviderWebsite(event.target.value)}
-                ></input> */}
+                ></input>
                 <input required type="text" 
                 placeholder="Phone Number" 
                 value={providerPhone}
                 onChange={(event) => setProviderPhone(event.target.value)}
                 ></input>
                 <input type="file" className="file-upload" name="profile-image" onChange={addFile}></input>
-                <button onClick={verifyProvider}>Submit</button>
+                <button onClick={registerProvider}>Submit</button>
             </form>
             <LogOutButton className="btn" />
         </center>

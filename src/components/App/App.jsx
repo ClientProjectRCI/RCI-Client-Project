@@ -16,7 +16,9 @@ import AboutPage from '../AboutPage/AboutPage';
 import GroupProfile from '../GroupProfile/GroupProfile';
 import ProviderProfile from '../ProviderProfile/ProviderProfile';
 import RegisterGroupForm from '../RegisterGroupForm/RegisterGroupForm';
+import RegisterGroupVerify from '../RegisterGroupVerify/RegisterGroupVerify';
 import RegisterProviderForm from '../RegisterProviderForm/RegisterProviderForm';
+import RegisterProviderVerify from '../RegisterProviderVerify/RegisterProviderVerify';
 import ContactPage from '../ContactPage/ContactPage';
 import HomePage from '../HomePage/HomePage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -111,8 +113,14 @@ export default function App() {
                     <ProtectedRoute exact path="/register-group">
                         <RegisterGroupForm />
                     </ProtectedRoute>
+                    <ProtectedRoute exact path="/register-group-verify">
+                        <RegisterGroupVerify />
+                    </ProtectedRoute>
                     <ProtectedRoute exact path="/register-provider">
                         <RegisterProviderForm />
+                    </ProtectedRoute>
+                    <ProtectedRoute exact path="/register-provider-verify">
+                        <RegisterProviderVerify />
                     </ProtectedRoute>
                     <Route exact path="/login">
                         {user.id && user.access_level === 2 ? (
