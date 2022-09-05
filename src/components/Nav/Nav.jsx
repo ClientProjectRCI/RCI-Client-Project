@@ -1,69 +1,39 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import './Nav.css';
 import { useSelector } from 'react-redux';
+import { Box, Grid } from '@material-ui/core';
+import rcilogo from '../../assets/rcilogo.png';
+import { NavLink } from 'react-router-dom';
 
 export default function Nav() {
     const user = useSelector((store) => store.user);
 
     return (
-        <div className="nav">
+        <Grid container>
             <Link to="/home">
-                <img
-                    src="https://scontent-msp1-1.xx.fbcdn.net/v/t39.30808-6/271946246_241854878125171_2973919186550770978_n.png?_nc_cat=101&ccb=1-7&_nc_sid=e3f864&_nc_ohc=WPCucrS1o30AX-C5APO&tn=SYOArRVUPJXxNmf1&_nc_ht=scontent-msp1-1.xx&oh=00_AT_9R2EkqGCX4WEXmUhE8__kh-sFMby0LFIt0ioqrnvAKQ&oe=631265C9"
-                    width="340rem"
-                    height="120rem"
-                />
+                <img src={rcilogo} style={{ width: 340, height: 120 }} />
             </Link>
-            <div>
-                <Link className="navLink" to="/home">
-                    Home
-                </Link>
-                <Link className="navLink" to="/about">
-                    About
-                </Link>
-                <Link className="navLink" to="/providers">
-                    Providers
-                </Link>
-                <div>
+            <Grid item>
+                <Link to="/home">Home</Link>
+                <Link to="/about">About</Link>
+                <Link to="/providers">Providers</Link>
+                <Box>
                     {/* If no user is logged in, show these links */}
                     {!user.id && (
                         // If there's no user, show login/registration links
-                        <button>
-                            <Link className="navLink" to="/login">
-                                Login / Register WORKS!
-                            </Link>
-                        </button>
+                        <Link to="/login">Login</Link>
                     )}
 
                     {/* If a user is logged in, show these links */}
-                    {user.access_level === 1 && (
-                        <div>
-                            <Link className="navLink" to="/admin">
-                                Admin
-                            </Link>
-                            <LogOutButton className="navLink" />
-                        </div>
-                    )}
+                    {user.access_level === 1 && <Link to="/admin">Admin</Link>}
                     {user.access_level === 2 && (
-                        <div>
-                            <Link className="navLink" to="/provider">
-                                Provider
-                            </Link>
-                            <LogOutButton className="navLink" />
-                        </div>
+                        <Link to="/provider">Provider</Link>
                     )}
-                    {user.access_level === 3 && (
-                        <div>
-                            <Link className="navLink" to="/group">
-                                Group
-                            </Link>
-                            <LogOutButton className="navLink" />
-                        </div>
-                    )}
-                </div>
-            </div>
-        </div>
+                    {user.access_level === 3 && <Link to="/group">Group</Link>}
+                    <LogOutButton />
+                </Box>
+            </Grid>
+        </Grid>
     );
 }

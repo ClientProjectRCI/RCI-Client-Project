@@ -9,7 +9,6 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
@@ -26,6 +25,7 @@ import ProvidersList from '../ProvidersList/ProvidersList';
 
 import ProviderDetails from '../ProviderDetails/ProviderDetails';
 import GroupDetails from '../GroupDetails/GroupDetails';
+import Navbar from '../Nav/Navbar';
 
 export default function App() {
     const dispatch = useDispatch();
@@ -39,11 +39,11 @@ export default function App() {
     return (
         <Router>
             <div>
+                <Navbar />
                 <Nav />
                 <Switch>
                     {/* Visiting localhost:3000 will redirect to localhost:3000/login */}
                     <Redirect exact from="/" to="/home" />
-
                     {/* Logged In or not, these pages should always show */}
                     <Route exact path="/home">
                         <HomePage />
@@ -114,11 +114,10 @@ export default function App() {
                     <ProtectedRoute exact path="/register-provider">
                         <RegisterProviderForm />
                     </ProtectedRoute>
-
+                    // If the user is already logged in, // redirect to the
+                    /user page
                     <Route exact path="/login">
                         {user.id && user.access_level === 1 ? (
-                            // If the user is already logged in,
-                            // redirect to the /user page
                             <Redirect to="/admin" />
                         ) : user.id && user.access_level === 2 ? (
                             <Redirect to="/provider" />
@@ -128,7 +127,6 @@ export default function App() {
                             <LoginPage />
                         )}
                     </Route>
-
                     <Route exact path="/registration">
                         {user.id ? (
                             // If the user is already logged in,
@@ -139,7 +137,6 @@ export default function App() {
                             <RegisterPage />
                         )}
                     </Route>
-
                     {/* <Route exact path="/home">
                         {user.id ? (
                             // If the user is already logged in,
@@ -150,13 +147,11 @@ export default function App() {
                             <HomePage />
                         )}
                     </Route> */}
-
                     {/* If none of the other routes matched, we will show a 404. */}
                     <Route>
                         <h1>404</h1>
                     </Route>
                 </Switch>
-                <Footer />
             </div>
         </Router>
     );
