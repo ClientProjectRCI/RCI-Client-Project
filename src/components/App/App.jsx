@@ -5,10 +5,7 @@ import {
     Route,
     Switch,
 } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
-
-import Nav from '../Nav/Nav';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
@@ -25,7 +22,7 @@ import ProvidersList from '../ProvidersList/ProvidersList';
 
 import ProviderDetails from '../ProviderDetails/ProviderDetails';
 import GroupDetails from '../GroupDetails/GroupDetails';
-import Navbar from '../Nav/Navbar';
+import Navbar from '../NavBar/Navbar';
 
 export default function App() {
     const dispatch = useDispatch();
@@ -40,7 +37,6 @@ export default function App() {
         <Router>
             <div>
                 <Navbar />
-                <Nav />
                 <Switch>
                     {/* Visiting localhost:3000 will redirect to localhost:3000/login */}
                     <Redirect exact from="/" to="/home" />

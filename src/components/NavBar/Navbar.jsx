@@ -11,15 +11,14 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import rcilogo from '../.././assets/rcilogo.png';
 import { useSelector } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 
 const pages = ['Home', 'About', 'Providers'];
-const settings = ['Account', 'Dashboard', 'Logout'];
 
-export default function ResponsiveAppBar() {
+export default function Navbar() {
     const user = useSelector((store) => store.user);
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -179,22 +178,67 @@ export default function ResponsiveAppBar() {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting) => (
-                                <MenuItem
-                                    key={setting}
-                                    onClick={handleCloseUserMenu}
-                                >
+                            {/* If a user is logged in, show these links */}
+                            {user.access_level === 1 && (
+                                <MenuItem>
                                     <Link
                                         style={{
                                             textDecoration: 'none',
-                                            color: 'black',
+                                            color: 'inherit',
                                         }}
-                                        to={`/${setting}`}
+                                        to="/admin"
                                     >
-                                        {setting}
+                                        Profile
                                     </Link>
                                 </MenuItem>
-                            ))}
+                            )}
+                            {user.access_level === 2 && (
+                                <MenuItem>
+                                    <Link
+                                        style={{
+                                            textDecoration: 'none',
+                                            color: 'inherit',
+                                        }}
+                                        to="/provider"
+                                    >
+                                        Profile
+                                    </Link>
+                                </MenuItem>
+                            )}
+                            {user.access_level === 3 && (
+                                <MenuItem>
+                                    <Link
+                                        style={{
+                                            textDecoration: 'none',
+                                            color: 'inherit',
+                                        }}
+                                        to="/group"
+                                    >
+                                        Profile
+                                    </Link>
+                                </MenuItem>
+                            )}
+                            {/* If user is NOT logged in... */}
+                            {!user.id && (
+                                <MenuItem>
+                                    {/* <LogInButton /> */}
+                                    <Link
+                                        style={{
+                                            textDecoration: 'none',
+                                            color: 'inherit',
+                                        }}
+                                        to="/login"
+                                    >
+                                        Log In
+                                    </Link>
+                                </MenuItem>
+                            )}
+                            {/* If user IS logged in... */}
+                            {user.id && (
+                                <MenuItem>
+                                    <LogOutButton />
+                                </MenuItem>
+                            )}
                         </Menu>
                     </Box>
                 </Toolbar>
