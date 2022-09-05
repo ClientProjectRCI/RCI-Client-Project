@@ -3,41 +3,15 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-export default function RegisterProviderForm() {
+export default function RegisterProviderVerify() {
     // this component doesn't do much to start, just renders some user reducer info to the DOM
     const user = useSelector((store) => store.user);
     const history = useHistory();
-    const [newPath, setNewPath] = useState('');
-    const [providerName, setProviderName]= useState('');
-    const [providerBio, setProviderBio]= useState('');
-    const [providerPhone, setProviderPhone]= useState('');
-    const [providerEmail, setProviderEmail]= useState('');
-    // const [providerWebsite, setProviderWebsite]= useState('');
-    const [providerInsurance, setProviderInsurance]= useState('');
-    const [providerOccupation, setProviderOccupation]= useState('');
-    const [providerSpecialization, setProviderSpecialization]= useState('');
-    const [providerService, setProviderService]= useState('');
-    const [providerAvailability, setProviderAvailability]= useState('');
+    const providerName = useSelector((store) => store.providers.providerNameReducer);
 
-    // const addFile = (event) => setNewPath(event.target.files[0]);
 
-    // const sendImage = (event) => {
-	// 	const data = new FormData();
-		
-	// 	data.append('image', newPath);
-
-	// 	axios
-	// 		.post('api/provider/image', data)
-	// 		.then((response) => {
-	// 			console.log(response);
-	// 		})
-	// 		.catch((error) => {
-	// 			alert('Error with post', error);
-	// 		});
-	// };
 
     const registerProvider = () => {
-            sendImage();
         // POST to provider table
             axios({
                 method: 'POST',
@@ -71,7 +45,30 @@ export default function RegisterProviderForm() {
             <div className="container" >
                 <h2>Welcome, {user.username}!</h2>
                 <p>ProviderProfile: Your ID is: {user.id}</p>
-                
+                <table>
+                    <thead>
+                        <tr>
+                        <th>Field</th>
+                        <th>Your Response</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Date entered:</td><td> { reviewDate }</td></tr>
+                        <tr><td>Whiskey Name:</td><td> {whiskeyName}</td></tr>
+                        <tr><td>ABV: </td><td>{whiskeyAbv}</td></tr>
+                        <tr><td>Style:</td><td> {whiskeyStyle}</td></tr>
+                        <tr><td>Country of Origin:</td><td> {whiskeyCountry}</td></tr>
+                        <tr><td>Why this bottle?: </td><td>{whyThisWhiskey}</td></tr>
+                        <tr><td>Aroma Rating:</td><td> {aromaRating}</td></tr>
+                        <tr><td>Aroma Notes:</td><td> {aromaNotes}</td></tr>
+                        <tr><td>Flavor Rating: </td><td>{flavorRating}</td></tr>
+                        <tr><td>Flavor Notes: </td><td>{flavorNotes}</td></tr>
+                        <tr><td>Overall Notes: </td><td>{overallNotes}</td></tr>
+                        <tr><td>Would you buy this again?: </td><td>{buyAgain}</td></tr>
+                        <tr><td>Overall Rating of this whiskey: </td><td>{overallRating}</td></tr>
+                    </tbody>
+                </table>
+                <button className="click" type="submit" onClick={registerProvider}>Submit</button>
             </div>
             <LogOutButton className="btn" />
         </center>
