@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
@@ -8,6 +8,7 @@ export default function RegisterProviderVerify() {
     // this component doesn't do much to start, just renders some user reducer info to the DOM
     const user = useSelector((store) => store.user);
     const history = useHistory();
+    const dispatch = useDispatch();
     const providerName = useSelector((store) => store.providers.providerNameReducer);
     const providerBio = useSelector((store) => store.providers.providerBioReducer);
     const providerPicture = useSelector((store) => store.providers.providerPictureReducer);
@@ -31,7 +32,7 @@ export default function RegisterProviderVerify() {
                     user_id: user.id,
                     name: providerName, 
                     bio: providerBio,
-                    picture: providerPicture,
+                    picture: providerPicture.name,
                     phone: providerPhone,
                     email: providerEmail,
                     insurance_id: providerInsurance,
@@ -77,7 +78,7 @@ export default function RegisterProviderVerify() {
                         <tr><td>Availability: </td><td>{providerAvailability}</td></tr>
                     </tbody>
                 </table>
-                <button className="click" type="submit" onClick={registerProvider}>Submit</button>
+                <button className="btn" type="submit" onClick={registerProvider}>Submit</button>
             </div>
             <LogOutButton className="btn" />
         </center>

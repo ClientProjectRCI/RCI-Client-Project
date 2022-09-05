@@ -4,6 +4,8 @@ const router = express.Router();
 const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
+const multer = require('multer');
+
 
 // POST route for initial provider registration
 router.post('/', rejectUnauthenticated, (req, res) => {
@@ -18,16 +20,16 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`;
   pool.query(queryText, 
       [req.body.user_id,
-      req.body.providerName,
-      req.body.providerBio, 
-      req.body.providerPicture,
-      req.body.providerPhone,
-      req.body.providerEmail,
-      req.body.providerInsurance, 
-      req.body.providerOccupation, 
-      req.body.providerSpecialization,
-      req.body.providerService, 
-      req.body.providerAvailability,
+      req.body.name,
+      req.body.bio, 
+      req.file.name,
+      req.body.phone,
+      req.body.email,
+      req.body.insurance_id, 
+      req.body.occupation_id, 
+      req.body.specialization_id,
+      req.body.service_id, 
+      req.body.availability,
       req.body.groupId
       ])
 .then(result => {

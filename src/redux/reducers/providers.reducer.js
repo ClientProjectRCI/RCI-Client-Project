@@ -29,7 +29,7 @@ const providerBioReducer = (state = '', action) => {
 	}
 };
 
-const providerPictureReducer = (state = { }, action) => {
+const providerPictureReducer = (state = '', action) => {
 	switch (action.type) {
 		case 'ADD_PROVIDER_PICTURE':
 			return action.payload;

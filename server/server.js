@@ -5,7 +5,17 @@ require('dotenv').config();
 const app = express();
 
 const multer  = require('multer');
-const upload = multer({ dest: '../public/Images' });
+
+const fileStorageEngine = multer.diskStorage({
+	destination: (req, file, cb) => {
+		cb(null, '../public/Images');
+	},
+	filename: (req, file, cb) => {
+		cb(null, file.originalname);
+	},
+});
+
+const upload = multer({ storage: fileStorageEngine });
 
 const sessionMiddleware = require('./modules/session-middleware');
 const passport = require('./strategies/user.strategy');

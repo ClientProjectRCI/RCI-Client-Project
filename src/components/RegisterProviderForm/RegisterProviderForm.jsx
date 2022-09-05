@@ -10,7 +10,7 @@ export default function RegisterProviderForm() {
     const user = useSelector((store) => store.user);
     const history = useHistory();
     const dispatch = useDispatch();
-    const [newPath, setNewPath] = useState('');
+    const [providerPicture, setProviderPicture] = useState('');
     const [providerName, setProviderName]= useState('');
     const [providerBio, setProviderBio]= useState('');
     const [providerPhone, setProviderPhone]= useState('');
@@ -24,23 +24,23 @@ export default function RegisterProviderForm() {
 
     // const addFile = (event) => setNewPath(event.target.files[0]);
 
-    const sendImage = (event) => {
-		const data = new FormData();
+    // const sendImage = (event) => {
+	// 	const data = new FormData();
 		
-		data.append('image', newPath);
+	// 	data.append('image', providerPicture);
 
-		axios
-			.post('api/provider/images', data)
-			.then((response) => {
-				console.log(response);
-			})
-			.catch((error) => {
-				alert('Error with post', error);
-			});
-	};
+	// 	axios
+	// 		.post('api/provider/image', data)
+	// 		.then((response) => {
+	// 			console.log(response);
+	// 		})
+	// 		.catch((error) => {
+	// 			alert('Error with post', error);
+	// 		});
+	// };
 
     const verifyProvider = () => {
-            sendImage();
+            // sendImage();
 
             dispatch ({
                 type: 'ADD_PROVIDER_NAME',
@@ -52,7 +52,7 @@ export default function RegisterProviderForm() {
             });
             dispatch ({
                 type: 'ADD_PROVIDER_PICTURE',
-                payload: newPath
+                payload: providerPicture
             })
             dispatch ({
                 type: 'ADD_PROVIDER_PHONE',
@@ -146,8 +146,8 @@ export default function RegisterProviderForm() {
                 <input type="file" 
                 className="file-upload" 
                 name="profile-image" 
-                onChange={(event) => setNewPath(event.target.files[0])}></input>
-                <button onClick={verifyProvider}>Submit</button>
+                onChange={(event) => setProviderPicture(event.target.files[0])}></input>
+                <button className="btn" onClick={verifyProvider}>Submit</button>
             </form>
             <LogOutButton className="btn" />
         </center>
