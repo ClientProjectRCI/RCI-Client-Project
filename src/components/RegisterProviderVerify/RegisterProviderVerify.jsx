@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 export default function RegisterProviderVerify() {
     // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -17,6 +18,7 @@ export default function RegisterProviderVerify() {
     const providerSpecialization = useSelector((store) => store.providers.providerSpecializationReducer);
     const providerService = useSelector((store) => store.providers.providerServiceReducer);
     const providerAvailability = useSelector((store) => store.providers.providerAvailabilityReducer);
+    const groupId = useSelector((store) => store.user.id);
 
 
 
@@ -36,7 +38,8 @@ export default function RegisterProviderVerify() {
                     occupation_id: providerOccupation,
                     specialization_id: providerSpecialization,
                     service_id: providerService,
-                    availability: providerAvailability
+                    availability: providerAvailability,
+                    groupId: groupId
                 }
             })
             .then(() => {

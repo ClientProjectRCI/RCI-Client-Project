@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux'; 
+import axios from 'axios';
 
 export default function RegisterProviderForm() {
     // this component doesn't do much to start, just renders some user reducer info to the DOM
     const user = useSelector((store) => store.user);
     const history = useHistory();
+    const dispatch = useDispatch();
     const [newPath, setNewPath] = useState('');
     const [providerName, setProviderName]= useState('');
     const [providerBio, setProviderBio]= useState('');
@@ -19,7 +22,7 @@ export default function RegisterProviderForm() {
     const [providerService, setProviderService]= useState('');
     const [providerAvailability, setProviderAvailability]= useState('');
 
-    const addFile = (event) => setNewPath(event.target.files[0]);
+    // const addFile = (event) => setNewPath(event.target.files[0]);
 
     const sendImage = (event) => {
 		const data = new FormData();
@@ -27,7 +30,7 @@ export default function RegisterProviderForm() {
 		data.append('image', newPath);
 
 		axios
-			.post('api/provider/image', data)
+			.post('api/provider/images', data)
 			.then((response) => {
 				console.log(response);
 			})
@@ -47,6 +50,10 @@ export default function RegisterProviderForm() {
                 type: 'ADD_PROVIDER_BIO',
                 payload: providerBio
             });
+            dispatch ({
+                type: 'ADD_PROVIDER_PICTURE',
+                payload: newPath
+            })
             dispatch ({
                 type: 'ADD_PROVIDER_PHONE',
                 payload: providerPhone
@@ -76,39 +83,12 @@ export default function RegisterProviderForm() {
                 payload: providerAvailability
             })
             
-            history.push('/registerproviderverify')
+            history.push('/register-provider-verify')
         }
-        // POST to provider table
-    //         axios({
-    //             method: 'POST',
-    //             url: '/api/providers',
-    //             data: {
-    //                 user_id: user.id,
-    //                 name: providerName, 
-    //                 bio: providerBio,
-    //                 picture: newPath.name,
-    //                 phone: providerPhone,
-    //                 email: providerEmail,
-    //                 insurance_id: providerInsurance,
-    //                 occupation_id: providerOccupation,
-    //                 specialization_id: providerSpecialization,
-    //                 service_id: providerService,
-    //                 availability: providerAvailability
-    //             }
-    //         })
-    //         .then(() => {
-    //             dispatch({ type: 'FETCH_PROVIDER_DETAILS' });
-    //         })
-    //         .catch((err) => {
-    //             console.log(`ERR in POST`, err)
-    //         })
-    //     // history.push to provider's id
-    //     history.push(`/provider`);
-    // }
 
     return (
         <center>
-            <form className="container" encType="multipart/form-data" onSubmit={registerProvider}>
+            <form className="container" encType="multipart/form-data" onSubmit={verifyProvider}>
                 <h2>Welcome, {user.username}!</h2>
                 <p>ProviderProfile: Your ID is: {user.id}</p>
                 <input required type="text" 
@@ -163,7 +143,10 @@ export default function RegisterProviderForm() {
                 value={providerPhone}
                 onChange={(event) => setProviderPhone(event.target.value)}
                 ></input>
-                <input type="file" className="file-upload" name="profile-image" onChange={addFile}></input>
+                <input type="file" 
+                className="file-upload" 
+                name="profile-image" 
+                onChange={(event) => setNewPath(event.target.files[0])}></input>
                 <button onClick={verifyProvider}>Submit</button>
             </form>
             <LogOutButton className="btn" />
