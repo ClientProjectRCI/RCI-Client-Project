@@ -8,6 +8,15 @@ export default function RegisterProviderVerify() {
     const user = useSelector((store) => store.user);
     const history = useHistory();
     const providerName = useSelector((store) => store.providers.providerNameReducer);
+    const providerBio = useSelector((store) => store.providers.providerBioReducer);
+    const providerPicture = useSelector((store) => store.providers.providerPictureReducer);
+    const providerPhone = useSelector((store) => store.providers.providerPhoneReducer);
+    const providerEmail = useSelector((store) => store.providers.providerEmailReducer);
+    const providerInsurance = useSelector((store) => store.providers.providerInsuranceReducer);
+    const providerOccupation = useSelector((store) => store.providers.providerOccupationReducer);
+    const providerSpecialization = useSelector((store) => store.providers.providerSpecializationReducer);
+    const providerService = useSelector((store) => store.providers.providerServiceReducer);
+    const providerAvailability = useSelector((store) => store.providers.providerAvailabilityReducer);
 
 
 
@@ -20,7 +29,7 @@ export default function RegisterProviderVerify() {
                     user_id: user.id,
                     name: providerName, 
                     bio: providerBio,
-                    picture: newPath.name,
+                    picture: providerPicture,
                     phone: providerPhone,
                     email: providerEmail,
                     insurance_id: providerInsurance,
@@ -45,6 +54,7 @@ export default function RegisterProviderVerify() {
             <div className="container" >
                 <h2>Welcome, {user.username}!</h2>
                 <p>ProviderProfile: Your ID is: {user.id}</p>
+                <p></p>
                 <table>
                     <thead>
                         <tr>
@@ -53,19 +63,15 @@ export default function RegisterProviderVerify() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Date entered:</td><td> { reviewDate }</td></tr>
-                        <tr><td>Whiskey Name:</td><td> {whiskeyName}</td></tr>
-                        <tr><td>ABV: </td><td>{whiskeyAbv}</td></tr>
-                        <tr><td>Style:</td><td> {whiskeyStyle}</td></tr>
-                        <tr><td>Country of Origin:</td><td> {whiskeyCountry}</td></tr>
-                        <tr><td>Why this bottle?: </td><td>{whyThisWhiskey}</td></tr>
-                        <tr><td>Aroma Rating:</td><td> {aromaRating}</td></tr>
-                        <tr><td>Aroma Notes:</td><td> {aromaNotes}</td></tr>
-                        <tr><td>Flavor Rating: </td><td>{flavorRating}</td></tr>
-                        <tr><td>Flavor Notes: </td><td>{flavorNotes}</td></tr>
-                        <tr><td>Overall Notes: </td><td>{overallNotes}</td></tr>
-                        <tr><td>Would you buy this again?: </td><td>{buyAgain}</td></tr>
-                        <tr><td>Overall Rating of this whiskey: </td><td>{overallRating}</td></tr>
+                        <tr><td>Name:</td><td> { providerName }</td></tr>
+                        <tr><td>Bio:</td><td> {providerBio}</td></tr>
+                        <tr><td>Phone: </td><td>{providerPhone}</td></tr>
+                        <tr><td>E-mail:</td><td> {providerEmail}</td></tr>
+                        <tr><td>Insurance accepted:</td><td> {providerInsurance}</td></tr>
+                        <tr><td>Occupation: </td><td>{providerOccupation}</td></tr>
+                        <tr><td>Specialization:</td><td> {providerSpecialization}</td></tr>
+                        <tr><td>Services:</td><td> {providerService}</td></tr>
+                        <tr><td>Availability: </td><td>{providerAvailability}</td></tr>
                     </tbody>
                 </table>
                 <button className="click" type="submit" onClick={registerProvider}>Submit</button>
