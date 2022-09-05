@@ -268,16 +268,15 @@ JOIN "provider_occupation"
 ON "provider_occupation"."occupation_id" = "occupations"."id"
 WHERE "provider_occupation"."provider_id" = 1;
 
--- SEARCHS --
--- SEARCH Providers by NAME -- Ascending and Descending
+-- SEARCH ALL Providers by NAME -- Ascending and Descending
 SELECT * FROM "provider" WHERE "name" ILIKE '%rovid%' ORDER BY "provider"."name" ASC;
 SELECT * FROM "provider" WHERE "name" ILIKE '%rovid%' ORDER BY "provider"."name" DESC;
 
--- SEARCH Groups by NAME -- Ascending and Descending
+-- SEARCH ALL Groups by NAME -- Ascending and Descending
 SELECT * FROM "group" WHERE "name" ILIKE '%group%' ORDER BY "group"."name" ASC;
 SELECT * FROM "group" WHERE "name" ILIKE '%group%' ORDER BY "group"."name" DESC;
 
-
+-- SEARCHS --
 -- SEARCH Providers by SPECIALIZATION -- 
 SELECT * FROM "provider" 
 JOIN "provider_specializations" 
