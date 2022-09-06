@@ -10,6 +10,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
+import DeleteGroupBtn from '../DeleteBtn/DeleteGroupBtn';
+
+
 const useStyles = makeStyles({
   backColor: {
     backgroundColor: '#FAEDCD',
@@ -115,7 +118,7 @@ function GroupDetail() {
         </DialogActions>
       </Dialog>
       {/* End of modal/dialog  */}
-      
+
     </div>
     <div className="column">
         <div className="info">{details.name}</div>
@@ -134,6 +137,9 @@ function GroupDetail() {
                 variant="contained"
                 onClick={handleClick}
               >Return to List</Button>
+      </div>
+      <div>
+      <DeleteGroupBtn />
       </div>
 </div>
   );

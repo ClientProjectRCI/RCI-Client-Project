@@ -28,9 +28,25 @@ function* fetchGroupDetails(action) {
     console.log('error in fetchGroupDetails', error);
   }
 }
+
+// Delete group 
+function* deleteGroups(action){
+  const id = action.payload;
+  console.log('payload for DELETE>>>', id);
+        try{
+            yield axios.delete(`/api/groups/${id}`);
+        } catch{
+            console.log('delete from db ', id)
+        }
+        yield put({type:"FETCH_GROUPS"});
+}
+
 function* groupsSaga() {
   yield takeEvery('FETCH_GROUPS', fetchGroups);
-yield takeEvery('FETCH_GROUP_DETAILS', fetchGroupDetails);
+  yield takeEvery('FETCH_GROUP_DETAILS', fetchGroupDetails);
+  yield takeEvery('DELETE_GROUPS', deleteGroups);
 }
+
+
 
 export default groupsSaga;

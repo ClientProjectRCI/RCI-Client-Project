@@ -14,7 +14,7 @@ import ProviderInsurances from '../ProviderInsurances/ProviderInsurances';
 import ProviderOccupations from '../ProviderOccupations/ProviderOccupations';
 import ProviderServices from '../ProviderServices/ProviderServices';
 
-import DeleteBtn from '../DeleteBtn/DeleteBtn';
+import DeleteProviderBtn from '../DeleteBtn/DeleteProviderBtn';
 
 const useStyles = makeStyles({
   backColor: {
@@ -161,7 +161,7 @@ function ProvidersDetail() {
           </Button>
 
           <div>
-            <DeleteBtn />
+            <DeleteProviderBtn />
           </div>
         </div>
       </div>
