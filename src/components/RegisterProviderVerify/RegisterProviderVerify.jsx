@@ -28,10 +28,11 @@ export default function RegisterProviderVerify() {
         const data = new FormData();
 		
 		data.append('image', providerPicture);
-        // this is where I need to keep looking again
+
+        console.log('data is', data);
 
 		axios
-			.post('/image', data)
+			.post('/api/providers/images', data)
 			.then((response) => {
 				console.log(response);
 			})
@@ -42,7 +43,7 @@ export default function RegisterProviderVerify() {
 
 
     const registerProvider = () => {
-            
+    
         // POST to provider table
             axios({
                 method: 'POST',
@@ -79,11 +80,11 @@ export default function RegisterProviderVerify() {
                 <h2>Welcome, {user.username}!</h2>
                 <p>ProviderProfile: Your ID is: {user.id}</p>
                 <form className="container" encType="multipart/form-data">
-                <input type="file" 
-                className="file-upload" 
+                <input type='file' 
+                className='input' 
                 name='image' 
                 onChange={addFile}
-                ></input></form>
+                ></input>
                 <table>
                     <thead>
                         <tr>
@@ -104,6 +105,7 @@ export default function RegisterProviderVerify() {
                     </tbody>
                 </table>
                 <button className="btn" type="submit" onClick={registerProvider}>Submit</button>
+                </form>
             </div>
             <LogOutButton className="btn" />
         </center>

@@ -22,25 +22,7 @@ export default function RegisterProviderForm() {
     const [providerService, setProviderService] = useState('');
     const [providerAvailability, setProviderAvailability] = useState('');
 
-    // const addFile = (event) => setNewPath(event.target.files[0]);
-
-    // const sendImage = (event) => {
-    // 	const data = new FormData();
-
-    // 	data.append('image', providerPicture);
-
-    // 	axios
-    // 		.post('api/provider/image', data)
-    // 		.then((response) => {
-    // 			console.log(response);
-    // 		})
-    // 		.catch((error) => {
-    // 			alert('Error with post', error);
-    // 		});
-    // };
-
     const verifyProvider = () => {
-        // sendImage();
 
         dispatch({
             type: 'ADD_PROVIDER_NAME',
@@ -88,7 +70,7 @@ export default function RegisterProviderForm() {
 
     return (
         <center>
-            <form className="container" encType="multipart/form-data">
+            <form className="container">
                 <h2>Welcome, {user.username}!</h2>
                 <p>ProviderProfile: Your ID is: {user.id}</p>
                 <input
