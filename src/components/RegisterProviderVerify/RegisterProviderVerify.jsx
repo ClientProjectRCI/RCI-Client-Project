@@ -9,10 +9,10 @@ export default function RegisterProviderVerify() {
     const user = useSelector((store) => store.user);
     const history = useHistory();
     const dispatch = useDispatch();
-    // const [providerPicture, setProviderPicture] = useState('');
+    const [providerPicture, setProviderPicture] = useState('');
     const providerName = useSelector((store) => store.providers.providerNameReducer);
     const providerBio = useSelector((store) => store.providers.providerBioReducer);
-    const providerPicture = useSelector((store) => store.providers.providerPictureReducer);
+    // const providerPicture = useSelector((store) => store.providers.providerPictureReducer);
     const providerPhone = useSelector((store) => store.providers.providerPhoneReducer);
     const providerEmail = useSelector((store) => store.providers.providerEmailReducer);
     const providerInsurance = useSelector((store) => store.providers.providerInsuranceReducer);
@@ -22,23 +22,24 @@ export default function RegisterProviderVerify() {
     const providerAvailability = useSelector((store) => store.providers.providerAvailabilityReducer);
     const groupId = useSelector((store) => store.user.id);
 
-    // const addFile = (event) =>
-    //     setProviderPicture(event.target.files[0]);
+    const addFile = (event) => setProviderPicture(event.target.files[0]);
 
-    // const sendImage = (event) => {
-    //     const data = new FormData();
+    const sendImage = (event) => {
+        const data = new FormData();
 		
-	// 	data.append('image', providerPicture);
+		data.append('image', providerPicture);
 
-	// 	axios
-	// 		.post('providers/image', data)
-	// 		.then((response) => {
-	// 			console.log(response);
-	// 		})
-	// 		.catch((error) => {
-	// 			alert('Error with post', error);
-	// 		});
-    // }
+        console.log('data is', data);
+
+		axios
+			.post('/api/providers/images', data)
+			.then((response) => {
+				console.log(response);
+			})
+			.catch((error) => {
+				alert('Error with post', error);
+			});
+    }
 
 
     const registerProvider = () => {
@@ -68,7 +69,7 @@ export default function RegisterProviderVerify() {
             .catch((err) => {
                 console.log(`ERR in POST`, err)
             });
-            // sendImage();
+            sendImage();
         // history.push to provider's id
         history.push(`/provider`);
     }
@@ -78,12 +79,12 @@ export default function RegisterProviderVerify() {
             <div className="container" >
                 <h2>Welcome, {user.username}!</h2>
                 <p>ProviderProfile: Your ID is: {user.id}</p>
-                {/* <form className="container" encType="multipart/form-data"> */}
-                {/* <input type='file' 
+                <form className="container" encType="multipart/form-data">
+                <input type='file' 
                 className='input' 
                 name='image' 
                 onChange={addFile}
-                ></input> */}
+                ></input>
                 <table>
                     <thead>
                         <tr>
@@ -92,7 +93,6 @@ export default function RegisterProviderVerify() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Picture:</td><td> { providerPicture }</td></tr>
                         <tr><td>Name:</td><td> { providerName }</td></tr>
                         <tr><td>Bio:</td><td> {providerBio}</td></tr>
                         <tr><td>Phone: </td><td>{providerPhone}</td></tr>
@@ -105,7 +105,7 @@ export default function RegisterProviderVerify() {
                     </tbody>
                 </table>
                 <button className="btn" type="submit" onClick={registerProvider}>Submit</button>
-                {/* </form> */}
+                </form>
             </div>
             <LogOutButton className="btn" />
         </center>
