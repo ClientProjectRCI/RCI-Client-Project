@@ -27,6 +27,8 @@ function GroupDetail() {
 
   //details pertaining to the id of the provider that was clicked on.
   const details = useSelector((store) => store.details);
+  const user = useSelector((store)=> store.user);
+  
   console.log('In Details');
   const classes = useStyles();
   const [open, SetOpen] = React.useState(false);
@@ -139,7 +141,9 @@ function GroupDetail() {
               >Return to List</Button>
       </div>
       <div>
-      <DeleteGroupBtn />
+      {(user.id && user.access_level ===1) &&
+            <DeleteGroupBtn />
+    }
       </div>
 </div>
   );

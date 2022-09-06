@@ -29,6 +29,8 @@ const useStyles = makeStyles({
 function ProvidersDetail() {
 
   const details = useSelector((store) => store.details);
+  const user = useSelector((store)=> store.user);
+
 
   console.log('In Details');
   //details pertaining to the id of the provider that was clicked on.
@@ -161,8 +163,11 @@ function ProvidersDetail() {
           </Button>
 
           <div>
+      {(user.id && user.access_level ===1) &&
             <DeleteProviderBtn />
-          </div>
+    }
+      </div>
+
         </div>
       </div>
     </div>
