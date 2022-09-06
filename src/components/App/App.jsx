@@ -12,7 +12,9 @@ import AboutPage from '../AboutPage/AboutPage';
 import GroupProfile from '../GroupProfile/GroupProfile';
 import ProviderProfile from '../ProviderProfile/ProviderProfile';
 import RegisterGroupForm from '../RegisterGroupForm/RegisterGroupForm';
+// import RegisterGroupVerify from '../RegisterGroupVerify/RegisterGroupVerify';
 import RegisterProviderForm from '../RegisterProviderForm/RegisterProviderForm';
+import RegisterProviderVerify from '../RegisterProviderVerify/RegisterProviderVerify';
 import ContactPage from '../ContactPage/ContactPage';
 import HomePage from '../HomePage/HomePage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -107,11 +109,20 @@ export default function App() {
                     <ProtectedRoute exact path="/register-group">
                         <RegisterGroupForm />
                     </ProtectedRoute>
+                    {/* <ProtectedRoute exact path="/register-group-verify">
+                        <RegisterGroupVerify />
+                    </ProtectedRoute> */}
                     <ProtectedRoute exact path="/register-provider">
                         <RegisterProviderForm />
                     </ProtectedRoute>
+<<<<<<< HEAD
+                    <ProtectedRoute exact path="/register-provider-verify">
+                        <RegisterProviderVerify />
+                    </ProtectedRoute>
+=======
                     // If the user is already logged in, // redirect to the
                     /user page
+>>>>>>> 1f6cd604e647fc16fb2aa936371142060ce90f21
                     <Route exact path="/login">
                         {user.id && user.access_level === 1 ? (
                             <Redirect to="/admin" />
