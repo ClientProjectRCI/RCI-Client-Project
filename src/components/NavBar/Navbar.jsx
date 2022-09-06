@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom';
 import rcilogo from '../.././assets/rcilogo.png';
 import { useSelector } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
+import RegisterGroupForm from '../RegisterGroupForm/RegisterGroupForm';
 
 const pages = ['Home', 'About', 'Providers'];
 
@@ -40,7 +41,10 @@ export default function Navbar() {
     };
 
     return (
-        <AppBar position="static">
+        <AppBar
+            position="static"
+            style={{ backgroundColor: 'var(--cornflower)' }}
+        >
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Typography
@@ -160,6 +164,9 @@ export default function Navbar() {
                                 <AccountCircleIcon
                                     style={{ fontSize: '4rem' }}
                                 />
+                                <Typography fontSize="16">
+                                    Login / Register
+                                </Typography>
                             </IconButton>
                         </Tooltip>
                         <Menu
