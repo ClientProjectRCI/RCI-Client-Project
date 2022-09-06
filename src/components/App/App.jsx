@@ -24,6 +24,7 @@ import ProvidersList from '../ProvidersList/ProvidersList';
 
 import ProviderDetails from '../ProviderDetails/ProviderDetails';
 import GroupDetails from '../GroupDetails/GroupDetails';
+import AdminAnalytics from '../AdminAnalytics/AdminAnalytics';
 import Navbar from '../NavBar/Navbar';
 
 export default function App() {
@@ -106,6 +107,13 @@ export default function App() {
                     >
                         <ProviderProfile />
                     </ProtectedRoute>
+                    <ProtectedRoute
+                        // logged in shows ProviderProfile else shows ProviderProfile
+                        exact
+                        path="/admin"
+                    >
+                        <AdminAnalytics />
+                    </ProtectedRoute>
                     <ProtectedRoute exact path="/register-group">
                         <RegisterGroupForm />
                     </ProtectedRoute>
@@ -115,14 +123,10 @@ export default function App() {
                     <ProtectedRoute exact path="/register-provider">
                         <RegisterProviderForm />
                     </ProtectedRoute>
-<<<<<<< HEAD
                     <ProtectedRoute exact path="/register-provider-verify">
                         <RegisterProviderVerify />
                     </ProtectedRoute>
-=======
                     // If the user is already logged in, // redirect to the
-                    /user page
->>>>>>> 1f6cd604e647fc16fb2aa936371142060ce90f21
                     <Route exact path="/login">
                         {user.id && user.access_level === 1 ? (
                             <Redirect to="/admin" />

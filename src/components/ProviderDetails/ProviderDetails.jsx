@@ -14,6 +14,8 @@ import ProviderInsurances from '../ProviderInsurances/ProviderInsurances';
 import ProviderOccupations from '../ProviderOccupations/ProviderOccupations';
 import ProviderServices from '../ProviderServices/ProviderServices';
 
+import DeleteBtn from '../DeleteBtn/DeleteBtn';
+
 const useStyles = makeStyles({
   backColor: {
     backgroundColor: '#FAEDCD',
@@ -154,10 +156,13 @@ function ProvidersDetail() {
             size="large"
             color="primary"
             variant="contained"
-            onClick={handleClick}
-          >
+            onClick={handleClick}>
             Return to List
           </Button>
+
+          <div>
+            <DeleteBtn />
+          </div>
         </div>
       </div>
     </div>

@@ -109,6 +109,17 @@ function* fetchProviderServices(action) {
   }
 }
 
+// Delete provider 
+function* deleteProviders(action){
+  const id = action.payload;
+  console.log('payload for DELETE>>>', id);
+        try{
+            yield axios.delete(`/api/providers/${id}`);
+        } catch{
+            console.log('delete from db ', id)
+        }
+        yield put({type:"FETCH_PROVIDERS"});
+}
 
 
 function* providersSaga() {
@@ -120,7 +131,8 @@ function* providersSaga() {
   yield takeEvery('FETCH_PROVIDER_SPECIALIZATIONS', fetchProviderSpecializations);
   yield takeEvery('FETCH_PROVIDER_INSURANCES', fetchProviderInsurances);
   yield takeEvery('FETCH_PROVIDER_OCCUPATIONS', fetchProviderOccupations);
-   yield takeEvery('FETCH_PROVIDER_SERVICES', fetchProviderServices);
+  yield takeEvery('FETCH_PROVIDER_SERVICES', fetchProviderServices);
+  yield takeEvery('DELETE_PROVIDERS', deleteProviders); 
 }
 
 export default providersSaga;
