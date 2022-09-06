@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { Button } from '@material-ui/core';
 
 
-export default function DeleteBtn(){
+export default function DeleteProviderBtn(){
 
     const history = useHistory();
     const dispatch = useDispatch();
