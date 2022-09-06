@@ -22,6 +22,7 @@ export default function RegisterProviderVerify() {
     const providerAvailability = useSelector((store) => store.providers.providerAvailabilityReducer);
     const groupId = useSelector((store) => store.user.id);
 
+    const addFile = (event) => setProviderPicture(event.target.files[0]);
 
     const sendImage = (event) => {
         const data = new FormData();
@@ -29,7 +30,7 @@ export default function RegisterProviderVerify() {
 		data.append('image', providerPicture);
 
 		axios
-			.post('/api/providers/image', data)
+			.post('/image', data)
 			.then((response) => {
 				console.log(response);
 			})
@@ -65,7 +66,8 @@ export default function RegisterProviderVerify() {
             })
             .catch((err) => {
                 console.log(`ERR in POST`, err)
-            })
+            });
+            sendImage();
         // history.push to provider's id
         history.push(`/provider`);
     }
@@ -79,8 +81,7 @@ export default function RegisterProviderVerify() {
                 <input type="file" 
                 className="file-upload" 
                 name='image' 
-                onChange={(event) => setProviderPicture(event.target.files[0])}
-                
+                onChange={addFile}
                 ></input></form>
                 <table>
                     <thead>

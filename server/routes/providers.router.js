@@ -3,30 +3,16 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const {
   rejectUnauthenticated,
-} = require('../modules/authentication-middleware');
-const multer = require('multer');
-
-const fileStorageEngine = multer.diskStorage({
-	destination: (req, file, cb) => {
-		cb(null, '../public/Images');
-	},
-	filename: (req, file, cb) => {
-		cb(null, file.originalname);
-	},
-});
-
-const upload = multer({ storage: fileStorageEngine });
-
-//multer
-router.post('/image', upload.single('image'), (req, res) => {
-	res.send('File uploaded successfully');
-});
+} = require('../modules/authentication-middleware'); 
 
 // POST route for initial provider registration
 router.post('/', rejectUnauthenticated, (req, res) => {
   const newProvider = req.body;
+
 	const path = `/public/Images/${newProvider.picture}`;
+
   console.log("content is:", req.body);
+  
   let queryText = `INSERT INTO "provider" (
   "user_id", "name", "bio", "picture", 
   "phone", "email", "insurance_id", 
