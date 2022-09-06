@@ -21,7 +21,7 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { makeStyles } from '@material-ui/core';
-
+import FilterListIcon from '@mui/icons-material/FilterList';
 import TextField from '@mui/material/TextField';
 import Chip from '@mui/material/Chip';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -34,6 +34,7 @@ import ProvidersListItem from '../ProvidersListItem/ProvidersListItem';
 import GroupsListItem from '../GroupsListItem/GroupsListItem';
 import './ProvidersList.css';
 import SearchIcon from '@mui/icons-material/Search';
+
 // This is one of our simplest components
 // It doesn't have local state
 // It doesn't dispatch any redux actions or display any part of redux state
@@ -58,15 +59,30 @@ function ProvidersList() {
     dispatch({ type: 'FETCH_INSURANCES' });
     dispatch({ type: 'FETCH_OCCUPATIONS' });
   }, []);
+  let [searchItem, setSearchItem] = useState('');
+  let [name, setName] = useState('');
+  function handleSearchSubmit(e) {
+    e.preventDefault();
 
+  
+      console.log('Searching by Name:', name);
+      dispatch({
+        type: 'SEARCH',
+        payload: {
+          className: e.target.className,
+          searchItem: name
+        }
+      });
+    
+  }
 
   return (
     <div>
       <body>
-        <input type="checkbox" id="drawer-toggle" name="drawer-toggle" />
+        <input type="checkbox" id="drawer-toggle" name="drawer-toggle" />{' '}
         <label for="drawer-toggle" id="drawer-toggle-label"></label>
         <header>
-          
+          {/* <FilterListIcon /> */}
           <span>
             <span
               style={{
@@ -78,12 +94,13 @@ function ProvidersList() {
                 margin: 0,
               }}
             >
-              <form>
+              <form onSubmit={handleSearchSubmit}>
                 <TextField
                   id="search-bar"
-                  className="text"
-                  onInput={(e) => {
-                    setSearchQuery(e.target.value);
+                  className="name"
+                  value={name}
+                  onChange={(e) => {
+                    setName(e.target.value);
                   }}
                   label="Search by Name"
                   variant="outlined"
@@ -94,9 +111,7 @@ function ProvidersList() {
                   <SearchIcon style={{ fill: 'blue' }} />
                 </IconButton>
               </form>
-              <div style={{ padding: 0 }}>
-               
-              </div>
+              <div style={{ padding: 0 }}></div>
             </span>
           </span>
         </header>
