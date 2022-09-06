@@ -28,9 +28,9 @@ export default function ProviderProfile() {
     const toggleEdit = () => { // Toggle the EDIT useState between TRUE & FALSE. 
         setEdit(current => !current);
     };
-    dispatch({ type: 'FETCH_PROVIDER_DETAILS', payload: user.id })
+    // dispatch({ type: 'FETCH_PROVIDER_PROFILE', payload: user.id })
     useEffect(() => {
-        dispatch({ type: 'FETCH_PROVIDER_DETAILS', payload: user.id })
+        dispatch({ type: 'FETCH_PROVIDER_PROFILE', payload: user.id })
         // dispatch({ type: 'FETCH_PROVIDER_SPECIALIZATIONS', payload: user.id });
         // dispatch({ type: 'FETCH_PROVIDER_OCCUPATIONS', payload: user.id });
         // dispatch({ type: 'FETCH_PROVIDER_INSURANCES', payload: user.id });

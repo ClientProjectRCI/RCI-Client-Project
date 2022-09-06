@@ -34,6 +34,7 @@ const specializationsRouter = require('./routes/specializations.router');
 const insurancesRouter = require('./routes/insurances.router');
 const occupationsRouter = require('./routes/occupations.router');
 const servicesRouter = require('./routes/services.router');
+const providerProfileRouter = require('./routes/providerProfile.router');
 
 
 
@@ -59,7 +60,7 @@ app.use('/api/specializations', specializationsRouter);
 app.use('/api/insurances', insurancesRouter);
 app.use('/api/occupations', occupationsRouter);
 app.use('/api/services', servicesRouter);
-
+app.use('/api/providerProfile', providerProfileRouter); 
 // Serve static files
 app.use(express.static('build'));
 

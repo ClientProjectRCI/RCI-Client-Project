@@ -28,6 +28,21 @@ function* fetchProviderDetails(action) {
     console.log('error in fetchProviderDetails', error);
   }
 }
+
+//get all details of one provider by USER.ID (Action.payload is user id)
+function* fetchProviderProfile(action) {
+  try {
+    const detailsResponse = yield axios.get(`/api/providerProfile/${action.payload}`);
+    console.log(
+      'In fetchProviderProfile, this is detailsResponse.data',
+      detailsResponse.data
+    );
+    yield put({ type: 'SEND_DETAILS', payload: detailsResponse.data[0] });
+  } catch (error) {
+    console.log('error in fetchProviderDetails', error);
+  }
+}
+
 //fetch specializations
 function* fetchSpecializations(action) {
   try {
@@ -125,6 +140,7 @@ function* deleteProviders(action){
 function* providersSaga() {
   yield takeEvery('FETCH_PROVIDERS', fetchProviders);
   yield takeEvery('FETCH_PROVIDER_DETAILS', fetchProviderDetails);
+  yield takeEvery('FETCH_PROVIDER_PROFILE', fetchProviderProfile);
   yield takeEvery('FETCH_SPECIALIZATIONS', fetchSpecializations);
   yield takeEvery('FETCH_INSURANCES', fetchInsurances);
   yield takeEvery('FETCH_OCCUPATIONS', fetchOccupations);
