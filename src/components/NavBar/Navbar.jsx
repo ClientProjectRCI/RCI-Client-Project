@@ -15,12 +15,13 @@ import { Link } from 'react-router-dom';
 import rcilogo from '../.././assets/rcilogo.png';
 import { useSelector } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import RegisterGroupForm from '../RegisterGroupForm/RegisterGroupForm';
+import { useHistory } from 'react-router-dom';
 
 const pages = ['Home', 'About', 'Providers'];
 
 export default function Navbar() {
     const user = useSelector((store) => store.user);
+    const history = useHistory();
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -156,19 +157,29 @@ export default function Navbar() {
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Account Settings">
-                            <IconButton
-                                onClick={handleOpenUserMenu}
-                                sx={{ p: 0 }}
+                        {!user.id && (
+                            <Button
+                                fontSize="16"
+                                color="success"
+                                onClick={() => history.push('/login')}
+                                variant="contained"
                             >
-                                <AccountCircleIcon
-                                    style={{ fontSize: '4rem' }}
-                                />
-                                <Typography fontSize="16">
-                                    Login / Register
-                                </Typography>
-                            </IconButton>
-                        </Tooltip>
+                                Login / Register
+                            </Button>
+                        )}
+                        {user.id && (
+                            <Tooltip title="Account Settings">
+                                <IconButton
+                                    onClick={handleOpenUserMenu}
+                                    sx={{ p: 0 }}
+                                >
+                                    <AccountCircleIcon
+                                        style={{ fontSize: '4rem' }}
+                                    />
+                                </IconButton>
+                            </Tooltip>
+                        )}
+
                         <Menu
                             sx={{ mt: '3rem', ml: '-2rem' }}
                             id="menu-appbar"
