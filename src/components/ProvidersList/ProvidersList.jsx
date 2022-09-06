@@ -44,7 +44,8 @@ import SearchIcon from '@mui/icons-material/Search';
 function ProvidersList() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const providers = useSelector((store) => store.providers);
+  const providersReducer = useSelector((store) => store.providers);
+  const providers = providersReducer.providersReducer
   const groups = useSelector((store) => store.groups);
   const specializations = useSelector((store) => store.specializations);
   const insurances = useSelector((store) => store.insurances);
@@ -58,7 +59,6 @@ function ProvidersList() {
     dispatch({ type: 'FETCH_OCCUPATIONS' });
   }, []);
 
-   const [searchQuery, setSearchQuery] = useState('');
 
   return (
     <div>
