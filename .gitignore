@@ -69,3 +69,4 @@ package-lock.json
 
 # preventing people from freaking out at color changes
 settings.json
+.vscode/settings.json
