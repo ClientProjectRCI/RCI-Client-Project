@@ -9,6 +9,9 @@ const multer = require('multer');
 
 // POST route for initial provider registration
 router.post('/', rejectUnauthenticated, (req, res) => {
+  const newImage = req.file;
+	console.log(newImage);
+	const path = `images/${newImage.file}`;
   console.log("content is:", req.body);
   let queryText = `INSERT INTO "provider" (
   "user_id", "name", "bio", "picture", 
@@ -22,7 +25,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
       [req.body.user_id,
       req.body.name,
       req.body.bio, 
-      req.file.name,
+      path,
       req.body.phone,
       req.body.email,
       req.body.insurance_id, 

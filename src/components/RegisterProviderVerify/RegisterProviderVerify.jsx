@@ -27,12 +27,12 @@ export default function RegisterProviderVerify() {
         // POST to provider table
             axios({
                 method: 'POST',
-                url: '/api/providers',
+                url: '/api/providers/',
                 data: {
                     user_id: user.id,
                     name: providerName, 
                     bio: providerBio,
-                    picture: providerPicture.name,
+                    picture: providerPicture,
                     phone: providerPhone,
                     email: providerEmail,
                     insurance_id: providerInsurance,
