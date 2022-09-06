@@ -28,7 +28,7 @@ export default function RegisterProviderVerify() {
         const data = new FormData();
 		
 		data.append('image', providerPicture);
-        // this is where I need to keep looking
+        // this is where I need to keep looking again
 
 		axios
 			.post('/image', data)

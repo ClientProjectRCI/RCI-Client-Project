@@ -9,7 +9,10 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-
+import ProviderSpecializations from '../ProviderSpecializations/ProviderSpecializations';
+import ProviderInsurances from '../ProviderInsurances/ProviderInsurances';
+import ProviderOccupations from '../ProviderOccupations/ProviderOccupations';
+import ProviderServices from '../ProviderServices/ProviderServices';
 
 const useStyles = makeStyles({
   backColor: {
@@ -23,130 +26,141 @@ const useStyles = makeStyles({
 });
 function ProvidersDetail() {
 
-const details = useSelector((store) => store.details);
-console.log('In Details');
-//details pertaining to the id of the provider that was clicked on.
-const [open, SetOpen] = React.useState(false);
-const classes = useStyles();
+  const details = useSelector((store) => store.details);
 
-const history = useHistory();
-const handleClick = () => {
-  console.log('Go back to the list.');
-  history.push('/providers');
-}; 
-// upon click btn goes back to the list
+  console.log('In Details');
+  //details pertaining to the id of the provider that was clicked on.
+  const [open, SetOpen] = React.useState(false);
+  const classes = useStyles();
 
-const handleClickOpen =()=>{
-  SetOpen(true);
-};
-// upon click btn opens the modal/dialog
-const handleClose = ()=>{
-  SetOpen(false);
-}
-// upon click btn close the modal/dialog
+  const history = useHistory();
+  const handleClick = () => {
+    console.log('Go back to the list.');
+    history.push('/providers');
+  };
+  // upon click btn goes back to the list
+
+  const handleClickOpen = () => {
+    SetOpen(true);
+  };
+  // upon click btn opens the modal/dialog
+  const handleClose = () => {
+    SetOpen(false);
+  }
+  // upon click btn close the modal/dialog
 
   return (
-
     <div className="row">
-    <div className="column">
+      <div className="column">
         <img
-            style={{ borderRadius: 20 }}
-            src={details.picture} alt={details.name}
+          style={{ borderRadius: 20 }}
+          src={details.picture}
+          alt={details.name}
         />
         {/* Start of modal/dialog  */}
         <Button variant="outlined" onClick={handleClickOpen}>
-        Email Me!
-      </Button>
-      <Dialog style={{ borderRadius: 20 }} open={open} onClose={handleClose}>
-        <DialogTitle>{details.name}</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            This email will be sent directly to this provider.....
-          </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="First Name"
-            type="email"
-            fullWidth
-            variant="outlined"
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Last Name"
-            type="email"
-            fullWidth
-            variant="outlined"
-          />
-          <TextField
-          autoFocus
-          margin="dense"
-          id="name"
-          label="Email Address"
-          type="email"
-          fullWidth
-          variant="outlined"
-          
-        />
-        <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Reason of Inqury"
-            type="email"
-            fullWidth
-            variant="outlined"
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Message"
-            type="email"
-            fullWidth
-            variant="outlined"
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Send</Button>
-        </DialogActions>
-      </Dialog>
-      {/* End of modal/dialog  */}
-    </div>
-    <div className="column">
+          Email Me!
+        </Button>
+        <Dialog style={{ borderRadius: 20 }} open={open} onClose={handleClose}>
+          <DialogTitle>{details.name}</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              This email will be sent directly to this provider.....
+            </DialogContentText>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="First Name"
+              type="email"
+              fullWidth
+              variant="outlined"
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Last Name"
+              type="email"
+              fullWidth
+              variant="outlined"
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Email Address"
+              type="email"
+              fullWidth
+              variant="outlined"
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Reason of Inquiry"
+              type="email"
+              fullWidth
+              variant="outlined"
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Message"
+              type="email"
+              fullWidth
+              variant="outlined"
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button onClick={handleClose}>Send</Button>
+          </DialogActions>
+        </Dialog>
+        {/* End of modal/dialog  */}
+      </div>
+
+      {/* COLUMN 1 */}
+      <div className="column">
         <div className="info">{details.name}</div>
         <div className="info">{details.bio}</div>
-        <div className="info">Insurance</div>
+        <div className="info">
+          <h4>Insurance</h4>
+          <ProviderInsurances />
+        </div>
+        <div className="info">
+          <h4>Occupation</h4>
+          <ProviderOccupations />
+        </div>
+      </div>
 
-    </div>
-    <div className="column">
-        <div className="info">Phone number</div>
+      {/* COLUMN 2 */}
+      <div className="column">
         <ul className="info">
-            <h4>Services:</h4>
-            <li>{details.availability}</li>
-            <li>Phone</li>
-            <li>{details.email}</li>
-            <li>Online</li>
-            <li>In-Patient</li>
-            <li>Out-Patient</li>
+          <h4>Contact Info:</h4>
+          <li>Availability: {details.availability}</li>
+          <li>Phone: {details.phone}</li>
+          <li>Email: {details.email}</li>
+          <h4>Services:</h4>
+          <ProviderServices />
         </ul>
         <ul className="info">
-            <h4>Specialialties:</h4>
+          <h4>Specialties:</h4>
+          <ProviderSpecializations />
         </ul>
         <div>
-    <Button
-      size="large"
-      color="primary"
-      variant="contained"
-      onClick={handleClick}>Return to List</Button>
+          <Button
+            size="large"
+            color="primary"
+            variant="contained"
+            onClick={handleClick}
+          >
+            Return to List
+          </Button>
+        </div>
       </div>
     </div>
-</div>
-
   );
 }
 

@@ -28,6 +28,10 @@ function ProvidersListItem({provider}) {
 const handleClick=(id)=>{
     console.log('You clicked this Provider!', id)
     dispatch({type: 'FETCH_PROVIDER_DETAILS', payload: id})
+     dispatch({ type: 'FETCH_PROVIDER_SPECIALIZATIONS', payload: id });
+      dispatch({ type: 'FETCH_PROVIDER_OCCUPATIONS', payload: id });
+       dispatch({ type: 'FETCH_PROVIDER_INSURANCES', payload: id });
+           dispatch({ type: 'FETCH_PROVIDER_SERVICES', payload: id });
     history.push('/provider-details')
 }
 

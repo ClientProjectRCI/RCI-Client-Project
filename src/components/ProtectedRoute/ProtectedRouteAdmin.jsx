@@ -13,12 +13,12 @@ import { useSelector } from 'react-redux';
 // by checking req.isAuthenticated for authentication
 // and by checking req.user for authorization
 
-export default function ProtectedRoute({ component, children, ...props }) {
+export default function ProtectedRouteAdmin({ component, children, ...props }) {
     const user = useSelector((store) => store.user);
 
     // Component may be passed in as a "component" prop,
     // or as a child component.
-    const ProtectedComponent = component || (() => children);
+    const ProtectedComponentAdmin = component || (() => children);
 
     // We return a Route component that gets added to our list of routes
     return (
@@ -29,7 +29,7 @@ export default function ProtectedRoute({ component, children, ...props }) {
         >
             {user.id ? (
                 // If the user is logged in, show the protected component
-                <ProtectedComponent />
+                <ProtectedComponentAdmin />
             ) : (
                 // Otherwise, redirect to the Loginpage
                 <LoginPage />

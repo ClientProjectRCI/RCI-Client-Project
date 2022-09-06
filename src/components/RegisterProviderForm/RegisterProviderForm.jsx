@@ -24,6 +24,7 @@ export default function RegisterProviderForm() {
 
     // const addFile = (event) => setNewPath(event.target.files[0]);
 
+<<<<<<< HEAD
     // const sendImage = (event) => {
 	// 	const data = new FormData();
 		
@@ -38,6 +39,22 @@ export default function RegisterProviderForm() {
 	// 			alert('Error with post', error);
 	// 		});
 	// };
+=======
+    const sendImage = (event) => {
+        const data = new FormData();
+
+        data.append('image', newPath);
+
+        axios
+            .post('/provider/image', data)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                alert('Error with post', error);
+            });
+    };
+>>>>>>> 1f6cd604e647fc16fb2aa936371142060ce90f21
 
     const verifyProvider = () => {
             // sendImage();
@@ -88,7 +105,15 @@ export default function RegisterProviderForm() {
 
     return (
         <center>
+<<<<<<< HEAD
             <form className="container" encType="multipart/form-data">
+=======
+            <form
+                className="container"
+                encType="multipart/form-data"
+                onSubmit={registerProvider}
+            >
+>>>>>>> 1f6cd604e647fc16fb2aa936371142060ce90f21
                 <h2>Welcome, {user.username}!</h2>
                 <p>ProviderProfile: Your ID is: {user.id}</p>
                 <input required type="text" 
@@ -143,11 +168,26 @@ export default function RegisterProviderForm() {
                 value={providerPhone}
                 onChange={(event) => setProviderPhone(event.target.value)}
                 ></input>
+<<<<<<< HEAD
                 {/* <input type="file" 
                 className="file-upload" 
                 name="profile-image" 
                 onChange={(event) => setProviderPicture(event.target.files[0])}></input> */}
                 <button className="btn" onClick={verifyProvider}>Go To Verify</button>
+=======
+                <input required type="text" placeholder="Service"></input>
+                <input required type="date" placeholder="Availability"></input>
+                <input required type="text" placeholder="Email"></input>
+                <input required type="text" placeholder="Website"></input>
+                <input required type="text" placeholder="Phone Number"></input>
+                <input
+                    type="file"
+                    className="file-upload"
+                    name="profile-image"
+                    onChange={addFile}
+                ></input>
+                <button onClick={registerProvider}>Submit</button>
+>>>>>>> 1f6cd604e647fc16fb2aa936371142060ce90f21
             </form>
             <LogOutButton className="btn" />
         </center>
