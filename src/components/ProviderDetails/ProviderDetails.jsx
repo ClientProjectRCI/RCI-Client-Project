@@ -26,28 +26,28 @@ const useStyles = makeStyles({
 });
 function ProvidersDetail() {
 
-const details = useSelector((store) => store.details);
+  const details = useSelector((store) => store.details);
 
-console.log('In Details');
-//details pertaining to the id of the provider that was clicked on.
-const [open, SetOpen] = React.useState(false);
-const classes = useStyles();
+  console.log('In Details');
+  //details pertaining to the id of the provider that was clicked on.
+  const [open, SetOpen] = React.useState(false);
+  const classes = useStyles();
 
-const history = useHistory();
-const handleClick = () => {
-  console.log('Go back to the list.');
-  history.push('/providers');
-}; 
-// upon click btn goes back to the list
+  const history = useHistory();
+  const handleClick = () => {
+    console.log('Go back to the list.');
+    history.push('/providers');
+  };
+  // upon click btn goes back to the list
 
-const handleClickOpen =()=>{
-  SetOpen(true);
-};
-// upon click btn opens the modal/dialog
-const handleClose = ()=>{
-  SetOpen(false);
-}
-// upon click btn close the modal/dialog
+  const handleClickOpen = () => {
+    SetOpen(true);
+  };
+  // upon click btn opens the modal/dialog
+  const handleClose = () => {
+    SetOpen(false);
+  }
+  // upon click btn close the modal/dialog
 
   return (
     <div className="row">
@@ -98,7 +98,7 @@ const handleClose = ()=>{
               autoFocus
               margin="dense"
               id="name"
-              label="Reason of Inqury"
+              label="Reason of Inquiry"
               type="email"
               fullWidth
               variant="outlined"
@@ -120,27 +120,33 @@ const handleClose = ()=>{
         </Dialog>
         {/* End of modal/dialog  */}
       </div>
+
+      {/* COLUMN 1 */}
       <div className="column">
         <div className="info">{details.name}</div>
         <div className="info">{details.bio}</div>
         <div className="info">
-          Insurance <ProviderInsurances />
+          <h4>Insurance</h4>
+          <ProviderInsurances />
         </div>
         <div className="info">
-          Occupation <ProviderOccupations />
+          <h4>Occupation</h4>
+          <ProviderOccupations />
         </div>
       </div>
+
+      {/* COLUMN 2 */}
       <div className="column">
-        <div className="info">Phone number</div>
         <ul className="info">
+          <h4>Contact Info:</h4>
+          <li>Availability: {details.availability}</li>
+          <li>Phone: {details.phone}</li>
+          <li>Email: {details.email}</li>
           <h4>Services:</h4>
-          <li>{details.availability}</li>
-          <li>Phone</li>
-          <li>{details.email}</li>
           <ProviderServices />
         </ul>
         <ul className="info">
-          <h4>Specialialties:</h4>
+          <h4>Specialties:</h4>
           <ProviderSpecializations />
         </ul>
         <div>
