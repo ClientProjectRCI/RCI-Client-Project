@@ -59,6 +59,7 @@ function ProvidersList() {
     dispatch({ type: 'FETCH_INSURANCES' });
     dispatch({ type: 'FETCH_OCCUPATIONS' });
   }, []);
+  //af
   let [searchItem, setSearchItem] = useState('');
   let [name, setName] = useState('');
   function handleSearchSubmit(e) {
