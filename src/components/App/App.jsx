@@ -26,6 +26,7 @@ import ProvidersList from '../ProvidersList/ProvidersList';
 
 import ProviderDetails from '../ProviderDetails/ProviderDetails';
 import GroupDetails from '../GroupDetails/GroupDetails';
+import AdminAnalytics from '../AdminAnalytics/AdminAnalytics';
 
 export default function App() {
     const dispatch = useDispatch();
@@ -107,6 +108,13 @@ export default function App() {
                         path="/provider"
                     >
                         <ProviderProfile />
+                    </ProtectedRoute>
+                    <ProtectedRoute
+                        // logged in shows ProviderProfile else shows ProviderProfile
+                        exact
+                        path="/admin"
+                    >
+                        <AdminAnalytics />
                     </ProtectedRoute>
                     <ProtectedRoute exact path="/register-group">
                         <RegisterGroupForm />
