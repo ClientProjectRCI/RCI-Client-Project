@@ -67,5 +67,10 @@ typings/
 # ignore package-lock as it complicates merging
 package-lock.json
 
+<<<<<<< HEAD
+# preventing people from freaking out at color changes
+settings.json
+=======
 #.vs code settings
 .vscode/settings.json
+>>>>>>> 1f6cd604e647fc16fb2aa936371142060ce90f21
