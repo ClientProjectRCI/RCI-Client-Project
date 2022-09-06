@@ -76,7 +76,7 @@ function ProvidersList() {
       });
     
   }
-
+//d
   return (
     <div>
       <body>
@@ -87,7 +87,7 @@ function ProvidersList() {
           <span>
             <span
               style={{
-                display: 'flex',
+                display: 'flex', 
                 alignSelf: 'center',
                 justifyContent: 'center',
                 flexDirection: 'row',
