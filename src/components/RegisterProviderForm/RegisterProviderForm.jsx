@@ -10,7 +10,7 @@ export default function RegisterProviderForm() {
     const user = useSelector((store) => store.user);
     const history = useHistory();
     const dispatch = useDispatch();
-    // const [providerPicture, setProviderPicture] = useState('');
+    const [providerPicture, setProviderPicture] = useState('');
     const [providerName, setProviderName] = useState('');
     const [providerBio, setProviderBio] = useState('');
     const [providerPhone, setProviderPhone] = useState('');
@@ -22,25 +22,25 @@ export default function RegisterProviderForm() {
     const [providerService, setProviderService] = useState('');
     const [providerAvailability, setProviderAvailability] = useState('');
 
-    // const addFile = (event) => setNewPath(event.target.files[0]);
+    const addFile = (event) => setProviderPicture(event.target.files[0]);
 
-    // const sendImage = (event) => {
-    // 	const data = new FormData();
+    const sendImage = (event) => {
+    	const data = new FormData();
 
-    // 	data.append('image', providerPicture);
+    	data.append('image', providerPicture);
 
-    // 	axios
-    // 		.post('api/provider/image', data)
-    // 		.then((response) => {
-    // 			console.log(response);
-    // 		})
-    // 		.catch((error) => {
-    // 			alert('Error with post', error);
-    // 		});
-    // };
+    	axios
+    		.post('api/provider/image', data)
+    		.then((response) => {
+    			console.log(response);
+    		})
+    		.catch((error) => {
+    			alert('Error with post', error);
+    		});
+    };
 
     const verifyProvider = () => {
-        // sendImage();
+        sendImage();
 
         dispatch({
             type: 'ADD_PROVIDER_NAME',
@@ -88,7 +88,7 @@ export default function RegisterProviderForm() {
 
     return (
         <center>
-            <form className="container" encType="multipart/form-data">
+            <form className="container">
                 <h2>Welcome, {user.username}!</h2>
                 <p>ProviderProfile: Your ID is: {user.id}</p>
                 <input
@@ -166,6 +166,11 @@ export default function RegisterProviderForm() {
                     placeholder="Phone Number"
                     value={providerPhone}
                     onChange={(event) => setProviderPhone(event.target.value)}
+                ></input>
+                <input type='file' 
+                className='input' 
+                name='image' 
+                onChange={addFile}
                 ></input>
                 <button className="btn" onClick={verifyProvider}>
                     Go To Verify
