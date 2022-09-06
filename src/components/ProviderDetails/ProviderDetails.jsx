@@ -155,7 +155,7 @@ const handleClose = ()=>{
           </Button>
 
           <div>
-            <DeleteBtn/>
+            <DeleteBtn />
           </div>
         </div>
       </div>

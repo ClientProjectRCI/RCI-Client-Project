@@ -41,7 +41,7 @@ router.get('/:id', (req, res) => {
 
 router.delete("/:id", (req, res)=>{
   const id = req.params.id;
-  console.log('delete from db', id);
+  console.log('delete route from db>>>>', id);
   let sqlQuery = `
   DELETE FROM "provider"
   WHERE "id" = $1;

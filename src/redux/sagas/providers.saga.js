@@ -112,6 +112,7 @@ function* fetchProviderServices(action) {
 // Delete provider 
 function* deleteProviders(action){
   const id = action.payload;
+  console.log('payload for DELETE>>>', id);
         try{
             yield axios.delete(`/api/providers/${id}`);
         } catch{
