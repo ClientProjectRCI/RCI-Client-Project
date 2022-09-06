@@ -1,34 +1,42 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../ProviderProfile/ProviderProfile.css';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 
 import LogOutButton from '../LogOutButton/LogOutButton';
-import { Box, Button, Grid, Paper, TextField, Typography, Tooltip, Input } from '@mui/material';
+import { Box, Card, Button, Grid, Paper, TextField, Typography, Tooltip, Input } from '@mui/material';
+import ProviderSpecializations from '../ProviderSpecializations/ProviderSpecializations';
+import ProviderInsurances from '../ProviderInsurances/ProviderInsurances';
+import ProviderOccupations from '../ProviderOccupations/ProviderOccupations';
+import ProviderServices from '../ProviderServices/ProviderServices';
 
 export default function ProviderProfile() {
 
     const user = useSelector(store => store.user); // pulls user info for conditional rendering, and GETTING provider info
+    const details = useSelector((store) => store.details); // Pulls a single Providers info from the "Details" store
     const [edit, setEdit] = useState(false); // edit buttons local state. Starts as false.
+    const history = useHistory()
+    const dispatch = useDispatch();
 
     console.log("user:", user); // test user info
-    console.log("edit useState:", edit); // tests edit local state, starts as false
+    console.log("edit useState:", edit); // tests EDIT local state, starts as FALSE
 
 
-// NOTE - Eventually there will be additional functions 
-    // 1. for the "edit profile info" button. It will render the input fields
-    // 2. for the "submit your changes" button.  It will save/submit edits to profile,
-        // and will re-render all info as non-editable div's.
+    // -- NOTE - No functionality for actually submitting the edited profile info to the DB -- //
 
-    const toggleEdit = () => { 
+    const toggleEdit = () => { // Toggle the EDIT useState between TRUE & FALSE. 
         setEdit(current => !current);
-
-        console.log("TIME TO EDIT INFO", edit);
-
     };
+    dispatch({ type: 'FETCH_PROVIDER_DETAILS', payload: user.id })
+    useEffect(() => {
+        dispatch({ type: 'FETCH_PROVIDER_DETAILS', payload: user.id })
+        // dispatch({ type: 'FETCH_PROVIDER_SPECIALIZATIONS', payload: user.id });
+        // dispatch({ type: 'FETCH_PROVIDER_OCCUPATIONS', payload: user.id });
+        // dispatch({ type: 'FETCH_PROVIDER_INSURANCES', payload: user.id });
+        // dispatch({ type: 'FETCH_PROVIDER_SERVICES', payload: user.id });
 
-
-
+    }, []);
 
 
     return (
@@ -43,18 +51,8 @@ export default function ProviderProfile() {
                     src="https://static.wixstatic.com/media/3d076e_adb70c8b93b845f1b93d50028c5013e8~mv2.jpeg/v1/crop/x_0,y_727,w_1242,h_1173/fill/w_412,h_389,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/695BF34C-4BAC-4D41-85DD-95CE130DAA57%20-%20S.jpeg"
                 />
 
-                {/* <div>
-                    {user.access_level === 2 && (
-                        <div>
-                            <Button item variant="contained"
-                                onClick={toggleEdit}
-                            >Edit Profile Info</Button>
-                        </div>
-                    )}
-                </div> */}
-
                 <div> {/* this div controller the "EDIT" buttons conditional rendering*/}
-                    <Button item variant="contained">Email</Button> 
+                    <Button item variant="contained">Email</Button>
                     {edit
                         ? <Button item variant="outlined"
                             onClick={toggleEdit}
@@ -68,7 +66,7 @@ export default function ProviderProfile() {
 
             </div>
             <div>{/* this div controls the "Input fields & Info" conditional rendering*/}
-                {edit 
+                {edit
                     ? <div>   {/* "?" - If TRUE, show input editable fields  */}
                         <div className="column">
                             <h3>You Are Editing Your Profile Info</h3>
@@ -81,46 +79,55 @@ export default function ProviderProfile() {
                             <TextField
                                 label={"Edit Bio"}
                             ></TextField>
-                             <TextField
+                            <TextField
                                 label={"Edit Insurance"}
                             ></TextField>
                         </div>
                         <div className="column">
-                        <TextField
+                            <TextField
                                 label={"Edit Phone number"}
                             ></TextField>
-                         <TextField
+                            <TextField
                                 label={"Edit Services"}
                             ></TextField>
-                         <TextField
-                                label={"Edit Specialities"}
+                            <TextField
+                                label={"Edit Specialties"}
                             ></TextField>
-                        
+
                         </div>
                     </div>
-                    :  
-                    <div> {/* ":" - If FALSE, show input editable fields  */}
+                    :
+                    <div className="row"> {/* ":" - If FALSE, show Non-editable Text Below */}
+
+                        {/* COLUMN 1 */}
                         <div className="column">
-                            <div className="info">Name / Occupation</div>
-                            <div className="info">Bio</div>
-                            <div className="info">Insurance</div>
+                            <div className="info">{details.name}</div>
+                            <div className="info">{details.bio}</div>
+                            <div className="info">
+                                <h4>Insurance</h4>
+                                <ProviderInsurances />
+                            </div>
+                            <div className="info">
+                                <h4>Occupation</h4>
+                                <ProviderOccupations />
+                            </div>
                         </div>
+
+                        {/* COLUMN 2 */}
                         <div className="column">
-                            <div className="info">Phone number</div>
                             <ul className="info">
+                                <h4>Contact Info:</h4>
+                                <li>Availability: {details.availability}</li>
+                                <li>Phone: {details.phone}</li>
+                                <li>Email: {details.email}</li>
                                 <h4>Services:</h4>
-                                <li>Phone</li>
-                                <li>Online</li>
-                                <li>In-Patient</li>
-                                <li>Out-Patient</li>
+                                <ProviderServices />
                             </ul>
                             <ul className="info">
-                                <h4>Specialities:</h4>
-                                <li>specialty 1</li>
-                                <li>specialty 2</li>
-                                <li>specialty 3</li>
-                               
+                                <h4>Specialties:</h4>
+                                <ProviderSpecializations />
                             </ul>
+
                         </div>
 
                     </div>
