@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { styled, useTheme } from '@mui/material/styles';
@@ -33,6 +33,7 @@ import Grid from '@material-ui/core/Grid';
 import ProvidersListItem from '../ProvidersListItem/ProvidersListItem';
 import GroupsListItem from '../GroupsListItem/GroupsListItem';
 import './ProvidersList.css';
+import SearchIcon from '@mui/icons-material/Search';
 // This is one of our simplest components
 // It doesn't have local state
 // It doesn't dispatch any redux actions or display any part of redux state
@@ -48,6 +49,7 @@ function ProvidersList() {
   const specializations = useSelector((store) => store.specializations);
   const insurances = useSelector((store) => store.insurances);
   const occupations = useSelector((store) => store.occupations);
+  //dispataches for the detail of the clicked on provider/group
   useEffect(() => {
     dispatch({ type: 'FETCH_PROVIDERS' });
     dispatch({ type: 'FETCH_GROUPS' });
@@ -56,15 +58,46 @@ function ProvidersList() {
     dispatch({ type: 'FETCH_OCCUPATIONS' });
   }, []);
 
+   const [searchQuery, setSearchQuery] = useState('');
+
   return (
     <div>
       <body>
         <input type="checkbox" id="drawer-toggle" name="drawer-toggle" />
         <label for="drawer-toggle" id="drawer-toggle-label"></label>
         <header>
-          Header
+          
           <span>
-            <input placeholder="Search"></input> <button>Search</button>
+            <span
+              style={{
+                display: 'flex',
+                alignSelf: 'center',
+                justifyContent: 'center',
+                flexDirection: 'row',
+                padding: 0,
+                margin: 0,
+              }}
+            >
+              <form>
+                <TextField
+                  id="search-bar"
+                  className="text"
+                  onInput={(e) => {
+                    setSearchQuery(e.target.value);
+                  }}
+                  label="Search by Name"
+                  variant="outlined"
+                  placeholder="Search..."
+                  size="small"
+                />
+                <IconButton type="submit" aria-label="search">
+                  <SearchIcon style={{ fill: 'blue' }} />
+                </IconButton>
+              </form>
+              <div style={{ padding: 0 }}>
+               
+              </div>
+            </span>
           </span>
         </header>
         <nav id="drawer">
