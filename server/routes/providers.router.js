@@ -9,7 +9,7 @@ const {
 router.post('/', rejectUnauthenticated, (req, res) => {
   const newProvider = req.body;
 
-	const path = `/public/images/${newProvider.picture}`;
+	const path = `/images/${newProvider.picture}`;
 
   console.log("content is:", req.body);
   

@@ -53,7 +53,7 @@ const handleClick=(id)=>{
                 <CardContent>
                   <CardMedia
                     component="img"
-                    image={provider.image}
+                    image={provider.picture}
                     alt={provider.name}
                   />
                   <Typography gutterBottom variant="h5" component="h3">
