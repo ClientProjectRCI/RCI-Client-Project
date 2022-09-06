@@ -6,12 +6,26 @@ const {
 } = require('../modules/authentication-middleware');
 const multer = require('multer');
 
+const fileStorageEngine = multer.diskStorage({
+	destination: (req, file, cb) => {
+		cb(null, '../public/Images');
+	},
+	filename: (req, file, cb) => {
+		cb(null, file.originalname);
+	},
+});
+
+const upload = multer({ storage: fileStorageEngine });
+
+//multer
+router.post('/image', upload.single('image'), (req, res) => {
+	res.send('File uploaded successfully');
+});
 
 // POST route for initial provider registration
 router.post('/', rejectUnauthenticated, (req, res) => {
-  const newImage = req.file;
-	console.log(newImage);
-	const path = `images/${newImage.file}`;
+  const newProvider = req.body;
+	const path = `/public/Images/${newProvider.picture}`;
   console.log("content is:", req.body);
   let queryText = `INSERT INTO "provider" (
   "user_id", "name", "bio", "picture", 
@@ -22,18 +36,18 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   )
   VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`;
   pool.query(queryText, 
-      [req.body.user_id,
-      req.body.name,
-      req.body.bio, 
+      [newProvider.user_id,
+      newProvider.name,
+      newProvider.bio, 
       path,
-      req.body.phone,
-      req.body.email,
-      req.body.insurance_id, 
-      req.body.occupation_id, 
-      req.body.specialization_id,
-      req.body.service_id, 
-      req.body.availability,
-      req.body.groupId
+      newProvider.phone,
+      newProvider.email,
+      newProvider.insurance_id, 
+      newProvider.occupation_id, 
+      newProvider.specialization_id,
+      newProvider.service_id, 
+      newProvider.availability,
+      newProvider.groupId
       ])
 .then(result => {
   res.sendStatus(201);

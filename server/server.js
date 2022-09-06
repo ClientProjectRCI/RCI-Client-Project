@@ -24,6 +24,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const groupsRouter = require('./routes/groups.router');
 const providersRouter = require('./routes/providers.router');
+const providersImageRouter = require('./routes/providers.router');
 const specializationsRouter = require('./routes/specializations.router');
 const insurancesRouter = require('./routes/insurances.router');
 const occupationsRouter = require('./routes/occupations.router');
@@ -40,15 +41,13 @@ app.use(sessionMiddleware);
 app.use(passport.initialize());
 app.use(passport.session());
 
-//multer
-app.post('../public/Images', upload.single('uploaded_file'), function (req, res) {
-    console.log(req.file, req.body)
- });
+
 
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/api/groups', groupsRouter);
 app.use('/api/providers', providersRouter);
+app.use('/api/providers/image', providersImageRouter);
 app.use('/api/specializations', specializationsRouter);
 app.use('/api/insurances', insurancesRouter);
 app.use('/api/occupations', occupationsRouter);

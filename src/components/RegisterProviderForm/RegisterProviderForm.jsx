@@ -3,14 +3,14 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux'; 
-import axios from 'axios';
+// import axios from 'axios';
 
 export default function RegisterProviderForm() {
     // this component doesn't do much to start, just renders some user reducer info to the DOM
     const user = useSelector((store) => store.user);
     const history = useHistory();
     const dispatch = useDispatch();
-    const [providerPicture, setProviderPicture] = useState('');
+    // const [providerPicture, setProviderPicture] = useState('');
     const [providerName, setProviderName]= useState('');
     const [providerBio, setProviderBio]= useState('');
     const [providerPhone, setProviderPhone]= useState('');
@@ -50,10 +50,10 @@ export default function RegisterProviderForm() {
                 type: 'ADD_PROVIDER_BIO',
                 payload: providerBio
             });
-            dispatch ({
-                type: 'ADD_PROVIDER_PICTURE',
-                payload: providerPicture
-            })
+            // dispatch ({
+            //     type: 'ADD_PROVIDER_PICTURE',
+            //     payload: providerPicture
+            // })
             dispatch ({
                 type: 'ADD_PROVIDER_PHONE',
                 payload: providerPhone
@@ -88,7 +88,7 @@ export default function RegisterProviderForm() {
 
     return (
         <center>
-            <form className="container" encType="multipart/form-data" onSubmit={verifyProvider}>
+            <form className="container" encType="multipart/form-data">
                 <h2>Welcome, {user.username}!</h2>
                 <p>ProviderProfile: Your ID is: {user.id}</p>
                 <input required type="text" 
@@ -143,11 +143,11 @@ export default function RegisterProviderForm() {
                 value={providerPhone}
                 onChange={(event) => setProviderPhone(event.target.value)}
                 ></input>
-                <input type="file" 
+                {/* <input type="file" 
                 className="file-upload" 
                 name="profile-image" 
-                onChange={(event) => setProviderPicture(event.target.files[0])}></input>
-                <button className="btn" onClick={verifyProvider}>Submit</button>
+                onChange={(event) => setProviderPicture(event.target.files[0])}></input> */}
+                <button className="btn" onClick={verifyProvider}>Go To Verify</button>
             </form>
             <LogOutButton className="btn" />
         </center>

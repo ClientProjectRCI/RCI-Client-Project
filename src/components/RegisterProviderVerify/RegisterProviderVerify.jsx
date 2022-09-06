@@ -9,9 +9,10 @@ export default function RegisterProviderVerify() {
     const user = useSelector((store) => store.user);
     const history = useHistory();
     const dispatch = useDispatch();
+    const [providerPicture, setProviderPicture] = useState('');
     const providerName = useSelector((store) => store.providers.providerNameReducer);
     const providerBio = useSelector((store) => store.providers.providerBioReducer);
-    const providerPicture = useSelector((store) => store.providers.providerPictureReducer);
+    // const providerPicture = useSelector((store) => store.providers.providerPictureReducer);
     const providerPhone = useSelector((store) => store.providers.providerPhoneReducer);
     const providerEmail = useSelector((store) => store.providers.providerEmailReducer);
     const providerInsurance = useSelector((store) => store.providers.providerInsuranceReducer);
@@ -22,8 +23,24 @@ export default function RegisterProviderVerify() {
     const groupId = useSelector((store) => store.user.id);
 
 
+    const sendImage = (event) => {
+        const data = new FormData();
+		
+		data.append('image', providerPicture);
+
+		axios
+			.post('/api/providers/image', data)
+			.then((response) => {
+				console.log(response);
+			})
+			.catch((error) => {
+				alert('Error with post', error);
+			});
+    }
+
 
     const registerProvider = () => {
+            
         // POST to provider table
             axios({
                 method: 'POST',
@@ -32,7 +49,7 @@ export default function RegisterProviderVerify() {
                     user_id: user.id,
                     name: providerName, 
                     bio: providerBio,
-                    picture: providerPicture,
+                    picture: providerPicture.name,
                     phone: providerPhone,
                     email: providerEmail,
                     insurance_id: providerInsurance,
@@ -58,7 +75,13 @@ export default function RegisterProviderVerify() {
             <div className="container" >
                 <h2>Welcome, {user.username}!</h2>
                 <p>ProviderProfile: Your ID is: {user.id}</p>
-                <p></p>
+                <form className="container" encType="multipart/form-data">
+                <input type="file" 
+                className="file-upload" 
+                name='image' 
+                onChange={(event) => setProviderPicture(event.target.files[0])}
+                
+                ></input></form>
                 <table>
                     <thead>
                         <tr>
