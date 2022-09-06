@@ -37,4 +37,25 @@ router.get('/:id', (req, res) => {
 });
 
 
+// Delete route
+
+router.delete("/:id", (req, res)=>{
+  const id = req.params.id;
+  console.log('delete from db', id);
+  let sqlQuery = `
+  DELETE FROM "provider"
+  WHERE "id" = $1;
+  `;
+  const sqlParams=[id];
+  pool
+  .query(sqlQuery, sqlParams)
+  .then((res)=>{
+      res.sendStatus(200);
+  })
+  .catch((error)=>{
+      console.log('error in provider router DELETE', error);
+      res.sendStatus(500);
+  });
+  })
+
 module.exports = router;

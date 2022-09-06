@@ -3,11 +3,14 @@ import { useDispatch,} from "react-redux";
 import {  useSelector } from 'react-redux';
 
 
-export default function deleteBtn(){
+export default function DeleteBtn({provider}){
+
+    const dispatch = useDispatch();
+
 
     const handleDelete =()=>{
         dispatch({
-            type:'DELETE_PROVIDER',
+            type:'DELETE_PROVIDERS',
             payload: provider,
         })
     }
