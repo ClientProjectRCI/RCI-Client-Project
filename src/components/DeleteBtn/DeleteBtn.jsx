@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch,} from "react-redux"; 
 import {  useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
+import { Button } from '@material-ui/core';
 
 
 export default function DeleteBtn(){
@@ -21,7 +22,11 @@ export default function DeleteBtn(){
     }
 
     return(
-        <button onClick={handleDelete} >Delete</button>
+        <Button 
+        variant="contained"
+        style={{backgroundColor: 'maroon', color: 'white'}}
+        // color="success"
+        onClick={handleDelete} >Delete</Button>
     )
 }
 
