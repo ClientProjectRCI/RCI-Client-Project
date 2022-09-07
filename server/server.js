@@ -37,6 +37,7 @@ const servicesRouter = require('./routes/services.router');
 const providerProfileRouter = require('./routes/providerProfile.router');
 const providerSearchRouter = require('./routes/providerSearch.router');
 const groupProfileRouter = require('./routes/groupProfile.router');
+const groupSearchRouter = require('./routes/groupSearch.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -63,6 +64,7 @@ app.use('/api/services', servicesRouter);
 app.use('/api/providerProfile', providerProfileRouter); 
 app.use('/api/providerSearch', providerSearchRouter);
 app.use('/api/groupProfile', groupProfileRouter); 
+app.use('/api/groupSearch', groupSearchRouter);
 // Serve static files
 app.use(express.static('build'));
 

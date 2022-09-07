@@ -5,7 +5,7 @@ import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 
 
 
-//get all details of one provider
+//Search for the name of this one provider
 function* fetchProviderName(action) {
   try {
     const response = yield axios.get(`/api/providerSearch/${action.payload.className}/${action.payload.searchItem}`);
