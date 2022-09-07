@@ -37,18 +37,28 @@ export default function ProviderProfile() {
 
 
 
+    function handleChange(event) { 
+        dispatch({ 
+                    type: 'EDIT_ONCHANGE', 
+                    payload: { property: 'github_name', value: event.target.value }
+                });
+    
+      }
+
+
     function handleSubmit(event) { // PUT/UPDATE Dispatch
         event.preventDefault();
 
         console.log('usernameLocal', name);
 
-        dispatch({
-            type: 'PUT_NAME',
-            payload: {
-                username: name,
-                id: details.id
-            }
-        });
+ 
+        // dispatch({
+        //     type: 'PUT_NAME',
+        //     payload: {
+        //         username: name,
+        //         id: details.id
+        //     }
+        // });
         toggleEdit(); //
         // axios.put(`/api/settings${action.payload}`)
     }
@@ -100,13 +110,17 @@ export default function ProviderProfile() {
                                 <br></br>
                                 <Grid container
                                     justifyContent="flex-start">
+
                                     <TextField label={"Edit Name"}
                                         placeholder={details.name}
                                         value={details.name}
-                                        onChange={(event) => setName(event.target.value)} />
+                                        onChange={(event) => handleChange(event)} />
+                                        
                                     <Button variant="contained" type='submit'>
                                         Submit
                                     </Button>
+
+
                                 </Grid>
                             </form>
                             {/* BIO INPUT  */}

@@ -221,7 +221,7 @@ INSERT INTO "provider_occupation" ( "provider_id", "occupation_id") VALUES
 
 
 
-
+---------------- GETS ---------------- 
 ---- GET ALL  ---- 
 SELECT * FROM "user"; -- GET ALL USERS
 
@@ -257,7 +257,7 @@ JOIN "user" ON "group"."user_id" = "user"."id" WHERE "user"."id" = 2;
 
 --GET ONE PROVIDER BY USER.ID, example: 3
 SELECT * FROM "provider" 
-JOIN "user" ON "provider"."user_id" = "user"."id" WHERE "user"."id" = 3;
+JOIN "user" ON "provider"."user_id" = "user"."id" WHERE "user"."id" = 4;
 
 -- GET PROVIDER INSURANCE BY PROVIDER.ID -- 
 SELECT insurance_plan.insurance FROM insurance_plan
@@ -291,7 +291,7 @@ SELECT * FROM "provider" WHERE "name" ILIKE '%rovid%' ORDER BY "provider"."name"
 SELECT * FROM "group" WHERE "name" ILIKE '%group%' ORDER BY "group"."name" ASC;
 SELECT * FROM "group" WHERE "name" ILIKE '%group%' ORDER BY "group"."name" DESC;
 
--- SEARCHS --
+---------------- SEARCHS ---------------- 
 -- SEARCH Providers by SPECIALIZATION -- 
 SELECT * FROM "provider" 
 JOIN "provider_specializations" 
@@ -319,7 +319,7 @@ ON "service_type"."id" = "provider_service_type"."id"
 WHERE "service_type"."service" ILIKE '%line%' 
 ORDER BY "provider"."name";
 
--- SEARCH Providers by SERVICE_TYPE -- 
+-- SEARCH Providers by INSURA -- 
 SELECT * FROM "provider" 
 JOIN "provider_insurance_plan" 
 ON "provider"."id" = "provider_insurance_plan"."provider_id"
@@ -327,6 +327,27 @@ JOIN "insurance_plan"
 ON "insurance_plan"."id" = "provider_insurance_plan"."id"
 WHERE "insurance_plan"."insurance" ILIKE '%blue%' 
 ORDER BY "provider"."name";
+
+
+
+---------------- UPDATES ---------------- 
+-- UPDATE - PROVIDER info by "Provider.user_ID"
+UPDATE "provider" SET "name" = 'updated db name' WHERE "provider"."user_id" = 4;
+UPDATE "provider" SET "bio" = 'updated db bio' WHERE "provider"."user_id" = 4;
+UPDATE "provider" SET "phone" = 'updated db phone' WHERE "provider"."user_id" = 4;
+UPDATE "provider" SET "email" = 'updated db email' WHERE "provider"."user_id" = 4;
+UPDATE "provider" SET "phone" = 'updated db phone' WHERE "provider"."user_id" = 4;
+
+-- UPDATE - GROUP info by "Provider.user_ID"
+UPDATE "group" SET "name" = 'updated db name' WHERE "group"."user_id" = 4;
+UPDATE "group" SET "bio" = 'updated db bio' WHERE "group"."user_id" = 4;
+UPDATE "group" SET "website" = 'updated db website' WHERE "group"."user_id" = 4;
+UPDATE "group" SET "email" = 'updated db email' WHERE "group"."user_id" = 2;
+UPDATE "group" SET "phone" = 'updated db phone' WHERE "group"."user_id" = 2;
+UPDATE "group" SET "street" = 'updated db email' WHERE "group"."user_id" = 2;
+UPDATE "group" SET "city" = 'updated db city' WHERE "group"."user_id" = 2;
+UPDATE "group" SET "state" = 'updated db phone' WHERE "group"."user_id" = 2;
+UPDATE "group" SET "zipcode" = 'updated db zipcode' WHERE "group"."user_id" = 2;
 
 -----! DELETE/DROP TABLES !-----
 DROP TABLE "provider_specializations";
@@ -346,7 +367,7 @@ DROP TABLE "user";
 
 
 
-
+---- THIS GETS EVERYTHING. Does't really work. Mostly here so anyone can test different JOINS ----
 -- GET INSURANCE,service_type & specializations for ONE provider by provider.id --
 SELECT  "provider"."name", "provider"."bio", "provider"."email", "provider"."name", "specializations"."specialization", "service_type"."service", "insurance_plan"."insurance" FROM "specializations"
 JOIN "provider_specializations"
