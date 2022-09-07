@@ -13,14 +13,14 @@ function* fetchProviderName(action) {
       'In fetchProviderName, this is response.data',
       response.data
     );
-    yield put({type: 'SEND_SEARCH_RESULT', payload: response.data}); //may need [0]
+    yield put({type: 'SET_PROVIDERS', payload: response.data}); //may need [0]
   } catch (error) {
     console.log('error in fetchProviderName', error);
   }
 }
-function* searchSaga() {
+function* providerSearchSaga() {
   yield takeEvery('SEARCH_PROVIDER_NAME', fetchProviderName);
 
 }
 
-export default searchSaga;
+export default providerSearchSaga;

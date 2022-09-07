@@ -13,10 +13,14 @@ router.get('/:className/:searchItem', (req, res) => {
 
     const column = req.params.className;
     const searchItem = req.params.searchItem;
-  console.log('here is the name in the providerSearch router', name);
+  console.log(
+    'here is the searchItem in the providerSearch router',
+    searchItem
+  );
+  console.log('here is the column in the providerSearch router', column);
   const queryText = `SELECT * FROM "provider" WHERE ${column} ILIKE '%${searchItem}%' ORDER BY "provider"."name" ASC;`;
   pool
-    .query(queryText, [searchItem])
+    .query(queryText)
     .then((result) => {
       res.send(result.rows);
     })
