@@ -41,10 +41,26 @@ function* deleteGroups(action){
         yield put({type:"FETCH_GROUPS"});
 }
 
+//get all details of one provider
+function* fetchGroupName(action) {
+  try {
+    const response = yield axios.get(`/api/groupSearch/${action.payload.className}/${action.payload.searchItem}`);
+    console.log(
+      'In fetchGroupName, this is response.data',
+      response.data
+    );
+    yield put({type: 'SET_GROUPS', payload: response.data}); //may need [0]
+  } catch (error) {
+    console.log('error in fetchGroupName', error);
+  }
+}
+
+
 function* groupsSaga() {
   yield takeEvery('FETCH_GROUPS', fetchGroups);
   yield takeEvery('FETCH_GROUP_DETAILS', fetchGroupDetails);
   yield takeEvery('DELETE_GROUPS', deleteGroups);
+   yield takeEvery('SEARCH_GROUP_NAME', fetchGroupName);
 }
 
 
