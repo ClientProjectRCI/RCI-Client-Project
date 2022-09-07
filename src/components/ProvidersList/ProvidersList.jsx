@@ -39,6 +39,8 @@ import ProvidersListItem from '../ProvidersListItem/ProvidersListItem';
 import GroupsListItem from '../GroupsListItem/GroupsListItem';
 import './ProvidersList.css';
 import SearchIcon from '@mui/icons-material/Search';
+import ProviderSearchBar from '../ProviderSearchBar/ProviderSearchBar';
+import GroupSearchBar from '../GroupSearchBar/GroupSearchBar';
 // This is one of our simplest components
 // It doesn't have local state
 // It doesn't dispatch any redux actions or display any part of redux state
@@ -64,63 +66,51 @@ function ProvidersList() {
     dispatch({ type: 'FETCH_OCCUPATIONS' });
   }, []);
 
-  let [searchItem, setSearchItem] = useState('');
-  let [name, setName] = useState('');
-  function handleSearchSubmit(e) {
-    e.preventDefault();
+  
+ 
+  //start of tab panel
+  function TabPanel(props) {
+    const { children, value, index, ...other } = props;
 
-    console.log('Searching by Name:', name);
-    dispatch({
-      type: 'SEARCH_PROVIDER_NAME',
-      payload: {
-        className: e.target.className,
-        searchItem: name,
-      },
-    });
+    return (
+      <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`simple-tabpanel-${index}`}
+        aria-labelledby={`simple-tab-${index}`}
+        {...other}
+      >
+        {value === index && (
+          <Box sx={{ p: 0, m: 0 }}>
+            <Typography>{children}</Typography>
+          </Box>
+        )}
+      </div>
+    );
   }
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 0, m: 0 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
-
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+  TabPanel.propTypes = {
+    children: PropTypes.node,
+    index: PropTypes.number.isRequired,
+    value: PropTypes.number.isRequired,
   };
-}
 
+  function a11yProps(index) {
+    return {
+      id: `simple-tab-${index}`,
+      'aria-controls': `simple-tabpanel-${index}`,
+    };
+  }
 
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+  //end of tab panel
   return (
     <div>
+      {/* Tab panel */}
       <Box sx={{ width: '100%', p: 0 }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider', p: 0 }}>
           <Tabs
@@ -130,10 +120,8 @@ function a11yProps(index) {
           >
             <Tab label="Provider" {...a11yProps(0)} />
             <Tab label="Group" {...a11yProps(1)} />
-            
           </Tabs>
         </Box>
-
 
         {/* Tab panel 1-Provider */}
         <TabPanel value={value} index={0}>
@@ -151,24 +139,10 @@ function a11yProps(index) {
                   margin: 0,
                 }}
               >
-                <form className="name" onSubmit={handleSearchSubmit}>
-                  <TextField
-                    id="search-bar"
-                    value={name}
-                    onChange={(e) => {
-                      setName(e.target.value);
-                    }}
-                    label="Search by Name"
-                    variant="outlined"
-                    placeholder="Search..."
-                    size="small"
-                  />
-                  <IconButton type="submit" aria-label="search">
-                    <SearchIcon style={{ fill: 'blue' }} />
-                  </IconButton>
-                </form>
-                <div style={{ padding: 0 }}></div>
+                {/* Search text field for the provider */}
+                <ProviderSearchBar />
               </span>
+              <div style={{ padding: 0 }}></div>
             </span>
           </header>
           <nav id="drawer">
@@ -276,6 +250,7 @@ function a11yProps(index) {
               <section
               //  className="providers"
               >
+                {/* provider map */}
                 <Grid container spacing={1}>
                   {providers.map((provider) => (
                     <Grid item key={provider.id} xs={2}>
@@ -288,9 +263,7 @@ function a11yProps(index) {
           </div>
         </TabPanel>
 
-
         {/* Tab panel 2-Group */}
-
 
         <TabPanel value={value} index={1}>
           <header>
@@ -305,22 +278,10 @@ function a11yProps(index) {
                   margin: 0,
                 }}
               >
-                <form className="name" onSubmit={handleSearchSubmit}>
-                  <TextField
-                    id="search-bar"
-                    value={name}
-                    onChange={(e) => {
-                      setName(e.target.value);
-                    }}
-                    label="Search by Name"
-                    variant="outlined"
-                    placeholder="Search..."
-                    size="small"
-                  />
-                  <IconButton type="submit" aria-label="search">
-                    <SearchIcon style={{ fill: 'blue' }} />
-                  </IconButton>
-                </form>
+                {/* Search text field for the group */}
+                <GroupSearchBar />
+
+               
                 <div style={{ padding: 0 }}></div>
               </span>
             </span>
@@ -329,6 +290,7 @@ function a11yProps(index) {
           <section
           //  className="providers"
           >
+            {/* group map */}
             <Grid container spacing={1}>
               {groups.map((group) => (
                 <Grid item key={group.id} xs={2}>
@@ -338,25 +300,9 @@ function a11yProps(index) {
             </Grid>
           </section>
         </TabPanel>
-     
       </Box>
 
-      <body>
-        {/* <h1>Group</h1>
-        <section
-        //  className="providers"
-        >
-          <Grid container spacing={5}>
-            {groups.map((group) => (
-              <Grid item key={group.id} xs={2}>
-                <GroupsListItem group={group} />
-              </Grid>
-            ))}
-          </Grid>
-        </section> */}
-        {/* </main>
-        </div> */}
-      </body>
+      <body></body>
     </div>
   );
 }
