@@ -91,7 +91,8 @@ header {
 #page-content {
     margin: auto;
     width: 100%;
-    height: calc(100% - 50px);
+    /* height: calc(100% - 50px); */
+    height: 70vh;
     overflow-x: hidden;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
