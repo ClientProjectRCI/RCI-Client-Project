@@ -4,8 +4,8 @@ import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import providersSaga from './providers.saga';
 import groupsSaga from './groups.saga';
-import searchSaga from './providerSearch.saga';
-
+import providerSearchSaga from './providerSearch.saga';
+import groupSearchSaga from './groupSearch.saga';
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -20,6 +20,7 @@ export default function* rootSaga() {
     userSaga(),
     providersSaga(),
     groupsSaga(),
-    searchSaga(),
+    providerSearchSaga(),
+    groupSearchSaga(),
   ]);
 }

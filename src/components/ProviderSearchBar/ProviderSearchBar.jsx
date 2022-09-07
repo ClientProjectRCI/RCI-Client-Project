@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import SearchIcon from '@mui/icons-material/Search';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
+import RefreshIcon from '@mui/icons-material/Refresh';
 // This is one of our simplest components
 // It doesn't have local state
 // It doesn't dispatch any redux actions or display any part of redux state
@@ -27,6 +28,14 @@ function ProviderSearchBar() {
       },
     });
   }
+  function handleRefresh() {
+    console.log('you clicked refresh');
+    dispatch({
+      type: 'FETCH_PROVIDERS',
+    });
+  }
+
+
 
   return (
     <div>
@@ -47,6 +56,9 @@ function ProviderSearchBar() {
           <SearchIcon style={{ fill: 'blue' }} />
         </IconButton>
       </form>
+      <IconButton type="click" aria-label="refresh" onClick={handleRefresh}>
+        <RefreshIcon style={{ fill: 'blue' }} />
+      </IconButton>
     </div>
   );
 }

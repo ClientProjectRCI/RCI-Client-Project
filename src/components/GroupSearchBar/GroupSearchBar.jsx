@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import SearchIcon from '@mui/icons-material/Search';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
+import RefreshIcon from '@mui/icons-material/Refresh';
 // This is one of our simplest components
 // It doesn't have local state
 // It doesn't dispatch any redux actions or display any part of redux state
@@ -14,30 +15,38 @@ import IconButton from '@mui/material/IconButton';
 function GroupSearchBar() {
   const dispatch = useDispatch();
   //state for the text box for the group
-  const [groupName, setGroupName] = useState('');
+  const [name, setName] = useState('');
 
   const [searchItem, setSearchItem] = useState('');
   //search by group name function
   function handleGroupSearchSubmit(e) {
-    console.log('Searching by Name:', groupName);
+    console.log('Searching by Name:', name);
     dispatch({
       type: 'SEARCH_GROUP_NAME',
       payload: {
         className: e.target.className,
-        searchItem: groupName,
+        searchItem: name,
       },
     });
   }
+function handleRefresh(){
+  console.log('you clicked refresh')
+   dispatch({
+     type: 'FETCH_GROUPS',
+   });
+}
+
 
   return (
     <div>
+      
       {/* text field for the provider */}
-      <form className="groupName" onSubmit={handleGroupSearchSubmit}>
+      <form className="name" onSubmit={handleGroupSearchSubmit}>
         <TextField
           id="search-bar"
-          value={groupName}
+          value={name}
           onChange={(e) => {
-            setGroupName(e.target.value);
+            setName(e.target.value);
           }}
           label="Search by Name"
           variant="outlined"
@@ -47,7 +56,11 @@ function GroupSearchBar() {
         <IconButton type="submit" aria-label="search">
           <SearchIcon style={{ fill: 'blue' }} />
         </IconButton>
+        {/* refresh icon to get all groups again */}
       </form>
+      <IconButton type="click" aria-label="refresh" onClick={handleRefresh}>
+        <RefreshIcon style={{ fill: 'blue' }} />
+      </IconButton>
     </div>
   );
 }
