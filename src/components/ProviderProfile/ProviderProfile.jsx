@@ -10,12 +10,24 @@ import ProviderSpecializations from '../ProviderSpecializations/ProviderSpeciali
 import ProviderInsurances from '../ProviderInsurances/ProviderInsurances';
 import ProviderOccupations from '../ProviderOccupations/ProviderOccupations';
 import ProviderServices from '../ProviderServices/ProviderServices';
+import EditIcon from '@mui/icons-material/Edit';
+import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
+import SaveIcon from '@mui/icons-material/Save';
 
 export default function ProviderProfile() {
 
     const user = useSelector(store => store.user); // pulls user info for conditional rendering, and GETTING provider info
     const details = useSelector((store) => store.details); // Pulls a single Provider info from the "Details" store
     const [edit, setEdit] = useState(false); // edit buttons local state. Starts as false.
+    const [name, setName] = useState('');
+    const [bio, setBio] = useState('');
+    const [occupation, setOccupation] = useState('');
+    const [insurance, setInsurance] = useState('');
+    const [website, setWebsite] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [services, setServices] = useState('');
+    const [specialities, setSpecialities] = useState('');
     const history = useHistory()
     const dispatch = useDispatch();
 
@@ -25,7 +37,35 @@ export default function ProviderProfile() {
 
 
 
+    function handleChange(event) { 
+        dispatch({ 
+                    type: 'EDIT_ONCHANGE', 
+                    payload: { property: 'github_name', value: event.target.value }
+                });
+    
+      }
+
+
+    function handleSubmit(event) { // PUT/UPDATE Dispatch
+        event.preventDefault();
+
+        console.log('usernameLocal', name);
+
+ 
+        // dispatch({
+        //     type: 'PUT_NAME',
+        //     payload: {
+        //         username: name,
+        //         id: details.id
+        //     }
+        // });
+        toggleEdit(); //
+        // axios.put(`/api/settings${action.payload}`)
+    }
+
+
     const toggleEdit = () => { // Toggle the EDIT useState between TRUE & FALSE. 
+        console.log('submitted changes with a DISPATCH Function!');
         setEdit(current => !current);
     };
     // dispatch({ type: 'FETCH_PROVIDER_PROFILE', payload: user.id })
@@ -52,10 +92,10 @@ export default function ProviderProfile() {
                     {edit
                         ? <Button item variant="outlined"
                             onClick={toggleEdit}
-                        >Submit Your Changes</Button>
+                        >Discard Changes <CancelPresentationIcon /></Button>
                         : <Button item variant="contained"
                             onClick={toggleEdit}
-                        >Edit Profile Info</Button>
+                        >Edit Profile Info <EditIcon /> </Button>
                     }
                 </div>
             </div>
@@ -65,30 +105,110 @@ export default function ProviderProfile() {
                     ? <div>   {/* "?" - If TRUE, show input editable fields  */}
                         <div className="column">
                             <h3>You Are Editing Your Profile Info</h3>
-                            <TextField
-                                label={"Edit Provider Name"}
-                            ></TextField>
-                            <TextField
-                                label={"Edit Occupation"}
-                            ></TextField>
-                            <TextField
-                                label={"Edit Bio"}
-                            ></TextField>
-                            <TextField
-                                label={"Edit Insurance"}
-                            ></TextField>
-                        </div>
-                        <div className="column">
-                            <TextField
-                                label={"Edit Phone number"}
-                            ></TextField>
-                            <TextField
-                                label={"Edit Services"}
-                            ></TextField>
-                            <TextField
-                                label={"Edit Specialties"}
-                            ></TextField>
+                            {/* NAME INPUT  */}
+                            <form onSubmit={handleSubmit}>
+                                <br></br>
+                                <Grid container
+                                    justifyContent="flex-start">
 
+                                    <TextField label={"Edit Name"}
+                                        placeholder={details.name}
+                                        value={details.name}
+                                        onChange={(event) => handleChange(event)} />
+                                        
+                                    <Button variant="contained" type='submit'>
+                                        Submit
+                                    </Button>
+
+
+                                </Grid>
+                            </form>
+                            {/* BIO INPUT  */}
+                            <form onSubmit={handleSubmit}>
+                                <br></br>
+                                <Grid container
+                                    justifyContent="flex-start">
+                                    <TextField label={"Edit Bio"}
+                                        placeholder={details.bio}
+                                        value={bio}
+                                        onChange={(event) => setBio(event.target.value)} />
+                                    <Button variant="contained" type='submit'>
+                                        Submit
+                                    </Button>
+                                </Grid>
+                            </form>
+                            {/* Phone INPUT  */}
+                            <form onSubmit={handleSubmit}>
+                                <br></br>
+                                <Grid container
+                                    justifyContent="flex-start">
+                                    <TextField label={"Edit Phone Number"}
+                                        placeholder={details.phone}
+                                        value={phone}
+                                        onChange={(event) => setPhone(event.target.value)} />
+                                    <Button variant="contained" type='submit'>
+                                        Submit
+                                    </Button>
+                                </Grid>
+                            </form>
+                            {/* Insurance INPUT  */}
+                            <form onSubmit={handleSubmit}>
+                                <br></br>
+                                <Grid container
+                                    justifyContent="flex-start">
+                                    <TextField label={"Edit Insurance"}
+                                        placeholder={details.name}
+                                        value={insurance}
+                                        onChange={(event) => setInsurance(event.target.value)} />
+                                    <Button variant="contained" type='submit'>
+                                        Submit
+                                    </Button>
+                                </Grid>
+                            </form>
+                            {/* Occupation INPUT  */}
+                            <form onSubmit={handleSubmit}>
+                                <br></br>
+                                <Grid container
+                                    justifyContent="flex-start">
+                                    <TextField label={"Edit Occupation"}
+                                        placeholder={details.name}
+                                        value={occupation}
+                                        onChange={(event) => setOccupation(event.target.value)} />
+                                    <Button variant="contained" type='submit'>
+                                        Submit
+                                    </Button>
+                                </Grid>
+                            </form>
+                        </div>
+                        {/* Services INPUT  */}
+                        <form onSubmit={handleSubmit}>
+                            <br></br>
+                            <Grid container
+                                justifyContent="flex-start">
+                                <TextField label={"Edit Services"}
+                                    placeholder={details.name}
+                                    value={services}
+                                    onChange={(event) => setServices(event.target.value)} />
+                                <Button variant="contained" type='submit'>
+                                    Submit
+                                </Button>
+                            </Grid>
+                        </form>
+                        <div className="column">
+                            {/* Specialities INPUT  */}
+                            <form onSubmit={handleSubmit}>
+                                <br></br>
+                                <Grid container
+                                    justifyContent="flex-start">
+                                    <TextField label={"Edit Specialities"}
+                                        placeholder={details.name}
+                                        value={specialities}
+                                        onChange={(event) => setSpecialities(event.target.value)} />
+                                    <Button variant="contained" type='submit'>
+                                        Submit
+                                    </Button>
+                                </Grid>
+                            </form>
                         </div>
                     </div>
                     :
@@ -115,7 +235,7 @@ export default function ProviderProfile() {
                                 <li>Availability: {details.availability}</li>
                                 <li>Phone: {details.phone}</li>
                                 <li>Email: {details.email}</li>
-                                <h4>Services:</h4>
+                                <h4>Services: </h4>
                                 <ProviderServices />
                             </ul>
                             <ul className="info">
