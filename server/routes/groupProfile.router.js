@@ -4,14 +4,13 @@ const router = express.Router();
 
 
 
-// GET a single PROVIDER'S Details, by the USER.ID
+// GET a single GROUP'S Details, by the USER.ID
 
 router.get('/:id', (req, res) => {
   const userId = req.params.id;
-  console.log('here is the userId in the providerProfile router', userId);
-  const queryText = `--GET ONE PROVIDER BY USER.ID, example: 3
-  SELECT * FROM "provider" 
-  JOIN "user" ON "provider"."user_id" = "user"."id" WHERE "user"."id" = $1;`;
+  console.log('here is the userId in the groupProfile router', userId);
+  const queryText = `SELECT * FROM "group" 
+  JOIN "user" ON "group"."user_id" = "user"."id" WHERE "user"."id" = $1;`;
   pool
     .query(queryText, [userId])
     .then((result) => {
