@@ -29,6 +29,20 @@ function* fetchGroupDetails(action) {
   }
 }
 
+//get all details of one Group by USER.ID (Action.payload is user id)
+function* fetchGroupProfile(action) {
+  try {
+    const detailsResponse = yield axios.get(`/api/groupProfile/${action.payload}`);
+    console.log(
+      'In fetchProviderProfile, this is detailsResponse.data',
+      detailsResponse.data
+    );
+    yield put({ type: 'SEND_DETAILS', payload: detailsResponse.data[0] });
+  } catch (error) {
+    console.log('error in fetchProviderDetails', error);
+  }
+}
+
 // Delete group 
 function* deleteGroups(action){
   const id = action.payload;
@@ -43,6 +57,7 @@ function* deleteGroups(action){
 
 function* groupsSaga() {
   yield takeEvery('FETCH_GROUPS', fetchGroups);
+  yield takeEvery('FETCH_GROUP_PROFILE', fetchGroupProfile);
   yield takeEvery('FETCH_GROUP_DETAILS', fetchGroupDetails);
   yield takeEvery('DELETE_GROUPS', deleteGroups);
 }
