@@ -1,5 +1,5 @@
 import React from 'react';
-import emailjs from 'emailjs-com'
+import emailjs from '@emailjs/browser'
 
 function ContactPage() {
 
@@ -28,13 +28,13 @@ function ContactPage() {
                     name="firstname"
                     placeholder="Your name.."
                 ></input>
-                {/* <label for="lname">Last Name</label>
+                <label for="lname">Last Name</label>
                 <input
                     type="text"
                     id="lname"
                     name="lastname"
                     placeholder="Your last name.."
-                ></input> */}
+                ></input>
                 <label for="email">Email</label>
                 <input
                     type="text"
@@ -42,13 +42,13 @@ function ContactPage() {
                     name="user_email"
                     placeholder="Your email address.."
                 ></input>
-                {/* <label for="subject">Reason OF Inqury</label>
+                <label for="subject">Reason OF Inqury</label>
                 <input
                     type="text"
                     id="subject"
                     name="subject"
                     placeholder="Reason of inqury.."
-                ></input> */}
+                ></input>
                 <label for="message">Message</label>
                 <textarea
                     type="text"
