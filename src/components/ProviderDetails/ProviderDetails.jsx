@@ -13,7 +13,7 @@ import ProviderSpecializations from '../ProviderSpecializations/ProviderSpeciali
 import ProviderInsurances from '../ProviderInsurances/ProviderInsurances';
 import ProviderOccupations from '../ProviderOccupations/ProviderOccupations';
 import ProviderServices from '../ProviderServices/ProviderServices';
-
+import emailjs from '@emailjs/browser'
 import DeleteProviderBtn from '../DeleteBtn/DeleteProviderBtn';
 
 const useStyles = makeStyles({
@@ -53,6 +53,23 @@ function ProvidersDetail() {
   }
   // upon click btn close the modal/dialog
 
+  // send email function starts here
+  const sendEmail = (event) => {
+    event.preventDefault();
+    emailjs.sendForm(
+        'service_zgz94dl',
+        'template_g7izb5g',
+        event.target, 
+        '9pSLJdWIr9ZP0IGqK'
+        ).then(res=> {
+            console.log('IT WORKS YAYYYYYYY', res);
+        })
+        .catch(err => 
+            console.log('EMAIL IS NOT WORKING>>>>>>>>>>>>', err)
+        )
+};
+// send email function ends here
+
   return (
     <div className="row">
       <div className="column">
@@ -67,7 +84,61 @@ function ProvidersDetail() {
         </Button>
         <Dialog style={{ borderRadius: 20 }} open={open} onClose={handleClose}>
           <DialogTitle>{details.name}</DialogTitle>
-          <DialogContent>
+
+          <form onSubmit={sendEmail}>
+
+<label for="gEmail">Send To:</label>
+        <input
+            type="text"
+            id="gEmail"
+            name="group_email"
+            value={details.email}
+        />
+  <label for="fname">First Name</label>
+        <input
+            type="text"
+            id="fname"
+            name="firstname"
+            placeholder="Your name.."
+        ></input>
+        <label for="lname">Last Name</label>
+        <input
+            type="text"
+            id="lname"
+            name="lastname"
+            placeholder="Your last name.."
+        ></input>
+        <label for="email">Email</label>
+        <input
+            type="text"
+            id="email"
+            name="user_email"
+            placeholder="Your email address.."
+        ></input>
+        <label for="subject">Reason OF Inqury</label>
+        <input
+            type="text"
+            id="subject"
+            name="subject"
+            placeholder="Reason of inqury.."
+        ></input>
+        <label for="message">Message</label>
+        <textarea
+            type="text"
+            id="message"
+            name="message"
+            rows="4"
+            placeholder="How can we help.."
+        ></textarea>
+        <input 
+        type="submit"
+        value="Send"
+        className='sendBtn'
+        onClick={handleClose}/>
+        <Button onClick={handleClose}>Cancel</Button>
+        </form>
+
+          {/* <DialogContent>
             <DialogContentText>
               This email will be sent directly to this provider.....
             </DialogContentText>
@@ -120,7 +191,7 @@ function ProvidersDetail() {
           <DialogActions>
             <Button onClick={handleClose}>Cancel</Button>
             <Button onClick={handleClose}>Send</Button>
-          </DialogActions>
+          </DialogActions> */}
         </Dialog>
         {/* End of modal/dialog  */}
       </div>
