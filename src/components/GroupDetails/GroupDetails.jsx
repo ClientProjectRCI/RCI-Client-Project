@@ -9,8 +9,8 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-
 import DeleteGroupBtn from '../DeleteBtn/DeleteGroupBtn';
+import emailjs from '@emailjs/browser'
 
 
 const useStyles = makeStyles({
@@ -48,8 +48,28 @@ function GroupDetail() {
   }
   // upon click btn close the modal/dialog
 
-  return (
+  
+  // send email function starts here
+  const sendEmail = (event) => {
+    event.preventDefault();
+    emailjs.sendForm(
+        'service_zgz94dl',
+        'template_g7izb5g',
+        event.target, 
+        '9pSLJdWIr9ZP0IGqK'
+        ).then(res=> {
+            console.log('IT WORKS YAYYYYYYY', res);
+        })
+        .catch(err => 
+            console.log('EMAIL IS NOT WORKING>>>>>>>>>>>>', err)
+        )
+};
+// send email function ends here
 
+
+
+  return (
+// group_email
     <div className="row">
     <div className="column">
         <h1>Group detail</h1>
@@ -63,61 +83,61 @@ function GroupDetail() {
       </Button>
       <Dialog style={{ borderRadius: 20 }} open={open} onClose={handleClose}>
         <DialogTitle>{details.name}</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            This email will be sent directly to this provider.....
-          </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="First Name"
-            type="email"
-            fullWidth
-            variant="outlined"
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Last Name"
-            type="email"
-            fullWidth
-            variant="outlined"
-          />
-          <TextField
-          autoFocus
-          margin="dense"
-          id="name"
-          label="Email Address"
-          type="email"
-          fullWidth
-          variant="outlined"
-          
-        />
-        <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Reason of Inqury"
-            type="email"
-            fullWidth
-            variant="outlined"
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Message"
-            type="email"
-            fullWidth
-            variant="outlined"
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Send</Button>
-        </DialogActions>
+        {/* <DialogContentText name="group_email">
+            This email will be sent directly to {details.email}.....
+          </DialogContentText> */}
+        <form onSubmit={sendEmail}>
+
+        <label for="gEmail">Send To:</label>
+                <input
+                    type="text"
+                    id="gEmail"
+                    name="group_email"
+                    value={details.email}
+                />
+          <label for="fname">First Name</label>
+                <input
+                    type="text"
+                    id="fname"
+                    name="firstname"
+                    placeholder="Your name.."
+                ></input>
+                <label for="lname">Last Name</label>
+                <input
+                    type="text"
+                    id="lname"
+                    name="lastname"
+                    placeholder="Your last name.."
+                ></input>
+                <label for="email">Email</label>
+                <input
+                    type="text"
+                    id="email"
+                    name="user_email"
+                    placeholder="Your email address.."
+                ></input>
+                <label for="subject">Reason OF Inqury</label>
+                <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    placeholder="Reason of inqury.."
+                ></input>
+                <label for="message">Message</label>
+                <textarea
+                    type="text"
+                    id="message"
+                    name="message"
+                    rows="4"
+                    placeholder="How can we help.."
+                ></textarea>
+                <input 
+                type="submit"
+                value="Send"
+                className='sendBtn'
+                onClick={handleClose}/>
+                <Button onClick={handleClose}>Cancel</Button>
+                </form>
       </Dialog>
       {/* End of modal/dialog  */}
 
