@@ -517,6 +517,34 @@ JOIN "service_type"
 ON "service_type"."id" = "provider_service_type"."provider_id"
 WHERE "provider"."id" = 1;
 
+--insurance_plan
+SELECT provider.name, array_agg(insurance_plan.insurance) as "accepted insurances" FROM provider
+JOIN provider_insurance_plan ON provider_insurance_plan.provider_id = provider.id
+JOIN insurance_plan ON insurance_plan.id = provider_insurance_plan.insurance_plan_id
+where insurance_plan.insurance ilike '%healthp%'
+or insurance_plan.insurance ilike '%blue%'
+GROUP BY provider.name
+order by provider.name asc;
+
+--specializations
+SELECT provider.name, array_agg(specializations.specialization) FROM provider
+JOIN provider_specializations ON provider_specializations.provider_id = provider.id
+JOIN specializations ON specializations.id = provider_specializations.id
+where specializations.specialization ilike '%autism%'
+or specializations.specialization ilike '%adhd%'
+or specializations.specialization ilike '%lg%'
+group by provider.name
+order by provider.name asc;
+
+--occcupation
+SELECT provider.name, array_agg(occupations.occupation) FROM provider
+JOIN provider_occupation ON provider_occupation.provider_id = provider.id
+JOIN occupations ON occupations.id = provider_occupation.id
+where occupations.occupation ilike '%psychiatrist%'
+or occupations.occupation ilike '%counselor%'
+group by provider.name
+order by provider.name asc;
+
 
 
 
