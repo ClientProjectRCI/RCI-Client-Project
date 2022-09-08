@@ -69,7 +69,7 @@ CREATE TABLE "occupations" (
 );
 
 
--- JUNCTION TABLES --
+------------- CREATE JUNCTION TABLES --------------------
 ---- specializations JUNCTION TABLE ----
 CREATE TABLE "provider_specializations" (
 	"id" serial PRIMARY KEY NOT NULL,
@@ -99,7 +99,7 @@ CREATE TABLE "provider_occupation" (
 );
 
 
--- ACTUAL DATA --
+------------------ ACTUAL DATA ------------------
 ---- INSERT specializations TABLE ----
 INSERT INTO "specializations" ("specialization") VALUES
 ('LGBTQ Specific'),
@@ -167,7 +167,9 @@ INSERT INTO "user" ( "username", "password", "access_level") VALUES
 ( 'group1', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 3),
 ( 'group2', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 3),
 ( 'provider1', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 2),
-( 'provider2', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 2);
+( 'provider2', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 2),
+( 'provider3', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 2),
+( 'provider4', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 2);
 
 --  GROUP Dummy Data --
 INSERT INTO "group" ( "user_id", "name", "bio", "website", "email", "phone", "street", "city", "state", "zipcode") VALUES 
@@ -184,38 +186,52 @@ INSERT INTO "provider" ( "user_id", "name", "bio", "picture","phone", "email", "
  'My phone', 'My email', 
  'My availability', 
  1);
-  INSERT INTO "provider" ("user_id", "name") VALUES
- (5, 'Provider 2 Name');
+INSERT INTO "provider" ("user_id", "name") VALUES
+(5, 'Provider 2 Name'),
+(6, 'Provider 3 Name'),
+(7, 'Provider 4 Name') ;
 
 -- provider_specializations JUNCTION TABLE DUMMY DATA --  
 INSERT INTO "provider_specializations" ( "provider_id", "specializations_id") VALUES 
 ( 1, 1), -- LGBTQ
-( 1, 6), -- ADHD
-( 2, 6), -- ADHD
-( 2, 11); -- COVID
+( 2, 2), -- POC Specific
+( 3, 3), -- Disability Specific
+( 4, 1), -- LGBTQ
+( 4, 2), -- POC Specific
+( 4, 3), -- Disability Specific
+( 4, 4); -- Addiction
 
 
 -- provider_specializations JUNCTION TABLE DUMMY DATA --  
 INSERT INTO "provider_insurance_plan" ( "provider_id", "insurance_plan_id") VALUES 
-( 1, 2), -- HealthPartners
-( 1, 3), -- Medica of Minnesota
+( 1, 1), -- Blue Cross and Blue Shield of Minnesota
 ( 2, 2), -- HealthPartners
-( 2, 10); -- CIGNA
+( 3, 3), -- Medica of Minnesota
+( 4, 1), -- Blue Cross and Blue Shield of Minnesota
+( 4, 2), -- HealthPartners
+( 4, 3), -- Medica of Minnesota
+( 4, 4); -- Quartz
 
 
 -- provider_specializations JUNCTION TABLE DUMMY DATA --  
 INSERT INTO "provider_service_type" ( "provider_id", "service_type_id") VALUES 
 ( 1, 1), -- Online
-( 1, 2), -- InPerson
 ( 2, 2), -- InPerson
-( 2, 4); -- Inpatient
+( 3, 3), -- Over the Phone
+( 4, 1), -- Online
+( 4, 2), -- InPerson
+( 4, 3), -- Over the Phone
+( 4, 4); -- Inpatient
 
 
 INSERT INTO "provider_occupation" ( "provider_id", "occupation_id") VALUES 
 (1, 1), -- Psychologist
-(1, 2), -- Counselor
 (2, 2), -- Counselor
-(2, 1); -- Psychologist
+(3, 3), -- Certified Alcohol and Drug Abuse Counselor
+(4, 1), -- Psychologist
+(4, 2), -- Counselor
+(4, 3), -- Certified Alcohol and Drug Abuse Counselor
+(4, 4); -- Clinician
 
 ---- STOP -- COPY -- & -- PASTE -- HERE ----
 
@@ -291,8 +307,8 @@ SELECT * FROM "provider" WHERE "name" ILIKE '%rovid%' ORDER BY "provider"."name"
 SELECT * FROM "group" WHERE "name" ILIKE '%group%' ORDER BY "group"."name" ASC;
 SELECT * FROM "group" WHERE "name" ILIKE '%group%' ORDER BY "group"."name" DESC;
 
----------------- SEARCHS ---------------- 
--- SEARCH Providers by SPECIALIZATION -- 
+---------------- SEARCH by ONE thing ---------------- 
+-- SEARCH Providers by 1 SPECIALIZATION -- 
 SELECT * FROM "provider" 
 JOIN "provider_specializations" 
 ON "provider"."id" = "provider_specializations"."provider_id"
@@ -301,7 +317,7 @@ ON "specializations"."id" = "provider_specializations"."id"
 WHERE "specializations"."specialization" ILIKE '%POC Specific%' 
 ORDER BY "provider"."name";
 
--- SEARCH Providers by OCCUPATION -- 
+-- SEARCH Providers by 1 OCCUPATION -- 
 SELECT * FROM "provider" 
 JOIN "provider_occupation" 
 ON "provider"."id" = "provider_occupation"."provider_id"
@@ -310,7 +326,7 @@ ON "occupations"."id" = "provider_occupation"."id"
 WHERE "occupations"."occupation" ILIKE '%counselor%' 
 ORDER BY "provider"."name";
 
--- SEARCH Providers by SERVICE_TYPE -- 
+-- SEARCH Providers by 1 SERVICE_TYPE -- 
 SELECT * FROM "provider" 
 JOIN "provider_service_type" 
 ON "provider"."id" = "provider_service_type"."provider_id"
@@ -319,7 +335,7 @@ ON "service_type"."id" = "provider_service_type"."id"
 WHERE "service_type"."service" ILIKE '%line%' 
 ORDER BY "provider"."name";
 
--- SEARCH Providers by INSURA -- 
+-- SEARCH Providers by 1 INSURANCE -- 
 SELECT * FROM "provider" 
 JOIN "provider_insurance_plan" 
 ON "provider"."id" = "provider_insurance_plan"."provider_id"
@@ -330,7 +346,105 @@ ORDER BY "provider"."name";
 
 
 
----------------- UPDATES ---------------- 
+
+---------------- SEARCH By MULTIPLE Things ----------------
+-- SEARCH Providers by MULITPLE Insurance -- (12 posible selections)
+SELECT *
+FROM "provider" 
+JOIN "provider_insurance_plan" 
+ON "provider"."id" = "provider_insurance_plan"."provider_id"
+JOIN "insurance_plan"
+ON "insurance_plan"."id" = "provider_insurance_plan"."insurance_plan_id"
+WHERE "insurance_plan"."insurance" ILIKE '%medica%' 
+OR "insurance_plan"."insurance" ILIKE '%health%'
+OR "insurance_plan"."insurance" ILIKE '%quartz%'
+OR "insurance_plan"."insurance" ILIKE ''
+OR "insurance_plan"."insurance" ILIKE ''
+OR "insurance_plan"."insurance" ILIKE ''
+OR "insurance_plan"."insurance" ILIKE ''
+OR "insurance_plan"."insurance" ILIKE ''
+OR "insurance_plan"."insurance" ILIKE ''
+OR "insurance_plan"."insurance" ILIKE ''
+OR "insurance_plan"."insurance" ILIKE ''
+OR "insurance_plan"."insurance" ILIKE ''
+ORDER BY "provider"."name";
+
+
+-- GET ALL Providers and their INSURANCE, -- THIS DOUBLE CHECKS the above SEARCH by MULITPLE Insurance
+SELECT "provider"."name", "insurance_plan"."id", "insurance_plan"."insurance" FROM "provider" 
+JOIN "provider_insurance_plan" 
+ON "provider"."id" = "provider_insurance_plan"."provider_id"
+JOIN "insurance_plan"
+ON "insurance_plan"."id" = "provider_insurance_plan"."insurance_plan_id"
+ORDER BY "provider"."name";
+
+-- SEARCH Providers by MULITPLE specialization -- (22 posible selections)
+SELECT *
+FROM "provider" 
+JOIN "provider_specializations" 
+ON "provider"."id" = "provider_specializations"."provider_id"
+JOIN "specializations"
+ON "specializations"."id" = "provider_specializations"."specializations_id"
+WHERE "specializations"."specialization" ILIKE '%ADH%' 
+OR "specializations"."specialization" ILIKE '%LGBT%'
+OR "specializations"."specialization" ILIKE '%COVID%'
+OR "specializations"."specialization" ILIKE '%OCD%'
+OR "specializations"."specialization" ILIKE ''
+OR "specializations"."specialization" ILIKE ''
+OR "specializations"."specialization" ILIKE ''
+OR "specializations"."specialization" ILIKE ''
+OR "specializations"."specialization" ILIKE ''
+OR "specializations"."specialization" ILIKE ''
+OR "specializations"."specialization" ILIKE ''
+OR "specializations"."specialization" ILIKE ''
+OR "specializations"."specialization" ILIKE ''
+OR "specializations"."specialization" ILIKE ''
+OR "specializations"."specialization" ILIKE ''
+OR "specializations"."specialization" ILIKE ''
+OR "specializations"."specialization" ILIKE ''
+OR "specializations"."specialization" ILIKE ''
+OR "specializations"."specialization" ILIKE ''
+OR "specializations"."specialization" ILIKE ''
+OR "specializations"."specialization" ILIKE ''
+OR "specializations"."specialization" ILIKE ''
+ORDER BY "provider"."name" ASC;
+
+
+-- SEARCH Providers by MULITPLE specialization -- (5 posible selections)
+SELECT * FROM "provider" 
+JOIN "provider_service_type" 
+ON "provider"."id" = "provider_service_type"."provider_id"
+JOIN "service_type"
+ON "service_type"."id" = "provider_service_type"."id"
+WHERE "service_type"."service" ILIKE '%online%' 
+OR "service_type"."service" ILIKE '%phone%' 
+OR "service_type"."service" ILIKE ''
+OR "service_type"."service" ILIKE '' 
+OR "service_type"."service" ILIKE ''  
+ORDER BY "provider"."name";
+
+
+-- SEARCH Providers by MULITPLE occupation -- (9 posible selections)
+SELECT * FROM "provider" 
+JOIN "provider_occupation" 
+ON "provider"."id" = "provider_occupation"."provider_id"
+JOIN "occupations"
+ON "occupations"."id" = "provider_occupation"."id"
+WHERE "occupations"."occupation" ILIKE '%Psychologist%' 
+OR "occupations"."occupation" ILIKE '%counselor%'
+OR "occupations"."occupation" ILIKE '' 
+OR "occupations"."occupation" ILIKE '' 
+OR "occupations"."occupation" ILIKE '' 
+OR "occupations"."occupation" ILIKE '' 
+OR "occupations"."occupation" ILIKE '' 
+OR "occupations"."occupation" ILIKE '' 
+OR "occupations"."occupation" ILIKE '' 
+ORDER BY "provider"."name";
+
+
+
+
+---------------- EDIT/UPDATE  ---------------- 
 -- UPDATE - PROVIDER info by "Provider.user_ID"
 UPDATE "provider" SET "name" = 'updated db name' WHERE "provider"."user_id" = 4;
 UPDATE "provider" SET "bio" = 'updated db bio' WHERE "provider"."user_id" = 4;
@@ -339,9 +453,9 @@ UPDATE "provider" SET "email" = 'updated db email' WHERE "provider"."user_id" = 
 UPDATE "provider" SET "phone" = 'updated db phone' WHERE "provider"."user_id" = 4;
 
 -- UPDATE - GROUP info by "Provider.user_ID"
-UPDATE "group" SET "name" = 'updated db name' WHERE "group"."user_id" = 4;
-UPDATE "group" SET "bio" = 'updated db bio' WHERE "group"."user_id" = 4;
-UPDATE "group" SET "website" = 'updated db website' WHERE "group"."user_id" = 4;
+UPDATE "group" SET "name" = 'updated db name' WHERE "group"."user_id" = 2;
+UPDATE "group" SET "bio" = 'updated db bio' WHERE "group"."user_id" = 2;
+UPDATE "group" SET "website" = 'updated db website' WHERE "group"."user_id" = 2;
 UPDATE "group" SET "email" = 'updated db email' WHERE "group"."user_id" = 2;
 UPDATE "group" SET "phone" = 'updated db phone' WHERE "group"."user_id" = 2;
 UPDATE "group" SET "street" = 'updated db email' WHERE "group"."user_id" = 2;
