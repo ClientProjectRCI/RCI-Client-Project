@@ -352,7 +352,7 @@ export default function RegisterProviderForm() {
                         setProviderAvailability(event.target.value)
                     }
                 ></input> */}
-                {/* <Box>
+                <Box>
                   <Stack spacing={3} sx={{ width: 500 }}></Stack>
                   <Autocomplete
                     sx={{
@@ -378,7 +378,7 @@ export default function RegisterProviderForm() {
                       />
                     )}
                   />
-                </Box> */}
+                </Box>
                 {/* <input
                     required
                     type="text"
