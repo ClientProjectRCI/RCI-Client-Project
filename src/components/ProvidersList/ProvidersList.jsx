@@ -41,6 +41,7 @@ import './ProvidersList.css';
 import SearchIcon from '@mui/icons-material/Search';
 import ProviderSearchBar from '../ProviderSearchBar/ProviderSearchBar';
 import GroupSearchBar from '../GroupSearchBar/GroupSearchBar';
+import DropdownMenu from '../DropDownMenu/DropdownMenu';
 // This is one of our simplest components
 // It doesn't have local state
 // It doesn't dispatch any redux actions or display any part of redux state
@@ -65,9 +66,8 @@ function ProvidersList() {
     dispatch({ type: 'FETCH_INSURANCES' });
     dispatch({ type: 'FETCH_OCCUPATIONS' });
   }, []);
-;
-  const [filterSpecializations, setFilterSpecializations] = useState('');
-  
+  const [filterSpecializations, setFilterSpecializations] = useState(['']);
+
   //  function handleFilterSpecializationsSubmit(event) {
   //    console.log('Searching by filterSpecialization:', filterSpecializations.id);
   //     dispatch({
@@ -79,11 +79,14 @@ function ProvidersList() {
   //     });
   //  }
 
-  const handleFilterSpecializationsSubmit = (event) => {
-     console.log(
-       'Searching by filterSpecialization:',
-       filterSpecializations
-     );
+  const handleFilterSpecializationsSubmit = (event, option) => {
+    setFilterSpecializations(option);
+    console.log('Here is the option', option);
+    console.log('Searching by filterSpecialization:', filterSpecializations);
+    // console.log(
+    //   'Searching by event.target.value:',
+    //   event.target.value.filterSpecializations
+    // );
     const {
       target: { value },
     } = event;
@@ -91,11 +94,7 @@ function ProvidersList() {
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value
     );
-     console.log(
-       'Searching by filterSpecializations.specialization:',
-       filterSpecializations
-     );
-
+    console.log('Searching by filterSpecializations:', filterSpecializations);
   };
 
   //start of tab panel
@@ -178,47 +177,7 @@ function ProvidersList() {
           <nav id="drawer">
             <ul>
               <li>
-                <Box>
-                  <Stack spacing={3} sx={{ width: 500 }}></Stack>
-                  <Autocomplete
-                    multiple
-                    required
-                    id="tags-outlined"
-                    options={specializations}
-                    getOptionLabel={(specializations) =>
-                      specializations.specialization
-                    }
-                    filterSelectedOptions
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        label="Select Specializations"
-                        value={filterSpecializations}
-                        onChange={(event) =>
-                          setFilterSpecializations(
-                            event.target.value, specializations.specialization
-                            // ,
-                            // filterSpecializations.id
-                          )
-                      
-                        }
-                        placeholder="Specializations"
-                      />
-                    )}
-                  />
-                  <ButtonGroup
-                    variant="contained"
-                    size="large"
-                    aria-label="outlined primary button group"
-                  >
-                    <Button
-                      type="submit"
-                      onClick={handleFilterSpecializationsSubmit}
-                    >
-                      filter
-                    </Button>
-                  </ButtonGroup>
-                </Box>
+                <DropdownMenu />
               </li>
               <li>
                 <Box>
