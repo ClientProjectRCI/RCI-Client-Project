@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState }  from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -45,6 +45,11 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 
 import Grid from '@material-ui/core/Grid';
 
+const providerAvailabilityOptions = [
+  'My office is open Monday through Friday 9am to 5pm',
+  'My office offers evening and weekend appointments',
+  'Please contact my office for available times',
+];
 
 
 export default function RegisterProviderForm() {
@@ -69,7 +74,25 @@ export default function RegisterProviderForm() {
     const occupations = useSelector((store) => store.occupations);
     const services = useSelector((store) => store.services);
 
+    useEffect(() => {
+      dispatch({ type: 'FETCH_PROVIDERS' });
+      dispatch({ type: 'FETCH_GROUPS' });
+      dispatch({ type: 'FETCH_SPECIALIZATIONS' });
+      dispatch({ type: 'FETCH_INSURANCES' });
+      dispatch({ type: 'FETCH_OCCUPATIONS' });
+    }, []);
+
     
+
+    const handleProviderAvailability = (event) => {
+      const {
+        target: { value },
+      } = event;
+      setProviderAvailability(
+        // On autofill we get a stringified value.
+        typeof value === 'string' ? value.split(',') : value,
+      );
+    };
 
     const verifyProvider = () => {
 
@@ -210,7 +233,7 @@ export default function RegisterProviderForm() {
                   >
                     <Button type="submit">add insurance</Button>
                   </ButtonGroup> */}
-                </Box><br />
+                </Box>
                 <Box>
                   <Stack spacing={3} sx={{ width: 500 }}></Stack>
                   <Autocomplete
@@ -242,7 +265,7 @@ export default function RegisterProviderForm() {
                   >
                     <Button type="submit">add occupations</Button>
                   </ButtonGroup> */}
-                </Box><br />
+                </Box>
                 {/* <input
                     required
                     type="text"
@@ -294,7 +317,7 @@ export default function RegisterProviderForm() {
                   >
                     <Button type="submit">add specializations</Button>
                   </ButtonGroup> */}
-                </Box><br />
+                </Box>
                 {/* <input
                     required
                     type="text"
@@ -346,7 +369,7 @@ export default function RegisterProviderForm() {
                         setProviderAvailability(event.target.value)
                     }
                 ></input> */}
-                <Box sx={{ width: '50ch' }}>
+                <Box sx={{ m: 1, width: '50ch' }}>
                 <FormControl fullWidth>
                     <InputLabel id="availability-select">Availability</InputLabel>
                     <Select
@@ -354,36 +377,68 @@ export default function RegisterProviderForm() {
                     id="availability-select"
                     value={providerAvailability}
                     label="A"
-                    onChange={(event) => setProviderAvailability(event.target.value)}
+                    onChange={handleProviderAvailability}
                     >
                     
                     </Select>
                 </FormControl>
                 </Box>
-                <input
+                {/* <input
                     required
                     type="text"
                     placeholder="Email"
                     value={providerEmail}
                     onChange={(event) => setProviderEmail(event.target.value)}
-                ></input>
+                ></input> */}
+                <Box
+                    component="form"
+                    sx={{
+                        '& > :not(style)': { m: 1, width: '50ch' },
+                    }}
+                    noValidate
+                    autoComplete="off"
+                    >
+                    <TextField id="outlined-basic" 
+                    label="E-mail address" 
+                    variant="outlined"
+                    value={providerEmail}
+                    onChange={(event) => setProviderEmail(event.target.value)}
+
+                    />
+                    </Box>
                 {/* <input required type="text" 
                 placeholder="Website" 
                 value={providerWebsite}
                 onChange={(event) => setProviderWebsite(event.target.value)}
                 ></input> */}
-                <input
+                {/* <input
                     required
                     type="text"
                     placeholder="Phone Number"
                     value={providerPhone}
                     onChange={(event) => setProviderPhone(event.target.value)}
-                ></input><br />
+                ></input><br /> */}
+                <Box
+                    component="form"
+                    sx={{
+                        '& > :not(style)': { m: 1, width: '50ch' },
+                    }}
+                    noValidate
+                    autoComplete="off"
+                    >
+                    <TextField id="outlined-basic" 
+                    label="Phone number" 
+                    variant="outlined"
+                    value={providerPhone}
+                    onChange={(event) => setProviderPhone(event.target.value)}
+
+                    />
+                    </Box>
                 <button className="btn" onClick={verifyProvider}>
                     Go To Verify
                 </button>
             </form>
-            <LogOutButton className="btn" />
+            {/* <LogOutButton className="btn" /> */}
         </center>
     );
 }
