@@ -45,12 +45,6 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 
 import Grid from '@material-ui/core/Grid';
 
-const providerAvailabilityOptions = [
-  'My office is open Monday through Friday 9am to 5pm',
-  'My office offers evening and weekend appointments',
-  'Please contact my office for available times',
-];
-
 
 export default function RegisterProviderForm() {
     // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -73,6 +67,7 @@ export default function RegisterProviderForm() {
     const insurances = useSelector((store) => store.insurances);
     const occupations = useSelector((store) => store.occupations);
     const services = useSelector((store) => store.services);
+    const availabilities = useSelector((store) => store.availability);
 
     useEffect(() => {
       dispatch({ type: 'FETCH_PROVIDERS' });
@@ -80,6 +75,8 @@ export default function RegisterProviderForm() {
       dispatch({ type: 'FETCH_SPECIALIZATIONS' });
       dispatch({ type: 'FETCH_INSURANCES' });
       dispatch({ type: 'FETCH_OCCUPATIONS' });
+      dispatch({ type: 'FETCH_AVAILABILITY'});
+      dispatch({ type: 'FETCH_SERVICES'});
     }, []);
 
     const verifyProvider = () => {
@@ -312,7 +309,7 @@ export default function RegisterProviderForm() {
                     value={providerService}
                     onChange={(event) => setProviderService(event.target.value)}
                 ></input> */}
-                {/* <Box>
+                <Box>
                   <Stack spacing={3} sx={{ width: 500 }}></Stack>
                   <Autocomplete
                     sx={{
@@ -329,8 +326,8 @@ export default function RegisterProviderForm() {
                     renderInput={(params) => (
                       <TextField
                         {...params}
-                        label="Select Services"
-                        value={providerService}
+                        label="Select Services Offered"
+                        value={services}
                         onChange={(event) =>
                           setProviderService(event.target.value)
                         }
@@ -338,14 +335,14 @@ export default function RegisterProviderForm() {
                       />
                     )}
                   />
-                  <ButtonGroup
+                  {/* <ButtonGroup
                     variant="contained"
                     size="large"
                     aria-label="outlined primary button group"
                   >
                     <Button type="submit">add specializations</Button>
-                  </ButtonGroup> 
-                </Box> */}
+                  </ButtonGroup>  */}
+                </Box>
                 
                 {/* <input
                     required
@@ -356,21 +353,32 @@ export default function RegisterProviderForm() {
                         setProviderAvailability(event.target.value)
                     }
                 ></input> */}
-                <Box sx={{ m: 1, width: '50ch' }}>
-                <FormControl fullWidth>
-                    <InputLabel id="availability-select">Availability</InputLabel>
-                    <Select
-                    labelId="availability-select"
-                    id="availability-select"
-                    value={providerAvailability}
-                    label="Availability"
-                    onChange={(event) =>
-                      setProviderAvailability(event.target.value)
+                <Box>
+                  <Stack spacing={3} sx={{ width: 500 }}></Stack>
+                  <Autocomplete
+                    sx={{
+                        '& > :not(style)': { m: 1, width: '50ch' },
+                    }}
+                    multiple
+                    required
+                    id="tags-outlined"
+                    options={availabilities}
+                    getOptionLabel={(availabilities) =>
+                      availabilities.availability
                     }
-                    >
-                    
-                    </Select>
-                </FormControl>
+                    filterSelectedOptions
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        label="Select Availability"
+                        value={availabilities}
+                        onChange={(event) =>
+                          setProviderAvailability(event.target.value)
+                        }
+                        placeholder="Availability"
+                      />
+                    )}
+                  />
                 </Box>
                 {/* <input
                     required
