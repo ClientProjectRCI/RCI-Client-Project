@@ -67,7 +67,7 @@ export default function RegisterProviderForm() {
     const insurances = useSelector((store) => store.insurances);
     const occupations = useSelector((store) => store.occupations);
     const services = useSelector((store) => store.services);
-    const availability = useSelector((store) => store.availability);
+    const availabilities = useSelector((store) => store.availability);
 
     useEffect(() => {
       dispatch({ type: 'FETCH_PROVIDERS' });
@@ -75,6 +75,7 @@ export default function RegisterProviderForm() {
       dispatch({ type: 'FETCH_SPECIALIZATIONS' });
       dispatch({ type: 'FETCH_INSURANCES' });
       dispatch({ type: 'FETCH_OCCUPATIONS' });
+      dispatch({ type: 'FETCH_AVAILABILITY'});
     }, []);
 
     const verifyProvider = () => {
@@ -351,22 +352,33 @@ export default function RegisterProviderForm() {
                         setProviderAvailability(event.target.value)
                     }
                 ></input> */}
-                <Box sx={{ m: 1, width: '50ch' }}>
-                <FormControl fullWidth>
-                    <InputLabel id="availability-select">Availability</InputLabel>
-                    <Select
-                    labelId="availability-select"
-                    id="availability-select"
-                    value={providerAvailability}
-                    label="Availability"
-                    onChange={(event) =>
-                      setProviderAvailability(event.target.value)
+                {/* <Box>
+                  <Stack spacing={3} sx={{ width: 500 }}></Stack>
+                  <Autocomplete
+                    sx={{
+                        '& > :not(style)': { m: 1, width: '50ch' },
+                    }}
+                    multiple
+                    required
+                    id="tags-outlined"
+                    options={availabilities}
+                    getOptionLabel={(availabilities) =>
+                      availabilities.availability
                     }
-                    >
-                    
-                    </Select>
-                </FormControl>
-                </Box>
+                    filterSelectedOptions
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        label="Select Availability"
+                        value={availabilities}
+                        onChange={(event) =>
+                          setProviderAvailability(event.target.value)
+                        }
+                        placeholder="Availability"
+                      />
+                    )}
+                  />
+                </Box> */}
                 {/* <input
                     required
                     type="text"

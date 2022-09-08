@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 
-//get route for occupations
+//get route for availability
 router.get('/', (req, res) => {
   const query = `SELECT * FROM "occupations" ORDER BY "id";`; 
   pool
