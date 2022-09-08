@@ -6,7 +6,7 @@ const router = express.Router();
 
 //get route for services
 router.get('/', (req, res) => {
-  const query = `SELECT * FROM "services" ORDER BY "id";`; 
+  const query = `SELECT * FROM "service_type" ORDER BY "id";`; 
   pool
     .query(query)
     .then((result) => {
