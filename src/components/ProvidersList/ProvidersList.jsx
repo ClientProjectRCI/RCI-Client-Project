@@ -65,9 +65,39 @@ function ProvidersList() {
     dispatch({ type: 'FETCH_INSURANCES' });
     dispatch({ type: 'FETCH_OCCUPATIONS' });
   }, []);
-
+;
+  const [filterSpecializations, setFilterSpecializations] = useState('');
   
- 
+  //  function handleFilterSpecializationsSubmit(event) {
+  //    console.log('Searching by filterSpecialization:', filterSpecializations.id);
+  //     dispatch({
+  //       type: 'FILTER_PROVIDER_SPECIALIZATIONS',
+  //       payload: {
+  //         className: event.target.className,
+  //         searchItem: name,
+  //       },
+  //     });
+  //  }
+
+  const handleFilterSpecializationsSubmit = (event) => {
+     console.log(
+       'Searching by filterSpecialization:',
+       filterSpecializations
+     );
+    const {
+      target: { value },
+    } = event;
+    setFilterSpecializations(
+      // On autofill we get a stringified value.
+      typeof value === 'string' ? value.split(',') : value
+    );
+     console.log(
+       'Searching by filterSpecializations.specialization:',
+       filterSpecializations
+     );
+
+  };
+
   //start of tab panel
   function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -163,10 +193,15 @@ function ProvidersList() {
                       <TextField
                         {...params}
                         label="Select Specializations"
-                        value={specializations}
-                        // onChange={(event) =>
-                        //   setSpecializations(event.target.value)
-                        // }
+                        value={filterSpecializations}
+                        onChange={(event) =>
+                          setFilterSpecializations(
+                            event.target.value, specializations.specialization
+                            // ,
+                            // filterSpecializations.id
+                          )
+                      
+                        }
                         placeholder="Specializations"
                       />
                     )}
@@ -176,7 +211,12 @@ function ProvidersList() {
                     size="large"
                     aria-label="outlined primary button group"
                   >
-                    <Button type="submit">filter</Button>
+                    <Button
+                      type="submit"
+                      onClick={handleFilterSpecializationsSubmit}
+                    >
+                      filter
+                    </Button>
                   </ButtonGroup>
                 </Box>
               </li>
@@ -281,7 +321,6 @@ function ProvidersList() {
                 {/* Search text field for the group */}
                 <GroupSearchBar />
 
-               
                 <div style={{ padding: 0 }}></div>
               </span>
             </span>
