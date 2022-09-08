@@ -521,25 +521,30 @@ WHERE "provider"."id" = 1;
 SELECT provider.name, array_agg(insurance_plan.insurance) as "accepted insurances" FROM provider
 JOIN provider_insurance_plan ON provider_insurance_plan.provider_id = provider.id
 JOIN insurance_plan ON insurance_plan.id = provider_insurance_plan.insurance_plan_id
-where insurance_plan.insurance ilike '%healthp%'
-or insurance_plan.insurance ilike '%blue%'
+where insurance_plan.insurance ilike '%health%'
+or insurance_plan.insurance ilike ''
 GROUP BY provider.name
 order by provider.name asc;
 
 --specializations
+SELECT provider.name, provider.picture, array_agg(specializations.specialization) as "specialties" FROM provider
+JOIN provider_specializations ON provider_specializations.provider_id = provider.id
+JOIN specializations ON specializations.id = provider_specializations.specializations_id
+group by provider.name, provider.picture
+order by provider.name asc;
+
+--specializations by id
 SELECT provider.name, array_agg(specializations.specialization) FROM provider
 JOIN provider_specializations ON provider_specializations.provider_id = provider.id
-JOIN specializations ON specializations.id = provider_specializations.id
-where specializations.specialization ilike '%autism%'
-or specializations.specialization ilike '%adhd%'
-or specializations.specialization ilike '%lg%'
+JOIN specializations ON specializations.id = provider_specializations.specializations_id
+where specializations.specialization ilike '%l%'
 group by provider.name
 order by provider.name asc;
 
 --occcupation
 SELECT provider.name, array_agg(occupations.occupation) FROM provider
 JOIN provider_occupation ON provider_occupation.provider_id = provider.id
-JOIN occupations ON occupations.id = provider_occupation.id
+JOIN occupations ON occupations.id = provider_occupation.occupation_id
 where occupations.occupation ilike '%psychiatrist%'
 or occupations.occupation ilike '%counselor%'
 group by provider.name
