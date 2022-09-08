@@ -45,12 +45,6 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 
 import Grid from '@material-ui/core/Grid';
 
-const providerAvailabilityOptions = [
-  'My office is open Monday through Friday 9am to 5pm',
-  'My office offers evening and weekend appointments',
-  'Please contact my office for available times',
-];
-
 
 export default function RegisterProviderForm() {
     // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -73,6 +67,7 @@ export default function RegisterProviderForm() {
     const insurances = useSelector((store) => store.insurances);
     const occupations = useSelector((store) => store.occupations);
     const services = useSelector((store) => store.services);
+    const availability = useSelector((store) => store.availability);
 
     useEffect(() => {
       dispatch({ type: 'FETCH_PROVIDERS' });
