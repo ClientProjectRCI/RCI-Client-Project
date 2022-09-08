@@ -68,6 +68,12 @@ CREATE TABLE "occupations" (
 	"occupation" varchar(255) 
 );
 
+---- Availability Table ----
+CREATE TABLE "availability" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"availability" varchar(255) 
+);
+
 
 -- JUNCTION TABLES --
 ---- specializations JUNCTION TABLE ----
@@ -96,6 +102,13 @@ CREATE TABLE "provider_occupation" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"provider_id" int REFERENCES "provider"("id") NOT NULL,
 	"occupation_id" int REFERENCES "specializations"("id") NOT NULL
+);
+
+---- availability JUNCTION TABLE ----
+CREATE TABLE "provider_availability" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"provider_id" int REFERENCES "provider"("id") NOT NULL,
+	"availability_id" int REFERENCES "availability"("id") NOT NULL
 );
 
 
@@ -159,6 +172,12 @@ INSERT INTO "occupations" ("occupation") VALUES
 ('Mental Health Nurse Practitioner'),
 ('Family Nurse Practitioner'),
 ('Peer Specialist');
+
+---- INSERT availability TABLE ----
+INSERT INTO "availability" ("availability") VALUES
+('My office is open Monday through Friday'),
+('My office offers evening and weekend appointments'),
+('Please contact me for appointment availability');
 
 -- DUMMY DATA -- 
 --  USER Dummy Data --

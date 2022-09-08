@@ -82,18 +82,6 @@ export default function RegisterProviderForm() {
       dispatch({ type: 'FETCH_OCCUPATIONS' });
     }, []);
 
-    
-
-    const handleProviderAvailability = (event) => {
-      const {
-        target: { value },
-      } = event;
-      setProviderAvailability(
-        // On autofill we get a stringified value.
-        typeof value === 'string' ? value.split(',') : value,
-      );
-    };
-
     const verifyProvider = () => {
 
         dispatch({
@@ -165,7 +153,6 @@ export default function RegisterProviderForm() {
                     variant="outlined"
                     value={providerName}
                     onChange={(event) => setProviderName(event.target.value)}
-
                     />
                 </Box>
                 {/* <input
@@ -376,8 +363,10 @@ export default function RegisterProviderForm() {
                     labelId="availability-select"
                     id="availability-select"
                     value={providerAvailability}
-                    label="A"
-                    onChange={handleProviderAvailability}
+                    label="Availability"
+                    onChange={(event) =>
+                      setProviderAvailability(event.target.value)
+                    }
                     >
                     
                     </Select>
