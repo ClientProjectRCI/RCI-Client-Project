@@ -76,6 +76,7 @@ export default function RegisterProviderForm() {
       dispatch({ type: 'FETCH_INSURANCES' });
       dispatch({ type: 'FETCH_OCCUPATIONS' });
       dispatch({ type: 'FETCH_AVAILABILITY'});
+      dispatch({ type: 'FETCH_SERVICES'});
     }, []);
 
     const verifyProvider = () => {
@@ -308,7 +309,7 @@ export default function RegisterProviderForm() {
                     value={providerService}
                     onChange={(event) => setProviderService(event.target.value)}
                 ></input> */}
-                {/* <Box>
+                <Box>
                   <Stack spacing={3} sx={{ width: 500 }}></Stack>
                   <Autocomplete
                     sx={{
@@ -325,8 +326,8 @@ export default function RegisterProviderForm() {
                     renderInput={(params) => (
                       <TextField
                         {...params}
-                        label="Select Services"
-                        value={providerService}
+                        label="Select Services Offered"
+                        value={services}
                         onChange={(event) =>
                           setProviderService(event.target.value)
                         }
@@ -334,14 +335,14 @@ export default function RegisterProviderForm() {
                       />
                     )}
                   />
-                  <ButtonGroup
+                  {/* <ButtonGroup
                     variant="contained"
                     size="large"
                     aria-label="outlined primary button group"
                   >
                     <Button type="submit">add specializations</Button>
-                  </ButtonGroup> 
-                </Box> */}
+                  </ButtonGroup>  */}
+                </Box>
                 
                 {/* <input
                     required

@@ -13,6 +13,7 @@ import providerOccupations from './providerOccupations.reducer';
 import providerServices from './providerServices.reducer';
 import search from './search.reducer';
 import availability from './availability.reducer';
+import services from './services.reducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -34,6 +35,7 @@ const rootReducer = combineReducers({
   providerServices,
   search,
   availability,
+  services,
 });
 
 export default rootReducer;
