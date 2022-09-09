@@ -147,10 +147,10 @@ function ProvidersList() {
                 <SpecializationsDropdownMenu />
               </li>
               <li>
-                <InsurancesDropdownMenu/>
+                <OccupationsDropdownMenu />
               </li>
               <li>
-                <OccupationsDropdownMenu />
+                <InsurancesDropdownMenu />
               </li>
             </ul>
           </nav>

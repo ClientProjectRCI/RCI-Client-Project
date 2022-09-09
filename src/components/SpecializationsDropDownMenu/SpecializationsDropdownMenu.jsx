@@ -72,7 +72,6 @@ function SpecializationsDropdownMenu() {
         <Select
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
-          multiple
           value={filterSpecializations}
           onChange={handleChange}
           input={<OutlinedInput label="Name" />}
