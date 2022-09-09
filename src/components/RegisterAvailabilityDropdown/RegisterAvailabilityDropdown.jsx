@@ -53,6 +53,7 @@ function RegisterAvailabilityDropdown() {
   };
 
   function handleSelectedAvailabilitySubmit(event) {
+    event.preventDefault();
     console.log(
       'Dispatching Availability:',
       providerAvailability

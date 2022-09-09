@@ -51,6 +51,7 @@ function RegisterInsurancesDropdown() {
   };
 
   function handleSelectedInsurancesSubmit(event) {
+    event.preventDefault();
     console.log('Dispatching this insurance:', providerInsurance);
     dispatch({
       type: 'ADD_PROVIDER_INSURANCE',

@@ -48,6 +48,7 @@ import RegisterInsurancesDropdown from '../RegisterInsurancesDropdown/RegisterIn
 import RegisterOccupationsDropdown from '../RegisterOccupationsDropdown/RegisterOccupationsDropdown';
 import RegisterSpecializationsDropdown from '../RegisterSpecializationsDropdown/RegisterSpecializationsDropdown';
 import RegisterAvailabilityDropdown from '../RegisterAvailabilityDropdown/RegisterAvailabilityDropdown';
+import RegisterServicesDropdown from '../RegisterServicesDropdown/RegisterServicesDropdown';
 
 
 export default function RegisterProviderForm() {
@@ -61,17 +62,7 @@ export default function RegisterProviderForm() {
     const [providerPhone, setProviderPhone] = useState('');
     const [providerEmail, setProviderEmail] = useState('');
     // const [providerWebsite, setProviderWebsite]= useState('');
-    const [providerInsurance, setProviderInsurance] = useState([]);
-    const [providerOccupation, setProviderOccupation] = useState([]);
-    const [providerSpecialization, setProviderSpecialization] = useState([]);
-    const [providerService, setProviderService] = useState([]);
-    const [providerAvailability, setProviderAvailability] = useState([]);
 
-    const specializations = useSelector((store) => store.specializations);
-    const insurances = useSelector((store) => store.insurances);
-    const occupations = useSelector((store) => store.occupations);
-    const services = useSelector((store) => store.services);
-    const availabilities = useSelector((store) => store.availability);
 
     useEffect(() => {
       dispatch({ type: 'FETCH_PROVIDERS' });
@@ -104,26 +95,6 @@ export default function RegisterProviderForm() {
         dispatch({
             type: 'ADD_PROVIDER_EMAIL',
             payload: providerEmail,
-        });
-        // dispatch({
-        //     type: 'ADD_PROVIDER_INSURANCE',
-        //     payload: providerInsurance,
-        // });
-        dispatch({
-            type: 'ADD_PROVIDER_OCCUPATION',
-            payload: providerOccupation,
-        });
-        dispatch({
-            type: 'ADD_PROVIDER_SPECIALIZATION',
-            payload: providerSpecialization,
-        });
-        dispatch({
-            type: 'ADD_PROVIDER_SERVICE',
-            payload: providerService,
-        });
-        dispatch({
-            type: 'ADD_PROVIDER_AVAILABILITY',
-            payload: providerAvailability,
         });
 
         history.push('/register-provider-verify');
@@ -179,147 +150,13 @@ export default function RegisterProviderForm() {
 
                 <RegisterSpecializationsDropdown />
               
-                <RegisterOccupationsDropdown/>
+                <RegisterOccupationsDropdown />
+
+                <RegisterServicesDropdown />
               
                 <RegisterInsurancesDropdown />
 
                 <RegisterAvailabilityDropdown />
-              
-                <Box>
-                  <Stack spacing={3} sx={{ width: '50ch' }}></Stack>
-                  <Autocomplete
-                    sx={{
-                        '& > :not(style)': { m: 1, width: '50ch' },
-                    }}
-                    multiple
-                    required
-                    id="tags-outlined"
-                    options={insurances}
-                    getOptionLabel={(insurances) => insurances.insurance}
-                    filterSelectedOptions
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        label="Select Insurances"
-                        value={insurances}
-                        onChange={(event) =>
-                          setProviderInsurance(event.target.value)
-                        }
-                        placeholder="Insurances"
-                      />
-                    )}
-                  />
-                </Box>
-                <Box>
-                  <Stack spacing={3} sx={{ width: 500 }}></Stack>
-                  <Autocomplete
-                    sx={{
-                        '& > :not(style)': { m: 1, width: '50ch' },
-                    }}
-                    multiple
-                    required
-                    id="tags-outlined"
-                    options={occupations}
-                    getOptionLabel={(occupations) => occupations.occupation}
-                    filterSelectedOptions
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        label="Select Occupations"
-                        value={occupations}
-                        onChange={(event) =>
-                          setProviderOccupation(event.target.value)
-                        }
-                        placeholder="Occupations"
-                      />
-                    )}
-                  />
-                </Box>
-        
-                <Box>
-                  <Stack spacing={3} sx={{ width: 500 }}></Stack>
-                  <Autocomplete
-                    sx={{
-                        '& > :not(style)': { m: 1, width: '50ch' },
-                    }}
-                    multiple
-                    required
-                    id="tags-outlined"
-                    options={specializations}
-                    getOptionLabel={(specializations) =>
-                      specializations.specialization
-                    }
-                    filterSelectedOptions
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        label="Select Specializations"
-                        value={specializations}
-                        onChange={(event) =>
-                          setProviderSpecialization(event.target.value)
-                        }
-                        placeholder="Specializations"
-                      />
-                    )}
-                  />
-                  
-                </Box>
-                
-                <Box>
-                  <Stack spacing={3} sx={{ width: 500 }}></Stack>
-                  <Autocomplete
-                    sx={{
-                        '& > :not(style)': { m: 1, width: '50ch' },
-                    }}
-                    multiple
-                    required
-                    id="tags-outlined"
-                    options={services}
-                    getOptionLabel={(services) =>
-                      services.service
-                    }
-                    filterSelectedOptions
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        label="Select Services Offered"
-                        value={services}
-                        onChange={(event) =>
-                          setProviderService(event.target.value)
-                        }
-                        placeholder="Services"
-                      />
-                    )}
-                  />
-                </Box>
-                
-                <Box>
-                  <Stack spacing={3} sx={{ width: 500 }}></Stack>
-                  <Autocomplete
-                    sx={{
-                        '& > :not(style)': { m: 1, width: '50ch' },
-                    }}
-                    multiple
-                    required
-                    id="tags-outlined"
-                    options={availabilities}
-                    getOptionLabel={(availabilities) =>
-                      availabilities.availability
-                    }
-                    filterSelectedOptions
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        label="Select Availability"
-                        value={availabilities}
-                        onChange={(event) =>
-                          setProviderAvailability(event.target.value)
-                        }
-                        placeholder="Availability"
-                      />
-                    )}
-                  />
-                </Box>
               
                 <Box
                     component="form"

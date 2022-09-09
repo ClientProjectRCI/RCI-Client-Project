@@ -6,6 +6,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Chip from '@mui/material/Chip';
+import Box from '@mui/material/Box';
 
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
@@ -20,70 +22,72 @@ const MenuProps = {
     },
   },
 };
-function getStyles(specializations, specialization, theme) {
+function getStyles(occupations, occupation, theme) {
   return {
     fontWeight:
-      specializations.indexOf(specialization) === -1
+      occupations.indexOf(occupation) === -1
         ? theme.typography.fontWeightRegular
         : theme.typography.fontWeightMedium,
   };
 }
 
-function RegisterSpecializationsDropdown() {
-   const theme = useTheme();
+function RegisterServicesDropdown() {
+  const theme = useTheme();
   const dispatch = useDispatch();
   //state for the text box for the provider
-  const specializations = useSelector((store) => store.specializations);
-  const [providerSpecialization, setProviderSpecialization] = useState([]);
+  const services = useSelector((store) => store.services);
+  const [providerService, setProviderService] = useState([]);
 
   const handleChange = (event) => {
-   
     const {
       target: { value },
     } = event;
-    setProviderSpecialization(
+    setProviderService(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value
     );
-     console.log('Here is the event', event.target.value);
-      console.log('Here is the filterSpecializations', providerSpecialization);
-
+    console.log('Here is the event', event.target.value);
+    console.log('Here is the selectedoccupations', providerService);
   };
 
-  function handleSelectedSpecializationsSubmit(event) {
-    console.log(
-      'Dispatching Specialization:',
-      providerSpecialization
-    );
-   dispatch({
-     type: 'ADD_PROVIDER_SPECIALIZATION',
-     payload: providerSpecialization
-     },
-   );
+  function handleSelectedServicesSubmit(event) {
+    event.preventDefault();
+    console.log('Dispatching this selectedoccupations:', providerService);
+    dispatch({
+      type: 'ADD_PROVIDER_SERVICE',
+      payload: providerService,
+    });
   }
 
   return (
     <div>
       {/* specialization dropdown menu */}
       <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="multiple-specializations-label">
-          Specializations
-        </InputLabel>
+        <InputLabel id="multiple-occupations-label">Services Offered</InputLabel>
         <Select
+          multiple
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
-          value={providerSpecialization}
+          value={providerService}
           onChange={handleChange}
           input={<OutlinedInput label="Name" />}
+          renderValue={(selected) => (
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+              {selected.map((value) => (
+                <Chip key={value} label={value} />
+              ))}
+            </Box>
+          )}
           MenuProps={MenuProps}
         >
-          {specializations.map((specialization) => (
+          {services.map((service) => (
             <MenuItem
-              key={specialization.specialization}
-              value={specialization.specialization}
-              style={getStyles(specializations, providerSpecialization, theme)}
+              key={service.service}
+              value={service.service}
+              onChange={handleSelectedServicesSubmit}
+              style={getStyles(services, providerService, theme)}
             >
-              {specialization.specialization}
+              {service.service}
             </MenuItem>
           ))}
         </Select>
@@ -93,13 +97,12 @@ function RegisterSpecializationsDropdown() {
         size="large"
         aria-label="outlined primary button group"
       >
-        <Button type="submit" onClick={handleSelectedSpecializationsSubmit}>
+        <Button type="submit" onClick={handleSelectedServicesSubmit}>
           add
         </Button>
       </ButtonGroup>
-    
     </div>
   );
 }
 
-export default RegisterSpecializationsDropdown;
+export default RegisterServicesDropdown;

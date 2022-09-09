@@ -51,10 +51,11 @@ function RegisterOccupationsDropdown() {
   };
 
   function handleSelectedOccupationsSubmit(event) {
+    event.preventDefault();
     console.log('Dispatching this selectedoccupations:', providerOccupation);
     dispatch({
       type: 'ADD_PROVIDER_OCCUPATION',
-      payload: [providerOccupation],
+      payload: providerOccupation,
     });
   }
 
@@ -64,6 +65,7 @@ function RegisterOccupationsDropdown() {
       <FormControl sx={{ m: 1, width: 300 }}>
         <InputLabel id="multiple-occupations-label">Occupations</InputLabel>
         <Select
+          multiple
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
           value={providerOccupation}

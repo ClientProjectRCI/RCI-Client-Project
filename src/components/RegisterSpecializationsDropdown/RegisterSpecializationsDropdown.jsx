@@ -53,6 +53,7 @@ function RegisterSpecializationsDropdown() {
   };
 
   function handleSelectedSpecializationsSubmit(event) {
+    event.preventDefault();
     console.log(
       'Dispatching Specialization:',
       providerSpecialization

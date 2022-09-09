@@ -98,15 +98,15 @@ export default function RegisterProviderVerify() {
                     provider_id: user.id,
                     availability_id: providerAvailability,
                     }
-                }),
-            axios({
-                method: 'POST',
-                url: '/api/availability/',
-                data: {
-                    provider_id: user.id,
-                    availability_id: providerAvailability,
-                    }
                 })
+            // axios({
+            //     method: 'POST',
+            //     url: '/api/availability/',
+            //     data: {
+            //         provider_id: user.id,
+            //         availability_id: providerAvailability,
+            //         }
+            //     })
             // axios({
             //     method: 'POST',
             //     url: '/api/availability/',
