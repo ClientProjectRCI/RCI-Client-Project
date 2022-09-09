@@ -29,7 +29,7 @@ function getStyles(specializations, specialization, theme) {
   };
 }
 
-function DropdownMenu() {
+function SpecializationsDropdownMenu() {
    const theme = useTheme();
   const dispatch = useDispatch();
   //state for the text box for the provider
@@ -98,37 +98,9 @@ function DropdownMenu() {
           filter
         </Button>
       </ButtonGroup>
-      {/* <Box>
-        <Stack spacing={3} sx={{ width: 500 }}></Stack>
-        <Autocomplete
-          multiple
-          required
-          id="tags-outlined"
-          options={specializations}
-          getOptionLabel={(specializations) => specializations.specialization}
-          filterSelectedOptions
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label="Select Specializations"
-              value={specializations}
-              onChange={(e) => setFilterSpecializations(e.target.value)}
-              placeholder="Specializations"
-            />
-          )}
-        />
-        <ButtonGroup
-          variant="contained"
-          size="large"
-          aria-label="outlined primary button group"
-        >
-          <Button type="submit" onSubmit={handleFilterSpecializationsSubmit}>
-            filter
-          </Button>
-        </ButtonGroup>
-      </Box> */}
+    
     </div>
   );
 }
 
-export default DropdownMenu;
+export default SpecializationsDropdownMenu;
