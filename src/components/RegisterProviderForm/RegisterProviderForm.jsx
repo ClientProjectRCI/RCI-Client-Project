@@ -44,6 +44,10 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
 import Grid from '@material-ui/core/Grid';
+import RegisterInsurancesDropdown from '../RegisterInsurancesDropdown/RegisterInsurancesDropdown';
+import RegisterOccupationsDropdown from '../RegisterOccupationsDropdown/RegisterOccupationsDropdown';
+import RegisterSpecializationsDropdown from '../RegisterSpecializationsDropdown/RegisterSpecializationsDropdown';
+import RegisterAvailabilityDropdown from '../RegisterAvailabilityDropdown/RegisterAvailabilityDropdown';
 
 
 export default function RegisterProviderForm() {
@@ -101,10 +105,10 @@ export default function RegisterProviderForm() {
             type: 'ADD_PROVIDER_EMAIL',
             payload: providerEmail,
         });
-        dispatch({
-            type: 'ADD_PROVIDER_INSURANCE',
-            payload: providerInsurance,
-        });
+        // dispatch({
+        //     type: 'ADD_PROVIDER_INSURANCE',
+        //     payload: providerInsurance,
+        // });
         dispatch({
             type: 'ADD_PROVIDER_OCCUPATION',
             payload: providerOccupation,
@@ -172,7 +176,15 @@ export default function RegisterProviderForm() {
 
                     />
                 </Box>
-      
+
+                <RegisterSpecializationsDropdown />
+              
+                <RegisterOccupationsDropdown/>
+              
+                <RegisterInsurancesDropdown />
+
+                <RegisterAvailabilityDropdown />
+              
                 <Box>
                   <Stack spacing={3} sx={{ width: '50ch' }}></Stack>
                   <Autocomplete
