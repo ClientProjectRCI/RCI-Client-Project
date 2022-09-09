@@ -147,8 +147,8 @@ h3 {
 
 section {
     text-align: left;
-    background-color: gray;
-    /* border-radius: 1rem; */
+    background-color: #e6e6e6;
+    border-radius: 1rem;
     width: 70%;
     height: 10rem;
     margin: 1rem auto;

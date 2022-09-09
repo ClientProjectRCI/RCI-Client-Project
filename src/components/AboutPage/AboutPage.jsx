@@ -1,4 +1,6 @@
+import { Typography, Box } from '@material-ui/core';
 import React from 'react';
+import { positions } from '@mui/system';
 
 // This is one of our simplest components
 // It doesn't have local state,
@@ -7,7 +9,18 @@ import React from 'react';
 
 export default function AboutPage() {
     return (
-        <div className="container">
+        <>
+            <Typography
+                align="center"
+                variant="h2"
+                style={{
+                    fontSize: 100,
+                    fontWeight: 'bold',
+                }}
+            >
+                <span style={{ color: 'var(--true-orange)' }}>About</span>{' '}
+                <span style={{ color: 'var(--cyan)' }}>Us:</span>
+            </Typography>
             <section>
                 <h1>I. About RCI</h1>
                 We are a nonprofit dedicated to improving the Rochester area and
@@ -31,6 +44,6 @@ export default function AboutPage() {
                 high school counselors of Century, Mayo, and John Marshall High
                 Schools to use to direct students towards available aid.
             </section>
-        </div>
+        </>
     );
 }
