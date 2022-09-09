@@ -17,7 +17,7 @@ router.get('/:occupation', (req, res) => {
 JOIN "provider_occupation" 
 ON "provider"."id" = "provider_occupation"."provider_id"
 JOIN "occupations"
-ON "occupations"."id" = "provider_occupation"."id"
+ON "occupations"."id" = "provider_occupation"."occupation_id"
 WHERE "occupations"."occupation" ILIKE '%${occupation}%' 
 ORDER BY "provider"."name";`;
   pool

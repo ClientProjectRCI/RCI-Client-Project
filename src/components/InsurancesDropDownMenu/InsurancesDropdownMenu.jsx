@@ -64,7 +64,6 @@ function InsurancesDropdownMenu() {
         <Select
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
-          multiple
           value={filterInsurances}
           onChange={handleChange}
           input={<OutlinedInput label="Name" />}

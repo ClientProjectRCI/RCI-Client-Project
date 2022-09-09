@@ -18,7 +18,7 @@ router.get('/:insurance', (req, res) => {
 JOIN "provider_insurance_plan" 
 ON "provider"."id" = "provider_insurance_plan"."provider_id"
 JOIN "insurance_plan"
-ON "insurance_plan"."id" = "provider_insurance_plan"."id"
+ON "insurance_plan"."id" = "provider_insurance_plan"."insurance_plan_id"
 WHERE "insurance_plan"."insurance" ILIKE '%${insurance}%' 
 ORDER BY "provider"."name";
 
