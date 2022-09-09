@@ -1,14 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 function LogOutButton(props) {
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const handleLogOut = () => {
-        history.push('/');
         dispatch({ type: 'LOGOUT' });
     };
     return (
@@ -19,6 +16,7 @@ function LogOutButton(props) {
             // is passed to it from it's parents through React props
             className={props.className}
             onClick={handleLogOut}
+            to="/"
         >
             Log Out
         </Link>
