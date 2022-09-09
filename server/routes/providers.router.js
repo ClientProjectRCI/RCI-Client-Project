@@ -11,7 +11,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 	const path = `/images/${newProvider.picture}`;
 
-  console.log("content is:", req.body);
+  console.log("provider content is:", req.body);
   
   let queryText = `INSERT INTO "provider" (
   "user_id", "name", "bio", "picture", 

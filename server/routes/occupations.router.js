@@ -9,7 +9,7 @@ const {
 router.post('/', rejectUnauthenticated, (req, res) => {
   const newProvider = req.body;
 
-  console.log("content is:", req.body);
+  console.log("occupation content is:", req.body);
   
   let queryText = `INSERT INTO "provider_occupation" (
   "provider_id", "occupation_id"

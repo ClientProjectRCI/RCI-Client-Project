@@ -9,7 +9,7 @@ const {
 router.post('/', rejectUnauthenticated, (req, res) => {
   const newProvider = req.body;
 
-  console.log("content is:", req.body);
+  console.log("availability content is:", req.body);
   
   let queryText = `INSERT INTO "provider_availability" (
   "provider_id", "availability_id"
