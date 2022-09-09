@@ -3,6 +3,7 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import providersSaga from './providers.saga';
+import profileSaga from './profile.saga'
 import groupsSaga from './groups.saga';
 import providerSearchSaga from './providerSearch.saga';
 import groupSearchSaga from './groupSearch.saga';
@@ -19,6 +20,7 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     providersSaga(),
+    profileSaga(),
     groupsSaga(),
     providerSearchSaga(),
     groupSearchSaga(),

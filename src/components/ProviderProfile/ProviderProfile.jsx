@@ -29,28 +29,28 @@ export default function ProviderProfile() {
     const [phone, setPhone] = useState('');
     const [services, setServices] = useState('');
     const [specialities, setSpecialities] = useState('');
+
     const history = useHistory()
     const dispatch = useDispatch();
 
     console.log("user:", user); // test user info
-    console.log("edit useState:", edit); // tests EDIT local state, starts as FALSE
+    console.log("user.id:", user.id); // test user info
+    console.log("edit details:", details); // tests EDIT local state, starts as FALSE
 
 
 
+    // This was to show what is in the DB above the inputs. Couldn't get it to work
+    // function handleChange(event) {
+    //     dispatch({
+    //         type: 'EDIT_ONCHANGE',
+    //         payload: { property: 'github_name', value: event.target.value }
+    //     });
 
-    function handleChange(event) {
-        dispatch({
-            type: 'EDIT_ONCHANGE',
-            payload: { property: 'github_name', value: event.target.value }
-        });
-
-    }
+    // }
 
 
     function handleSubmit(event) { // PUT/UPDATE Dispatch
         event.preventDefault();
-
-        console.log('usernameLocal', name);
         console.log('usernameLocal', name);
 
         dispatch({
@@ -69,10 +69,15 @@ export default function ProviderProfile() {
         console.log('submitted changes with a DISPATCH Function!');
         setEdit(current => !current);
     };
-    // dispatch({ type: 'FETCH_PROVIDER_PROFILE', payload: user.id })
-    useEffect(() => {
-        dispatch({ type: 'FETCH_PROVIDER_PROFILE', payload: user.id })
 
+    useEffect(() => {
+        // dispatch({ type: 'FETCH_PROFILE', payload: user.id })
+        dispatch({ type: 'FETCH_PROVIDER_PROFILE', payload: user.id })
+        // dispatch({ type: 'FETCH_PROVIDER_DETAILS', payload: details.id })
+        // dispatch({ type: 'FETCH_PROVIDER_INSURANCES', payload: details.id })
+        // dispatch({ type: 'FETCH_PROVIDER_SERVICES', payload: details.id })
+        // dispatch({ type: 'FETCH_PROVIDER_SPECIALIZATIONS', payload: details.id })
+        // dispatch({ type: 'FETCH_PROVIDER_OCCUPATIONS', payload: details.id })
 
     }, []);
 
@@ -107,32 +112,40 @@ export default function ProviderProfile() {
                         <form onSubmit={handleSubmit}>
                             <div className="column">
                                 <h3>You Are Editing Your Profile Info</h3>
+                                <br></br>
+
                                 {/* NAME INPUT  */}
                                 <Typography fontWeight='bold'
                                 >{details.name}</Typography>
-                                <br></br>
+                                 <br></br>
                                 <TextField label={"Edit Name"}
                                     placeholder={details.name}
                                     value={name}
                                     onChange={(event) => setName(event.target.value)} />
                                 <br></br>
-                                {/* BIO INPUT  */}
+
+                                {/* Bio INPUT  */}
                                 <Typography fontWeight='bold' 
                                 >{details.bio}</Typography>
+                                 <br></br>
                                 <TextField label={"Edit Bio"}
                                     placeholder={details.bio}
                                     value={bio}
                                     onChange={(event) => setBio(event.target.value)} />
                                 <br></br>
+
                                 {/* Phone INPUT  */}
                                 <Typography fontWeight='bold' 
                                 >{details.phone}</Typography>
+                                 <br></br>
                                 <TextField label={"Edit Phone Number"}
                                     placeholder={details.phone}
                                     value={phone}
                                     onChange={(event) => setPhone(event.target.value)} />
                                 <br></br>
+
                                 {/* Insurance INPUT  */}
+                                
                                 <Typography
                                 fontWeight='bold' 
                                 >Insurance</Typography>
@@ -142,22 +155,35 @@ export default function ProviderProfile() {
                                     value={insurance}
                                     onChange={(event) => setInsurance(event.target.value)} />
                                 <br></br>
+                                
                                 {/* Occupation INPUT  */}
-                                <Typography>{details.name}</Typography>
+                                <Typography
+                                fontWeight='bold'
+                                >Occupation</Typography>
+                                <ProviderOccupations />
+                                <br></br>
                                 <TextField label={"Edit Occupation"}
                                     placeholder={details.name}
                                     value={occupation}
                                     onChange={(event) => setOccupation(event.target.value)} />
                             <br></br>
+
                             {/* Services INPUT  */}
-                            <Typography>{details.name}</Typography>
+                            <Typography 
+                            fontWeight='bold'
+                            >Services</Typography>
+                             <br></br>
                             <TextField label={"Edit Services"}
                                 placeholder={details.name}
                                 value={services}
                                 onChange={(event) => setServices(event.target.value)} />
-                            {/* Specialities INPUT  */}
                             <br></br>
-                            <Typography>{details.name}</Typography>
+
+                            {/* Specialities INPUT  */}
+                            <Typography 
+                            fontWeight='bold'
+                            >Specialities</Typography>
+                             <br></br>
                             <TextField label={"Edit Specialities"}
                                 placeholder={details.name}
                                 value={specialities}
