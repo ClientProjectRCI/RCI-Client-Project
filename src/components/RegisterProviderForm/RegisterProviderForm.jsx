@@ -51,7 +51,7 @@ export default function RegisterProviderForm() {
     const user = useSelector((store) => store.user);
     const history = useHistory();
     const dispatch = useDispatch();
-    // const [providerPicture, setProviderPicture] = useState('');
+    const [providerPicture, setProviderPicture] = useState('');
     const [providerName, setProviderName] = useState('');
     const [providerBio, setProviderBio] = useState('');
     const [providerPhone, setProviderPhone] = useState('');
@@ -127,16 +127,17 @@ export default function RegisterProviderForm() {
 
     return (
         <center>
-            <form className="container">
+                <form className="container" encType="multipart/form-data">
                 <h2>Welcome, {user.username}!</h2>
                 <p>ProviderProfile: {user.id}</p>
-                {/* <input
-                    required
-                    type="text"
-                    placeholder="Name"
-                    value={providerName}
-                    onChange={(event) => setProviderName(event.target.value)}
+                <p>ProviderProfile: Your ID is: {user.id}</p>
+                
+                {/* <input type='file' 
+                className='input' 
+                name='image' 
+                onChange={addFile}
                 ></input> */}
+                
                 <Box
                     component="form"
                     sx={{
@@ -152,13 +153,7 @@ export default function RegisterProviderForm() {
                     onChange={(event) => setProviderName(event.target.value)}
                     />
                 </Box>
-                {/* <input
-                    required
-                    type="text"
-                    placeholder="Bio"
-                    value={providerBio}
-                    onChange={(event) => setProviderBio(event.target.value)}
-                ></input> */}
+              
                 <Box
                     component="form"
                     sx={{
@@ -177,15 +172,7 @@ export default function RegisterProviderForm() {
 
                     />
                 </Box>
-                {/* <input
-                    required
-                    type="text"
-                    placeholder="Insurance"
-                    value={providerInsurance}
-                    onChange={(event) =>
-                        setProviderInsurance(event.target.value)
-                    }
-                ></input> */}
+      
                 <Box>
                   <Stack spacing={3} sx={{ width: '50ch' }}></Stack>
                   <Autocomplete
@@ -210,13 +197,6 @@ export default function RegisterProviderForm() {
                       />
                     )}
                   />
-                  {/* <ButtonGroup
-                    variant="contained"
-                    size="large"
-                    aria-label="outlined primary button group"
-                  >
-                    <Button type="submit">add insurance</Button>
-                  </ButtonGroup> */}
                 </Box>
                 <Box>
                   <Stack spacing={3} sx={{ width: 500 }}></Stack>
@@ -242,32 +222,8 @@ export default function RegisterProviderForm() {
                       />
                     )}
                   />
-                  {/* <ButtonGroup
-                    variant="contained"
-                    size="large"
-                    aria-label="outlined primary button group"
-                  >
-                    <Button type="submit">add occupations</Button>
-                  </ButtonGroup> */}
                 </Box>
-                {/* <input
-                    required
-                    type="text"
-                    placeholder="Occupation"
-                    value={providerOccupation}
-                    onChange={(event) =>
-                        setProviderOccupation(event.target.value)
-                    }
-                ></input> */}
-                {/* <input
-                    required
-                    type="text"
-                    placeholder="Specialization(s)"
-                    value={providerSpecialization}
-                    onChange={(event) =>
-                        setProviderSpecialization(event.target.value)
-                    }
-                ></input> */}
+        
                 <Box>
                   <Stack spacing={3} sx={{ width: 500 }}></Stack>
                   <Autocomplete
@@ -294,21 +250,9 @@ export default function RegisterProviderForm() {
                       />
                     )}
                   />
-                  {/* <ButtonGroup
-                    variant="contained"
-                    size="large"
-                    aria-label="outlined primary button group"
-                  >
-                    <Button type="submit">add specializations</Button>
-                  </ButtonGroup> */}
+                  
                 </Box>
-                {/* <input
-                    required
-                    type="text"
-                    placeholder="Service"
-                    value={providerService}
-                    onChange={(event) => setProviderService(event.target.value)}
-                ></input> */}
+                
                 <Box>
                   <Stack spacing={3} sx={{ width: 500 }}></Stack>
                   <Autocomplete
@@ -335,24 +279,8 @@ export default function RegisterProviderForm() {
                       />
                     )}
                   />
-                  {/* <ButtonGroup
-                    variant="contained"
-                    size="large"
-                    aria-label="outlined primary button group"
-                  >
-                    <Button type="submit">add specializations</Button>
-                  </ButtonGroup>  */}
                 </Box>
                 
-                {/* <input
-                    required
-                    type="text"
-                    placeholder="Availability"
-                    value={providerAvailability}
-                    onChange={(event) =>
-                        setProviderAvailability(event.target.value)
-                    }
-                ></input> */}
                 <Box>
                   <Stack spacing={3} sx={{ width: 500 }}></Stack>
                   <Autocomplete
@@ -380,13 +308,7 @@ export default function RegisterProviderForm() {
                     )}
                   />
                 </Box>
-                {/* <input
-                    required
-                    type="text"
-                    placeholder="Email"
-                    value={providerEmail}
-                    onChange={(event) => setProviderEmail(event.target.value)}
-                ></input> */}
+              
                 <Box
                     component="form"
                     sx={{
@@ -403,18 +325,7 @@ export default function RegisterProviderForm() {
 
                     />
                     </Box>
-                {/* <input required type="text" 
-                placeholder="Website" 
-                value={providerWebsite}
-                onChange={(event) => setProviderWebsite(event.target.value)}
-                ></input> */}
-                {/* <input
-                    required
-                    type="text"
-                    placeholder="Phone Number"
-                    value={providerPhone}
-                    onChange={(event) => setProviderPhone(event.target.value)}
-                ></input><br /> */}
+                
                 <Box
                     component="form"
                     sx={{

@@ -45,6 +45,7 @@ export default function RegisterProviderVerify() {
     const registerProvider = () => {
     
         // POST to provider table
+        Promise.all([
             axios({
                 method: 'POST',
                 url: '/api/providers/',
@@ -55,20 +56,72 @@ export default function RegisterProviderVerify() {
                     picture: providerPicture.name,
                     phone: providerPhone,
                     email: providerEmail,
-                    insurance_id: providerInsurance,
-                    occupation_id: providerOccupation,
-                    specialization_id: providerSpecialization,
-                    service_id: providerService,
-                    availability: providerAvailability,
                     groupId: groupId
-                }
-            })
+                    }
+                }),
+            axios({
+                method: 'POST',
+                url: '/api/insurances/',
+                data: {
+                    provider_id: user.id,
+                    insurance_plan_id: providerInsurance
+                    }
+                }),
+            axios({
+                method: 'POST',
+                url: '/api/occupations/',
+                data: {
+                    provider_id: user.id,
+                    occupation_id: providerOccupation,
+                    }
+                }),
+            axios({
+                method: 'POST',
+                url: '/api/services/',
+                data: {
+                    provider_id: user.id,
+                    service_type_id: providerService,
+                    }
+                }),
+            axios({
+                method: 'POST',
+                url: '/api/specializations/',
+                data: {
+                    provider_id: user.id,
+                    specializations_id: providerSpecialization,
+                    }
+                }),
+            axios({
+                method: 'POST',
+                url: '/api/availability/',
+                data: {
+                    provider_id: user.id,
+                    availability_id: providerAvailability,
+                    }
+                }),
+            axios({
+                method: 'POST',
+                url: '/api/availability/',
+                data: {
+                    provider_id: user.id,
+                    availability_id: providerAvailability,
+                    }
+                })
+            // axios({
+            //     method: 'POST',
+            //     url: '/api/availability/',
+            //     data: {
+            //         provider_id: user.id,
+            //         groupId: groupId
+            //         }
+            //     })
             .then(() => {
                 dispatch({ type: 'FETCH_PROVIDER_DETAILS' });
             })
             .catch((err) => {
                 console.log(`ERR in POST`, err)
-            });
+            })
+        ]);
             sendImage();
         // history.push to provider's id
         history.push(`/provider`);

@@ -56,7 +56,7 @@ const providerEmailReducer = (state = '', action) => {
 	}
 };
 
-const providerInsuranceReducer = (state = '', action) => {
+const providerInsuranceReducer = (state = [], action) => {
 	switch (action.type) {
 		case 'ADD_PROVIDER_INSURANCE':
 			return action.payload;
@@ -65,7 +65,7 @@ const providerInsuranceReducer = (state = '', action) => {
 	}
 };
 
-const providerOccupationReducer = (state = '', action) => {
+const providerOccupationReducer = (state = [], action) => {
 	switch (action.type) {
 		case 'ADD_PROVIDER_OCCUPATION':
 			return action.payload;
@@ -74,7 +74,7 @@ const providerOccupationReducer = (state = '', action) => {
 	}
 };
 
-const providerSpecializationReducer = (state = '', action) => {
+const providerSpecializationReducer = (state = [], action) => {
 	switch (action.type) {
 		case 'ADD_PROVIDER_SPECIALIZATION':
 			return action.payload;
@@ -83,7 +83,7 @@ const providerSpecializationReducer = (state = '', action) => {
 	}
 };
 
-const providerServiceReducer = (state = '', action) => {
+const providerServiceReducer = (state = [], action) => {
 	switch (action.type) {
 		case 'ADD_PROVIDER_SERVICE':
 			return action.payload;
@@ -92,7 +92,7 @@ const providerServiceReducer = (state = '', action) => {
 	}
 };
 
-const providerAvailabilityReducer = (state = '', action) => {
+const providerAvailabilityReducer = (state = [], action) => {
 	switch (action.type) {
 		case 'ADD_PROVIDER_AVAILABILITY':
 			return action.payload;
