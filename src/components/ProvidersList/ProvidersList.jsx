@@ -41,13 +41,9 @@ import './ProvidersList.css';
 import SearchIcon from '@mui/icons-material/Search';
 import ProviderSearchBar from '../ProviderSearchBar/ProviderSearchBar';
 import GroupSearchBar from '../GroupSearchBar/GroupSearchBar';
-import DropdownMenu from '../DropDownMenu/DropdownMenu';
-// This is one of our simplest components
-// It doesn't have local state
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is
-
-//AVERY: DON'T TOUCH FILE
+import SpecializationsDropdownMenu from '../SpecializationsDropDownMenu/SpecializationsDropdownMenu';
+import OccupationsDropdownMenu from '../OccupationsDropDownMenu/OccupationsDropdownMenu';
+import InsurancesDropdownMenu from '../InsurancesDropDownMenu/InsurancesDropdownMenu';
 
 function ProvidersList() {
   const history = useHistory();
@@ -66,36 +62,7 @@ function ProvidersList() {
     dispatch({ type: 'FETCH_INSURANCES' });
     dispatch({ type: 'FETCH_OCCUPATIONS' });
   }, []);
-  const [filterSpecializations, setFilterSpecializations] = useState(['']);
-
-  //  function handleFilterSpecializationsSubmit(event) {
-  //    console.log('Searching by filterSpecialization:', filterSpecializations.id);
-  //     dispatch({
-  //       type: 'FILTER_PROVIDER_SPECIALIZATIONS',
-  //       payload: {
-  //         className: event.target.className,
-  //         searchItem: name,
-  //       },
-  //     });
-  //  }
-
-  const handleFilterSpecializationsSubmit = (event, option) => {
-    setFilterSpecializations(option);
-    console.log('Here is the option', option);
-    console.log('Searching by filterSpecialization:', filterSpecializations);
-    // console.log(
-    //   'Searching by event.target.value:',
-    //   event.target.value.filterSpecializations
-    // );
-    const {
-      target: { value },
-    } = event;
-    setFilterSpecializations(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value
-    );
-    console.log('Searching by filterSpecializations:', filterSpecializations);
-  };
+  
 
   //start of tab panel
   function TabPanel(props) {
@@ -177,69 +144,13 @@ function ProvidersList() {
           <nav id="drawer">
             <ul>
               <li>
-                <DropdownMenu />
+                <SpecializationsDropdownMenu />
               </li>
               <li>
-                <Box>
-                  <Stack spacing={3} sx={{ width: 500 }}></Stack>
-                  <Autocomplete
-                    multiple
-                    required
-                    id="tags-outlined"
-                    options={insurances}
-                    getOptionLabel={(insurances) => insurances.insurance}
-                    filterSelectedOptions
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        label="Select Insurances"
-                        value={insurances}
-                        // onChange={(event) =>
-                        //   setInsurances(event.target.value)
-                        // }
-                        placeholder="Insurances"
-                      />
-                    )}
-                  />
-                  <ButtonGroup
-                    variant="contained"
-                    size="large"
-                    aria-label="outlined primary button group"
-                  >
-                    <Button type="submit">filter</Button>
-                  </ButtonGroup>
-                </Box>
+                <InsurancesDropdownMenu/>
               </li>
               <li>
-                <Box>
-                  <Stack spacing={3} sx={{ width: 500 }}></Stack>
-                  <Autocomplete
-                    multiple
-                    required
-                    id="tags-outlined"
-                    options={occupations}
-                    getOptionLabel={(occupations) => occupations.occupation}
-                    filterSelectedOptions
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        label="Select Occupations"
-                        value={occupations}
-                        // onChange={(event) =>
-                        //   setInsurances(event.target.value)
-                        // }
-                        placeholder="Occupations"
-                      />
-                    )}
-                  />
-                  <ButtonGroup
-                    variant="contained"
-                    size="large"
-                    aria-label="outlined primary button group"
-                  >
-                    <Button type="submit">filter</Button>
-                  </ButtonGroup>
-                </Box>
+                <OccupationsDropdownMenu />
               </li>
             </ul>
           </nav>
