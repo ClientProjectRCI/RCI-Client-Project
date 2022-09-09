@@ -6,16 +6,17 @@ function ContactPage() {
     const sendEmail = (event) => {
         event.preventDefault();
         emailjs.sendForm(
-            'service_zgz94dl',
-            'template_xlj9ljv',
+            'service_rqpcr8o',
+            'template_b2f42ik',
             event.target, 
-            '9pSLJdWIr9ZP0IGqK'
+            '8Fnu5-1ca66Q0y958'
             ).then(res=> {
                 console.log('IT WORKS YAYYYYYYY', res);
             })
             .catch(err => 
                 console.log('EMAIL IS NOT WORKING>>>>>>>>>>>>', err)
             )
+            
     };
 
     return (
