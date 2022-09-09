@@ -6,6 +6,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Chip from '@mui/material/Chip';
+import Box from '@mui/material/Box';
 
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
@@ -57,7 +59,7 @@ function RegisterAvailabilityDropdown() {
     );
    dispatch({
      type: 'ADD_PROVIDER_AVAILABILITY',
-     payload: providerAvailability
+     payload: [providerAvailability]
      },
    );
   }
@@ -76,6 +78,13 @@ function RegisterAvailabilityDropdown() {
           value={providerAvailability}
           onChange={handleChange}
           input={<OutlinedInput label="Name" />}
+          renderValue={(selected) => (
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+              {selected.map((value) => (
+                <Chip key={value} label={value} />
+              ))}
+            </Box>
+          )}
           MenuProps={MenuProps}
         >
           {availabilities.map((availability) => (

@@ -36,25 +36,25 @@ function RegisterOccupationsDropdown() {
   const dispatch = useDispatch();
   //state for the text box for the provider
   const occupations = useSelector((store) => store.occupations);
-  const [selectedOccupations, setSelectedOccupations] = useState([]);
+  const [providerOccupation, setProviderOccupation] = useState([]);
 
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
-    setSelectedOccupations(
+    setProviderOccupation(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value
     );
     console.log('Here is the event', event.target.value);
-    console.log('Here is the selectedoccupations', selectedOccupations);
+    console.log('Here is the selectedoccupations', providerOccupation);
   };
 
   function handleSelectedOccupationsSubmit(event) {
-    console.log('Dispatching this selectedoccupations:', selectedOccupations);
+    console.log('Dispatching this selectedoccupations:', providerOccupation);
     dispatch({
-      type: 'SELECT_PROVIDER_OCCUPATIONS',
-      payload: { occupation: selectedOccupations },
+      type: 'ADD_PROVIDER_OCCUPATION',
+      payload: [providerOccupation],
     });
   }
 
@@ -66,7 +66,7 @@ function RegisterOccupationsDropdown() {
         <Select
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
-          value={selectedOccupations}
+          value={providerOccupation}
           onChange={handleChange}
           input={<OutlinedInput label="Name" />}
           renderValue={(selected) => (
@@ -83,7 +83,7 @@ function RegisterOccupationsDropdown() {
               key={occupation.occupation}
               value={occupation.occupation}
               onChange={handleSelectedOccupationsSubmit}
-              style={getStyles(occupations, selectedOccupations, theme)}
+              style={getStyles(occupations, providerOccupation, theme)}
             >
               {occupation.occupation}
             </MenuItem>
@@ -95,7 +95,7 @@ function RegisterOccupationsDropdown() {
         size="large"
         aria-label="outlined primary button group"
       >
-        <Button type="submit" onClick={handleSelectedSpecializationsSubmit}>
+        <Button type="submit" onClick={handleSelectedOccupationsSubmit}>
           add
         </Button>
       </ButtonGroup>
