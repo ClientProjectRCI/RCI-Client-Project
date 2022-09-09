@@ -1,25 +1,20 @@
 import React from 'react';
-
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import RegisterForm from '../RegisterForm/RegisterForm';
+import { Typography, Box } from '@material-ui/core';
 
-function RegisterPage() {
-    const history = useHistory();
-
+export default function RegisterPage() {
     return (
         <center>
             <RegisterForm />
-            <button
-                type="button"
-                className="btn btn_asLink"
-                onClick={() => {
-                    history.push('/login');
-                }}
-            >
-                Login
-            </button>
+            <Link to="/login">Already have an account? Login</Link>
+            <Box sx={{ color: 'gray', mt: 20 }}>
+                <Typography variant="p">
+                    Copyright © 2022 Rochester Community Initiative.
+                </Typography>
+                <br></br>
+                <Typography variant="p">All Rights Reserved</Typography>
+            </Box>
         </center>
     );
 }
-
-export default RegisterPage;

@@ -1,6 +1,17 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, Provider } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import {
+    Box,
+    Button,
+    Tooltip,
+    FormControl,
+    Grid,
+    TextField,
+    Typography,
+    FormLabel,
+} from '@mui/material';
+import { width } from '@mui/system';
 
 export default function RegisterForm() {
     const [username, setUsername] = useState('');
@@ -21,7 +32,7 @@ export default function RegisterForm() {
             },
         });
         // navigate to group  profile
-        history.push('/register-group');
+        // history.push('/register-group');
     }; // end registerUser
 
     const registerProvider = (event) => {
@@ -36,53 +47,93 @@ export default function RegisterForm() {
             },
         });
         //navigate to provider profile
-        history.push('/register-provider');
+        // history.push('/register-provider');
     }; // end provider register
 
     return (
-        <form className="formPanel">
-            <h1>Register</h1>
-            {errors.registrationMessage && (
-                <h3 className="alert" role="alert">
-                    {errors.registrationMessage}
-                </h3>
-            )}
-            <div>
-                <input
-                    type="text"
-                    name="username"
-                    placeholder="Username"
-                    value={username}
-                    required
-                    onChange={(event) => setUsername(event.target.value)}
-                />
-            </div>
-            <div>
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={password}
-                    required
-                    onChange={(event) => setPassword(event.target.value)}
-                />
-            </div>
-            <div>
-                <input
-                    className="btn"
-                    type="submit"
-                    name="submit"
-                    value="Provider"
-                    onClick={registerProvider}
-                />
-                <input
-                    className="btn"
-                    type="submit"
-                    name="submit"
-                    value="Group"
-                    onClick={registerGroup}
-                />
-            </div>
-        </form>
+        <Box mt={5}>
+            <FormControl
+                style={{
+                    width: '25rem',
+                    paddingBottom: '2rem',
+                    height: 'fit-content',
+                    display: 'flex',
+                    alignSelf: 'flex-end',
+                    borderRadius: 10,
+                }}
+            >
+                <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
+                    Create Account
+                </Typography>
+                <Grid item margin={3}>
+                    {errors.registrationMessage && (
+                        <Typography variant="h6" className="alert" role="alert">
+                            {errors.registrationMessage}
+                        </Typography>
+                    )}
+                </Grid>
+                <Grid container spacing={2} justifyContent="center">
+                    <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+                        <TextField
+                            fullWidth
+                            required
+                            variant="outlined"
+                            label="Username"
+                            value={username}
+                            onChange={(event) =>
+                                setUsername(event.target.value)
+                            }
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+                        <TextField
+                            fullWidth
+                            required
+                            variant="outlined"
+                            label="Password"
+                            value={password}
+                            onChange={(event) =>
+                                setPassword(event.target.value)
+                            }
+                        />
+                    </Grid>
+                    <Grid
+                        container
+                        justifyContent="center"
+                        spacing={2}
+                        margin={1}
+                    >
+                        <Grid item>
+                            <Button
+                                sx={{
+                                    width: 'fit-content',
+                                    backgroundColor: 'var(--true-orange)',
+                                }}
+                                size="large"
+                                variant="contained"
+                                value="Provider"
+                                onClick={registerProvider}
+                            >
+                                Individual
+                            </Button>
+                        </Grid>
+                        <Grid item>
+                            <Button
+                                sx={{
+                                    width: 'fit-content',
+                                    backgroundColor: 'var(--cyan)',
+                                }}
+                                size="large"
+                                variant="contained"
+                                value="Provider"
+                                onClick={registerGroup}
+                            >
+                                Group
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </FormControl>
+        </Box>
     );
 }
