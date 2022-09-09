@@ -49,12 +49,12 @@ const handleClick=(id)=>{
                 <CardContent>
                   <CardMedia
                     component="img"
-                    image={group.image}
+                    image={group.picture}
                     alt={group.name}
                   />
-                  <Typography gutterBottom variant="h5" component="h3">
+                  {/* <Typography gutterBottom variant="h5" component="h3">
                     {group.bio}
-                  </Typography>
+                  </Typography> */}
                 </CardContent>
               </CardActionArea>
             </div>

@@ -56,9 +56,9 @@ const handleClick=(id)=>{
                     image={provider.picture}
                     alt={provider.name}
                   />
-                  <Typography gutterBottom variant="h5" component="h3">
+                  {/* <Typography gutterBottom variant="h5" component="h3">
                     {provider.bio}
-                  </Typography>
+                  </Typography> */}
                 </CardContent>
               </CardActionArea>
             </div>

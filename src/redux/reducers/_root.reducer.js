@@ -7,6 +7,7 @@ import details from './details.reducer';
 import specializations from './specializations.reducer';
 import insurances from './insurances.reducer';
 import occupations from './occupations.reducer';
+import profile from './profile.reducer'
 import providerSpecializations from './providerSpecializations.reducer';
 import providerInsurances from './providerInsurances.reducer';
 import providerOccupations from './providerOccupations.reducer';
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   specializations,
   insurances,
   occupations,
+  profile,
   providerSpecializations,
   providerInsurances,
   providerOccupations,
