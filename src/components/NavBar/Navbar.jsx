@@ -204,7 +204,7 @@ export default function Navbar() {
                                             textDecoration: 'none',
                                             color: 'inherit',
                                         }}
-                                        to="/admin"
+                                        to="/providers"
                                     >
                                         Profile
                                     </Link>
@@ -236,7 +236,7 @@ export default function Navbar() {
                                     </Link>
                                 </MenuItem>
                             )}
-                           
+
                             {/* If user IS logged in... */}
                             {user.id && (
                                 <MenuItem>

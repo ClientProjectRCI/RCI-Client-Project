@@ -110,7 +110,7 @@ export default function App() {
                     <ProtectedRoute
                         // logged in shows ProviderProfile else shows ProviderProfile
                         exact
-                        path="/admin"
+                        path="/providers"
                     >
                         <AdminAnalytics />
                     </ProtectedRoute>
@@ -129,7 +129,7 @@ export default function App() {
                     // If the user is already logged in, // redirect to the
                     <Route exact path="/login">
                         {user.id && user.access_level === 1 ? (
-                            <Redirect to="/admin" />
+                            <Redirect to="/providers" />
                         ) : user.id && user.access_level === 2 ? (
                             <Redirect to="/provider" />
                         ) : user.id && user.access_level === 3 ? (
