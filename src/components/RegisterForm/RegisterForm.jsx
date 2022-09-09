@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector, Provider } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
-    Box,
     Button,
-    Tooltip,
     FormControl,
     Grid,
     TextField,
     Typography,
-    FormLabel,
 } from '@mui/material';
-import { width } from '@mui/system';
 
 export default function RegisterForm() {
     const [username, setUsername] = useState('');
