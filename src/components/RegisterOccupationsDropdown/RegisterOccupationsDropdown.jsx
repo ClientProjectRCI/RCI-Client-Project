@@ -82,8 +82,8 @@ function RegisterOccupationsDropdown() {
         >
           {occupations.map((occupation) => (
             <MenuItem
-              key={occupation.occupation}
-              value={occupation.occupation}
+              key={occupation.id}
+              value={occupation.id}
               onChange={handleSelectedOccupationsSubmit}
               style={getStyles(occupations, providerOccupation, theme)}
             >

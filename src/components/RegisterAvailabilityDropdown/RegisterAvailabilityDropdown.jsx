@@ -90,8 +90,8 @@ function RegisterAvailabilityDropdown() {
         >
           {availabilities.map((availability) => (
             <MenuItem
-              key={availability.availability}
-              value={availability.availability}
+              key={availability.id}
+              value={availability.id}
               style={getStyles(availabilities, providerAvailability, theme)}
             >
               {availability.availability}

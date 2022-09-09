@@ -90,8 +90,8 @@ function RegisterSpecializationsDropdown() {
         >
           {specializations.map((specialization) => (
             <MenuItem
-              key={specialization.specialization}
-              value={specialization.specialization}
+              key={specialization.id}
+              value={specialization.id}
               style={getStyles(specializations, providerSpecialization, theme)}
             >
               {specialization.specialization}

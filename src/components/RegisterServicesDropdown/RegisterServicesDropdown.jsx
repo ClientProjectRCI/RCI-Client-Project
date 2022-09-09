@@ -82,8 +82,8 @@ function RegisterServicesDropdown() {
         >
           {services.map((service) => (
             <MenuItem
-              key={service.service}
-              value={service.service}
+              key={service.id}
+              value={service.id}
               onChange={handleSelectedServicesSubmit}
               style={getStyles(services, providerService, theme)}
             >

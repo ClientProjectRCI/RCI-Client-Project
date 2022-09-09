@@ -82,8 +82,8 @@ function RegisterInsurancesDropdown() {
         >
           {insurances.map((insurance) => (
             <MenuItem
-              key={insurance.insurance}
-              value={insurance.insurance}
+              key={insurance.id}
+              value={insurance.id}
               style={getStyles(insurances, providerInsurance, theme)}
             >
               {insurance.insurance}
