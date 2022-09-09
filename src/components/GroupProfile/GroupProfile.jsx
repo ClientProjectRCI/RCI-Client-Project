@@ -66,27 +66,30 @@ export default function GroupProfile() {
                         <div className="column">
                             <h3>You Are Editing Your Profile Info</h3>
                             <TextField
-                                label={"Edit Provider Name"}
-                            ></TextField>
-                            <TextField
-                                label={"Edit Occupation"}
+                                label={"Edit Name"}
                             ></TextField>
                             <TextField
                                 label={"Edit Bio"}
                             ></TextField>
                             <TextField
-                                label={"Edit Insurance"}
+                                label={"Edit Website"}
+                            ></TextField>
+                            <TextField
+                                label={"Edit Phone Number"}
                             ></TextField>
                         </div>
                         <div className="column">
                             <TextField
-                                label={"Edit Phone number"}
+                                label={"Edit Street"}
                             ></TextField>
                             <TextField
-                                label={"Edit Services"}
+                                label={"Edit City"}
                             ></TextField>
                             <TextField
-                                label={"Edit Specialties"}
+                                label={"Edit State"}
+                            ></TextField>
+                            <TextField
+                                label={"Edit Zipcode"}
                             ></TextField>
 
                         </div>
