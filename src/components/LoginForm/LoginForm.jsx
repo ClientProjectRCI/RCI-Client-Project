@@ -20,6 +20,7 @@ export default function LoginForm() {
                     password: password,
                 },
             });
+            dispatch({ type: 'FETCH_PROVIDER_PROFILE', payload: user.id });
         } else {
             dispatch({ type: 'LOGIN_INPUT_ERROR' });
         }

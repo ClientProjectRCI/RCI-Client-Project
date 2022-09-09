@@ -18,7 +18,9 @@ export default function ProviderProfile() {
 
     const user = useSelector(store => store.user); // pulls user info for conditional rendering, and GETTING provider info
     const details = useSelector((store) => store.details); // Pulls a single Provider info from the "Details" store
+    const profile = useSelector((store) => store.profile); // Pulls a single Provider info from the "Details" store
     
+
     const [edit, setEdit] = useState(false); // edit buttons local state. Starts as false.
     const [name, setName] = useState('');
     const [bio, setBio] = useState('');
@@ -51,7 +53,8 @@ export default function ProviderProfile() {
 
     function handleSubmit(event) { // PUT/UPDATE Dispatch
         event.preventDefault();
-        console.log('usernameLocal', name);
+        // console.log('usernameLocal', name);
+        console.log('profile:', profile);
 
         dispatch({
             type: 'PUT_NAME',
@@ -73,15 +76,17 @@ export default function ProviderProfile() {
     useEffect(() => {
         // dispatch({ type: 'FETCH_PROFILE', payload: user.id })
         dispatch({ type: 'FETCH_PROVIDER_PROFILE', payload: user.id })
+        dispatch({ type: 'FETCH_PROFILE_INSURANCES', payload: profile.id })
+        console.log('profile.id', profile.id);
+        console.log('user.id', user.id);
         // dispatch({ type: 'FETCH_PROVIDER_DETAILS', payload: details.id })
-        // dispatch({ type: 'FETCH_PROVIDER_INSURANCES', payload: details.id })
         // dispatch({ type: 'FETCH_PROVIDER_SERVICES', payload: details.id })
         // dispatch({ type: 'FETCH_PROVIDER_SPECIALIZATIONS', payload: details.id })
         // dispatch({ type: 'FETCH_PROVIDER_OCCUPATIONS', payload: details.id })
 
     }, []);
 
-
+    console.log('profile.id', profile.id);
     return (
         <div className="row">
 
@@ -90,7 +95,7 @@ export default function ProviderProfile() {
             <div className="column">
                 <img
                     style={{ borderRadius: 20 }}
-                    src={details.picture}
+                    src={profile.picture}
                 />
 
                 <div> {/* this div controller the "EDIT" buttons conditional rendering*/}
@@ -116,27 +121,27 @@ export default function ProviderProfile() {
 
                                 {/* NAME INPUT  */}
                                 <Typography fontWeight='bold'
-                                >{details.name}</Typography>
+                                >{profile.name}</Typography>
                                  <br></br>
                                 <TextField label={"Edit Name"}
-                                    placeholder={details.name}
+                                    placeholder={profile.name}
                                     value={name}
                                     onChange={(event) => setName(event.target.value)} />
                                 <br></br>
 
                                 {/* Bio INPUT  */}
                                 <Typography fontWeight='bold' 
-                                >{details.bio}</Typography>
+                                >{profile.bio}</Typography>
                                  <br></br>
                                 <TextField label={"Edit Bio"}
-                                    placeholder={details.bio}
+                                    placeholder={profile.bio}
                                     value={bio}
                                     onChange={(event) => setBio(event.target.value)} />
                                 <br></br>
 
                                 {/* Phone INPUT  */}
                                 <Typography fontWeight='bold' 
-                                >{details.phone}</Typography>
+                                >{profile.phone}</Typography>
                                  <br></br>
                                 <TextField label={"Edit Phone Number"}
                                     placeholder={details.phone}
@@ -151,7 +156,7 @@ export default function ProviderProfile() {
                                 >Insurance</Typography>
                                 <ProviderInsurances />
                                 <TextField label={"Edit Insurance"}
-                                    placeholder={details.name}
+                                    placeholder={profile.name}
                                     value={insurance}
                                     onChange={(event) => setInsurance(event.target.value)} />
                                 <br></br>
@@ -163,7 +168,7 @@ export default function ProviderProfile() {
                                 <ProviderOccupations />
                                 <br></br>
                                 <TextField label={"Edit Occupation"}
-                                    placeholder={details.name}
+                                    placeholder={profile.name}
                                     value={occupation}
                                     onChange={(event) => setOccupation(event.target.value)} />
                             <br></br>
@@ -174,7 +179,7 @@ export default function ProviderProfile() {
                             >Services</Typography>
                              <br></br>
                             <TextField label={"Edit Services"}
-                                placeholder={details.name}
+                                placeholder={profile.name}
                                 value={services}
                                 onChange={(event) => setServices(event.target.value)} />
                             <br></br>
@@ -185,7 +190,7 @@ export default function ProviderProfile() {
                             >Specialities</Typography>
                              <br></br>
                             <TextField label={"Edit Specialities"}
-                                placeholder={details.name}
+                                placeholder={profile.name}
                                 value={specialities}
                                 onChange={(event) => setSpecialities(event.target.value)} />
                             <br></br>
@@ -200,8 +205,8 @@ export default function ProviderProfile() {
 
                         {/* COLUMN 1 */}
                         <div className="column">
-                            <div className="info">{details.name}</div>
-                            <div className="info">{details.bio}</div>
+                            <div className="info">{profile.name}</div>
+                            <div className="info">{profile.bio}</div>
                             <div className="info">
                                 <h4>Insurance</h4>
                                 <ProviderInsurances />
@@ -216,9 +221,9 @@ export default function ProviderProfile() {
                         <div className="column">
                             <ul className="info">
                                 <h4>Contact Info:</h4>
-                                <li>Availability: {details.availability}</li>
-                                <li>Phone: {details.phone}</li>
-                                <li>Email: {details.email}</li>
+                                <li>Availability: {profile.availability}</li>
+                                <li>Phone: {profile.phone}</li>
+                                <li>Email: {profile.email}</li>
                                 <h4>Services: </h4>
                                 <ProviderServices />
                             </ul>

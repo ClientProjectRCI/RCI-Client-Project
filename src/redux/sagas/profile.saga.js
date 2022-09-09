@@ -23,10 +23,25 @@ function* fetchProviderProfile(action) {
   try {
     const detailsResponse = yield axios.get(`/api/providerProfile/${action.payload}`);
     console.log(
-      'Prpfile Saga Response.data',
+      'Profile Saga Response.data',
       detailsResponse.data
     );
-    yield put({ type: 'SEND_DETAILS', payload: detailsResponse.data[0] });
+    yield put({ type: 'SEND_PROFILE', payload: detailsResponse.data[0] });
+  } catch (error) {
+    console.log('error in fetchProviderDetails', error);
+  }
+}
+
+// GET profileInsurances
+function* fetchProfileInsurances(action) {
+  console.log('action', action);
+  try {
+    const detailsResponse = yield axios.get(`/api/profileInsurances/${action.payload}`);
+    console.log(
+      'profileInsurances Saga Response.data',
+      detailsResponse.data
+    );
+    yield put({ type: 'SET_PROVIDER_INSURANCES', payload: detailsResponse.data[0] });
   } catch (error) {
     console.log('error in fetchProviderDetails', error);
   }
@@ -37,6 +52,9 @@ function* providerProfileSaga() {
   
  
   yield takeEvery('FETCH_PROVIDER_PROFILE', fetchProviderProfile);
+  yield takeEvery('FETCH_PROFILE_INSURANCES', fetchProfileInsurances);
+  // yield takeEvery('FETCH_PROFILE_INSURANCES', fetchProfileInsurances);
+  // yield takeEvery('FETCH_PROFILE_INSURANCES', fetchProfileInsurances);
 
 }
 

@@ -9,9 +9,9 @@ const router = express.Router();
 router.get('/:id', (req, res) => {
   const userId = req.params.id;
   console.log('here is the userId in the providerProfile router', userId);
-  const queryText = `--GET ONE PROVIDER BY USER.ID, example: 3
+  const queryText = `
   SELECT * FROM "provider" 
-  JOIN "user" ON "provider"."user_id" = "user"."id" WHERE "user"."id" = $1;`;
+  JOIN "user" ON "provider"."user_id" = "user"."id" WHERE "user_id" = $1;`;
   pool
     .query(queryText, [userId])
     .then((result) => {
