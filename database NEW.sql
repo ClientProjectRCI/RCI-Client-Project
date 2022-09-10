@@ -483,17 +483,17 @@ UPDATE "group" SET "state" = 'updated db phone' WHERE "group"."user_id" = 2;
 UPDATE "group" SET "zipcode" = 'updated db zipcode' WHERE "group"."user_id" = 2;
 
 -----! DELETE/DROP TABLES !-----
-DROP TABLE "provider_specializations";
-DROP TABLE "provider_insurance_plan";
-DROP TABLE "provider_service_type";
-DROP TABLE "provider_occupation";
-DROP TABLE "specializations";
-DROP TABLE "insurance_plan";
-DROP TABLE "service_type";
-DROP TABLE "occupations";
-DROP TABLE "provider";
-DROP TABLE "group";
-DROP TABLE "user"; 
+DROP TABLE "provider_specializations",
+DROP TABLE "provider_insurance_plan",
+DROP TABLE "provider_service_type",
+DROP TABLE "provider_occupation",
+DROP TABLE "specializations",
+DROP TABLE "insurance_plan",
+DROP TABLE "service_type",
+DROP TABLE "occupations",
+DROP TABLE "provider",
+DROP TABLE "group",
+DROP TABLE "user";
 -----! DELETE/DROP TABLES !-----
 
 
