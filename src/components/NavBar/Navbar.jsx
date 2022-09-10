@@ -48,32 +48,22 @@ export default function Navbar() {
         >
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="a"
-                        href="/"
+                    <Box
                         sx={{
-                            mr: 2,
+                            flexGrow: 20,
                             display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
                         }}
                     >
-                        <Link to="/home">
+                        <Link to="/">
                             <img
                                 src={rcilogo}
                                 style={{
-                                    width: 340,
-                                    height: 120,
+                                    width: 300,
+                                    height: 100,
                                 }}
                             />
                         </Link>
-                    </Typography>
-
+                    </Box>
                     <Box
                         sx={{
                             flexGrow: 1,
@@ -88,7 +78,7 @@ export default function Navbar() {
                             onClick={handleOpenNavMenu}
                             color="inherit"
                         >
-                            <MenuIcon />
+                            <MenuIcon fontSize="large" />
                         </IconButton>
                         <Menu
                             id="menu-appbar"
@@ -125,6 +115,24 @@ export default function Navbar() {
                             ))}
                         </Menu>
                     </Box>
+                    {/* APPEARS when width is medium */}
+                    <Box
+                        sx={{
+                            flexGrow: 1,
+                            display: { xs: 'flex', md: 'none' },
+                        }}
+                    >
+                        <Link to="/">
+                            <img
+                                src={rcilogo}
+                                style={{
+                                    width: 300,
+                                    height: 100,
+                                }}
+                            />
+                        </Link>
+                    </Box>
+
                     <Box
                         sx={{
                             flexGrow: 1,
