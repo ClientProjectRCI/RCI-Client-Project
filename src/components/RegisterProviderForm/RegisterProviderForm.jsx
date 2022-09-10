@@ -44,6 +44,11 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
 import Grid from '@material-ui/core/Grid';
+import RegisterInsurancesDropdown from '../RegisterInsurancesDropdown/RegisterInsurancesDropdown';
+import RegisterOccupationsDropdown from '../RegisterOccupationsDropdown/RegisterOccupationsDropdown';
+import RegisterSpecializationsDropdown from '../RegisterSpecializationsDropdown/RegisterSpecializationsDropdown';
+import RegisterAvailabilityDropdown from '../RegisterAvailabilityDropdown/RegisterAvailabilityDropdown';
+import RegisterServicesDropdown from '../RegisterServicesDropdown/RegisterServicesDropdown';
 
 
 export default function RegisterProviderForm() {
@@ -51,23 +56,13 @@ export default function RegisterProviderForm() {
     const user = useSelector((store) => store.user);
     const history = useHistory();
     const dispatch = useDispatch();
-    // const [providerPicture, setProviderPicture] = useState('');
+    const [providerPicture, setProviderPicture] = useState('');
     const [providerName, setProviderName] = useState('');
     const [providerBio, setProviderBio] = useState('');
     const [providerPhone, setProviderPhone] = useState('');
     const [providerEmail, setProviderEmail] = useState('');
     // const [providerWebsite, setProviderWebsite]= useState('');
-    const [providerInsurance, setProviderInsurance] = useState([]);
-    const [providerOccupation, setProviderOccupation] = useState([]);
-    const [providerSpecialization, setProviderSpecialization] = useState([]);
-    const [providerService, setProviderService] = useState([]);
-    const [providerAvailability, setProviderAvailability] = useState([]);
 
-    const specializations = useSelector((store) => store.specializations);
-    const insurances = useSelector((store) => store.insurances);
-    const occupations = useSelector((store) => store.occupations);
-    const services = useSelector((store) => store.services);
-    const availabilities = useSelector((store) => store.availability);
 
     useEffect(() => {
       dispatch({ type: 'FETCH_PROVIDERS' });
@@ -101,42 +96,23 @@ export default function RegisterProviderForm() {
             type: 'ADD_PROVIDER_EMAIL',
             payload: providerEmail,
         });
-        dispatch({
-            type: 'ADD_PROVIDER_INSURANCE',
-            payload: providerInsurance,
-        });
-        dispatch({
-            type: 'ADD_PROVIDER_OCCUPATION',
-            payload: providerOccupation,
-        });
-        dispatch({
-            type: 'ADD_PROVIDER_SPECIALIZATION',
-            payload: providerSpecialization,
-        });
-        dispatch({
-            type: 'ADD_PROVIDER_SERVICE',
-            payload: providerService,
-        });
-        dispatch({
-            type: 'ADD_PROVIDER_AVAILABILITY',
-            payload: providerAvailability,
-        });
 
         history.push('/register-provider-verify');
     };
 
     return (
         <center>
-            <form className="container">
+                <form className="container" encType="multipart/form-data">
                 <h2>Welcome, {user.username}!</h2>
                 <p>ProviderProfile: {user.id}</p>
-                {/* <input
-                    required
-                    type="text"
-                    placeholder="Name"
-                    value={providerName}
-                    onChange={(event) => setProviderName(event.target.value)}
+                <p>ProviderProfile: Your ID is: {user.id}</p>
+                
+                {/* <input type='file' 
+                className='input' 
+                name='image' 
+                onChange={addFile}
                 ></input> */}
+                
                 <Box
                     component="form"
                     sx={{
@@ -152,13 +128,7 @@ export default function RegisterProviderForm() {
                     onChange={(event) => setProviderName(event.target.value)}
                     />
                 </Box>
-                {/* <input
-                    required
-                    type="text"
-                    placeholder="Bio"
-                    value={providerBio}
-                    onChange={(event) => setProviderBio(event.target.value)}
-                ></input> */}
+              
                 <Box
                     component="form"
                     sx={{
@@ -177,216 +147,17 @@ export default function RegisterProviderForm() {
 
                     />
                 </Box>
-                {/* <input
-                    required
-                    type="text"
-                    placeholder="Insurance"
-                    value={providerInsurance}
-                    onChange={(event) =>
-                        setProviderInsurance(event.target.value)
-                    }
-                ></input> */}
-                <Box>
-                  <Stack spacing={3} sx={{ width: '50ch' }}></Stack>
-                  <Autocomplete
-                    sx={{
-                        '& > :not(style)': { m: 1, width: '50ch' },
-                    }}
-                    multiple
-                    required
-                    id="tags-outlined"
-                    options={insurances}
-                    getOptionLabel={(insurances) => insurances.insurance}
-                    filterSelectedOptions
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        label="Select Insurances"
-                        value={insurances}
-                        onChange={(event) =>
-                          setProviderInsurance(event.target.value)
-                        }
-                        placeholder="Insurances"
-                      />
-                    )}
-                  />
-                  {/* <ButtonGroup
-                    variant="contained"
-                    size="large"
-                    aria-label="outlined primary button group"
-                  >
-                    <Button type="submit">add insurance</Button>
-                  </ButtonGroup> */}
-                </Box>
-                <Box>
-                  <Stack spacing={3} sx={{ width: 500 }}></Stack>
-                  <Autocomplete
-                    sx={{
-                        '& > :not(style)': { m: 1, width: '50ch' },
-                    }}
-                    multiple
-                    required
-                    id="tags-outlined"
-                    options={occupations}
-                    getOptionLabel={(occupations) => occupations.occupation}
-                    filterSelectedOptions
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        label="Select Occupations"
-                        value={occupations}
-                        onChange={(event) =>
-                          setProviderOccupation(event.target.value)
-                        }
-                        placeholder="Occupations"
-                      />
-                    )}
-                  />
-                  {/* <ButtonGroup
-                    variant="contained"
-                    size="large"
-                    aria-label="outlined primary button group"
-                  >
-                    <Button type="submit">add occupations</Button>
-                  </ButtonGroup> */}
-                </Box>
-                {/* <input
-                    required
-                    type="text"
-                    placeholder="Occupation"
-                    value={providerOccupation}
-                    onChange={(event) =>
-                        setProviderOccupation(event.target.value)
-                    }
-                ></input> */}
-                {/* <input
-                    required
-                    type="text"
-                    placeholder="Specialization(s)"
-                    value={providerSpecialization}
-                    onChange={(event) =>
-                        setProviderSpecialization(event.target.value)
-                    }
-                ></input> */}
-                <Box>
-                  <Stack spacing={3} sx={{ width: 500 }}></Stack>
-                  <Autocomplete
-                    sx={{
-                        '& > :not(style)': { m: 1, width: '50ch' },
-                    }}
-                    multiple
-                    required
-                    id="tags-outlined"
-                    options={specializations}
-                    getOptionLabel={(specializations) =>
-                      specializations.specialization
-                    }
-                    filterSelectedOptions
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        label="Select Specializations"
-                        value={specializations}
-                        onChange={(event) =>
-                          setProviderSpecialization(event.target.value)
-                        }
-                        placeholder="Specializations"
-                      />
-                    )}
-                  />
-                  {/* <ButtonGroup
-                    variant="contained"
-                    size="large"
-                    aria-label="outlined primary button group"
-                  >
-                    <Button type="submit">add specializations</Button>
-                  </ButtonGroup> */}
-                </Box>
-                {/* <input
-                    required
-                    type="text"
-                    placeholder="Service"
-                    value={providerService}
-                    onChange={(event) => setProviderService(event.target.value)}
-                ></input> */}
-                <Box>
-                  <Stack spacing={3} sx={{ width: 500 }}></Stack>
-                  <Autocomplete
-                    sx={{
-                        '& > :not(style)': { m: 1, width: '50ch' },
-                    }}
-                    multiple
-                    required
-                    id="tags-outlined"
-                    options={services}
-                    getOptionLabel={(services) =>
-                      services.service
-                    }
-                    filterSelectedOptions
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        label="Select Services Offered"
-                        value={services}
-                        onChange={(event) =>
-                          setProviderService(event.target.value)
-                        }
-                        placeholder="Services"
-                      />
-                    )}
-                  />
-                  {/* <ButtonGroup
-                    variant="contained"
-                    size="large"
-                    aria-label="outlined primary button group"
-                  >
-                    <Button type="submit">add specializations</Button>
-                  </ButtonGroup>  */}
-                </Box>
-                
-                {/* <input
-                    required
-                    type="text"
-                    placeholder="Availability"
-                    value={providerAvailability}
-                    onChange={(event) =>
-                        setProviderAvailability(event.target.value)
-                    }
-                ></input> */}
-                <Box>
-                  <Stack spacing={3} sx={{ width: 500 }}></Stack>
-                  <Autocomplete
-                    sx={{
-                        '& > :not(style)': { m: 1, width: '50ch' },
-                    }}
-                    multiple
-                    required
-                    id="tags-outlined"
-                    options={availabilities}
-                    getOptionLabel={(availabilities) =>
-                      availabilities.availability
-                    }
-                    filterSelectedOptions
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        label="Select Availability"
-                        value={availabilities}
-                        onChange={(event) =>
-                          setProviderAvailability(event.target.value)
-                        }
-                        placeholder="Availability"
-                      />
-                    )}
-                  />
-                </Box>
-                {/* <input
-                    required
-                    type="text"
-                    placeholder="Email"
-                    value={providerEmail}
-                    onChange={(event) => setProviderEmail(event.target.value)}
-                ></input> */}
+
+                <RegisterSpecializationsDropdown />
+              
+                <RegisterOccupationsDropdown />
+
+                <RegisterServicesDropdown />
+              
+                <RegisterInsurancesDropdown />
+
+                <RegisterAvailabilityDropdown />
+              
                 <Box
                     component="form"
                     sx={{
@@ -403,18 +174,7 @@ export default function RegisterProviderForm() {
 
                     />
                     </Box>
-                {/* <input required type="text" 
-                placeholder="Website" 
-                value={providerWebsite}
-                onChange={(event) => setProviderWebsite(event.target.value)}
-                ></input> */}
-                {/* <input
-                    required
-                    type="text"
-                    placeholder="Phone Number"
-                    value={providerPhone}
-                    onChange={(event) => setProviderPhone(event.target.value)}
-                ></input><br /> */}
+                
                 <Box
                     component="form"
                     sx={{

@@ -1,8 +1,32 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware'); 
 
+// POST route for occupation provider registration
+router.post('/', rejectUnauthenticated, (req, res) => {
+  const newProvider = req.body;
 
+  console.log("occupation content is:", req.body);
+  
+  let queryText = `INSERT INTO "provider_occupation" (
+  "provider_id", "occupation_id"
+  )
+  VALUES ($1, $2)`;
+  pool.query(queryText, 
+      [newProvider.user_id,
+      newProvider.occupation_id
+      ])
+.then(result => {
+  res.sendStatus(201);
+  })
+.catch(error => {
+  console.log(`Error adding req.body`, error);
+  res.sendStatus(500);
+  });
+});
 
 //get route for availability
 router.get('/', (req, res) => {
