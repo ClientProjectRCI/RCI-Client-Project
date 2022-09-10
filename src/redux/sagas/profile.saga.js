@@ -34,14 +34,14 @@ function* fetchProviderProfile(action) {
 
 // GET profileInsurances
 function* fetchProfileInsurances(action) {
-  console.log('action', action);
+  console.log(`What is action in Profile Insurances:`, action.payload);
   try {
     const detailsResponse = yield axios.get(`/api/profileInsurances/${action.payload}`);
     console.log(
       'profileInsurances Saga Response.data',
       detailsResponse.data
     );
-    yield put({ type: 'SET_PROVIDER_INSURANCES', payload: detailsResponse.data[0] });
+    yield put({ type: 'SET_PROFILE_INSURANCES', payload: detailsResponse.data });
   } catch (error) {
     console.log('error in fetchProviderDetails', error);
   }

@@ -5,14 +5,19 @@ import { useHistory } from 'react-router-dom';
 //small component that will display the insurances related to the specific provider
 
 function ProviderInsurances() {
-  const insurances = useSelector((store) => store.providerInsurances);
+  const providerInsurances = useSelector((store) => store.providerInsurances);
+
+  // console.log(`What is insurances`,insurances);
+  console.log(`What is insurances.insurance`,providerInsurances.insurance);
+  // console.log(`What is insurance.insurance`, insurance.insurance);
 
 
   return (
     <div>
-      {insurances.map((insurance, id) => {
-        return <div key={id}> {insurance.insurance}</div>;
+      {providerInsurances.map((insurance, id) => {
+        return <p key={id}>{insurance.insurance}</p>;
       })}
+      {/* <p>{providerInsurances.insurance}</p> */}
     </div>
   );
 }

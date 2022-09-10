@@ -30,6 +30,7 @@ router.get('/:id', (req, res) => {
   pool
     .query(query, [userId])
     .then((result) => {
+      console.log(`What is result.rows`, result.rows)
       res.send(result.rows);
     })
     .catch((err) => {

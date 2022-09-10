@@ -7,7 +7,8 @@ import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { Box, Card, Button, Grid, Paper, TextField, Typography, Tooltip, Input } from '@mui/material';
 import ProviderSpecializations from '../ProviderSpecializations/ProviderSpecializations';
-import ProviderInsurances from '../ProviderInsurances/ProviderInsurances';
+// import ProviderInsurances from '../ProviderInsurances/ProviderInsurances';
+import ProfileInsurances from '../ProfileInsurances/ProfileInsurances';
 import ProviderOccupations from '../ProviderOccupations/ProviderOccupations';
 import ProviderServices from '../ProviderServices/ProviderServices';
 import EditIcon from '@mui/icons-material/Edit';
@@ -76,17 +77,28 @@ export default function ProviderProfile() {
     useEffect(() => {
         // dispatch({ type: 'FETCH_PROFILE', payload: user.id })
         dispatch({ type: 'FETCH_PROVIDER_PROFILE', payload: user.id })
-        dispatch({ type: 'FETCH_PROFILE_INSURANCES', payload: profile.id })
-        console.log('profile.id', profile.id);
-        console.log('user.id', user.id);
+        // console.log('user.id', user.id);
         // dispatch({ type: 'FETCH_PROVIDER_DETAILS', payload: details.id })
         // dispatch({ type: 'FETCH_PROVIDER_SERVICES', payload: details.id })
         // dispatch({ type: 'FETCH_PROVIDER_SPECIALIZATIONS', payload: details.id })
         // dispatch({ type: 'FETCH_PROVIDER_OCCUPATIONS', payload: details.id })
-
+        
+    }, []);
+    
+    useEffect(() => {
+        // dispatch({ type: 'FETCH_PROFILE', payload: user.id })
+        dispatch({ type: 'FETCH_PROFILE_INSURANCES', payload: user.id })
+        // console.log('user.id', user.id);
+        // dispatch({ type: 'FETCH_PROVIDER_DETAILS', payload: details.id })
+        // dispatch({ type: 'FETCH_PROVIDER_SERVICES', payload: details.id })
+        // dispatch({ type: 'FETCH_PROVIDER_SPECIALIZATIONS', payload: details.id })
+        // dispatch({ type: 'FETCH_PROVIDER_OCCUPATIONS', payload: details.id })
     }, []);
 
-    console.log('profile.id', profile.id);
+    
+
+    console.log(`What is profile.user_id`, user.id);
+
     return (
         <div className="row">
 
@@ -154,7 +166,7 @@ export default function ProviderProfile() {
                                 <Typography
                                 fontWeight='bold' 
                                 >Insurance</Typography>
-                                <ProviderInsurances />
+                                {/* <ProviderInsurances /> */}
                                 <TextField label={"Edit Insurance"}
                                     placeholder={profile.name}
                                     value={insurance}
@@ -209,7 +221,8 @@ export default function ProviderProfile() {
                             <div className="info">{profile.bio}</div>
                             <div className="info">
                                 <h4>Insurance</h4>
-                                <ProviderInsurances />
+                                {/* <ProviderInsurances /> */}
+                                <ProfileInsurances />
                             </div>
                             <div className="info">
                                 <h4>Occupation</h4>
