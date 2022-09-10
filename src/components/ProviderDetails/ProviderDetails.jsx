@@ -13,132 +13,136 @@ import ProviderSpecializations from '../ProviderSpecializations/ProviderSpeciali
 import ProviderInsurances from '../ProviderInsurances/ProviderInsurances';
 import ProviderOccupations from '../ProviderOccupations/ProviderOccupations';
 import ProviderServices from '../ProviderServices/ProviderServices';
-import emailjs from '@emailjs/browser'
+import emailjs from '@emailjs/browser';
 import DeleteProviderBtn from '../DeleteBtn/DeleteProviderBtn';
 
 const useStyles = makeStyles({
-  backColor: {
-    backgroundColor: '#FAEDCD',
-  },
-  detailSize: {
-    backgroundColor: '#FAEDCD',
-    height: '800px',
-    width: '600px',
-  },
+    backColor: {
+        backgroundColor: '#FAEDCD',
+    },
+    detailSize: {
+        backgroundColor: '#FAEDCD',
+        height: '800px',
+        width: '600px',
+    },
 });
 function ProvidersDetail() {
+    const details = useSelector((store) => store.details);
+    const user = useSelector((store) => store.user);
 
-  const details = useSelector((store) => store.details);
-  const user = useSelector((store)=> store.user);
+    console.log('In Details');
+    //details pertaining to the id of the provider that was clicked on.
+    const [open, SetOpen] = React.useState(false);
+    const classes = useStyles();
 
+    const history = useHistory();
+    const handleClick = () => {
+        console.log('Go back to the list.');
+        history.push('/providers');
+    };
+    // upon click btn goes back to the list
 
-  console.log('In Details');
-  //details pertaining to the id of the provider that was clicked on.
-  const [open, SetOpen] = React.useState(false);
-  const classes = useStyles();
+    const handleClickOpen = () => {
+        SetOpen(true);
+    };
+    // upon click btn opens the modal/dialog
+    const handleClose = () => {
+        SetOpen(false);
+    };
+    // upon click btn close the modal/dialog
 
-  const history = useHistory();
-  const handleClick = () => {
-    console.log('Go back to the list.');
-    history.push('/providers');
-  };
-  // upon click btn goes back to the list
+    // send email function starts here
+    const sendEmail = (event) => {
+        event.preventDefault();
+        emailjs
+            .sendForm(
+                'service_rqpcr8o',
+                'template_bq9zh4d',
+                event.target,
+                '8Fnu5-1ca66Q0y958'
+            )
+            .then((res) => {
+                console.log('IT WORKS YAYYYYYYY', res);
+            })
+            .catch((err) =>
+                console.log('EMAIL IS NOT WORKING>>>>>>>>>>>>', err)
+            );
+    };
+    // send email function ends here
 
-  const handleClickOpen = () => {
-    SetOpen(true);
-  };
-  // upon click btn opens the modal/dialog
-  const handleClose = () => {
-    SetOpen(false);
-  }
-  // upon click btn close the modal/dialog
+    return (
+        <div className="row">
+            <div className="column">
+                <img
+                    style={{ borderRadius: 20 }}
+                    src={details.picture}
+                    alt={details.name}
+                />
+                {/* Start of modal/dialog  */}
+                <Button variant="outlined" onClick={handleClickOpen}>
+                    Email Me!
+                </Button>
+                <Dialog
+                    style={{ borderRadius: 20 }}
+                    open={open}
+                    onClose={handleClose}
+                >
+                    <DialogTitle>{details.name}</DialogTitle>
 
-  // send email function starts here
-  const sendEmail = (event) => {
-    event.preventDefault();
-    emailjs.sendForm(
-        'service_rqpcr8o',
-        'template_bq9zh4d',
-        event.target, 
-        '8Fnu5-1ca66Q0y958'
-        ).then(res=> {
-            console.log('IT WORKS YAYYYYYYY', res);
-        })
-        .catch(err => 
-            console.log('EMAIL IS NOT WORKING>>>>>>>>>>>>', err)
-        )
-};
-// send email function ends here
+                    <form onSubmit={sendEmail}>
+                        <label for="gEmail">Send To:</label>
+                        <input
+                            type="text"
+                            id="gEmail"
+                            name="group_email"
+                            value={details.email}
+                        />
+                        <label for="fname">First Name</label>
+                        <input
+                            type="text"
+                            id="fname"
+                            name="firstname"
+                            placeholder="Your name.."
+                        ></input>
+                        <label for="lname">Last Name</label>
+                        <input
+                            type="text"
+                            id="lname"
+                            name="lastname"
+                            placeholder="Your last name.."
+                        ></input>
+                        <label for="email">Email</label>
+                        <input
+                            type="text"
+                            id="email"
+                            name="user_email"
+                            placeholder="Your email address.."
+                        ></input>
+                        <label for="subject">Reason OF Inqury</label>
+                        <input
+                            type="text"
+                            id="subject"
+                            name="subject"
+                            placeholder="Reason of inqury.."
+                        ></input>
+                        <label for="message">Message</label>
+                        <textarea
+                            type="text"
+                            id="message"
+                            name="message"
+                            rows="4"
+                            placeholder="How can we help.."
+                        ></textarea>
+                        <input
+                            type="submit"
+                            value="Send"
+                            className="sendBtn"
+                            onClick={handleClose}
+                        />
+                        <Button onClick={handleClose}>Cancel</Button>
+                    </form>
 
-  return (
-    <div className="row">
-      <div className="column">
-        <img
-          style={{ borderRadius: 20 }}
-          src={details.picture}
-          alt={details.name}
-        />
-        {/* Start of modal/dialog  */}
-        <Button variant="outlined" onClick={handleClickOpen}>
-          Email Me!
-        </Button>
-        <Dialog style={{ borderRadius: 20 }} open={open} onClose={handleClose}>
-          <DialogTitle>{details.name}</DialogTitle>
-
-          <form onSubmit={sendEmail}>
-
-<label for="gEmail">Send To:</label>
-        <input
-            type="text"
-            id="gEmail"
-            name="group_email"
-            value={details.email}
-        />
-  <label for="fname">First Name</label>
-        <input
-            type="text"
-            id="fname"
-            name="firstname"
-            placeholder="Your name.."
-        ></input>
-        <label for="lname">Last Name</label>
-        <input
-            type="text"
-            id="lname"
-            name="lastname"
-            placeholder="Your last name.."
-        ></input>
-        <label for="email">Email</label>
-        <input
-            type="text"
-            id="email"
-            name="user_email"
-            placeholder="Your email address.."
-        ></input>
-        <label for="subject">Reason OF Inqury</label>
-        <input
-            type="text"
-            id="subject"
-            name="subject"
-            placeholder="Reason of inqury.."
-        ></input>
-        <label for="message">Message</label>
-        <textarea
-            type="text"
-            id="message"
-            name="message"
-            rows="4"
-            placeholder="How can we help.."
-        ></textarea>
-        <input 
-        type="submit"
-        value="Send"
-        className='sendBtn'
-        onClick={handleClose}/>
-        <Button onClick={handleClose}>Cancel</Button>
-        </form>
-
-          {/* <DialogContent>
+                    {/* <DialogContent>
             <DialogContentText>
               This email will be sent directly to this provider.....
             </DialogContentText>
@@ -192,57 +196,57 @@ function ProvidersDetail() {
             <Button onClick={handleClose}>Cancel</Button>
             <Button onClick={handleClose}>Send</Button>
           </DialogActions> */}
-        </Dialog>
-        {/* End of modal/dialog  */}
-      </div>
+                </Dialog>
+                {/* End of modal/dialog  */}
+            </div>
 
-      {/* COLUMN 1 */}
-      <div className="column">
-        <div className="info">{details.name}</div>
-        <div className="info">{details.bio}</div>
-        <div className="info">
-          <h4>Insurance</h4>
-          <ProviderInsurances />
+            {/* COLUMN 1 */}
+            <div className="column">
+                <div className="info">{details.name}</div>
+                <div className="info">{details.bio}</div>
+                <div className="info">
+                    <h4>Insurance</h4>
+                    <ProviderInsurances />
+                </div>
+                <div className="info">
+                    <h4>Occupation</h4>
+                    <ProviderOccupations />
+                </div>
+            </div>
+
+            {/* COLUMN 2 */}
+            <div className="column">
+                <ul className="info">
+                    <h4>Contact Info:</h4>
+                    <li>Availability: {details.availability}</li>
+                    <li>Phone: {details.phone}</li>
+                    <li>Email: {details.email}</li>
+                    <h4>Services:</h4>
+                    <ProviderServices />
+                </ul>
+                <ul className="info">
+                    <h4>Specialties:</h4>
+                    <ProviderSpecializations />
+                </ul>
+                <div>
+                    <Button
+                        size="large"
+                        color="primary"
+                        variant="contained"
+                        onClick={handleClick}
+                    >
+                        Return to List
+                    </Button>
+
+                    <div>
+                        {user.id && user.access_level === 1 && (
+                            <DeleteProviderBtn />
+                        )}
+                    </div>
+                </div>
+            </div>
         </div>
-        <div className="info">
-          <h4>Occupation</h4>
-          <ProviderOccupations />
-        </div>
-      </div>
-
-      {/* COLUMN 2 */}
-      <div className="column">
-        <ul className="info">
-          <h4>Contact Info:</h4>
-          <li>Availability: {details.availability}</li>
-          <li>Phone: {details.phone}</li>
-          <li>Email: {details.email}</li>
-          <h4>Services:</h4>
-          <ProviderServices />
-        </ul>
-        <ul className="info">
-          <h4>Specialties:</h4>
-          <ProviderSpecializations />
-        </ul>
-        <div>
-          <Button
-            size="large"
-            color="primary"
-            variant="contained"
-            onClick={handleClick}>
-            Return to List
-          </Button>
-
-          <div>
-      {(user.id && user.access_level ===1) &&
-            <DeleteProviderBtn />
-    }
-      </div>
-
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default ProvidersDetail;

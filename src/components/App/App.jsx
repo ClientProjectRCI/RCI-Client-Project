@@ -56,7 +56,7 @@ export default function App() {
                     <Route
                         // shows providers at all times (logged in or not)
                         exact
-                        path="/providers"
+                        path="/resources"
                     >
                         <ProvidersList />
                     </Route>
@@ -129,7 +129,7 @@ export default function App() {
                     // If the user is already logged in, // redirect to the
                     <Route exact path="/login">
                         {user.id && user.access_level === 1 ? (
-                            <Redirect to="/providers" />
+                            <Redirect to="/resources" />
                         ) : user.id && user.access_level === 2 ? (
                             <Redirect to="/provider" />
                         ) : user.id && user.access_level === 3 ? (

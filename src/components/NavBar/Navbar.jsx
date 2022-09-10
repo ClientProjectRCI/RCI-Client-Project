@@ -17,7 +17,7 @@ import { useSelector } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useHistory } from 'react-router-dom';
 
-const pages = ['Home', 'About', 'Providers'];
+const pages = ['Home', 'About', 'Resources'];
 
 export default function Navbar() {
     const user = useSelector((store) => store.user);
