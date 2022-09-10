@@ -9,6 +9,7 @@ import InputBase from '@mui/material/InputBase';
 import Divider from '@mui/material/Divider';
 import MenuIcon from '@mui/icons-material/Menu';
 import DirectionsIcon from '@mui/icons-material/Directions';
+import Swal from 'sweetalert2';
 
 export default function ProviderSearchBar() {
     const dispatch = useDispatch();
@@ -18,33 +19,35 @@ export default function ProviderSearchBar() {
     const [searchItem, setSearchItem] = useState('');
 
     function handleSearchSubmit(e) {
-        console.log('Searching by Name:', name);
-        dispatch({
-            type: 'SEARCH_PROVIDER_NAME',
-            payload: {
-                className: e.target.className,
-                searchItem: name,
-            },
-        });
-    }
-    function handleRefresh() {
-        console.log('you clicked refresh');
-        dispatch({
-            type: 'FETCH_PROVIDERS',
-        });
+        if (name === '') {
+            Swal.fire(
+                `Looks like you didn't type anything`,
+                `You can search by a provider's name`,
+                'question'
+            );
+        } else {
+            dispatch({
+                type: 'SEARCH_PROVIDER_NAME',
+                payload: {
+                    className: e.target.className,
+                    searchItem: name,
+                },
+            });
+        }
     }
 
     return (
         <Paper
             sx={{
-                p: '0.5rem 0.5rem',
+                p: '0.5rem 0.75rem',
                 display: 'flex',
                 alignItems: 'center',
-                width: 400,
+                width: 'fit-content',
             }}
         >
             <form className="name" onSubmit={handleSearchSubmit}>
                 <TextField
+                    sx={{ pr: 1.5 }}
                     id="search-bar"
                     value={name}
                     onChange={(e) => {
@@ -55,18 +58,26 @@ export default function ProviderSearchBar() {
                     placeholder="Search..."
                     size="small"
                 />
-                <IconButton type="submit" aria-label="search">
-                    <SearchIcon style={{ fill: 'blue' }} />
-                </IconButton>
-                <Divider sx={{ height: 30, m: 1 }} orientation="vertical" />
                 <IconButton
                     type="click"
-                    aria-label="refresh"
-                    onClick={handleRefresh}
+                    onClick={handleSearchSubmit}
+                    aria-label="search"
                 >
-                    <RefreshIcon style={{ fill: 'blue' }} />
+                    <SearchIcon style={{ fill: 'blue', px: '1rem' }} />
                 </IconButton>
             </form>
+            <Divider sx={{ height: 30, m: 1 }} orientation="vertical" />
+            <IconButton
+                type="click"
+                aria-label="refresh"
+                onClick={() =>
+                    dispatch({
+                        type: 'FETCH_PROVIDERS',
+                    })
+                }
+            >
+                <RefreshIcon style={{ fill: 'blue' }} />
+            </IconButton>
         </Paper>
     );
 }
