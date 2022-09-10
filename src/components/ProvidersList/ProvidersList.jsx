@@ -15,7 +15,7 @@ import SpecializationsDropdownMenu from '../SpecializationsDropDownMenu/Speciali
 import OccupationsDropdownMenu from '../OccupationsDropDownMenu/OccupationsDropdownMenu';
 import InsurancesDropdownMenu from '../InsurancesDropDownMenu/InsurancesDropdownMenu';
 
-function ProvidersList() {
+export default function ProvidersList() {
     const dispatch = useDispatch();
     const providersReducer = useSelector((store) => store.providers);
     const providers = providersReducer.providersReducer;
@@ -168,10 +168,6 @@ function ProvidersList() {
                     </section>
                 </TabPanel>
             </Box>
-
-            <body></body>
         </Grid>
     );
 }
-
-export default ProvidersList;
