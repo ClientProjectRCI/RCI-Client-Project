@@ -100,17 +100,19 @@ export default function Navbar() {
                         >
                             {pages.map((page) => (
                                 <MenuItem
+                                    divider
                                     key={page}
                                     onClick={handleCloseNavMenu}
                                 >
-                                    <Typography textAlign="center">
-                                        <Link
-                                            style={{ textDecoration: 'none' }}
-                                            to={`/${page}`}
-                                        >
-                                            {page}
-                                        </Link>
-                                    </Typography>
+                                    <Button
+                                        style={{
+                                            textDecoration: 'none',
+                                            color: 'inherit',
+                                        }}
+                                        onClick={() => history.push(`/${page}`)}
+                                    >
+                                        {page}
+                                    </Button>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -152,6 +154,7 @@ export default function Navbar() {
                                 <Typography textAlign="center">
                                     <Link
                                         style={{
+                                            fontSize: '1.3rem',
                                             textDecoration: 'none',
                                             color: 'white',
                                         }}
@@ -189,6 +192,7 @@ export default function Navbar() {
                         )}
 
                         <Menu
+                            justifyContent="flex-start"
                             sx={{ mt: '3rem', ml: '-2rem' }}
                             id="menu-appbar"
                             anchorEl={anchorElUser}
@@ -207,41 +211,45 @@ export default function Navbar() {
                             {/* If a user is logged in, show these links */}
                             {user.access_level === 1 && (
                                 <MenuItem>
-                                    <Link
+                                    <Button
                                         style={{
                                             textDecoration: 'none',
                                             color: 'inherit',
                                         }}
-                                        to="/providers"
+                                        onClick={() =>
+                                            history.push(`/providers`)
+                                        }
                                     >
                                         Profile
-                                    </Link>
+                                    </Button>
                                 </MenuItem>
                             )}
                             {user.access_level === 2 && (
-                                <MenuItem>
-                                    <Link
+                                <MenuItem divider>
+                                    <Button
                                         style={{
                                             textDecoration: 'none',
                                             color: 'inherit',
                                         }}
-                                        to="/provider"
+                                        onClick={() =>
+                                            history.push(`/provider`)
+                                        }
                                     >
                                         Profile
-                                    </Link>
+                                    </Button>
                                 </MenuItem>
                             )}
                             {user.access_level === 3 && (
                                 <MenuItem>
-                                    <Link
+                                    <Button
                                         style={{
                                             textDecoration: 'none',
                                             color: 'inherit',
                                         }}
-                                        to="/group"
+                                        onClick={() => history.push(`/group`)}
                                     >
                                         Profile
-                                    </Link>
+                                    </Button>
                                 </MenuItem>
                             )}
 
