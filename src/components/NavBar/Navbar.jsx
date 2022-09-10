@@ -1,21 +1,23 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
-import rcilogo from '../.././assets/rcilogo.png';
 import { useSelector } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
 import { useHistory } from 'react-router-dom';
+import MenuIcon from '@mui/icons-material/Menu';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import rcilogo from '../.././assets/rcilogo.png';
+import LogOutButton from '../LogOutButton/LogOutButton';
+import {
+    AppBar,
+    Box,
+    Toolbar,
+    Button,
+    Tooltip,
+    MenuItem,
+    Typography,
+    IconButton,
+    Menu,
+    Container,
+} from '@mui/material';
 
 const pages = ['Home', 'About', 'Providers'];
 
@@ -192,7 +194,6 @@ export default function Navbar() {
                         )}
 
                         <Menu
-                            justifyContent="flex-start"
                             sx={{ mt: '3rem', ml: '-2rem' }}
                             id="menu-appbar"
                             anchorEl={anchorElUser}
