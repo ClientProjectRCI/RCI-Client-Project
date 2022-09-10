@@ -8,7 +8,6 @@ import Typography from '@mui/material/Typography';
 import Grid from '@material-ui/core/Grid';
 import ProvidersListItem from '../ProvidersListItem/ProvidersListItem';
 import GroupsListItem from '../GroupsListItem/GroupsListItem';
-import './ProvidersList.css';
 import ProviderSearchBar from '../ProviderSearchBar/ProviderSearchBar';
 import GroupSearchBar from '../GroupSearchBar/GroupSearchBar';
 import SpecializationsDropdownMenu from '../SpecializationsDropDownMenu/SpecializationsDropdownMenu';
@@ -76,7 +75,7 @@ export default function ProvidersList() {
             justifyContent="center"
             alignItems="center"
         >
-            {/* "tab-panel-container" */}
+            {/* TAB PANEL - PROVIDER AND GROUPS */}
             <Box sx={{ width: '100vw' }}>
                 <Box
                     id="tab-panel-container"
@@ -98,7 +97,8 @@ export default function ProvidersList() {
                         <Tab label="Group" {...a11yProps(1)} />
                     </Tabs>
                 </Box>
-                {/* Tab panel 1-Provider */}
+
+                {/* TAB PANEL - SEARCH AND FILTER */}
                 <TabPanel value={value} index={0}>
                     <Box
                         id="search-filter-bar"
@@ -112,14 +112,14 @@ export default function ProvidersList() {
                             marginBottom: '3rem',
                         }}
                     >
-                        {/* Search text field for the provider */}
+                        {/* COMPONENTS - SEARCH AND FILTER */}
                         <ProviderSearchBar />
                         <SpecializationsDropdownMenu />
                         <InsurancesDropdownMenu />
                         <OccupationsDropdownMenu />
                     </Box>
 
-                    {/* container for providers */}
+                    {/* CONTAINER - PROVIDER MAP */}
                     <Grid container spacing={3} id="provider-map">
                         <Grid item xs={12} sm={8} md={6} lg={6} xl={4}>
                             {providers.map((provider) => (
@@ -131,41 +131,33 @@ export default function ProvidersList() {
                     </Grid>
                 </TabPanel>
 
-                {/* Tab panel 2-Group */}
-
+                {/* TAB PANEL - GROUPS */}
                 <TabPanel value={value} index={1}>
-                    <header>
-                        <span>
-                            <span
-                                style={{
-                                    display: 'flex',
-                                    alignSelf: 'center',
-                                    justifyContent: 'center',
-                                    flexDirection: 'row',
-                                    padding: 0,
-                                    margin: 0,
-                                }}
-                            >
-                                {/* Search text field for the group */}
-                                <GroupSearchBar />
-
-                                <div style={{ padding: 0 }}></div>
-                            </span>
-                        </span>
-                    </header>
-                    <h1>Group</h1>
-                    <section
-                    //  className="providers"
+                    <Box
+                        id="search-filter-bar"
+                        style={{
+                            backgroundColor: 'var(--content)',
+                            height: 'fit-content',
+                            display: 'flex',
+                            alignSelf: 'center',
+                            justifyContent: 'center',
+                            padding: 10,
+                            marginBottom: '3rem',
+                        }}
                     >
-                        {/* group map */}
-                        <Grid container spacing={1}>
+                        {/* COMPONENTS - SEARCH FOR GROUPS */}
+                        <GroupSearchBar />
+                    </Box>
+                    {/* container for groups */}
+                    <Grid container spacing={3} id="group-map">
+                        <Grid item xs={12} sm={8} md={6} lg={6} xl={4}>
                             {groups.map((group) => (
-                                <Grid item key={group.id} xs={2}>
+                                <Grid item key={group.id} xs={4}>
                                     <GroupsListItem group={group} />
                                 </Grid>
                             ))}
                         </Grid>
-                    </section>
+                    </Grid>
                 </TabPanel>
             </Box>
         </Grid>
