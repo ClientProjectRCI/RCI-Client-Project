@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import {
+    Box,
     Button,
     FormControl,
     Grid,
@@ -27,8 +28,8 @@ export default function RegisterForm() {
                 access_level: 3, // hardcode access_level 3 for group
             },
         });
-        // navigate to group  profile
-        // history.push('/register-group');
+        // navigate to group profile
+        history.push('/register-group');
     }; // end registerUser
 
     const registerProvider = (event) => {
@@ -43,7 +44,7 @@ export default function RegisterForm() {
             },
         });
         //navigate to provider profile
-        // history.push('/register-provider');
+        history.push('/register-provider');
     }; // end provider register
 
     return (
@@ -60,6 +61,12 @@ export default function RegisterForm() {
         >
             <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
                 Create Account
+            </Typography>
+            <Typography
+                variant="h5"
+                sx={{ color: 'gray', textAlign: 'center' }}
+            >
+                Only create an account if you are a mental health professional
             </Typography>
             <Grid item margin={3}>
                 {errors.registrationMessage && (
@@ -112,7 +119,6 @@ export default function RegisterForm() {
                             }}
                             size="large"
                             variant="contained"
-                            value="Provider"
                             onClick={registerGroup}
                         >
                             Group
@@ -120,6 +126,14 @@ export default function RegisterForm() {
                     </Grid>
                 </Grid>
             </Grid>
+            <Link to="/login">Already have an account? Login</Link>
+            <Box sx={{ color: 'gray', mt: 20 }}>
+                <Typography variant="p">
+                    Copyright © 2022 Rochester Community Initiative.
+                </Typography>
+                <br></br>
+                <Typography variant="p">All Rights Reserved</Typography>
+            </Box>
         </FormControl>
     );
 }
