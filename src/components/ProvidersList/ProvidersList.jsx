@@ -90,62 +90,34 @@ function ProvidersList() {
                 </Box>
                 {/* Tab panel 1-Provider */}
                 <TabPanel value={value} index={0}>
-                    <input
-                        type="checkbox"
-                        id="drawer-toggle"
-                        name="drawer-toggle"
-                    />
-                    <label for="drawer-toggle" id="drawer-toggle-label"></label>
-                    <header>
-                        <span>
-                            <span
-                                style={{
-                                    display: 'flex',
-                                    alignSelf: 'center',
-                                    justifyContent: 'center',
-                                    flexDirection: 'row',
-                                    padding: 0,
-                                    margin: 0,
-                                }}
-                            >
-                                {/* Search text field for the provider */}
-                                <ProviderSearchBar />
-                            </span>
-                            <div style={{ padding: 0 }}></div>
-                        </span>
-                    </header>
-                    <nav id="drawer">
-                        <ul>
-                            <li>
-                                <SpecializationsDropdownMenu />
-                            </li>
-                            <li>
-                                <InsurancesDropdownMenu />
-                            </li>
-                            <li>
-                                <OccupationsDropdownMenu />
-                            </li>
-                        </ul>
-                    </nav>
-                    <div id="page-content">
-                        <main>
-                            <h1>Provider</h1>
-                            <section
-                            //  className="providers"
-                            >
-                                {/* provider map */}
-                                <Grid container spacing={1}>
-                                    {providers.map((provider) => (
-                                        <Grid item key={provider.id} xs={2}>
-                                            <ProvidersListItem
-                                                provider={provider}
-                                            />
-                                        </Grid>
-                                    ))}
+                    <Box
+                        style={{
+                            backgroundColor: 'var(--content)',
+                            display: 'flex',
+                            alignSelf: 'center',
+                            justifyContent: 'center',
+                            flexDirection: 'row',
+                            padding: 0,
+                            margin: 0,
+                        }}
+                    >
+                        {/* Search text field for the provider */}
+                        <ProviderSearchBar />
+                        <SpecializationsDropdownMenu />
+                        <InsurancesDropdownMenu />
+                        <OccupationsDropdownMenu />
+                    </Box>
+
+                    {/* provider map */}
+                    <Grid container spacing={3} id="provider-map">
+                        <Grid item>
+                            {providers.map((provider) => (
+                                <Grid item key={provider.id} xs={4}>
+                                    <ProvidersListItem provider={provider} />
                                 </Grid>
-                            </section>
-                        </main>
-                    </div>
+                            ))}
+                        </Grid>
+                    </Grid>
                 </TabPanel>
 
                 {/* Tab panel 2-Group */}

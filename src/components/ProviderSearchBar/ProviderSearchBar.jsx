@@ -25,6 +25,7 @@ export default function ProviderSearchBar() {
                 `You can search by a provider's name`,
                 'question'
             );
+            handleRefresh();
         } else {
             dispatch({
                 type: 'SEARCH_PROVIDER_NAME',
@@ -34,6 +35,12 @@ export default function ProviderSearchBar() {
                 },
             });
         }
+    }
+
+    function handleRefresh() {
+        dispatch({
+            type: 'FETCH_PROVIDERS',
+        });
     }
 
     return (
@@ -70,11 +77,7 @@ export default function ProviderSearchBar() {
             <IconButton
                 type="click"
                 aria-label="refresh"
-                onClick={() =>
-                    dispatch({
-                        type: 'FETCH_PROVIDERS',
-                    })
-                }
+                onClick={handleRefresh}
             >
                 <RefreshIcon style={{ fill: 'blue' }} />
             </IconButton>
