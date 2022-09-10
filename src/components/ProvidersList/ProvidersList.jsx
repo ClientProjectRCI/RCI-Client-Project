@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
@@ -17,14 +16,10 @@ import OccupationsDropdownMenu from '../OccupationsDropDownMenu/OccupationsDropd
 import InsurancesDropdownMenu from '../InsurancesDropDownMenu/InsurancesDropdownMenu';
 
 function ProvidersList() {
-    const history = useHistory();
     const dispatch = useDispatch();
     const providersReducer = useSelector((store) => store.providers);
     const providers = providersReducer.providersReducer;
     const groups = useSelector((store) => store.groups);
-    const specializations = useSelector((store) => store.specializations);
-    const insurances = useSelector((store) => store.insurances);
-    const occupations = useSelector((store) => store.occupations);
     //dispatches for the detail of the clicked on provider/group
     useEffect(() => {
         dispatch({ type: 'FETCH_PROVIDERS' });
@@ -39,7 +34,7 @@ function ProvidersList() {
         const { children, value, index, ...other } = props;
 
         return (
-            <div
+            <Box
                 role="tabpanel"
                 hidden={value !== index}
                 id={`simple-tabpanel-${index}`}
@@ -51,7 +46,7 @@ function ProvidersList() {
                         <Typography>{children}</Typography>
                     </Box>
                 )}
-            </div>
+            </Box>
         );
     }
 
@@ -75,14 +70,29 @@ function ProvidersList() {
     };
     //end of tab panel
     return (
-        <div>
-            {/* Tab panel */}
-            <Box sx={{ width: '100%', p: 0 }}>
-                <Box sx={{ borderBottom: 1, borderColor: 'divider', p: 0 }}>
+        <Grid
+            container
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+        >
+            {/* "tab-panel-container" */}
+            <Box sx={{ width: '100vw' }}>
+                <Box
+                    id="tab-panel-container"
+                    style={{
+                        borderBottom: 1,
+                        borderColor: 'divider',
+                        backgroundColor: '#3a66c0',
+                        color: 'white',
+                    }}
+                >
                     <Tabs
+                        variant="fullWidth"
                         value={value}
                         onChange={handleChange}
-                        aria-label="basic tabs example"
+                        aria-label="provider and group tabs"
+                        textColor="inherit"
                     >
                         <Tab label="Provider" {...a11yProps(0)} />
                         <Tab label="Group" {...a11yProps(1)} />
@@ -91,14 +101,15 @@ function ProvidersList() {
                 {/* Tab panel 1-Provider */}
                 <TabPanel value={value} index={0}>
                     <Box
+                        id="search-filter-bar"
                         style={{
                             backgroundColor: 'var(--content)',
+                            height: 'fit-content',
                             display: 'flex',
                             alignSelf: 'center',
                             justifyContent: 'center',
-                            flexDirection: 'row',
-                            padding: 0,
-                            margin: 0,
+                            padding: 10,
+                            marginBottom: '3rem',
                         }}
                     >
                         {/* Search text field for the provider */}
@@ -108,9 +119,9 @@ function ProvidersList() {
                         <OccupationsDropdownMenu />
                     </Box>
 
-                    {/* provider map */}
+                    {/* container for providers */}
                     <Grid container spacing={3} id="provider-map">
-                        <Grid item>
+                        <Grid item xs={12} sm={8} md={6} lg={6} xl={4}>
                             {providers.map((provider) => (
                                 <Grid item key={provider.id} xs={4}>
                                     <ProvidersListItem provider={provider} />
@@ -159,7 +170,7 @@ function ProvidersList() {
             </Box>
 
             <body></body>
-        </div>
+        </Grid>
     );
 }
 

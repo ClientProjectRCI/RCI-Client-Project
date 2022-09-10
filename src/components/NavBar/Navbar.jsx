@@ -45,8 +45,7 @@ export default function Navbar() {
 
     return (
         <AppBar
-            position="static"
-            style={{ backgroundColor: 'var(--cornflower)' }}
+            style={{ position: 'sticky', backgroundColor: 'var(--cornflower)' }}
         >
             <Container maxWidth="xl">
                 <Toolbar disableGutters>

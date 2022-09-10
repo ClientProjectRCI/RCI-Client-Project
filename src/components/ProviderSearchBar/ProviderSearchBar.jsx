@@ -50,6 +50,7 @@ export default function ProviderSearchBar() {
                 display: 'flex',
                 alignItems: 'center',
                 width: 'fit-content',
+                height: 'fit-content',
             }}
         >
             <form className="name" onSubmit={handleSearchSubmit}>
