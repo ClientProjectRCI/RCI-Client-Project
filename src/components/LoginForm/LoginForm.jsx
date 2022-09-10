@@ -79,6 +79,7 @@ export default function LoginForm() {
                         required
                         variant="outlined"
                         label="Password"
+                        type="password"
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
                     />
