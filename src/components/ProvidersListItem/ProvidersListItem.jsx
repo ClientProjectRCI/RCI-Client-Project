@@ -26,41 +26,57 @@ export default function ProvidersListItem({ provider }) {
     };
 
     return (
+        // CONTAINER FOR POSITIONING
         <Box
             style={{
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
-                alignItems: 'flex-start',
+                alignItems: 'center',
                 padding: 1,
                 width: '100vw',
             }}
         >
-            <Card onClick={() => handleClick(provider.id)} sx={{ marginY: 1 }}>
-                <CardActionArea>
-                    <CardContent>
-                        <CardMedia
-                            component="img"
-                            image={provider.picture}
-                            sx={{
-                                height: 200,
-                                width: 'auto',
-                                borderRadius: 5,
-                            }}
-                        />
-                    </CardContent>
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="h3">
-                            {provider.name}
-                        </Typography>
-                        <Typography gutterBottom variant="h6">
-                            {provider.bio}
-                        </Typography>
-                    </CardContent>
-                    <CardContent>
-                        <Typography>{provider.phone}</Typography>
-                    </CardContent>
-                </CardActionArea>
+            {/* CARD CSS */}
+            <Card
+                onClick={() => handleClick(provider.id)}
+                sx={{
+                    backgroundColor: 'var(--content)',
+                    width: '70vw',
+                    marginY: 1,
+                    '&:hover': {
+                        boxShadow: '0.5rem 0.5rem 1rem 0.5rem gray',
+                        cursor: 'pointer',
+                    },
+                }}
+            >
+                {/* CARD CONTENTS */}
+                <CardContent>
+                    <CardMedia
+                        component="img"
+                        image={provider.picture}
+                        sx={{
+                            height: 200,
+                            width: 'auto',
+                            borderRadius: 5,
+                        }}
+                    />
+                </CardContent>
+                <CardContent>
+                    <Typography
+                        gutterBottom
+                        variant="h5"
+                        sx={{ width: 'fit-content' }}
+                    >
+                        {provider.name}
+                    </Typography>
+                    <Typography gutterBottom variant="h6">
+                        {provider.bio}
+                    </Typography>
+                </CardContent>
+                <CardContent>
+                    <Typography>{provider.phone}</Typography>
+                </CardContent>
             </Card>
         </Box>
     );
