@@ -18,7 +18,7 @@ CREATE TABLE "group" (
 	"name" varchar(1000) NOT NULL DEFAULT 'My Name',
 	"bio" varchar(1000) DEFAULT 'My Bio',
 	"picture" varchar(1000) DEFAULT 
-	'https://cquipsplus.ca/wp-content/themes/cera/assets/images/avatars/user-avatar.png',
+	'https://static.vecteezy.com/system/resources/thumbnails/007/319/936/small/user-profile-icon-vector.jpg',
 	"website" varchar(1000) DEFAULT 'My Website',
 	"email" varchar(1000) DEFAULT 'My email',
 	"phone" varchar(50) DEFAULT 'My phone',
@@ -37,7 +37,7 @@ CREATE TABLE "provider" (
 	"name" varchar(100) DEFAULT 'My Name',
 	"bio" varchar(1000) DEFAULT 'My Bio',
 	"picture" varchar(1000) DEFAULT 
-	'https://cquipsplus.ca/wp-content/themes/cera/assets/images/avatars/user-avatar.png',
+	'https://static.vecteezy.com/system/resources/thumbnails/007/319/936/small/user-profile-icon-vector.jpg',
 	"phone" varchar(50) DEFAULT 'My phone',
 	"email" varchar(100) DEFAULT 'My email',
 	"availability" varchar(1000) DEFAULT 'My Availability',
@@ -101,7 +101,7 @@ CREATE TABLE "provider_service_type" (
 CREATE TABLE "provider_occupation" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"provider_id" int REFERENCES "provider"("id") NOT NULL,
-	"occupation_id" int REFERENCES "specializations"("id") NOT NULL
+	"occupation_id" int REFERENCES "occupations"("id") NOT NULL
 );
 
 ---- availability JUNCTION TABLE ----
@@ -201,7 +201,7 @@ INSERT INTO "provider" ( "user_id", "name", "bio", "picture","phone", "email", "
 (4, 
 'Provider 1 Name', 
 'My bio',
- 'https://cquipsplus.ca/wp-content/themes/cera/assets/images/avatars/user-avatar.png', 
+ 'https://static.vecteezy.com/system/resources/thumbnails/007/319/936/small/user-profile-icon-vector.jpg', 
  'My phone', 'My email', 
  'My availability', 
  1);
@@ -483,16 +483,16 @@ UPDATE "group" SET "state" = 'updated db phone' WHERE "group"."user_id" = 2;
 UPDATE "group" SET "zipcode" = 'updated db zipcode' WHERE "group"."user_id" = 2;
 
 -----! DELETE/DROP TABLES !-----
-DROP TABLE "provider_specializations",
-DROP TABLE "provider_insurance_plan",
-DROP TABLE "provider_service_type",
-DROP TABLE "provider_occupation",
-DROP TABLE "specializations",
-DROP TABLE "insurance_plan",
-DROP TABLE "service_type",
-DROP TABLE "occupations",
-DROP TABLE "provider",
-DROP TABLE "group",
+DROP TABLE "provider_specializations";
+DROP TABLE "provider_insurance_plan";
+DROP TABLE "provider_service_type";
+DROP TABLE "provider_occupation";
+DROP TABLE "specializations";
+DROP TABLE "insurance_plan";
+DROP TABLE "service_type";
+DROP TABLE "occupations";
+DROP TABLE "provider";
+DROP TABLE "group";
 DROP TABLE "user";
 -----! DELETE/DROP TABLES !-----
 
@@ -542,14 +542,17 @@ group by provider.name
 order by provider.name asc;
 
 --occcupation
-SELECT provider.name, array_agg(occupations.occupation) FROM provider
+SELECT provider.name, array_agg(occupations.occupation) as "Occupation" FROM provider
 JOIN provider_occupation ON provider_occupation.provider_id = provider.id
 JOIN occupations ON occupations.id = provider_occupation.occupation_id
-where occupations.occupation ilike '%psychiatrist%'
-or occupations.occupation ilike '%counselor%'
 group by provider.name
 order by provider.name asc;
 
+SELECT occupations.occupation FROM occupations
+JOIN provider_occupation ON provider_occupation.occupation_id = occupations.id
+JOIN provider
+ON provider.id = provider_occupation.occupation_id
+WHERE provider.user_id = 4;
 
 
 
