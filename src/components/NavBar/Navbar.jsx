@@ -1,21 +1,23 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
-import rcilogo from '../.././assets/rcilogo.png';
 import { useSelector } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
 import { useHistory } from 'react-router-dom';
+import MenuIcon from '@mui/icons-material/Menu';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import rcilogo from '../.././assets/rcilogo.png';
+import LogOutButton from '../LogOutButton/LogOutButton';
+import {
+    AppBar,
+    Box,
+    Toolbar,
+    Button,
+    Tooltip,
+    MenuItem,
+    Typography,
+    IconButton,
+    Menu,
+    Container,
+} from '@mui/material';
 
 const pages = ['Home', 'About', 'Providers'];
 
@@ -43,37 +45,26 @@ export default function Navbar() {
 
     return (
         <AppBar
-            position="static"
-            style={{ backgroundColor: 'var(--cornflower)' }}
+            style={{ position: 'sticky', backgroundColor: 'var(--cornflower)' }}
         >
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="a"
-                        href="/"
+                    <Box
                         sx={{
-                            mr: 2,
+                            flexGrow: 20,
                             display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
                         }}
                     >
-                        <Link to="/home">
+                        <Link to="/">
                             <img
                                 src={rcilogo}
                                 style={{
-                                    width: 340,
-                                    height: 120,
+                                    width: 300,
+                                    height: 100,
                                 }}
                             />
                         </Link>
-                    </Typography>
-
+                    </Box>
                     <Box
                         sx={{
                             flexGrow: 1,
@@ -88,7 +79,7 @@ export default function Navbar() {
                             onClick={handleOpenNavMenu}
                             color="inherit"
                         >
-                            <MenuIcon />
+                            <MenuIcon fontSize="large" />
                         </IconButton>
                         <Menu
                             id="menu-appbar"
@@ -110,21 +101,41 @@ export default function Navbar() {
                         >
                             {pages.map((page) => (
                                 <MenuItem
+                                    divider
                                     key={page}
                                     onClick={handleCloseNavMenu}
                                 >
-                                    <Typography textAlign="center">
-                                        <Link
-                                            style={{ textDecoration: 'none' }}
-                                            to={`/${page}`}
-                                        >
-                                            {page}
-                                        </Link>
-                                    </Typography>
+                                    <Button
+                                        style={{
+                                            textDecoration: 'none',
+                                            color: 'inherit',
+                                        }}
+                                        onClick={() => history.push(`/${page}`)}
+                                    >
+                                        {page}
+                                    </Button>
                                 </MenuItem>
                             ))}
                         </Menu>
                     </Box>
+                    {/* APPEARS when width is medium */}
+                    <Box
+                        sx={{
+                            flexGrow: 1,
+                            display: { xs: 'flex', md: 'none' },
+                        }}
+                    >
+                        <Link to="/">
+                            <img
+                                src={rcilogo}
+                                style={{
+                                    width: 300,
+                                    height: 100,
+                                }}
+                            />
+                        </Link>
+                    </Box>
+
                     <Box
                         sx={{
                             flexGrow: 1,
@@ -144,6 +155,7 @@ export default function Navbar() {
                                 <Typography textAlign="center">
                                     <Link
                                         style={{
+                                            fontSize: '1.3rem',
                                             textDecoration: 'none',
                                             color: 'white',
                                         }}
@@ -199,41 +211,45 @@ export default function Navbar() {
                             {/* If a user is logged in, show these links */}
                             {user.access_level === 1 && (
                                 <MenuItem>
-                                    <Link
+                                    <Button
                                         style={{
                                             textDecoration: 'none',
                                             color: 'inherit',
                                         }}
-                                        to="/providers"
+                                        onClick={() =>
+                                            history.push(`/providers`)
+                                        }
                                     >
                                         Profile
-                                    </Link>
+                                    </Button>
                                 </MenuItem>
                             )}
                             {user.access_level === 2 && (
-                                <MenuItem>
-                                    <Link
+                                <MenuItem divider>
+                                    <Button
                                         style={{
                                             textDecoration: 'none',
                                             color: 'inherit',
                                         }}
-                                        to="/provider"
+                                        onClick={() =>
+                                            history.push(`/provider`)
+                                        }
                                     >
                                         Profile
-                                    </Link>
+                                    </Button>
                                 </MenuItem>
                             )}
                             {user.access_level === 3 && (
                                 <MenuItem>
-                                    <Link
+                                    <Button
                                         style={{
                                             textDecoration: 'none',
                                             color: 'inherit',
                                         }}
-                                        to="/group"
+                                        onClick={() => history.push(`/group`)}
                                     >
                                         Profile
-                                    </Link>
+                                    </Button>
                                 </MenuItem>
                             )}
 

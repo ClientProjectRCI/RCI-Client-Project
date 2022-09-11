@@ -15,17 +15,17 @@ CREATE TABLE "user" (
 CREATE TABLE "group" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"user_id" int REFERENCES "user"("id") NOT NULL UNIQUE,
-	"name" varchar(100) NOT NULL DEFAULT 'My Name',
+	"name" varchar(1000) NOT NULL DEFAULT 'My Name',
 	"bio" varchar(1000) DEFAULT 'My Bio',
 	"picture" varchar(1000) DEFAULT 
-	'https://static.wixstatic.com/media/3d076e_adb70c8b93b845f1b93d50028c5013e8~mv2.jpeg/v1/crop/x_0,y_727,w_1242,h_1173/fill/w_412,h_389,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/695BF34C-4BAC-4D41-85DD-95CE130DAA57%20-%20S.jpeg',
-	"website" varchar(255) DEFAULT 'My Website',
-	"email" varchar(255) DEFAULT 'My email',
+	'https://static.vecteezy.com/system/resources/thumbnails/007/319/936/small/user-profile-icon-vector.jpg',
+	"website" varchar(1000) DEFAULT 'My Website',
+	"email" varchar(1000) DEFAULT 'My email',
 	"phone" varchar(50) DEFAULT 'My phone',
-	"street" varchar(255) DEFAULT 'My street',
-	"city" varchar(100) DEFAULT 'My city',
-	"state" varchar(100) DEFAULT 'My state',
-	"zipcode" varchar(100) DEFAULT 'My zipcode'
+	"street" varchar(1000) DEFAULT 'My street',
+	"city" varchar(1000) DEFAULT 'My city',
+	"state" varchar(1000) DEFAULT 'My state',
+	"zipcode" varchar(1000) DEFAULT 'My zipcode'
 );
 
 
@@ -37,7 +37,7 @@ CREATE TABLE "provider" (
 	"name" varchar(100) DEFAULT 'My Name',
 	"bio" varchar(1000) DEFAULT 'My Bio',
 	"picture" varchar(1000) DEFAULT 
-	'https://static.wixstatic.com/media/3d076e_adb70c8b93b845f1b93d50028c5013e8~mv2.jpeg/v1/crop/x_0,y_727,w_1242,h_1173/fill/w_412,h_389,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/695BF34C-4BAC-4D41-85DD-95CE130DAA57%20-%20S.jpeg',
+	'https://static.vecteezy.com/system/resources/thumbnails/007/319/936/small/user-profile-icon-vector.jpg',
 	"phone" varchar(50) DEFAULT 'My phone',
 	"email" varchar(100) DEFAULT 'My email',
 	"availability" varchar(1000) DEFAULT 'My Availability',
@@ -101,7 +101,7 @@ CREATE TABLE "provider_service_type" (
 CREATE TABLE "provider_occupation" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"provider_id" int REFERENCES "provider"("id") NOT NULL,
-	"occupation_id" int REFERENCES "specializations"("id") NOT NULL
+	"occupation_id" int REFERENCES "occupations"("id") NOT NULL
 );
 
 ---- availability JUNCTION TABLE ----
@@ -201,7 +201,7 @@ INSERT INTO "provider" ( "user_id", "name", "bio", "picture","phone", "email", "
 (4, 
 'Provider 1 Name', 
 'My bio',
- 'https://static.wixstatic.com/media/3d076e_adb70c8b93b845f1b93d50028c5013e8~mv2.jpeg/v1/crop/x_0,y_727,w_1242,h_1173/fill/w_412,h_389,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/695BF34C-4BAC-4D41-85DD-95CE130DAA57%20-%20S.jpeg', 
+ 'https://static.vecteezy.com/system/resources/thumbnails/007/319/936/small/user-profile-icon-vector.jpg', 
  'My phone', 'My email', 
  'My availability', 
  1);
@@ -493,7 +493,7 @@ DROP TABLE "service_type";
 DROP TABLE "occupations";
 DROP TABLE "provider";
 DROP TABLE "group";
-DROP TABLE "user"; 
+DROP TABLE "user";
 -----! DELETE/DROP TABLES !-----
 
 
@@ -517,7 +517,7 @@ JOIN "service_type"
 ON "service_type"."id" = "provider_service_type"."provider_id"
 WHERE "provider"."id" = 1;
 
---insurance_plan
+--searches multiple filters insurance_plan
 SELECT provider.name, array_agg(insurance_plan.insurance) as "accepted insurances" FROM provider
 JOIN provider_insurance_plan ON provider_insurance_plan.provider_id = provider.id
 JOIN insurance_plan ON insurance_plan.id = provider_insurance_plan.insurance_plan_id
@@ -526,30 +526,56 @@ or insurance_plan.insurance ilike ''
 GROUP BY provider.name
 order by provider.name asc;
 
---specializations
+--searches multiple filters specializations
 SELECT provider.name, provider.picture, array_agg(specializations.specialization) as "specialties" FROM provider
 JOIN provider_specializations ON provider_specializations.provider_id = provider.id
 JOIN specializations ON specializations.id = provider_specializations.specializations_id
 group by provider.name, provider.picture
 order by provider.name asc;
 
---specializations by id
-SELECT provider.name, array_agg(specializations.specialization) FROM provider
+--search multiple filters specializations
+SELECT provider.name, array_agg(specializations.specialization) as "specializations" FROM provider
 JOIN provider_specializations ON provider_specializations.provider_id = provider.id
 JOIN specializations ON specializations.id = provider_specializations.specializations_id
 where specializations.specialization ilike '%l%'
 group by provider.name
 order by provider.name asc;
 
---occcupation
-SELECT provider.name, array_agg(occupations.occupation) FROM provider
+--search multiple filters occcupation
+SELECT provider.name, array_agg(occupations.occupation) as "Occupation" FROM provider
 JOIN provider_occupation ON provider_occupation.provider_id = provider.id
 JOIN occupations ON occupations.id = provider_occupation.occupation_id
-where occupations.occupation ilike '%psychiatrist%'
-or occupations.occupation ilike '%counselor%'
 group by provider.name
 order by provider.name asc;
 
 
 
 
+
+--------------------------------------------------------PROFILE VIEWS ONLY---------------------------------------------------------------------
+
+--PROFILE VIEW: insurance by user_id
+SELECT insurance_plan.insurance FROM insurance_plan
+JOIN provider_insurance_plan ON provider_insurance_plan.insurance_plan_id = insurance_plan.id
+JOIN provider ON provider.id = provider_insurance_plan.provider_id
+WHERE provider.user_id = 7;
+
+--PROFILE VIEW: occupation by user_id
+SELECT occupations.occupation FROM occupations
+JOIN provider_occupation ON provider_occupation.occupation_id = occupations.id
+JOIN provider ON provider.id = provider_occupation.provider_id
+WHERE provider.user_id = 7;
+
+--PROFILE VIEW: specialities by user_id
+SELECT specializations.specialization FROM specializations
+JOIN provider_specializations ON provider_specializations.specializations_id = specializations.id
+JOIN provider ON provider.id = provider_specializations.provider_id
+WHERE provider.user_id = 7;
+
+--PROFILE VIEW: services by user_id
+SELECT service_type.service FROM service_type
+JOIN provider_service_type ON provider_service_type.service_type_id = service_type.id
+JOIN provider ON provider.id = provider_service_type.provider_id
+WHERE provider.user_id = 7;
+
+-----------------------------------------------------------------------------------------------------------------------------
