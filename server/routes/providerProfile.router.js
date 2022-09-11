@@ -23,6 +23,23 @@ router.get('/:id', (req, res) => {
     });
 });
 
+// PUT route
+router.put('/:id', (req, res) => {
+  const queryText = `UPDATE "provider" SET "name" = $1, 
+  "bio" = $2, WHERE "user_id" = $3;`;
+  console.log('req.body is:', req.body);
+  pool.
+  query(queryText[req.body.name, req.body.bio, 
+  req.body.phone, req.body.user_id])
+  .then((result)=>{
+    console.log('PUT works!!', result);
+    res.sendStatus(201)
+    })
+.catch((error)=>{
+    console.log('PUT is not working FAIL!!!!!!!', error);
+  })
+})
+
 /**
  * POST route template
  */

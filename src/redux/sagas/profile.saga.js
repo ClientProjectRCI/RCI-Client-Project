@@ -47,12 +47,21 @@ function* fetchProfileInsurances(action) {
   }
 }
 
+function* editProfile(action){
+  console.log('EditProfile is:>>', action.payload);
+  const res = yield axios.put(`/api/providerProfile/${action.payload}`, action.payload);
+  yield put({
+    type: 'FETCH_PROVIDER_PROFILE',
+    payload: res.data,
+  })
+};
+
+
 
 function* providerProfileSaga() {
-  
- 
   yield takeEvery('FETCH_PROVIDER_PROFILE', fetchProviderProfile);
   yield takeEvery('FETCH_PROFILE_INSURANCES', fetchProfileInsurances);
+  yield takeEvery('EDIT_PROVIDER_PROFILE', editProfile);
   // yield takeEvery('FETCH_PROFILE_INSURANCES', fetchProfileInsurances);
   // yield takeEvery('FETCH_PROFILE_INSURANCES', fetchProfileInsurances);
 

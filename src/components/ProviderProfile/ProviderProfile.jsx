@@ -39,7 +39,7 @@ export default function ProviderProfile() {
     console.log("user:", user); // test user info
     console.log("user.id:", user.id); // test user info
     console.log("edit details:", details); // tests EDIT local state, starts as FALSE
-
+    console.log('what is in the profile?????', profile);
 
 
     // This was to show what is in the DB above the inputs. Couldn't get it to work
@@ -56,13 +56,9 @@ export default function ProviderProfile() {
         event.preventDefault();
         // console.log('usernameLocal', name);
         console.log('profile:', profile);
-
         dispatch({
-            type: 'PUT_NAME',
-            payload: {
-                username: name,
-                id: details.id
-            }
+            type: 'EDIT_PROVIDER_PROFILE',
+            payload: profile,
         });
         toggleEdit(); //
         // axios.put(`/api/settings${action.payload}`)
@@ -134,41 +130,50 @@ export default function ProviderProfile() {
                                 {/* NAME INPUT  */}
                                 <Typography fontWeight='bold'
                                 >{profile.name}</Typography>
-                                 <br></br>
+                                <br></br>
                                 <TextField label={"Edit Name"}
                                     placeholder={profile.name}
-                                    value={name}
-                                    onChange={(event) => setName(event.target.value)} />
+                                    value={profile.name}
+                                    onChange={(event) => dispatch({
+                                        type: 'UPDATE_PROFILE',
+                                        payload: {name: event.target.value},
+                                    })} />
                                 <br></br>
 
                                 {/* Bio INPUT  */}
                                 <Typography fontWeight='bold' 
                                 >{profile.bio}</Typography>
-                                 <br></br>
+                                <br></br>
                                 <TextField label={"Edit Bio"}
                                     placeholder={profile.bio}
-                                    value={bio}
-                                    onChange={(event) => setBio(event.target.value)} />
+                                    value={profile.bio}
+                                    onChange={(event) => dispatch({
+                                        type: 'UPDATE_PROFILE',
+                                        payload: {bio: event.target.value},
+                                    })} />
                                 <br></br>
 
                                 {/* Phone INPUT  */}
                                 <Typography fontWeight='bold' 
                                 >{profile.phone}</Typography>
-                                 <br></br>
+                                <br></br>
                                 <TextField label={"Edit Phone Number"}
-                                    placeholder={details.phone}
-                                    value={phone}
-                                    onChange={(event) => setPhone(event.target.value)} />
+                                    placeholder={profile.phone}
+                                    value={profile.phone}
+                                    onChange={(event) => dispatch({
+                                        type: 'UPDATE_PROFILE',
+                                        payload: {phone: event.target.value},
+                                    })} />
                                 <br></br>
 
-                                {/* Insurance INPUT  */}
-                                
+
+                                {/* Insurance INPUT  */}                                
                                 <Typography
                                 fontWeight='bold' 
                                 >Insurance</Typography>
                                 {/* <ProviderInsurances /> */}
                                 <TextField label={"Edit Insurance"}
-                                    placeholder={profile.name}
+                                    placeholder={details.name}
                                     value={insurance}
                                     onChange={(event) => setInsurance(event.target.value)} />
                                 <br></br>
@@ -189,7 +194,7 @@ export default function ProviderProfile() {
                             <Typography 
                             fontWeight='bold'
                             >Services</Typography>
-                             <br></br>
+                            <br></br>
                             <TextField label={"Edit Services"}
                                 placeholder={profile.name}
                                 value={services}
@@ -200,13 +205,13 @@ export default function ProviderProfile() {
                             <Typography 
                             fontWeight='bold'
                             >Specialities</Typography>
-                             <br></br>
+                            <br></br>
                             <TextField label={"Edit Specialities"}
                                 placeholder={profile.name}
                                 value={specialities}
                                 onChange={(event) => setSpecialities(event.target.value)} />
                             <br></br>
-                            <Button variant="contained" type='submit'>
+                            <Button variant="contained" type='submit' onSubmit={handleSubmit}>
                                 Submit
                             </Button>
                                 </div>
