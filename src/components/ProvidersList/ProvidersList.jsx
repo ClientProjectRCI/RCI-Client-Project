@@ -168,7 +168,6 @@ export default function ProvidersList() {
                     </TabPanel>
                 </Box>
             </Grid>
-            );
         </div>
     );
 }
