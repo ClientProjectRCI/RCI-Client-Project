@@ -45,6 +45,7 @@ const groupSearchRouter = require('./routes/groupSearch.router');
 const profileInsurances = require('./routes/profileInsurances.router');
 const profileOccupations = require('./routes/profileOccupations.router');
 const profileSpecializations = require('./routes/profileSpecializations.router');
+const profileServices = require('./routes/profileServices.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -80,6 +81,7 @@ app.use('/api/groupSearch', groupSearchRouter);
 app.use('/api/profileInsurances', profileInsurances);
 app.use('/api/profileOccupations', profileOccupations);
 app.use('/api/profileSpecializations', profileSpecializations);
+app.use('/api/profileServices', profileServices);
 
 // Serve static files
 app.use(express.static('build'));

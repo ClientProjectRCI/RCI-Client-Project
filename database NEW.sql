@@ -517,7 +517,7 @@ JOIN "service_type"
 ON "service_type"."id" = "provider_service_type"."provider_id"
 WHERE "provider"."id" = 1;
 
---insurance_plan
+--searches multiple filters insurance_plan
 SELECT provider.name, array_agg(insurance_plan.insurance) as "accepted insurances" FROM provider
 JOIN provider_insurance_plan ON provider_insurance_plan.provider_id = provider.id
 JOIN insurance_plan ON insurance_plan.id = provider_insurance_plan.insurance_plan_id
@@ -526,33 +526,56 @@ or insurance_plan.insurance ilike ''
 GROUP BY provider.name
 order by provider.name asc;
 
---specializations
+--searches multiple filters specializations
 SELECT provider.name, provider.picture, array_agg(specializations.specialization) as "specialties" FROM provider
 JOIN provider_specializations ON provider_specializations.provider_id = provider.id
 JOIN specializations ON specializations.id = provider_specializations.specializations_id
 group by provider.name, provider.picture
 order by provider.name asc;
 
---specializations by id
-SELECT provider.name, array_agg(specializations.specialization) FROM provider
+--search multiple filters specializations
+SELECT provider.name, array_agg(specializations.specialization) as "specializations" FROM provider
 JOIN provider_specializations ON provider_specializations.provider_id = provider.id
 JOIN specializations ON specializations.id = provider_specializations.specializations_id
 where specializations.specialization ilike '%l%'
 group by provider.name
 order by provider.name asc;
 
---occcupation
+--search multiple filters occcupation
 SELECT provider.name, array_agg(occupations.occupation) as "Occupation" FROM provider
 JOIN provider_occupation ON provider_occupation.provider_id = provider.id
 JOIN occupations ON occupations.id = provider_occupation.occupation_id
 group by provider.name
 order by provider.name asc;
 
+
+
+
+
+--------------------------------------------------------PROFILE VIEWS ONLY---------------------------------------------------------------------
+
+--PROFILE VIEW: insurance by user_id
+SELECT insurance_plan.insurance FROM insurance_plan
+JOIN provider_insurance_plan ON provider_insurance_plan.insurance_plan_id = insurance_plan.id
+JOIN provider ON provider.id = provider_insurance_plan.provider_id
+WHERE provider.user_id = 7;
+
+--PROFILE VIEW: occupation by user_id
 SELECT occupations.occupation FROM occupations
 JOIN provider_occupation ON provider_occupation.occupation_id = occupations.id
-JOIN provider
-ON provider.id = provider_occupation.occupation_id
-WHERE provider.user_id = 4;
+JOIN provider ON provider.id = provider_occupation.provider_id
+WHERE provider.user_id = 7;
 
+--PROFILE VIEW: specialities by user_id
+SELECT specializations.specialization FROM specializations
+JOIN provider_specializations ON provider_specializations.specializations_id = specializations.id
+JOIN provider ON provider.id = provider_specializations.provider_id
+WHERE provider.user_id = 7;
 
+--PROFILE VIEW: services by user_id
+SELECT service_type.service FROM service_type
+JOIN provider_service_type ON provider_service_type.service_type_id = service_type.id
+JOIN provider ON provider.id = provider_service_type.provider_id
+WHERE provider.user_id = 7;
 
+-----------------------------------------------------------------------------------------------------------------------------
