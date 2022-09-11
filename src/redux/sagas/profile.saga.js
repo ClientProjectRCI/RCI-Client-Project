@@ -52,7 +52,6 @@ function* fetchProfileInsurances(action) {
 
 // GET profileOccupations
 function* fetchProfileOccupations(action) {
-    console.log(`What is action in Profile Occupations:`, action.payload);
     try {
         const occupations = yield axios.get(
             `/api/profileOccupations/${action.payload}`
@@ -64,6 +63,22 @@ function* fetchProfileOccupations(action) {
         });
     } catch (error) {
         console.log('error in fetchProfileOccupations', error);
+    }
+}
+
+// GET ProfileSpecializations
+function* fetchProfileSpecializations(action) {
+    try {
+        const specializations = yield axios.get(
+            `/api/profileSpecializations/${action.payload}`
+        );
+        console.log('specializations:', specializations.data);
+        yield put({
+            type: 'SET_PROFILE_SPECIALIZATIONS',
+            payload: specializations.data,
+        });
+    } catch (error) {
+        console.log('error in fetchProfileSpecializations', error);
     }
 }
 
@@ -84,7 +99,10 @@ function* providerProfileSaga() {
     yield takeEvery('FETCH_PROVIDER_PROFILE', fetchProviderProfile);
     yield takeEvery('FETCH_PROFILE_INSURANCES', fetchProfileInsurances);
     yield takeEvery('FETCH_PROFILE_OCCUPATIONS', fetchProfileOccupations);
-    // yield takeEvery('FETCH_PROFILE_INSURANCES', fetchProfileInsurances);
+    yield takeEvery(
+        'FETCH_PROFILE_SPECIALIZATIONS',
+        fetchProfileSpecializations
+    );
 }
 
 export default providerProfileSaga;

@@ -20,6 +20,7 @@ import ProviderSpecializations from '../ProviderSpecializations/ProviderSpeciali
 // import ProviderInsurances from '../ProviderInsurances/ProviderInsurances';
 import ProfileInsurances from '../ProfileInsurances/ProfileInsurances';
 import ProfileOccupations from '../ProfileOccupations/ProfileOccupations';
+import ProfileSpecializations from '../ProfileSpecializations/ProfileSpecializations';
 
 import ProviderOccupations from '../ProviderOccupations/ProviderOccupations';
 import ProviderServices from '../ProviderServices/ProviderServices';
@@ -82,19 +83,14 @@ export default function ProviderProfile() {
     useEffect(() => {
         dispatch({ type: 'FETCH_PROVIDER_PROFILE', payload: user.id });
     }, []);
-
+    useEffect(() => {
+        dispatch({ type: 'FETCH_PROFILE_INSURANCES', payload: user.id });
+    }, []);
     useEffect(() => {
         dispatch({ type: 'FETCH_PROFILE_OCCUPATIONS', payload: user.id });
     }, []);
-
     useEffect(() => {
-        // dispatch({ type: 'FETCH_PROFILE', payload: user.id })
-        dispatch({ type: 'FETCH_PROFILE_INSURANCES', payload: user.id });
-        // console.log('user.id', user.id);
-        // dispatch({ type: 'FETCH_PROVIDER_DETAILS', payload: details.id })
-        // dispatch({ type: 'FETCH_PROVIDER_SERVICES', payload: details.id })
-        // dispatch({ type: 'FETCH_PROVIDER_SPECIALIZATIONS', payload: details.id })
-        // dispatch({ type: 'FETCH_PROVIDER_OCCUPATIONS', payload: details.id })
+        dispatch({ type: 'FETCH_PROFILE_SPECIALIZATIONS', payload: user.id });
     }, []);
 
     console.log(`What is profile.user_id`, user.id);
@@ -173,7 +169,6 @@ export default function ProviderProfile() {
                                     }
                                 />
                                 <br></br>
-
 
                                 {/* Phone INPUT  */}
                                 <Typography fontWeight="bold">
@@ -295,7 +290,7 @@ export default function ProviderProfile() {
                             </ul>
                             <ul className="info">
                                 <h4>Specialties:</h4>
-                                <ProviderSpecializations />
+                                <ProfileSpecializations />
                             </ul>
                         </div>
                     </div>
