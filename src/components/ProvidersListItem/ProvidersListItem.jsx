@@ -1,16 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import {
-    Grid,
-    Box,
-    Typography,
-    CardContent,
-    Card,
-    CardMedia,
-    CardActionArea,
-    Paper,
-} from '@mui/material';
+import { Grid, Box, Typography } from '@mui/material';
 
 export default function ProvidersListItem({ provider }) {
     const history = useHistory();
