@@ -36,7 +36,7 @@ function RegisterSpecializationsDropdown() {
   const dispatch = useDispatch();
   //state for the text box for the provider
   const specializations = useSelector((store) => store.specializations);
-  const [providerSpecialization, setProviderSpecialization] = useState([]);
+  const [providerSpecialization, setProviderSpecialization] = useState('');
 
   const handleChange = (event) => {
    
@@ -73,19 +73,19 @@ function RegisterSpecializationsDropdown() {
           Specializations
         </InputLabel>
         <Select
-          multiple
+          // multiple
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
           value={providerSpecialization}
           onChange={handleChange}
           input={<OutlinedInput label="Name" />}
-          renderValue={(selected) => (
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-              {selected.map((value) => (
-                <Chip key={value} label={value} />
-              ))}
-            </Box>
-          )}
+          // renderValue={(selected) => (
+          //   <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+          //     {selected.map((value) => (
+          //       <Chip key={value} label={value} />
+          //     ))}
+          //   </Box>
+          // )}
           MenuProps={MenuProps}
         >
           {specializations.map((specialization) => (

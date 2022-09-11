@@ -70,7 +70,7 @@ export default function RegisterProviderForm() {
       dispatch({ type: 'FETCH_SPECIALIZATIONS' });
       dispatch({ type: 'FETCH_INSURANCES' });
       dispatch({ type: 'FETCH_OCCUPATIONS' });
-      dispatch({ type: 'FETCH_AVAILABILITY'});
+    //   dispatch({ type: 'FETCH_AVAILABILITY'});
       dispatch({ type: 'FETCH_SERVICES'});
     }, []);
 

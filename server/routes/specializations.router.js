@@ -9,15 +9,15 @@ const {
 router.post('/', rejectUnauthenticated, (req, res) => {
   const newProvider = req.body;
 
-  console.log("specialization content is:", req.body);
+  console.log("specialization content is:", req.body.provider_id, specializations_id);
   
   let queryText = `INSERT INTO "provider_specializations" (
   "provider_id", "specializations_id"
   )
   VALUES ($1, $2)`;
   pool.query(queryText, 
-      [newProvider.user_id,
-      newProvider.specialization_id
+      [newProvider.provider_id,
+      newProvider.specializations_id
       ])
 .then(result => {
   res.sendStatus(201);

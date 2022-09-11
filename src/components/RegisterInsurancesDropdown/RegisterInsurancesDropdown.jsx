@@ -36,7 +36,7 @@ function RegisterInsurancesDropdown() {
   const dispatch = useDispatch();
   //state for the text box for the provider
   const insurances = useSelector((store) => store.insurances);
-  const [providerInsurance, setProviderInsurance] = useState([]);
+  const [providerInsurance, setProviderInsurance] = useState('');
 
   const handleChange = (event) => {
     const {
@@ -65,19 +65,19 @@ function RegisterInsurancesDropdown() {
       <FormControl sx={{ m: 1, width: 300 }}>
         <InputLabel id="multiple-insurances-label">Insurances</InputLabel>
         <Select
-          multiple
+          // multiple
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
           value={providerInsurance}
           onChange={handleChange}
           input={<OutlinedInput label="Name" />}
-          renderValue={(selected) => 
-          (<Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-              {selected.map((value) => (
-                <Chip key={value} label={value} />
-              ))}
-            </Box>
-          )}
+          // renderValue={(selected) => 
+          // (<Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+          //     {selected.map((value) => (
+          //       <Chip key={value} label={value} />
+          //     ))}
+          //   </Box>
+          // )}
           MenuProps={MenuProps}
         >
           {insurances.map((insurance) => (
