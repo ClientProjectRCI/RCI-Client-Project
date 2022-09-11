@@ -93,17 +93,6 @@ export default function ProvidersListItem({ provider }) {
                             </Typography>
                         </Grid>
 
-                        {/* OCCUPATION */}
-                        <Grid item>
-                            <Typography
-                                gutterBottom
-                                variant="h6"
-                                sx={{ width: 'fit-content' }}
-                            >
-                                {/* {.occupation} OCCUPATION */}
-                            </Typography>
-                        </Grid>
-
                         {/* BIO */}
                         <Grid Item>
                             <Typography
