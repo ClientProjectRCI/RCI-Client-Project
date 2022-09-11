@@ -18,6 +18,7 @@ import services from './services.reducer';
 import profileInsurances from './profileInsurances.reducer';
 import profileOccupations from './profileOccupations.reducer';
 import profileSpecializations from './profileSpecializations.reducer';
+import profileServices from './profileServices.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -45,6 +46,7 @@ const rootReducer = combineReducers({
     profileInsurances,
     profileOccupations,
     profileSpecializations,
+    profileServices,
 });
 
 export default rootReducer;

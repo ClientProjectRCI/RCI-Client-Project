@@ -37,10 +37,6 @@ function* fetchProfileInsurances(action) {
         const detailsResponse = yield axios.get(
             `/api/profileInsurances/${action.payload}`
         );
-        console.log(
-            'profileInsurances Saga Response.data',
-            detailsResponse.data
-        );
         yield put({
             type: 'SET_PROFILE_INSURANCES',
             payload: detailsResponse.data,
@@ -56,7 +52,6 @@ function* fetchProfileOccupations(action) {
         const occupations = yield axios.get(
             `/api/profileOccupations/${action.payload}`
         );
-        console.log('occupations:', occupations.data);
         yield put({
             type: 'SET_PROFILE_OCCUPATIONS',
             payload: occupations.data,
@@ -72,13 +67,27 @@ function* fetchProfileSpecializations(action) {
         const specializations = yield axios.get(
             `/api/profileSpecializations/${action.payload}`
         );
-        console.log('specializations:', specializations.data);
         yield put({
             type: 'SET_PROFILE_SPECIALIZATIONS',
             payload: specializations.data,
         });
     } catch (error) {
         console.log('error in fetchProfileSpecializations', error);
+    }
+}
+
+// GET ProfileServices
+function* fetchProfileServices(action) {
+    try {
+        const services = yield axios.get(
+            `/api/profileServices/${action.payload}`
+        );
+        yield put({
+            type: 'SET_PROFILE_SERVICES',
+            payload: services.data,
+        });
+    } catch (error) {
+        console.log('error in fetchProfileServices', error);
     }
 }
 
@@ -103,6 +112,7 @@ function* providerProfileSaga() {
         'FETCH_PROFILE_SPECIALIZATIONS',
         fetchProfileSpecializations
     );
+    yield takeEvery('FETCH_PROFILE_SERVICES', fetchProfileServices);
 }
 
 export default providerProfileSaga;

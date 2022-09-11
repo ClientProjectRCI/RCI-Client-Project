@@ -21,6 +21,7 @@ import ProviderSpecializations from '../ProviderSpecializations/ProviderSpeciali
 import ProfileInsurances from '../ProfileInsurances/ProfileInsurances';
 import ProfileOccupations from '../ProfileOccupations/ProfileOccupations';
 import ProfileSpecializations from '../ProfileSpecializations/ProfileSpecializations';
+import ProfileServices from '../ProfileServices/ProfileServices';
 
 import ProviderOccupations from '../ProviderOccupations/ProviderOccupations';
 import ProviderServices from '../ProviderServices/ProviderServices';
@@ -91,6 +92,9 @@ export default function ProviderProfile() {
     }, []);
     useEffect(() => {
         dispatch({ type: 'FETCH_PROFILE_SPECIALIZATIONS', payload: user.id });
+    }, []);
+    useEffect(() => {
+        dispatch({ type: 'FETCH_PROFILE_SERVICES', payload: user.id });
     }, []);
 
     console.log(`What is profile.user_id`, user.id);
@@ -270,7 +274,6 @@ export default function ProviderProfile() {
                             <div className="info">{profile.bio}</div>
                             <div className="info">
                                 <h4>Insurance</h4>
-                                {/* <ProviderInsurances /> */}
                                 <ProfileInsurances />
                             </div>
                             <div className="info">
@@ -282,11 +285,11 @@ export default function ProviderProfile() {
                         <div className="column">
                             <ul className="info">
                                 <h4>Contact Info:</h4>
-                                <li>Availability: {profile.availability}</li>
+                                {/* <ProfileAvailability /> */}
                                 <li>Phone: {profile.phone}</li>
                                 <li>Email: {profile.email}</li>
                                 <h4>Services: </h4>
-                                <ProviderServices />
+                                <ProfileServices />
                             </ul>
                             <ul className="info">
                                 <h4>Specialties:</h4>
