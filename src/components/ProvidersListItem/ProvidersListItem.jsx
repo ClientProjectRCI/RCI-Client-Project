@@ -64,7 +64,7 @@ export default function ProvidersListItem({ provider }) {
                         <img
                             src={provider.picture}
                             style={{
-                                height: 150,
+                                height: 180,
                                 width: 200,
                             }}
                         />
