@@ -74,174 +74,101 @@ export default function ProvidersList() {
     //end of tab panel
     return (
         <div>
-            {/* Tab panel */}
-            <Box sx={{ width: '100%', p: 0 }}>
-                <Box sx={{ borderBottom: 1, borderColor: 'divider', p: 0 }}>
-                    <Tabs
-                        value={value}
-                        onChange={handleChange}
-                        aria-label="basic tabs example"
+            <Grid
+                container
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+            >
+                {/* TAB PANEL - PROVIDER AND GROUPS */}
+                <Box sx={{ width: '100vw' }}>
+                    <Box
+                        id="tab-panel-container"
+                        style={{
+                            borderBottom: 1,
+                            borderColor: 'divider',
+                            backgroundColor: '#3a66c0',
+                            color: 'white',
+                        }}
                     >
-                        <Tab label="Provider" {...a11yProps(0)} />
-                        <Tab label="Group" {...a11yProps(1)} />
-                    </Tabs>
-                </Box>
-                {/* Tab panel 1-Provider */}
-                <TabPanel value={value} index={0}>
-                    <input
-                        type="checkbox"
-                        id="drawer-toggle"
-                        name="drawer-toggle"
-                    />
-                    <label for="drawer-toggle" id="drawer-toggle-label"></label>
-                    <header>
-                        <span>
-                            <span
-                                style={{
-                                    display: 'flex',
-                                    alignSelf: 'center',
-                                    justifyContent: 'center',
-                                    flexDirection: 'row',
-                                    padding: 0,
-                                    margin: 0,
-                                }}
-                            >
-                                {/* Search text field for the provider */}
-                                <ProviderSearchBar />
-                            </span>
-                            <div style={{ padding: 0 }}></div>
-                        </span>
-                    </header>
-                    <nav id="drawer">
-                        <ul>
-                            <li>
-                                <SpecializationsDropdownMenu />
-                            </li>
-                            <li>
-                                <InsurancesDropdownMenu />
-                            </li>
-                            <li>
-                                <OccupationsDropdownMenu />
-                            </li>
-                        </ul>
-                    </nav>
-                    <div id="page-content">
-                        <main>
-                            <h1>Provider</h1>
-                            <section
-                            //  className="providers"
-                            >
-                                {/* provider map */}
-                                <Grid container spacing={1}>
-                                    {providers.map((provider) => (
-                                        <Grid item key={provider.id} xs={2}>
-                                            <ProvidersListItem
-                                                provider={provider}
-                                            />
-                                        </Grid>
-                                    ))}
-                                </Grid>
-                            </section>
-                        </main>
-                    </div>
-                </TabPanel>
-                //end of tab panel return (
-                <Grid
-                    container
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                >
-                    {/* TAB PANEL - PROVIDER AND GROUPS */}
-                    <Box sx={{ width: '100vw' }}>
+                        <Tabs
+                            variant="fullWidth"
+                            value={value}
+                            onChange={handleChange}
+                            aria-label="provider and group tabs"
+                            textColor="inherit"
+                        >
+                            <Tab label="Provider" {...a11yProps(0)} />
+                            <Tab label="Group" {...a11yProps(1)} />
+                        </Tabs>
+                    </Box>
+
+                    {/* TAB PANEL - SEARCH AND FILTER */}
+                    <TabPanel value={value} index={0}>
                         <Box
-                            id="tab-panel-container"
+                            id="search-filter-bar"
                             style={{
-                                borderBottom: 1,
-                                borderColor: 'divider',
-                                backgroundColor: '#3a66c0',
-                                color: 'white',
+                                backgroundColor: 'var(--content)',
+                                height: 'fit-content',
+                                display: 'flex',
+                                alignSelf: 'center',
+                                justifyContent: 'center',
+                                padding: 10,
+                                marginBottom: '3rem',
                             }}
                         >
-                            <Tabs
-                                variant="fullWidth"
-                                value={value}
-                                onChange={handleChange}
-                                aria-label="provider and group tabs"
-                                textColor="inherit"
-                            >
-                                <Tab label="Provider" {...a11yProps(0)} />
-                                <Tab label="Group" {...a11yProps(1)} />
-                            </Tabs>
+                            {/* COMPONENTS - SEARCH AND FILTER */}
+                            <ProviderSearchBar />
+                            <SpecializationsDropdownMenu />
+                            <InsurancesDropdownMenu />
+                            <OccupationsDropdownMenu />
                         </Box>
 
-                        {/* TAB PANEL - SEARCH AND FILTER */}
-                        <TabPanel value={value} index={0}>
-                            <Box
-                                id="search-filter-bar"
-                                style={{
-                                    backgroundColor: 'var(--content)',
-                                    height: 'fit-content',
-                                    display: 'flex',
-                                    alignSelf: 'center',
-                                    justifyContent: 'center',
-                                    padding: 10,
-                                    marginBottom: '3rem',
-                                }}
-                            >
-                                {/* COMPONENTS - SEARCH AND FILTER */}
-                                <ProviderSearchBar />
-                                <SpecializationsDropdownMenu />
-                                <InsurancesDropdownMenu />
-                                <OccupationsDropdownMenu />
-                            </Box>
-
-                            {/* CONTAINER - PROVIDER MAP */}
-                            <Grid container spacing={3} id="provider-map">
-                                <Grid item xs={12} sm={8} md={6} lg={6} xl={4}>
-                                    {providers.map((provider) => (
-                                        <Grid item key={provider.id} xs={4}>
-                                            <ProvidersListItem
-                                                provider={provider}
-                                            />
-                                        </Grid>
-                                    ))}
-                                </Grid>
+                        {/* CONTAINER - PROVIDER MAP */}
+                        <Grid container spacing={3} id="provider-map">
+                            <Grid item xs={12} sm={8} md={6} lg={6} xl={4}>
+                                {providers.map((provider) => (
+                                    <Grid item key={provider.id} xs={4}>
+                                        <ProvidersListItem
+                                            provider={provider}
+                                        />
+                                    </Grid>
+                                ))}
                             </Grid>
-                        </TabPanel>
+                        </Grid>
+                    </TabPanel>
 
-                        {/* TAB PANEL - GROUPS */}
-                        <TabPanel value={value} index={1}>
-                            <Box
-                                id="search-filter-bar"
-                                style={{
-                                    backgroundColor: 'var(--content)',
-                                    height: 'fit-content',
-                                    display: 'flex',
-                                    alignSelf: 'center',
-                                    justifyContent: 'center',
-                                    padding: 10,
-                                    marginBottom: '3rem',
-                                }}
-                            >
-                                {/* COMPONENTS - SEARCH FOR GROUPS */}
-                                <GroupSearchBar />
-                            </Box>
-                            {/* container for groups */}
-                            <Grid container spacing={3} id="group-map">
-                                <Grid item xs={12} sm={8} md={6} lg={6} xl={4}>
-                                    {groups.map((group) => (
-                                        <Grid item key={group.id} xs={4}>
-                                            <GroupsListItem group={group} />
-                                        </Grid>
-                                    ))}
-                                </Grid>
+                    {/* TAB PANEL - GROUPS */}
+                    <TabPanel value={value} index={1}>
+                        <Box
+                            id="search-filter-bar"
+                            style={{
+                                backgroundColor: 'var(--content)',
+                                height: 'fit-content',
+                                display: 'flex',
+                                alignSelf: 'center',
+                                justifyContent: 'center',
+                                padding: 10,
+                                marginBottom: '3rem',
+                            }}
+                        >
+                            {/* COMPONENTS - SEARCH FOR GROUPS */}
+                            <GroupSearchBar />
+                        </Box>
+                        {/* container for groups */}
+                        <Grid container spacing={3} id="group-map">
+                            <Grid item xs={12} sm={8} md={6} lg={6} xl={4}>
+                                {groups.map((group) => (
+                                    <Grid item key={group.id} xs={4}>
+                                        <GroupsListItem group={group} />
+                                    </Grid>
+                                ))}
                             </Grid>
-                        </TabPanel>
-                    </Box>
-                </Grid>
-                );
-            </Box>
+                        </Grid>
+                    </TabPanel>
+                </Box>
+            </Grid>
+            );
         </div>
     );
 }
