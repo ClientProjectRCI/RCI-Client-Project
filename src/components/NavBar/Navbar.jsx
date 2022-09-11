@@ -220,7 +220,7 @@ export default function Navbar() {
                                             history.push(`/providers`)
                                         }
                                     >
-                                        Profile
+                                        Dashboard
                                     </Button>
                                 </MenuItem>
                             )}
