@@ -15,17 +15,17 @@ CREATE TABLE "user" (
 CREATE TABLE "group" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"user_id" int REFERENCES "user"("id") NOT NULL UNIQUE,
-	"name" varchar(100) NOT NULL DEFAULT 'My Name',
+	"name" varchar(1000) NOT NULL DEFAULT 'My Name',
 	"bio" varchar(1000) DEFAULT 'My Bio',
 	"picture" varchar(1000) DEFAULT 
-	'https://static.wixstatic.com/media/3d076e_adb70c8b93b845f1b93d50028c5013e8~mv2.jpeg/v1/crop/x_0,y_727,w_1242,h_1173/fill/w_412,h_389,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/695BF34C-4BAC-4D41-85DD-95CE130DAA57%20-%20S.jpeg',
-	"website" varchar(255) DEFAULT 'My Website',
-	"email" varchar(255) DEFAULT 'My email',
+	'https://cquipsplus.ca/wp-content/themes/cera/assets/images/avatars/user-avatar.png',
+	"website" varchar(1000) DEFAULT 'My Website',
+	"email" varchar(1000) DEFAULT 'My email',
 	"phone" varchar(50) DEFAULT 'My phone',
-	"street" varchar(255) DEFAULT 'My street',
-	"city" varchar(100) DEFAULT 'My city',
-	"state" varchar(100) DEFAULT 'My state',
-	"zipcode" varchar(100) DEFAULT 'My zipcode'
+	"street" varchar(1000) DEFAULT 'My street',
+	"city" varchar(1000) DEFAULT 'My city',
+	"state" varchar(1000) DEFAULT 'My state',
+	"zipcode" varchar(1000) DEFAULT 'My zipcode'
 );
 
 
@@ -37,7 +37,7 @@ CREATE TABLE "provider" (
 	"name" varchar(100) DEFAULT 'My Name',
 	"bio" varchar(1000) DEFAULT 'My Bio',
 	"picture" varchar(1000) DEFAULT 
-	'https://static.wixstatic.com/media/3d076e_adb70c8b93b845f1b93d50028c5013e8~mv2.jpeg/v1/crop/x_0,y_727,w_1242,h_1173/fill/w_412,h_389,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/695BF34C-4BAC-4D41-85DD-95CE130DAA57%20-%20S.jpeg',
+	'https://cquipsplus.ca/wp-content/themes/cera/assets/images/avatars/user-avatar.png',
 	"phone" varchar(50) DEFAULT 'My phone',
 	"email" varchar(100) DEFAULT 'My email',
 	"availability" varchar(1000) DEFAULT 'My Availability',
@@ -201,7 +201,7 @@ INSERT INTO "provider" ( "user_id", "name", "bio", "picture","phone", "email", "
 (4, 
 'Provider 1 Name', 
 'My bio',
- 'https://static.wixstatic.com/media/3d076e_adb70c8b93b845f1b93d50028c5013e8~mv2.jpeg/v1/crop/x_0,y_727,w_1242,h_1173/fill/w_412,h_389,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/695BF34C-4BAC-4D41-85DD-95CE130DAA57%20-%20S.jpeg', 
+ 'https://cquipsplus.ca/wp-content/themes/cera/assets/images/avatars/user-avatar.png', 
  'My phone', 'My email', 
  'My availability', 
  1);
@@ -483,17 +483,17 @@ UPDATE "group" SET "state" = 'updated db phone' WHERE "group"."user_id" = 2;
 UPDATE "group" SET "zipcode" = 'updated db zipcode' WHERE "group"."user_id" = 2;
 
 -----! DELETE/DROP TABLES !-----
-DROP TABLE "provider_specializations";
-DROP TABLE "provider_insurance_plan";
-DROP TABLE "provider_service_type";
-DROP TABLE "provider_occupation";
-DROP TABLE "specializations";
-DROP TABLE "insurance_plan";
-DROP TABLE "service_type";
-DROP TABLE "occupations";
-DROP TABLE "provider";
-DROP TABLE "group";
-DROP TABLE "user"; 
+DROP TABLE "provider_specializations",
+DROP TABLE "provider_insurance_plan",
+DROP TABLE "provider_service_type",
+DROP TABLE "provider_occupation",
+DROP TABLE "specializations",
+DROP TABLE "insurance_plan",
+DROP TABLE "service_type",
+DROP TABLE "occupations",
+DROP TABLE "provider",
+DROP TABLE "group",
+DROP TABLE "user";
 -----! DELETE/DROP TABLES !-----
 
 
