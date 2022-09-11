@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
+    Grid,
     Box,
     Typography,
     CardContent,
@@ -26,58 +27,125 @@ export default function ProvidersListItem({ provider }) {
     };
 
     return (
-        // CONTAINER FOR POSITIONING
-        <Box
-            style={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-                padding: 1,
-                width: '100vw',
-            }}
-        >
-            {/* CARD CSS */}
-            <Card
-                onClick={() => handleClick(provider.id)}
-                sx={{
-                    backgroundColor: 'var(--content)',
-                    width: '70vw',
-                    marginY: 1,
-                    '&:hover': {
-                        boxShadow: '0.5rem 0.5rem 1rem 0.5rem gray',
-                        cursor: 'pointer',
-                    },
+        // CONTAINER FOR POSITIONING ALL CARDS
+        <>
+            <Box
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    padding: 1,
+                    width: '100vw',
                 }}
             >
-                {/* CARD CONTENTS */}
-                <CardContent>
-                    <CardMedia
-                        component="img"
-                        image={provider.picture}
+                {/* CARD BACKGROUND */}
+                <Grid
+                    Item
+                    // onClick={() => handleClick(provider.id)}
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'left',
+                        alignItems: 'flex-start',
+                        backgroundColor: 'var(--content)',
+                        height: '22vh',
+                        width: '70vw',
+                        marginY: 2,
+                        borderRadius: 5,
+                        '&:hover': {
+                            boxShadow: '0.5rem 0.5rem 1rem 0.5rem gray',
+                            cursor: 'pointer',
+                        },
+                    }}
+                >
+                    {/* LEFT COLUMN */}
+                    <Grid
+                        Item
                         sx={{
-                            height: 200,
-                            width: 'auto',
                             borderRadius: 5,
+                            margin: '0rem 1rem',
                         }}
-                    />
-                </CardContent>
-                <CardContent>
-                    <Typography
-                        gutterBottom
-                        variant="h5"
-                        sx={{ width: 'fit-content' }}
                     >
-                        {provider.name}
-                    </Typography>
-                    <Typography gutterBottom variant="h6">
-                        {provider.bio}
-                    </Typography>
-                </CardContent>
-                <CardContent>
-                    <Typography>{provider.phone}</Typography>
-                </CardContent>
-            </Card>
-        </Box>
+                        <img
+                            src={provider.picture}
+                            style={{
+                                height: 200,
+                                width: 250,
+                            }}
+                        />
+                    </Grid>
+                    {/* CENTER COLUMN */}
+                    <Grid
+                        container
+                        id="center-column"
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'left',
+                        }}
+                    >
+                        {/* NAME */}
+                        <Grid item>
+                            <Typography
+                                variant="h4"
+                                sx={{
+                                    width: '30vw',
+                                    textOverflow: 'ellipsis',
+                                    color: 'var(--cornflower)',
+                                }}
+                            >
+                                {provider.name}
+                            </Typography>
+                        </Grid>
+
+                        {/* OCCUPATION */}
+                        <Grid item>
+                            <Typography
+                                gutterBottom
+                                variant="h6"
+                                sx={{ width: 'fit-content' }}
+                            >
+                                {provider.occupation} OCCUPATION
+                            </Typography>
+                        </Grid>
+
+                        {/* BIO */}
+                        <Grid Item>
+                            <Typography
+                                variant="h6"
+                                sx={{
+                                    width: '40vw',
+                                    height: '5vh',
+                                    textOverflow: 'ellipsis',
+                                }}
+                            >
+                                {provider.bio}
+                            </Typography>
+                        </Grid>
+
+                        {/* RIGHT COLUMN */}
+                        <Grid
+                            container
+                            id="right-column"
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'left',
+                                color: 'red',
+                            }}
+                        >
+                            {/* PHONE NUMBER */}
+                            <Grid Item>
+                                <Typography>{provider.phone}</Typography>
+                            </Grid>
+                            <Grid Item>
+                                <Typography>{provider.email}</Typography>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Box>
+        </>
     );
 }
