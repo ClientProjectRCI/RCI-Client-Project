@@ -252,11 +252,12 @@ INSERT INTO "provider_occupation" ( "provider_id", "occupation_id") VALUES
 (4, 3), -- Certified Alcohol and Drug Abuse Counselor
 (4, 4); -- Clinician
 
----- STOP -- COPY -- & -- PASTE -- HERE ----
+--------------------- STOP -- COPY -- & -- PASTE -- HERE ---------------------
 
 
 
----------------- GETS ---------------- 
+--------------------- GET/SELECTS for PROVIDER/GROUP LIST & DROP DOWNS ---------------------
+
 ---- GET ALL  ---- 
 SELECT * FROM "user"; -- GET ALL USERS
 
@@ -277,9 +278,11 @@ ORDER BY "id";
 
 SELECT * FROM "occupations" -- GET ALL occupations - alphabetically
 ORDER BY "occupation";
+---------------------------------------------------------------
 
 
 
+ --------------------- PROVIDER/GROUP DETIALS Page(s) ---------------- 
 ---- GET ONE BY ID ---- 
 SELECT * FROM "user" WHERE "user"."id" = 1; -- GET ONE USER BY "id" example: 1
 SELECT * FROM "group" WHERE "group"."id" = 1; -- GET ONE GROUP BY "id" example: 1
@@ -325,9 +328,13 @@ SELECT * FROM "provider" WHERE "name" ILIKE '%rovid%' ORDER BY "provider"."name"
 -- SEARCH ALL Groups by NAME -- Ascending and Descending
 SELECT * FROM "group" WHERE "name" ILIKE '%group%' ORDER BY "group"."name" ASC;
 SELECT * FROM "group" WHERE "name" ILIKE '%group%' ORDER BY "group"."name" DESC;
+---------------------
 
+
+
+-----------------------------FILTER/SEARCH VIEWS ---------------------------------------
 ---------------- SEARCH by ONE thing ---------------- 
--- SEARCH Providers by 1 SPECIALIZATION -- 
+-- FILTER/SEARCH  Providers by 1 SPECIALIZATION -- 
 SELECT * FROM "provider" 
 JOIN "provider_specializations" 
 ON "provider"."id" = "provider_specializations"."provider_id"
@@ -336,7 +343,7 @@ ON "specializations"."id" = "provider_specializations"."id"
 WHERE "specializations"."specialization" ILIKE '%POC Specific%' 
 ORDER BY "provider"."name";
 
--- SEARCH Providers by 1 OCCUPATION -- 
+-- FILTER/SEARCH  Providers by 1 OCCUPATION -- 
 SELECT * FROM "provider" 
 JOIN "provider_occupation" 
 ON "provider"."id" = "provider_occupation"."provider_id"
@@ -345,7 +352,7 @@ ON "occupations"."id" = "provider_occupation"."id"
 WHERE "occupations"."occupation" ILIKE '%counselor%' 
 ORDER BY "provider"."name";
 
--- SEARCH Providers by 1 SERVICE_TYPE -- 
+-- FILTER/SEARCH  Providers by 1 SERVICE_TYPE -- 
 SELECT * FROM "provider" 
 JOIN "provider_service_type" 
 ON "provider"."id" = "provider_service_type"."provider_id"
@@ -354,7 +361,7 @@ ON "service_type"."id" = "provider_service_type"."id"
 WHERE "service_type"."service" ILIKE '%line%' 
 ORDER BY "provider"."name";
 
--- SEARCH Providers by 1 INSURANCE -- 
+-- FILTER/SEARCH  Providers by 1 INSURANCE -- 
 SELECT * FROM "provider" 
 JOIN "provider_insurance_plan" 
 ON "provider"."id" = "provider_insurance_plan"."provider_id"
@@ -365,9 +372,44 @@ ORDER BY "provider"."name";
 
 
 
+---------------- FILTER/SEARCH By MULTIPLE Things using ARRAY_AGG ----------------
+--searches multiple filters insurance_plan
+SELECT provider.name, array_agg(insurance_plan.insurance) as "accepted insurances" FROM provider
+JOIN provider_insurance_plan ON provider_insurance_plan.provider_id = provider.id
+JOIN insurance_plan ON insurance_plan.id = provider_insurance_plan.insurance_plan_id
+where insurance_plan.insurance ilike '%health%'
+or insurance_plan.insurance ilike ''
+GROUP BY provider.name
+order by provider.name asc;
 
----------------- SEARCH By MULTIPLE Things ----------------
--- SEARCH Providers by MULITPLE Insurance -- (12 posible selections)
+--searches multiple filters specializations
+SELECT provider.name, provider.picture, array_agg(specializations.specialization) as "specialties" FROM provider
+JOIN provider_specializations ON provider_specializations.provider_id = provider.id
+JOIN specializations ON specializations.id = provider_specializations.specializations_id
+group by provider.name, provider.picture
+order by provider.name asc;
+
+--search multiple filters specializations
+SELECT provider.name, array_agg(specializations.specialization) as "specializations" FROM provider
+JOIN provider_specializations ON provider_specializations.provider_id = provider.id
+JOIN specializations ON specializations.id = provider_specializations.specializations_id
+where specializations.specialization ilike '%l%'
+group by provider.name
+order by provider.name asc;
+
+--search multiple filters occcupation
+SELECT provider.name, array_agg(occupations.occupation) as "Occupation" FROM provider
+JOIN provider_occupation ON provider_occupation.provider_id = provider.id
+JOIN occupations ON occupations.id = provider_occupation.occupation_id
+group by provider.name
+order by provider.name asc;
+------------------------------------------------------------------------------------------
+
+
+
+---------------- FILTER/SEARCH By MULTIPLE Things by NAME----------------
+---------------- NO CURRENTLY BEING IMPLEMENTED ----------------
+-- FILTER/SEARCH  Providers by MULITPLE Insurance -- (12 posible selections)
 SELECT *
 FROM "provider" 
 JOIN "provider_insurance_plan" 
@@ -397,7 +439,7 @@ JOIN "insurance_plan"
 ON "insurance_plan"."id" = "provider_insurance_plan"."insurance_plan_id"
 ORDER BY "provider"."name";
 
--- SEARCH Providers by MULITPLE specialization -- (22 posible selections)
+-- FILTER/SEARCH  Providers by MULITPLE specialization -- (22 posible selections)
 SELECT *
 FROM "provider" 
 JOIN "provider_specializations" 
@@ -429,7 +471,7 @@ OR "specializations"."specialization" ILIKE ''
 ORDER BY "provider"."name" ASC;
 
 
--- SEARCH Providers by MULITPLE specialization -- (5 posible selections)
+-- FILTER/SEARCH  Providers by MULITPLE specialization -- (5 posible selections)
 SELECT * FROM "provider" 
 JOIN "provider_service_type" 
 ON "provider"."id" = "provider_service_type"."provider_id"
@@ -443,7 +485,7 @@ OR "service_type"."service" ILIKE ''
 ORDER BY "provider"."name";
 
 
--- SEARCH Providers by MULITPLE occupation -- (9 posible selections)
+-- FILTER/SEARCH  Providers by MULITPLE occupation -- (9 posible selections)
 SELECT * FROM "provider" 
 JOIN "provider_occupation" 
 ON "provider"."id" = "provider_occupation"."provider_id"
@@ -459,11 +501,12 @@ OR "occupations"."occupation" ILIKE ''
 OR "occupations"."occupation" ILIKE '' 
 OR "occupations"."occupation" ILIKE '' 
 ORDER BY "provider"."name";
+------------------------------------------------------------------------------------------
 
 
 
 
----------------- EDIT/UPDATE  ---------------- 
+-----------------------------EDIT/UPDATE VIEWS ONLY---------------------------------------
 -- UPDATE - PROVIDER info by "Provider.user_ID"
 UPDATE "provider" SET "name" = 'updated db name' WHERE "provider"."user_id" = 4;
 UPDATE "provider" SET "bio" = 'updated db bio' WHERE "provider"."user_id" = 4;
@@ -482,23 +525,7 @@ UPDATE "group" SET "city" = 'updated db city' WHERE "group"."user_id" = 2;
 UPDATE "group" SET "state" = 'updated db phone' WHERE "group"."user_id" = 2;
 UPDATE "group" SET "zipcode" = 'updated db zipcode' WHERE "group"."user_id" = 2;
 
------! DELETE/DROP TABLES !-----
-DROP TABLE "provider_specializations";
-DROP TABLE "provider_insurance_plan";
-DROP TABLE "provider_service_type";
-DROP TABLE "provider_occupation";
-DROP TABLE "specializations";
-DROP TABLE "insurance_plan";
-DROP TABLE "service_type";
-DROP TABLE "occupations";
-DROP TABLE "provider";
-DROP TABLE "group";
-DROP TABLE "user";
------! DELETE/DROP TABLES !-----
-
-
-
-
+---------------------------------------------------------------------------------------------
 
 ---- THIS GETS EVERYTHING. Does't really work. Mostly here so anyone can test different JOINS ----
 -- GET INSURANCE,service_type & specializations for ONE provider by provider.id --
@@ -516,40 +543,6 @@ ON "provider_service_type"."provider_id" = "provider"."id"
 JOIN "service_type"
 ON "service_type"."id" = "provider_service_type"."provider_id"
 WHERE "provider"."id" = 1;
-
---searches multiple filters insurance_plan
-SELECT provider.name, array_agg(insurance_plan.insurance) as "accepted insurances" FROM provider
-JOIN provider_insurance_plan ON provider_insurance_plan.provider_id = provider.id
-JOIN insurance_plan ON insurance_plan.id = provider_insurance_plan.insurance_plan_id
-where insurance_plan.insurance ilike '%health%'
-or insurance_plan.insurance ilike ''
-GROUP BY provider.name
-order by provider.name asc;
-
---searches multiple filters specializations
-SELECT provider.name, provider.picture, array_agg(specializations.specialization) as "specialties" FROM provider
-JOIN provider_specializations ON provider_specializations.provider_id = provider.id
-JOIN specializations ON specializations.id = provider_specializations.specializations_id
-group by provider.name, provider.picture
-order by provider.name asc;
-
---search multiple filters specializations
-SELECT provider.name, array_agg(specializations.specialization) as "specializations" FROM provider
-JOIN provider_specializations ON provider_specializations.provider_id = provider.id
-JOIN specializations ON specializations.id = provider_specializations.specializations_id
-where specializations.specialization ilike '%l%'
-group by provider.name
-order by provider.name asc;
-
---search multiple filters occcupation
-SELECT provider.name, array_agg(occupations.occupation) as "Occupation" FROM provider
-JOIN provider_occupation ON provider_occupation.provider_id = provider.id
-JOIN occupations ON occupations.id = provider_occupation.occupation_id
-group by provider.name
-order by provider.name asc;
-
-
-
 
 
 --------------------------------------------------------PROFILE VIEWS ONLY---------------------------------------------------------------------
@@ -577,5 +570,21 @@ SELECT service_type.service FROM service_type
 JOIN provider_service_type ON provider_service_type.service_type_id = service_type.id
 JOIN provider ON provider.id = provider_service_type.provider_id
 WHERE provider.user_id = 7;
-
 -----------------------------------------------------------------------------------------------------------------------------
+
+
+-----! DELETE/DROP TABLES !-----
+DROP TABLE "provider_specializations";
+DROP TABLE "provider_insurance_plan";
+DROP TABLE "provider_service_type";
+DROP TABLE "provider_occupation";
+DROP TABLE "provider_availability";
+DROP TABLE "specializations";
+DROP TABLE "insurance_plan";
+DROP TABLE "service_type";
+DROP TABLE "occupations";
+DROP TABLE "availability";
+DROP TABLE "provider";
+DROP TABLE "group";
+DROP TABLE "user";
+-----! DELETE/DROP TABLES !-----
