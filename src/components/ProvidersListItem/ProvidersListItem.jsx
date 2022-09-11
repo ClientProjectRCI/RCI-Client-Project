@@ -42,7 +42,7 @@ export default function ProvidersListItem({ provider }) {
                 {/* CARD BACKGROUND */}
                 <Grid
                     Item
-                    // onClick={() => handleClick(provider.id)}
+                    onClick={() => handleClick(provider.id)}
                     sx={{
                         display: 'flex',
                         flexDirection: 'row',
@@ -63,15 +63,18 @@ export default function ProvidersListItem({ provider }) {
                     <Grid
                         Item
                         sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
                             borderRadius: 5,
-                            margin: '0rem 1rem',
+                            margin: 'auto 1rem',
                         }}
                     >
                         <img
                             src={provider.picture}
                             style={{
-                                height: 200,
-                                width: 250,
+                                height: 150,
+                                width: 200,
                             }}
                         />
                     </Grid>
