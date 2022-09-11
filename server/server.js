@@ -4,22 +4,22 @@ require('dotenv').config();
 
 const app = express();
 
-const multer  = require('multer');
+const multer = require('multer');
 
 const fileStorageEngine = multer.diskStorage({
-	destination: (req, file, cb) => {
-		cb(null, './public/images');
-	},
-	filename: (req, file, cb) => {
-		cb(null, file.originalname);
-	},
+    destination: (req, file, cb) => {
+        cb(null, './public/images');
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname);
+    },
 });
 
 const upload = multer({ storage: fileStorageEngine });
 
 //multer
 app.post('/api/providers/images', upload.single('image'), (req, res) => {
-	res.send('File uploaded successfully. Look Here! Here It is!');
+    res.send('File uploaded successfully. Look Here! Here It is!');
 });
 
 const sessionMiddleware = require('./modules/session-middleware');
@@ -30,7 +30,7 @@ const userRouter = require('./routes/user.router');
 const groupsRouter = require('./routes/groups.router');
 const providersRouter = require('./routes/providers.router');
 const providersImageRouter = require('./routes/providers.router');
-const availabilityRouter = require ('./routes/availability.router');
+const availabilityRouter = require('./routes/availability.router');
 const specializationsRouter = require('./routes/specializations.router');
 const insurancesRouter = require('./routes/insurances.router');
 const occupationsRouter = require('./routes/occupations.router');
@@ -42,8 +42,8 @@ const providerOccupationSearchRouter = require('./routes/providerOccupationSearc
 const providerInsuranceSearchRouter = require('./routes/providerInsuranceSearch.router');
 const groupProfileRouter = require('./routes/groupProfile.router');
 const groupSearchRouter = require('./routes/groupSearch.router');
-const profileInsurances = require('./routes/profileInsurances.router')
-
+const profileInsurances = require('./routes/profileInsurances.router');
+const profileOccupations = require('./routes/profileOccupations.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -56,8 +56,6 @@ app.use(sessionMiddleware);
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/api/groups', groupsRouter);
@@ -68,14 +66,18 @@ app.use('/api/availability', availabilityRouter);
 app.use('/api/insurances', insurancesRouter);
 app.use('/api/occupations', occupationsRouter);
 app.use('/api/services', servicesRouter);
-app.use('/api/providerProfile', providerProfileRouter); 
+app.use('/api/providerProfile', providerProfileRouter);
 app.use('/api/providerSearch', providerSearchRouter);
-app.use('/api/providerSpecializationSearch', providerSpecializationSearchRouter);
+app.use(
+    '/api/providerSpecializationSearch',
+    providerSpecializationSearchRouter
+);
 app.use('/api/providerOccupationSearch', providerOccupationSearchRouter);
 app.use('/api/providerInsuranceSearch', providerInsuranceSearchRouter);
-app.use('/api/groupProfile', groupProfileRouter); 
+app.use('/api/groupProfile', groupProfileRouter);
 app.use('/api/groupSearch', groupSearchRouter);
 app.use('/api/profileInsurances', profileInsurances);
+app.use('/api/profileOccupations', profileOccupations);
 
 // Serve static files
 app.use(express.static('build'));

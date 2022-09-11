@@ -83,7 +83,7 @@ function* providerProfileSaga() {
     yield takeEvery('EDIT_PROVIDER_PROFILE', editProfile);
     yield takeEvery('FETCH_PROVIDER_PROFILE', fetchProviderProfile);
     yield takeEvery('FETCH_PROFILE_INSURANCES', fetchProfileInsurances);
-    yield takeEvery('FETCH_PROFILE_OCCUPATIONS', fetchProfileInsurances);
+    yield takeEvery('FETCH_PROFILE_OCCUPATIONS', fetchProfileOccupations);
     // yield takeEvery('FETCH_PROFILE_INSURANCES', fetchProfileInsurances);
 }
 

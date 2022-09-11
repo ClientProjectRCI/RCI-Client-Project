@@ -101,7 +101,7 @@ CREATE TABLE "provider_service_type" (
 CREATE TABLE "provider_occupation" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"provider_id" int REFERENCES "provider"("id") NOT NULL,
-	"occupation_id" int REFERENCES "specializations"("id") NOT NULL
+	"occupation_id" int REFERENCES "occupations"("id") NOT NULL
 );
 
 ---- availability JUNCTION TABLE ----
@@ -542,14 +542,17 @@ group by provider.name
 order by provider.name asc;
 
 --occcupation
-SELECT provider.name, array_agg(occupations.occupation) FROM provider
+SELECT provider.name, array_agg(occupations.occupation) as "Occupation" FROM provider
 JOIN provider_occupation ON provider_occupation.provider_id = provider.id
 JOIN occupations ON occupations.id = provider_occupation.occupation_id
-where occupations.occupation ilike '%psychiatrist%'
-or occupations.occupation ilike '%counselor%'
 group by provider.name
 order by provider.name asc;
 
+SELECT occupations.occupation FROM occupations
+JOIN provider_occupation ON provider_occupation.occupation_id = occupations.id
+JOIN provider
+ON provider.id = provider_occupation.occupation_id
+WHERE provider.user_id = 4;
 
 
 
