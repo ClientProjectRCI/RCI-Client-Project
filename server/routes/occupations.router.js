@@ -16,7 +16,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   )
   VALUES ($1, $2)`;
   pool.query(queryText, 
-      [newProvider.user_id,
+      [newProvider.provider_id,
       newProvider.occupation_id
       ])
 .then(result => {

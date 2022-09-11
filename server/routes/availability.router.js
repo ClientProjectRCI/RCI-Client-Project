@@ -11,12 +11,12 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
   console.log("availability content is:", req.body);
   
-  let queryText = `INSERT INTO "provider_availability" (
-  "provider_id", "availability_id"
+  let queryText = `INSERT INTO "provider" (
+  "availability"
   )
   VALUES ($1, $2)`;
   pool.query(queryText, 
-      [newProvider.user_id,
+      [
       newProvider.availability
       ])
 .then(result => {
@@ -44,7 +44,7 @@ router.get('/', (req, res) => {
 });
 
 
-//get route for occupations
+//get route for availability
 router.get('/:id', (req, res) => {
    const providerId = req.params.id;
    console.log('here is the providerId in the availability router', providerId);

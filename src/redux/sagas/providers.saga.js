@@ -161,6 +161,20 @@ function* deleteProviders(action){
         yield put({type:"FETCH_PROVIDERS"});
 }
 
+// Add a new provider 
+function* addNewProvider(action){
+
+  console.log('addNewProvider, here is the action.payload', action.payload);
+         try {
+    const response = yield axios.post('/api/providers', action.payload);
+    console.log('Here is the response in the providers saga-addNewProvider', response.data.id)
+    yield put({ type: 'FETCH_PROVIDER_DETAILS', payload: response.data.providerid});
+  } catch (error) {
+    console.log('Post this provider error: error in providers saga', error);
+  }
+}
+
+
 
 function* providersSaga() {
   yield takeEvery('FETCH_PROVIDERS', fetchProviders);
@@ -175,6 +189,7 @@ function* providersSaga() {
   yield takeEvery('FETCH_PROVIDER_INSURANCES', fetchProviderInsurances);
   yield takeEvery('FETCH_PROVIDER_OCCUPATIONS', fetchProviderOccupations);
   yield takeEvery('FETCH_PROVIDER_SERVICES', fetchProviderServices);
+    yield takeEvery('ADD_NEW_PROVIDER', addNewProvider);
   yield takeEvery('DELETE_PROVIDERS', deleteProviders); 
 }
 

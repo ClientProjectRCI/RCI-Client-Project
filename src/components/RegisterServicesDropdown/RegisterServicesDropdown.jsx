@@ -36,7 +36,7 @@ function RegisterServicesDropdown() {
   const dispatch = useDispatch();
   //state for the text box for the provider
   const services = useSelector((store) => store.services);
-  const [providerService, setProviderService] = useState([]);
+  const [providerService, setProviderService] = useState('');
 
   const handleChange = (event) => {
     const {
@@ -65,19 +65,19 @@ function RegisterServicesDropdown() {
       <FormControl sx={{ m: 1, width: 300 }}>
         <InputLabel id="multiple-occupations-label">Services Offered</InputLabel>
         <Select
-          multiple
+          // multiple
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
           value={providerService}
           onChange={handleChange}
           input={<OutlinedInput label="Name" />}
-          renderValue={(selected) => (
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-              {selected.map((value) => (
-                <Chip key={value} label={value} />
-              ))}
-            </Box>
-          )}
+          // renderValue={(selected) => (
+          //   <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+          //     {selected.map((value) => (
+          //       <Chip key={value} label={value} />
+          //     ))}
+          //   </Box>
+          // )}
           MenuProps={MenuProps}
         >
           {services.map((service) => (
