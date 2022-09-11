@@ -5,7 +5,7 @@ export default function ProfileInsurances() {
     return (
         <>
             {profileInsurances.map((insurance, i) => {
-                return <p key={i}>{insurance.insurance}</p>;
+                return <li key={i}>{insurance.insurance}</li>;
             })}
         </>
     );
