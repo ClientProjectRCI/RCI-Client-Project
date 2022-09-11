@@ -285,7 +285,7 @@ export default function ProviderProfile() {
                         <div className="column">
                             <ul className="info">
                                 <h4>Contact Info:</h4>
-                                {/* <ProfileAvailability /> */}
+                                <li>Availability: {profile.availability}</li>
                                 <li>Phone: {profile.phone}</li>
                                 <li>Email: {profile.email}</li>
                                 <h4>Services: </h4>

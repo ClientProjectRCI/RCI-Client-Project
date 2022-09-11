@@ -10,6 +10,7 @@ export default function ProviderOccupations() {
 
     return (
         <div>
+            <h4>Occupations: </h4>
             {providerOccupations.map((job) => {
                 return <li key={job.id}>{job.occupation}</li>;
             })}
