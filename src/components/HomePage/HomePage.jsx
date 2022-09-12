@@ -8,7 +8,16 @@ import { Box, Grid, Typography } from '@material-ui/core';
 
 export default function HomePage() {
     return (
-        <Grid container justifyContent="center" spacing={10}>
+        <Grid
+            container
+            style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginTop: '1rem',
+            }}
+            spacing={10}
+        >
             <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
                 <Typography
                     align="left"
