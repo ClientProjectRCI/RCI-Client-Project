@@ -35,7 +35,7 @@ function SpecializationsDropdownMenu() {
         );
         dispatch({
             type: 'FILTER_PROVIDER_SPECIALIZATIONS',
-            payload: { specialization: filterSpecializations },
+            payload: { specialization: filterSpecializations }, //specialization STRING
         });
     }
 
