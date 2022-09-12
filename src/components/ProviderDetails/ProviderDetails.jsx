@@ -14,6 +14,7 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import { Box, Grid } from '@material-ui/core';
 import ReplyIcon from '@mui/icons-material/Reply';
 import MailIcon from '@mui/icons-material/Mail';
+import { Container } from '@mui/material';
 
 export default function ProvidersDetail() {
     const details = useSelector((store) => store.details);
@@ -64,16 +65,23 @@ export default function ProvidersDetail() {
                     <img
                         src={details.picture}
                         style={{
-                            height: 180,
-                            width: 200,
+                            width: 300,
+                            height: 300,
                             margin: '1rem',
-                            borderRadius: 5,
+                            borderRadius: 20,
                         }}
                     />
                 </Grid>
-                <Box id="options-box" style={{ width: 200, height: 400 }}>
+                <Container
+                    spacing={2}
+                    style={{
+                        width: 'fit-content',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                    }}
+                >
                     <Button
-                        fullWidth
                         size="medium"
                         variant="contained"
                         style={{
@@ -85,24 +93,22 @@ export default function ProvidersDetail() {
                         <MailIcon />
                         Email Me
                     </Button>
-                    <Grid item>
-                        <Button
-                            fullWidth
-                            size="medium"
-                            color="primary"
-                            variant="contained"
-                            onClick={handleClick}
-                        >
-                            <ReplyIcon /> Return to List
-                        </Button>
+                    <Button
+                        size="medium"
+                        color="primary"
+                        variant="contained"
+                        onClick={handleClick}
+                    >
+                        <ReplyIcon />
+                        Return to List
+                    </Button>
 
-                        <Grid item>
-                            {user.id && user.access_level === 1 && (
-                                <DeleteProviderBtn />
-                            )}
-                        </Grid>
+                    <Grid item>
+                        {user.id && user.access_level === 1 && (
+                            <DeleteProviderBtn />
+                        )}
                     </Grid>
-                </Box>
+                </Container>
                 <Dialog
                     style={{ borderRadius: 20 }}
                     open={open}

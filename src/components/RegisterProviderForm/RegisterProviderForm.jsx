@@ -1,4 +1,4 @@
-import React, { useEffect, useState }  from 'react';
+import React, { useEffect, useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -50,7 +50,6 @@ import RegisterSpecializationsDropdown from '../RegisterSpecializationsDropdown/
 import RegisterAvailabilityDropdown from '../RegisterAvailabilityDropdown/RegisterAvailabilityDropdown';
 import RegisterServicesDropdown from '../RegisterServicesDropdown/RegisterServicesDropdown';
 
-
 export default function RegisterProviderForm() {
     // this component doesn't do much to start, just renders some user reducer info to the DOM
     const user = useSelector((store) => store.user);
@@ -63,19 +62,17 @@ export default function RegisterProviderForm() {
     const [providerEmail, setProviderEmail] = useState('');
     // const [providerWebsite, setProviderWebsite]= useState('');
 
-
     useEffect(() => {
-      dispatch({ type: 'FETCH_PROVIDERS' });
-      dispatch({ type: 'FETCH_GROUPS' });
-      dispatch({ type: 'FETCH_SPECIALIZATIONS' });
-      dispatch({ type: 'FETCH_INSURANCES' });
-      dispatch({ type: 'FETCH_OCCUPATIONS' });
-    //   dispatch({ type: 'FETCH_AVAILABILITY'});
-      dispatch({ type: 'FETCH_SERVICES'});
+        dispatch({ type: 'FETCH_PROVIDERS' });
+        dispatch({ type: 'FETCH_GROUPS' });
+        dispatch({ type: 'FETCH_SPECIALIZATIONS' });
+        dispatch({ type: 'FETCH_INSURANCES' });
+        dispatch({ type: 'FETCH_OCCUPATIONS' });
+        //   dispatch({ type: 'FETCH_AVAILABILITY'});
+        dispatch({ type: 'FETCH_SERVICES' });
     }, []);
 
     const verifyProvider = () => {
-
         dispatch({
             type: 'ADD_PROVIDER_NAME',
             payload: providerName,
@@ -102,17 +99,15 @@ export default function RegisterProviderForm() {
 
     return (
         <center>
-                <form className="container" encType="multipart/form-data">
+            <form className="container" encType="multipart/form-data">
                 <h2>Welcome, {user.username}!</h2>
-                <p>ProviderProfile: {user.id}</p>
-                <p>ProviderProfile: Your ID is: {user.id}</p>
-                
+
                 {/* <input type='file' 
                 className='input' 
                 name='image' 
                 onChange={addFile}
                 ></input> */}
-                
+
                 <Box
                     component="form"
                     sx={{
@@ -120,15 +115,19 @@ export default function RegisterProviderForm() {
                     }}
                     noValidate
                     autoComplete="off"
-                    >
-                    <TextField id="outlined-basic" 
-                    label="Name" 
-                    variant="outlined"
-                    value={providerName}
-                    onChange={(event) => setProviderName(event.target.value)}
+                >
+                    <TextField
+                        id="outlined-basic"
+                        label="Name"
+                        variant="outlined"
+                        value={providerName}
+                        onChange={(event) =>
+                            // setProviderName(event.target.value)
+                            setProviderName('Isaac Brist')
+                        }
                     />
                 </Box>
-              
+
                 <Box
                     component="form"
                     sx={{
@@ -136,28 +135,33 @@ export default function RegisterProviderForm() {
                     }}
                     noValidate
                     autoComplete="off"
-                    >
-                    <TextField id="outlined-basic" 
-                    label="Bio"
-                    multiline
-                    maxRows={4} 
-                    variant="outlined"
-                    value={providerBio}
-                    onChange={(event) => setProviderBio(event.target.value)}
-
+                >
+                    <TextField
+                        id="outlined-basic"
+                        label="Bio"
+                        multiline
+                        maxRows={4}
+                        variant="outlined"
+                        value={providerBio}
+                        onChange={(event) =>
+                            // setProviderBio(event.target.value)
+                            setProviderBio(
+                                `I'm a father, doctor, love DnD, and avoid sugary foods!`
+                            )
+                        }
                     />
                 </Box>
 
                 <RegisterSpecializationsDropdown />
-              
+
                 <RegisterOccupationsDropdown />
 
                 <RegisterServicesDropdown />
-              
+
                 <RegisterInsurancesDropdown />
 
                 <RegisterAvailabilityDropdown />
-              
+
                 <Box
                     component="form"
                     sx={{
@@ -165,16 +169,19 @@ export default function RegisterProviderForm() {
                     }}
                     noValidate
                     autoComplete="off"
-                    >
-                    <TextField id="outlined-basic" 
-                    label="E-mail address" 
-                    variant="outlined"
-                    value={providerEmail}
-                    onChange={(event) => setProviderEmail(event.target.value)}
-
+                >
+                    <TextField
+                        id="outlined-basic"
+                        label="E-mail address"
+                        variant="outlined"
+                        value={providerEmail}
+                        onChange={(event) =>
+                            // setProviderEmail(event.target.value)
+                            setProviderEmail(`EnterTheBrist@DnD.com`)
+                        }
                     />
-                    </Box>
-                
+                </Box>
+
                 <Box
                     component="form"
                     sx={{
@@ -182,20 +189,22 @@ export default function RegisterProviderForm() {
                     }}
                     noValidate
                     autoComplete="off"
-                    >
-                    <TextField id="outlined-basic" 
-                    label="Phone number" 
-                    variant="outlined"
-                    value={providerPhone}
-                    onChange={(event) => setProviderPhone(event.target.value)}
-
+                >
+                    <TextField
+                        id="outlined-basic"
+                        label="Phone number"
+                        variant="outlined"
+                        value={providerPhone}
+                        onChange={(event) =>
+                            // setProviderPhone(event.target.value)
+                            setProviderPhone(`111-222-3333`)
+                        }
                     />
-                    </Box>
+                </Box>
                 <button className="btn" onClick={verifyProvider}>
-                    Go To Verify
+                    Review Information
                 </button>
             </form>
-            {/* <LogOutButton className="btn" /> */}
         </center>
     );
 }

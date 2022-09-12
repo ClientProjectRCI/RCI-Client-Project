@@ -87,8 +87,6 @@ export default function RegisterProviderVerify() {
     return (
         <center>
             <div className="container">
-                <h2>Welcome, {user.username}!</h2>
-                <p>ProviderProfile: Your ID is: {user.id}</p>
                 <form className="container" encType="multipart/form-data">
                     <input
                         type="file"

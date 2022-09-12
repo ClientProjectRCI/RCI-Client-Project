@@ -11,7 +11,7 @@ export default function AboutPage() {
                 >
                     I. About RCI
                 </Typography>
-                <Typography variant="h6" sx={{ fontWeight: 500, fontSize: 25 }}>
+                <Typography variant="p" sx={{ fontWeight: 500, fontSize: 25 }}>
                     We are a nonprofit dedicated to improving the Rochester area
                     and beyond through education and advocacy. We work to
                     provide a platform for youth empowerment and their education
@@ -25,7 +25,7 @@ export default function AboutPage() {
                 >
                     II. Project Background
                 </Typography>
-                <Typography variant="h6" sx={{ fontWeight: 500, fontSize: 25 }}>
+                <Typography variant="p" sx={{ fontWeight: 500, fontSize: 25 }}>
                     In 2021, we conducted a survey of over 1,000 people in
                     Rochester about their mental health and mental health
                     resources. We discovered that many people know that
@@ -41,7 +41,7 @@ export default function AboutPage() {
                 >
                     III. Mission
                 </Typography>
-                <Typography variant="h6" sx={{ fontWeight: 500, fontSize: 25 }}>
+                <Typography variant="p" sx={{ fontWeight: 500, fontSize: 25 }}>
                     The purpose of this project is to provide easier access to
                     mental health resources. Additionally, this database is for
                     the high school counselors of Century, Mayo, and John

@@ -103,24 +103,35 @@ export default function ProviderProfile() {
         <div className="row">
             <div></div>
             <div className="column">
-                <img style={{ borderRadius: 20 }} src={profile.picture} />
+                <img
+                    style={{
+                        width: 300,
+                        height: 300,
+                        margin: '1rem',
+                        borderRadius: 20,
+                    }}
+                    src={profile.picture}
+                />
 
-                <div>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                    }}
+                >
                     {' '}
                     {/* this div controller the "EDIT" buttons conditional rendering*/}
-                    <Button item variant="contained">
-                        Email
-                    </Button>
                     {edit ? (
                         <Button item variant="outlined" onClick={toggleEdit}>
-                            Discard Changes <CancelPresentationIcon />
+                            <CancelPresentationIcon />
+                            Discard Changes
                         </Button>
                     ) : (
                         <Button item variant="contained" onClick={toggleEdit}>
-                            Edit Profile Info <EditIcon />{' '}
+                            <EditIcon /> Edit Profile
                         </Button>
                     )}
-                </div>
+                </Box>
             </div>
 
             <div>
@@ -136,7 +147,7 @@ export default function ProviderProfile() {
 
                                 {/* NAME INPUT  */}
                                 <Typography fontWeight="bold">
-                                  Provider Name:  {profile.name}
+                                    Provider Name: {profile.name}
                                 </Typography>
                                 <br></br>
                                 <TextField
@@ -156,7 +167,7 @@ export default function ProviderProfile() {
 
                                 {/* Bio INPUT  */}
                                 <Typography fontWeight="bold">
-                                   Bio: {profile.bio}
+                                    Bio: {profile.bio}
                                 </Typography>
                                 <br></br>
                                 <TextField
@@ -272,8 +283,14 @@ export default function ProviderProfile() {
                         {/* ":" - If FALSE, show Non-editable Text Below */}
                         {/* COLUMN 1 */}
                         <div className="column">
-                            <div className="info">{profile.name}</div>
-                            <div className="info">{profile.bio}</div>
+                            <div className="info">
+                                <h4>Name:</h4>
+                                {profile.name}
+                            </div>
+                            <div className="info">
+                                <h4>About:</h4>
+                                {profile.bio}
+                            </div>
                             <div className="info">
                                 <h4>Insurance</h4>
                                 <ProfileInsurances />

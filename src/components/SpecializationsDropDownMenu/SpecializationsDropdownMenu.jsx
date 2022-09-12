@@ -52,7 +52,6 @@ function SpecializationsDropdownMenu() {
                     value={filterSpecializations}
                     onChange={handleChange}
                     input={<OutlinedInput label="Name" />}
-                    // MenuProps={MenuProps}
                 >
                     {specializations.map((specialization) => (
                         <MenuItem
