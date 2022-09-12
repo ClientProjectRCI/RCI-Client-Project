@@ -136,7 +136,7 @@ export default function ProviderProfile() {
 
                                 {/* NAME INPUT  */}
                                 <Typography fontWeight="bold">
-                                    {profile.name}
+                                  Provider Name:  {profile.name}
                                 </Typography>
                                 <br></br>
                                 <TextField
@@ -156,7 +156,7 @@ export default function ProviderProfile() {
 
                                 {/* Bio INPUT  */}
                                 <Typography fontWeight="bold">
-                                    {profile.bio}
+                                   Bio: {profile.bio}
                                 </Typography>
                                 <br></br>
                                 <TextField
@@ -176,7 +176,7 @@ export default function ProviderProfile() {
 
                                 {/* Phone INPUT  */}
                                 <Typography fontWeight="bold">
-                                    {profile.phone}
+                                    Phone: {profile.phone}
                                 </Typography>
                                 <br></br>
                                 <TextField
@@ -196,9 +196,9 @@ export default function ProviderProfile() {
 
                                 {/* Insurance INPUT  */}
                                 <Typography fontWeight="bold">
-                                    Insurance
+                                    Insurance:
                                 </Typography>
-                                {/* <ProviderInsurances /> */}
+                                <ProfileInsurances />
                                 <TextField
                                     label={'Edit Insurance'}
                                     placeholder={details.name}
@@ -211,9 +211,9 @@ export default function ProviderProfile() {
 
                                 {/* Occupation INPUT  */}
                                 <Typography fontWeight="bold">
-                                    Occupation
+                                    Occupation:
                                 </Typography>
-                                <ProviderOccupations />
+                                <ProfileOccupations />
                                 <br></br>
                                 <TextField
                                     label={'Edit Occupation'}
@@ -227,8 +227,9 @@ export default function ProviderProfile() {
 
                                 {/* Services INPUT  */}
                                 <Typography fontWeight="bold">
-                                    Services
+                                    Services:
                                 </Typography>
+                                <ProfileServices />
                                 <br></br>
                                 <TextField
                                     label={'Edit Services'}
@@ -242,8 +243,9 @@ export default function ProviderProfile() {
 
                                 {/* Specialities INPUT  */}
                                 <Typography fontWeight="bold">
-                                    Specialities
+                                    Specialities:
                                 </Typography>
+                                <ProfileSpecializations />
                                 <br></br>
                                 <TextField
                                     label={'Edit Specialities'}

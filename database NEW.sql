@@ -68,11 +68,11 @@ CREATE TABLE "occupations" (
 	"occupation" varchar(255) 
 );
 
----- Availability Table ----
-CREATE TABLE "availability" (
-	"id" serial PRIMARY KEY NOT NULL,
-	"availability" varchar(255) 
-);
+---- Availability Table -- Not using anymore
+--CREATE TABLE "availability" (
+--	"id" serial PRIMARY KEY NOT NULL,
+--	"availability" varchar(255) 
+--);
 
 
 ------------- CREATE JUNCTION TABLES --------------------
@@ -104,12 +104,12 @@ CREATE TABLE "provider_occupation" (
 	"occupation_id" int REFERENCES "occupations"("id") NOT NULL
 );
 
----- availability JUNCTION TABLE ----
-CREATE TABLE "provider_availability" (
-	"id" serial PRIMARY KEY NOT NULL,
-	"provider_id" int REFERENCES "provider"("id") NOT NULL,
-	"availability_id" int REFERENCES "availability"("id") NOT NULL
-);
+---- availability JUNCTION TABLE -- Not using anymore
+-- CREATE TABLE "provider_availability" (
+-- 	"id" serial PRIMARY KEY NOT NULL,
+-- 	"provider_id" int REFERENCES "provider"("id") NOT NULL,
+-- 	"availability_id" int REFERENCES "availability"("id") NOT NULL
+-- );
 
 
 ------------------ ACTUAL DATA ------------------
@@ -173,52 +173,165 @@ INSERT INTO "occupations" ("occupation") VALUES
 ('Family Nurse Practitioner'),
 ('Peer Specialist');
 
----- INSERT availability TABLE ----
-INSERT INTO "availability" ("availability") VALUES
-('My office is open Monday through Friday'),
-('My office offers evening and weekend appointments'),
-('Please contact me for appointment availability');
+---- INSERT availability TABLE -- Not using anymore
+--INSERT INTO "availability" ("availability") VALUES
+--('My office is open Monday through Friday'),
+--('My office offers evening and weekend appointments'),
+--('Please contact me for appointment availability');
 
 -- DUMMY DATA -- 
 --  USER Dummy Data --
 INSERT INTO "user" ( "username", "password", "access_level") VALUES 
-( 'admin', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 1),
-( 'group1', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 3),
-( 'group2', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 3),
-( 'provider1', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 2),
-( 'provider2', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 2),
-( 'provider3', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 2),
-( 'provider4', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 2);
+( 'admin', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 1),  --user 1
+( 'group1', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 3), --user 2
+( 'group2', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 3), --user 3
+( 'group3', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 3), --user 4
+( 'group4', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 3), --user 5
+( 'group5', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 3), --user 6
+( 'group6', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 3), --user 7
+( 'group7', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 3), --user 8
+( 'group8', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 3), --user 9
+( 'group9', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 3), --user 10
+( 'group10', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 3), --user 11
+( 'provider1', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 2),  --user 12
+( 'provider2', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 2), --user 13
+( 'provider3', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 2), --user 14
+( 'provider4', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 2), --user 15
+( 'provider5', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 2), --user 16
+( 'provider6', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 2), --user 17
+( 'provider7', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 2), --user 18
+( 'provider8', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 2), --user 19
+( 'provider9', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 2), --user 20
+( 'provider10', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 2)	 --user 21
+;
 
 --  GROUP Dummy Data --
 INSERT INTO "group" ( "user_id", "name", "bio", "website", "email", "phone", "street", "city", "state", "zipcode") VALUES 
-(2, 'Group 1', 'My bio', 'My website', 'My email', 'My phone', 'My street', 'My city', 'My state', 'My zipcode');
-INSERT INTO "group" ( "user_id", "name" ) VALUES 
-(3, 'group 2');
+(2, -- user_id
+'Mayo Family Clinic Northwest', 
+'Community Pediatric and Adolescent Medicine - Offers primary care services to infants, children and adolescents through college. 
+Family Medicine - is available to people of all ages; provides family-oriented comprehensive care, including obstetrical care and well-woman care, newborn and well-child care, pediatrics and adult/geriatric care. 
+Community Internal Medicine - serves individuals 18 years of age or older for all aspects of adult health.', -- BIO
+'https://communityhealth.mayoclinic.org/locations/northwest-clinic', --website
+'MayoFamily@gmail.com', 
+'507-538-8555', --phone
+'4111 West Frontage Road, Hwy 52 NW', --street
+'Rochester',  --city
+'MN', --state
+'55901'), --zipcode
+(3, -- user_id
+'Rochester Family Clinic', 
+'Rochester Family Clinic - Offers primary care services to infants, children and adolescents through college and is available to people of all ages.', -- BIO
+'https://communityhealth.mayoclinic.org/locations/northwest-clinic', 
+'RochesterFamilyClinic@gmail.com', 
+'507-832-8555', 
+'3152 Frontage Road', 
+'Rochester', 
+'MN', 
+'55901');
+
 
 --  PROVIDER Dummy Data --
 INSERT INTO "provider" ( "user_id", "name", "bio", "picture","phone", "email", "availability", "group_id") VALUES
-(4, 
-'Provider 1 Name', 
-'My bio',
- 'https://static.vecteezy.com/system/resources/thumbnails/007/319/936/small/user-profile-icon-vector.jpg', 
- 'My phone', 'My email', 
- 'My availability', 
- 1);
-INSERT INTO "provider" ("user_id", "name") VALUES
-(5, 'Provider 2 Name'),
-(6, 'Provider 3 Name'),
-(7, 'Provider 4 Name') ;
+(12, 
+'Helayna M. Abraham, M.D.', 
+'Community Internal Medicine, Geriatrics and Palliative Care',
+ 'https://communityhealth.mayoclinic.org/-/media/staff/helaynaabraham30024723.jpg?la=en&hash=203B4CD411907680EC68651CF5E3773B', 
+ '507-832-8554', 'Abraham@gmail.com', 
+ 'M-F, 8am to 5pm', 
+ 1),
+ (13, 
+'Katarina Alajbegovic, M.D.', 
+'Community Pediatric and Adolescent Medicine',
+ 'https://communityhealth.mayoclinic.org/-/media/staff/katarinaalajbegovic30082008.jpg?la=en&hash=E579C97A8A67E15BE48386CC0C790719', 
+ '507-832-8554', 'Alajbegovic@gmail.com', 
+ 'M-F, 8am to 5pm', 
+ 1),
+  (14, 
+'Aldo A. Acosta Medina, M.D.', 
+'Community Internal Medicine, Geriatrics and Palliative Care',
+ 'https://communityhealth.mayoclinic.org/-/media/staff/aldoacostamedina21318280.jpg?la=en&hash=FF67279A31B6DD84475ED17A985F8BC6', 
+ '507-832-8551', 'Medina@gmail.com', 
+ 'M-F, 8am to 5pm', 
+ 1),
+ (15, 
+'Afia B. Adu-Gyamfi, M.D.', 
+'Community Pediatric and Adolescent Medicine',
+ 'https://communityhealth.mayoclinic.org/-/media/staff/alexandraalejos30189266.jpg?la=en&hash=185B6842E486CB59CE0DF799BD7462D2', 
+ '507-832-8552', 'Gyamfi@gmail.com', 
+ 'M-F, 8am to 5pm', 
+ 1),
+
+  (16, 
+'Ryan Alexander, M.D.', 
+'Community Internal Medicine, Geriatrics and Palliative Care',
+ 'https://communityhealth.mayoclinic.org/-/media/staff/afiaadugyamfi30185760.jpg?la=en&hash=747A16D94F256239ED995F10D86C610F', 
+ '507-832-8552', 'Gyamfi@gmail.com', 
+ 'M-F, 8am to 5pm', 
+ 1),
+  (17, 
+'Stephanie L. Ahrens, APRN, C.N.P., M.S.N.', 
+'Family Medicine',
+ 'https://communityhealth.mayoclinic.org/-/media/staff/stephanieahrens14604302.jpg?la=en&hash=87BBE98D282DF553890D090B0E93C663', 
+ '507-832-8553', 'Ahrens@gmail.com', 
+ 'M-F, 8am to 5pm', 
+ 1),
+   (18, 
+'Asma Ali, M.B.B.S.', 
+'Community Pediatric and Adolescent Medicine',
+ 'https://communityhealth.mayoclinic.org/-/media/staff/asmaali21308675.jpg?la=en&hash=1A2F054DF00651B6DAAC3F5BD8294EF3', 
+ '507-832-8553', 'Ali@gmail.com', 
+ 'M-F, 8am to 5pm', 
+ 1),
+   (19, 
+'Mohamad Saleh Alabdaljabar, M.B.B.S.', 
+'Community Internal Medicine, Geriatrics and Palliative Care',
+ 'https://communityhealth.mayoclinic.org/-/media/staff/mohamadsalehalabdaljabar21078394.jpg?la=en&hash=6B4666D72F832F75AF662E8E39105153', 
+ '507-832-8553', 'Alabdaljabar@gmail.com', 
+ 'M-F, 8am to 5pm', 
+ 1),
+   (20, 
+'Stephanie L. Ahrens, APRN, C.N.P., M.S.N.', 
+'Family Medicine',
+ 'https://communityhealth.mayoclinic.org/-/media/staff/stephanieahrens14604302.jpg?la=en&hash=87BBE98D282DF553890D090B0E93C663', 
+ '507-832-8553', 'Ahrens@gmail.com', 
+ 'M-F, 8am to 5pm', 
+ 1),
+   (21, 
+'Badro (Badra) Ali, M.D.', 
+'Family Medicine',
+ 'https://communityhealth.mayoclinic.org/-/media/staff/badroali30082325.jpg?la=en&hash=39E337E230F43FE63363E6CA51644DF5', 
+ '507-832-8543', 'Badra@gmail.com', 
+ 'M-F, 8am to 5pm', 
+ 1)
+ ;
+
 
 -- provider_specializations JUNCTION TABLE DUMMY DATA --  
 INSERT INTO "provider_specializations" ( "provider_id", "specializations_id") VALUES 
 ( 1, 1), -- LGBTQ
 ( 2, 2), -- POC Specific
+( 2, 4), 
 ( 3, 3), -- Disability Specific
 ( 4, 1), -- LGBTQ
 ( 4, 2), -- POC Specific
 ( 4, 3), -- Disability Specific
-( 4, 4); -- Addiction
+( 4, 4),
+( 5, 5),
+( 5, 3),
+( 6, 1),
+( 6, 6),
+( 7, 2),
+( 7, 7),
+( 8, 9),
+( 8, 8),
+( 8, 10),
+( 9, 4),
+( 10, 11),
+( 10, 2),
+( 10, 6),
+( 10, 2)
+;
 
 
 -- provider_specializations JUNCTION TABLE DUMMY DATA --  
@@ -229,10 +342,17 @@ INSERT INTO "provider_insurance_plan" ( "provider_id", "insurance_plan_id") VALU
 ( 4, 1), -- Blue Cross and Blue Shield of Minnesota
 ( 4, 2), -- HealthPartners
 ( 4, 3), -- Medica of Minnesota
-( 4, 4); -- Quartz
+( 5, 4),
+( 5, 6),
+( 7, 7),
+( 8, 8),
+( 9, 9),
+( 10, 4),
+( 10, 1)
+; 
 
 
--- provider_specializations JUNCTION TABLE DUMMY DATA --  
+-- provider_service_type JUNCTION TABLE DUMMY DATA --  
 INSERT INTO "provider_service_type" ( "provider_id", "service_type_id") VALUES 
 ( 1, 1), -- Online
 ( 2, 2), -- InPerson
@@ -240,7 +360,14 @@ INSERT INTO "provider_service_type" ( "provider_id", "service_type_id") VALUES
 ( 4, 1), -- Online
 ( 4, 2), -- InPerson
 ( 4, 3), -- Over the Phone
-( 4, 4); -- Inpatient
+( 4, 4),
+( 5, 4),
+( 5, 5),
+( 7, 3),
+( 8, 2),
+( 9, 1),
+( 10, 5),
+( 10, 1); -- Inpatient
 
 
 INSERT INTO "provider_occupation" ( "provider_id", "occupation_id") VALUES 
@@ -250,7 +377,14 @@ INSERT INTO "provider_occupation" ( "provider_id", "occupation_id") VALUES
 (4, 1), -- Psychologist
 (4, 2), -- Counselor
 (4, 3), -- Certified Alcohol and Drug Abuse Counselor
-(4, 4); -- Clinician
+(4, 4),
+( 5, 4),
+( 5, 6),
+( 7, 7),
+( 8, 8),
+( 9, 9),
+( 10, 4),
+( 10, 1); -- Clinician
 
 --------------------- STOP -- COPY -- & -- PASTE -- HERE ---------------------
 
@@ -578,12 +712,10 @@ DROP TABLE "provider_specializations";
 DROP TABLE "provider_insurance_plan";
 DROP TABLE "provider_service_type";
 DROP TABLE "provider_occupation";
-DROP TABLE "provider_availability";
 DROP TABLE "specializations";
 DROP TABLE "insurance_plan";
 DROP TABLE "service_type";
 DROP TABLE "occupations";
-DROP TABLE "availability";
 DROP TABLE "provider";
 DROP TABLE "group";
 DROP TABLE "user";
