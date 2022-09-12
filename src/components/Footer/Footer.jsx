@@ -11,7 +11,6 @@ import { Typography, Box, Grid, Container } from '@mui/material';
 export default function Footer() {
     return (
         <Box
-            fullWidth
             sx={{
                 position: 'relative',
                 height: '30vh',
