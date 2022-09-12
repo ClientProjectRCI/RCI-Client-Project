@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Dialog from '@mui/material/Dialog';
@@ -10,11 +10,11 @@ import ProviderOccupations from '../ProviderOccupations/ProviderOccupations';
 import ProviderServices from '../ProviderServices/ProviderServices';
 import emailjs from '@emailjs/browser';
 import DeleteProviderBtn from '../DeleteBtn/DeleteProviderBtn';
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import { Box, Grid } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import ReplyIcon from '@mui/icons-material/Reply';
 import MailIcon from '@mui/icons-material/Mail';
 import { Container } from '@mui/material';
+import Swal from 'sweetalert2';
 
 export default function ProvidersDetail() {
     const details = useSelector((store) => store.details);
@@ -22,6 +22,11 @@ export default function ProvidersDetail() {
 
     //details pertaining to the id of the provider that was clicked on.
     const [open, SetOpen] = React.useState(false);
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+    const [reason, setReason] = useState('');
 
     const history = useHistory();
 
@@ -38,6 +43,7 @@ export default function ProvidersDetail() {
     // upon click btn close the modal/dialog
     const handleClose = () => {
         SetOpen(false);
+        Swal.fire('Thanks!', 'Your message was sent!', 'success');
     };
 
     // send email function starts here
@@ -130,6 +136,8 @@ export default function ProvidersDetail() {
                             id="fname"
                             name="firstname"
                             placeholder="Your name.."
+                            value={firstName}
+                            onChange={() => setFirstName('Nate')}
                         ></input>
                         <label for="lname">Last Name</label>
                         <input
@@ -137,6 +145,8 @@ export default function ProvidersDetail() {
                             id="lname"
                             name="lastname"
                             placeholder="Your last name.."
+                            value={lastName}
+                            onChange={() => setLastName('Notermann')}
                         ></input>
                         <label for="email">Email</label>
                         <input
@@ -144,6 +154,8 @@ export default function ProvidersDetail() {
                             id="email"
                             name="user_email"
                             placeholder="Your email address.."
+                            value={email}
+                            onChange={() => setEmail('natenotermann@chs.edu')}
                         ></input>
                         <label for="subject">Reason OF Inqury</label>
                         <input
@@ -151,6 +163,10 @@ export default function ProvidersDetail() {
                             id="subject"
                             name="subject"
                             placeholder="Reason of inqury.."
+                            value={reason}
+                            onChange={() =>
+                                setReason('Student Mental Health Support')
+                            }
                         ></input>
                         <label for="message">Message</label>
                         <textarea
@@ -159,6 +175,12 @@ export default function ProvidersDetail() {
                             name="message"
                             rows="4"
                             placeholder="How can we help.."
+                            value={message}
+                            onChange={() =>
+                                setMessage(
+                                    `Hi, Isaac. I have a student seeking mental health support for anxiety and saw that you specialized anxiety. I'd love to connect and see if we can discuss this further. Thanks,`
+                                )
+                            }
                         ></textarea>
                         <input
                             type="submit"
