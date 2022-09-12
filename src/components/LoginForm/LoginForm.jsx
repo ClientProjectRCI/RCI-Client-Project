@@ -52,12 +52,6 @@ export default function LoginForm() {
             >
                 Login
             </Typography>
-            <Typography
-                variant="h5"
-                sx={{ color: 'gray', textAlign: 'center' }}
-            >
-                Only login if you are a mental health professional
-            </Typography>
             <Grid item margin={3}>
                 {errors.registrationMessage && (
                     <Typography variant="h6" className="alert" role="alert">

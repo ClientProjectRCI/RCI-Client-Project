@@ -39,14 +39,15 @@ export default function ProvidersListItem({ provider }) {
                         flexDirection: 'row',
                         justifyContent: 'left',
                         alignItems: 'flex-start',
-                        backgroundColor: 'var(--content)',
+                        borderBottom: '0.1rem solid var(--content)',
                         height: '22vh',
                         width: '70vw',
                         marginY: 2,
                         borderRadius: 5,
                         '&:hover': {
-                            boxShadow: '0.5rem 0.5rem 1rem 0.5rem gray',
+                            boxShadow: '0.1rem 0.1rem 1rem 0.1rem gray',
                             cursor: 'pointer',
+                            transition: 'all 0.5s ease-in-out',
                         },
                     }}
                 >
@@ -61,13 +62,15 @@ export default function ProvidersListItem({ provider }) {
                             margin: 'auto 1rem',
                         }}
                     >
-                        <img
-                            src={provider.picture}
-                            style={{
-                                height: 180,
-                                width: 200,
-                            }}
-                        />
+                        <Grid item>
+                            <img
+                                src={provider.picture}
+                                style={{
+                                    height: 'auto',
+                                    width: 100,
+                                }}
+                            />
+                        </Grid>
                     </Grid>
                     {/* CENTER COLUMN */}
                     <Grid

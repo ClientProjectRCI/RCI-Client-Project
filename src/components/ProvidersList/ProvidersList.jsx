@@ -98,8 +98,8 @@ export default function ProvidersList() {
                             aria-label="provider and group tabs"
                             textColor="inherit"
                         >
-                            <Tab label="Provider" {...a11yProps(0)} />
-                            <Tab label="Group" {...a11yProps(1)} />
+                            <Tab label="Providers" {...a11yProps(0)} />
+                            {/* <Tab label="Group" {...a11yProps(1)} /> */}
                         </Tabs>
                     </Box>
 
@@ -152,7 +152,6 @@ export default function ProvidersList() {
                                 marginBottom: '3rem',
                             }}
                         >
-                            {/* COMPONENTS - SEARCH FOR GROUPS */}
                             <GroupSearchBar />
                         </Box>
                         {/* container for groups */}

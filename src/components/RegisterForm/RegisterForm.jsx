@@ -65,12 +65,6 @@ export default function RegisterForm() {
             >
                 Create Account
             </Typography>
-            <Typography
-                variant="h5"
-                sx={{ color: 'gray', textAlign: 'center' }}
-            >
-                Only register if you are a mental health professional
-            </Typography>
             <Grid item margin={3}>
                 {errors.registrationMessage && (
                     <Typography variant="h6" className="alert" role="alert">

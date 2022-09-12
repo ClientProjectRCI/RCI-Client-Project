@@ -6,12 +6,22 @@ export default function AboutPage() {
         <Container>
             <Box margin={5}>
                 <Typography
-                    variant="h3"
-                    sx={{ fontWeight: 'bold', color: 'var(--true-orange)' }}
+                    variant="h4"
+                    sx={{
+                        textAlign: 'left',
+                        fontWeight: 'bold',
+                        color: 'var(--true-orange)',
+                    }}
                 >
                     I. About RCI
                 </Typography>
-                <Typography variant="p" sx={{ fontWeight: 500, fontSize: 25 }}>
+                <Typography
+                    variant="p"
+                    sx={{
+                        fontWeight: 500,
+                        fontSize: 20,
+                    }}
+                >
                     We are a nonprofit dedicated to improving the Rochester area
                     and beyond through education and advocacy. We work to
                     provide a platform for youth empowerment and their education
@@ -20,12 +30,16 @@ export default function AboutPage() {
             </Box>
             <Box margin={5}>
                 <Typography
-                    variant="h3"
-                    sx={{ fontWeight: 'bold', color: 'var(--true-orange)' }}
+                    variant="h4"
+                    sx={{
+                        textAlign: 'left',
+                        fontWeight: 'bold',
+                        color: 'var(--true-orange)',
+                    }}
                 >
                     II. Project Background
                 </Typography>
-                <Typography variant="p" sx={{ fontWeight: 500, fontSize: 25 }}>
+                <Typography variant="p" sx={{ fontWeight: 500, fontSize: 20 }}>
                     In 2021, we conducted a survey of over 1,000 people in
                     Rochester about their mental health and mental health
                     resources. We discovered that many people know that
@@ -36,12 +50,16 @@ export default function AboutPage() {
             </Box>
             <Box margin={5}>
                 <Typography
-                    variant="h3"
-                    sx={{ fontWeight: 'bold', color: 'var(--true-orange)' }}
+                    variant="h4"
+                    sx={{
+                        textAlign: 'left',
+                        fontWeight: 'bold',
+                        color: 'var(--true-orange)',
+                    }}
                 >
                     III. Mission
                 </Typography>
-                <Typography variant="p" sx={{ fontWeight: 500, fontSize: 25 }}>
+                <Typography variant="p" sx={{ fontWeight: 500, fontSize: 20 }}>
                     The purpose of this project is to provide easier access to
                     mental health resources. Additionally, this database is for
                     the high school counselors of Century, Mayo, and John
