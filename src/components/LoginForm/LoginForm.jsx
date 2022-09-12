@@ -46,15 +46,17 @@ export default function LoginForm() {
             }}
             onSubmit={login}
         >
-            <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
+            <Typography
+                variant="h4"
+                sx={{ fontWeight: 'bold', color: 'var(--cornflower)' }}
+            >
                 Login
             </Typography>
             <Typography
                 variant="h5"
                 sx={{ color: 'gray', textAlign: 'center' }}
             >
-                Only login if you are a mental health or educational
-                professional
+                Only login if you are a mental health professional
             </Typography>
             <Grid item margin={3}>
                 {errors.registrationMessage && (
@@ -86,29 +88,27 @@ export default function LoginForm() {
                     />
                 </Grid>
             </Grid>
-            <Grid container justifyContent="center" spacing={2} margin={1}>
-                <Grid item>
-                    <Button
-                        sx={{
-                            width: 'fit-content',
-                        }}
-                        color="success"
-                        size="large"
-                        variant="contained"
-                        onClick={login}
-                    >
-                        Login
-                    </Button>
-                </Grid>
+            <Grid
+                container
+                spacing={2}
+                margin={1}
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    margin: 'auto',
+                }}
+            >
+                <Button
+                    sx={{ margin: 5 }}
+                    color="success"
+                    size="large"
+                    variant="contained"
+                    onClick={login}
+                >
+                    Login
+                </Button>
             </Grid>
             <Link to="/registration">Need an account? Signup</Link>
-            <Box sx={{ color: 'gray', mt: 20 }}>
-                <Typography variant="p">
-                    Copyright © 2022 Rochester Community Initiative.
-                </Typography>
-                <br></br>
-                <Typography variant="p">All Rights Reserved</Typography>
-            </Box>
         </FormControl>
     );
 }

@@ -61,12 +61,13 @@ export default function ProvidersDetail() {
         <Grid container spacing={2}>
             <Grid item>
                 <Grid item id="left-column">
-                    <AccountBoxIcon
+                    <img
+                        src={details.picture}
                         style={{
-                            fontSize: 200,
-                            color: 'var(--background)',
-                            padding: 0,
-                            margin: 0,
+                            height: 180,
+                            width: 200,
+                            margin: '1rem',
+                            borderRadius: 5,
                         }}
                     />
                 </Grid>

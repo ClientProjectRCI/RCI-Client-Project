@@ -115,7 +115,6 @@ export default function ProvidersListItem({ provider }) {
                                 display: 'flex',
                                 flexDirection: 'column',
                                 justifyContent: 'left',
-                                color: 'red',
                             }}
                         >
                             {/* PHONE NUMBER */}
