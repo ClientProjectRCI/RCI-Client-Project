@@ -26,6 +26,7 @@ import ProviderDetails from '../ProviderDetails/ProviderDetails';
 import GroupDetails from '../GroupDetails/GroupDetails';
 import AdminAnalytics from '../AdminAnalytics/AdminAnalytics';
 import Navbar from '../NavBar/Navbar';
+import Footer from '../Footer/Footer';
 
 export default function App() {
     const dispatch = useDispatch();
@@ -164,6 +165,7 @@ export default function App() {
                     </Route>
                 </Switch>
             </div>
+            <Footer />
         </Router>
     );
 }
