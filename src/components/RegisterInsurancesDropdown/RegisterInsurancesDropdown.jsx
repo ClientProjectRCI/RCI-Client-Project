@@ -84,7 +84,12 @@ function RegisterInsurancesDropdown() {
             <MenuItem
               key={insurance.id}
               value={insurance.id}
-              style={getStyles(insurances, providerInsurance, theme)}
+              style={{
+                width: 'fit-content',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+            }}
             >
               {insurance.insurance}
             </MenuItem>

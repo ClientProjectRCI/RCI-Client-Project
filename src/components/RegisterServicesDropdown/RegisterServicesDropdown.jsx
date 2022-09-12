@@ -85,7 +85,12 @@ function RegisterServicesDropdown() {
               key={service.id}
               value={service.id}
               onChange={handleSelectedServicesSubmit}
-              style={getStyles(services, providerService, theme)}
+              style={{
+                width: 'fit-content',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+            }}
             >
               {service.service}
             </MenuItem>

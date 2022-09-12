@@ -92,7 +92,12 @@ function RegisterSpecializationsDropdown() {
             <MenuItem
               key={specialization.id}
               value={specialization.id}
-              style={getStyles(specializations, providerSpecialization, theme)}
+              style={{
+                width: 'fit-content',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+            }}
             >
               {specialization.specialization}
             </MenuItem>

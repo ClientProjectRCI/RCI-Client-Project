@@ -85,7 +85,12 @@ function RegisterOccupationsDropdown() {
               key={occupation.id}
               value={occupation.id}
               onChange={handleSelectedOccupationsSubmit}
-              style={getStyles(occupations, providerOccupation, theme)}
+              style={{
+                width: 'fit-content',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+            }}
             >
               {occupation.occupation}
             </MenuItem>
