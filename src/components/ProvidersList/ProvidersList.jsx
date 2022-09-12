@@ -99,7 +99,7 @@ export default function ProvidersList() {
                             textColor="inherit"
                         >
                             <Tab label="Providers" {...a11yProps(0)} />
-                            {/* <Tab label="Group" {...a11yProps(1)} /> */}
+                            <Tab label="Group" {...a11yProps(1)} />
                         </Tabs>
                     </Box>
 
