@@ -59,14 +59,17 @@ export default function RegisterForm() {
                 marginTop: '3rem',
             }}
         >
-            <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
+            <Typography
+                variant="h4"
+                sx={{ fontWeight: 'bold', color: 'var(--cornflower)' }}
+            >
                 Create Account
             </Typography>
             <Typography
                 variant="h5"
                 sx={{ color: 'gray', textAlign: 'center' }}
             >
-                Only create an account if you are a mental health professional
+                Only register if you are a mental health professional
             </Typography>
             <Grid item margin={3}>
                 {errors.registrationMessage && (
@@ -100,7 +103,7 @@ export default function RegisterForm() {
                     <Grid item>
                         <Button
                             sx={{
-                                width: 'fit-content',
+                                marginY: 3,
                                 backgroundColor: 'var(--true-orange)',
                             }}
                             size="large"
@@ -114,7 +117,7 @@ export default function RegisterForm() {
                     <Grid item>
                         <Button
                             sx={{
-                                width: 'fit-content',
+                                marginY: 3,
                                 backgroundColor: 'var(--cyan)',
                             }}
                             size="large"
