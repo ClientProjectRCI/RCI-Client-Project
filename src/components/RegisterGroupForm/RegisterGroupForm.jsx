@@ -67,15 +67,15 @@ export default function RegisterGroupForm() {
     const [groupZip, setGroupZip] = useState('');
 
 
-    useEffect(() => {
-      dispatch({ type: 'FETCH_PROVIDERS' });
-      dispatch({ type: 'FETCH_GROUPS' });
-      dispatch({ type: 'FETCH_SPECIALIZATIONS' });
-      dispatch({ type: 'FETCH_INSURANCES' });
-      dispatch({ type: 'FETCH_OCCUPATIONS' });
-    //   dispatch({ type: 'FETCH_AVAILABILITY'});
-      dispatch({ type: 'FETCH_SERVICES'});
-    }, []);
+    // useEffect(() => {
+    //   dispatch({ type: 'FETCH_PROVIDERS' });
+    //   dispatch({ type: 'FETCH_GROUPS' });
+    //   dispatch({ type: 'FETCH_SPECIALIZATIONS' });
+    //   dispatch({ type: 'FETCH_INSURANCES' });
+    //   dispatch({ type: 'FETCH_OCCUPATIONS' });
+    // //   dispatch({ type: 'FETCH_AVAILABILITY'});
+    //   dispatch({ type: 'FETCH_SERVICES'});
+    // }, []);
 
     const verifyGroup = () => {
 
