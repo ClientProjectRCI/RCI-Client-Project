@@ -80,7 +80,8 @@ export default function RegisterForm() {
                         variant="outlined"
                         label="Username"
                         value={username}
-                        onChange={(event) => setUsername(event.target.value)}
+                        // onChange={(event) => setUsername(event.target.value)}
+                        onChange={(event) => setUsername(`isaacbrist`)}
                     />
                 </Grid>
                 <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
@@ -91,7 +92,8 @@ export default function RegisterForm() {
                         label="Password"
                         type="password"
                         value={password}
-                        onChange={(event) => setPassword(event.target.value)}
+                        // onChange={(event) => setPassword(event.target.value)}
+                        onChange={(event) => setPassword(`thebeesknees123`)}
                     />
                 </Grid>
                 <Grid container justifyContent="center" spacing={2} margin={1}>

@@ -127,9 +127,18 @@ export default function ProviderProfile() {
                             Discard Changes
                         </Button>
                     ) : (
-                        <Button item variant="contained" onClick={toggleEdit}>
-                            <EditIcon /> Edit Profile
-                        </Button>
+                        <>
+                            <Button
+                                item
+                                variant="contained"
+                                onClick={toggleEdit}
+                            >
+                                <EditIcon /> Edit Profile
+                            </Button>
+                            <Button variant="contained" color="secondary">
+                                <LogOutButton />
+                            </Button>
+                        </>
                     )}
                 </Box>
             </div>
