@@ -14,12 +14,13 @@ export default function Footer() {
             fullWidth
             sx={{
                 position: 'relative',
-                height: '100%',
+                height: '30vh',
             }}
             color="white"
         >
             <footer
                 style={{
+                    marginX: 2,
                     backgroundColor: 'var(--true-orange)',
                     position: 'absolute',
                     bottom: 0,
@@ -28,7 +29,6 @@ export default function Footer() {
             >
                 <Grid
                     container
-                    spacing={2}
                     sx={{
                         padding: '2rem',
                         display: 'flex',
@@ -37,7 +37,7 @@ export default function Footer() {
                         color: 'white',
                     }}
                 >
-                    <Grid item>
+                    <Grid item style={{ margin: '0 2rem' }}>
                         <Link
                             style={{
                                 textDecoration: 'none',
@@ -48,7 +48,7 @@ export default function Footer() {
                             Support
                         </Link>
                     </Grid>
-                    <Grid item>
+                    <Grid item style={{ margin: '0 2rem' }}>
                         <Link
                             style={{
                                 textDecoration: 'none',
@@ -59,7 +59,7 @@ export default function Footer() {
                             Privacy Policy
                         </Link>
                     </Grid>
-                    <Grid item>
+                    <Grid item style={{ margin: '0 2rem' }}>
                         <Link
                             style={{
                                 textDecoration: 'none',
@@ -73,13 +73,13 @@ export default function Footer() {
                     <Grid
                         container
                         sx={{
-                            padding: '2rem',
+                            marginY: 2,
                             display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center',
                         }}
                     >
-                        <Grid item>
+                        <Grid item style={{ margin: '0 2rem' }}>
                             <Typography variant="p">
                                 Copyright © 2022 Rochester Community Initiative.
                                 All Rights Reserved.
