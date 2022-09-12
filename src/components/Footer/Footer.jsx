@@ -1,6 +1,7 @@
 import React from 'react';
 import './Footer.css';
 import { Link } from 'react-router-dom';
+import { Typography, Box, Grid, Container } from '@mui/material';
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -9,10 +10,84 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
     return (
-        <footer>
-            &copy; Rochester Community Initiative 2022
-            <br />
-            <Link to="/contact">Contact RCI</Link>
-        </footer>
+        <Box
+            fullWidth
+            sx={{
+                position: 'relative',
+                height: '100%',
+            }}
+            color="white"
+        >
+            <footer
+                style={{
+                    backgroundColor: 'var(--true-orange)',
+                    position: 'absolute',
+                    bottom: 0,
+                    width: '100vw',
+                }}
+            >
+                <Grid
+                    container
+                    spacing={2}
+                    sx={{
+                        padding: '2rem',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        color: 'white',
+                    }}
+                >
+                    <Grid item>
+                        <Link
+                            style={{
+                                textDecoration: 'none',
+                                color: 'inherit',
+                            }}
+                            to="#"
+                        >
+                            Support
+                        </Link>
+                    </Grid>
+                    <Grid item>
+                        <Link
+                            style={{
+                                textDecoration: 'none',
+                                color: 'inherit',
+                            }}
+                            to="#"
+                        >
+                            Privacy Policy
+                        </Link>
+                    </Grid>
+                    <Grid item>
+                        <Link
+                            style={{
+                                textDecoration: 'none',
+                                color: 'inherit',
+                            }}
+                            to="/contact"
+                        >
+                            Contact RCI
+                        </Link>
+                    </Grid>
+                    <Grid
+                        container
+                        sx={{
+                            padding: '2rem',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <Grid item>
+                            <Typography variant="p">
+                                Copyright © 2022 Rochester Community Initiative.
+                                All Rights Reserved.
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </footer>
+        </Box>
     );
 }
