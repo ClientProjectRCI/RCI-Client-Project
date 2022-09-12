@@ -93,7 +93,12 @@ function RegisterAvailabilityDropdown() {
             <MenuItem
               key={availability.id}
               value={availability.id}
-              style={getStyles(availabilities, providerAvailability, theme)}
+              style={{
+                                width: 'fit-content',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'flex-start',
+                            }}
             >
               {availability.availability}
             </MenuItem>
