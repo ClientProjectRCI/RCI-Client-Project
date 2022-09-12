@@ -720,3 +720,12 @@ DROP TABLE "provider";
 DROP TABLE "group";
 DROP TABLE "user";
 -----! DELETE/DROP TABLES !-----
+
+--FILTER: SPECIALIZATIONS
+SELECT provider.id, provider."name", provider.bio, provider.picture, provider.phone, provider.email FROM "provider" 
+JOIN "provider_specializations" 
+ON "provider"."id" = "provider_specializations"."provider_id"
+JOIN "specializations"
+ON "specializations"."id" = "provider_specializations"."specializations_id"
+WHERE "specializations"."specialization" ILIKE '%Anxiety%' 
+ORDER BY "provider"."name";
