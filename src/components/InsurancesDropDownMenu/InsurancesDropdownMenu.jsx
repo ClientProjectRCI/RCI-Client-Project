@@ -10,25 +10,6 @@ import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-    PaperProps: {
-        style: {
-            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-            width: 250,
-        },
-    },
-};
-function getStyles(insurances, insurance, theme) {
-    return {
-        fontWeight:
-            insurances.indexOf(insurance) === -1
-                ? theme.typography.fontWeightRegular
-                : theme.typography.fontWeightMedium,
-    };
-}
-
 function InsurancesDropdownMenu() {
     const theme = useTheme();
     const dispatch = useDispatch();
@@ -69,17 +50,17 @@ function InsurancesDropdownMenu() {
                     value={filterInsurances}
                     onChange={handleChange}
                     input={<OutlinedInput label="Name" />}
-                    MenuProps={MenuProps}
                 >
                     {insurances.map((insurance) => (
                         <MenuItem
                             key={insurance.insurance}
                             value={insurance.insurance}
-                            style={getStyles(
-                                insurances,
-                                filterInsurances,
-                                theme
-                            )}
+                            style={{
+                                width: 'fit-content',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'flex-start',
+                            }}
                         >
                             {insurance.insurance}
                         </MenuItem>

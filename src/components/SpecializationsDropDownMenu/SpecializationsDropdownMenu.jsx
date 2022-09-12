@@ -10,27 +10,7 @@ import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-    PaperProps: {
-        style: {
-            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-            width: 250,
-        },
-    },
-};
-function getStyles(specializations, specialization, theme) {
-    return {
-        fontWeight:
-            specializations.indexOf(specialization) === -1
-                ? theme.typography.fontWeightRegular
-                : theme.typography.fontWeightMedium,
-    };
-}
-
 function SpecializationsDropdownMenu() {
-    const theme = useTheme();
     const dispatch = useDispatch();
     //state for the text box for the provider
     const specializations = useSelector((store) => store.specializations);
@@ -72,17 +52,18 @@ function SpecializationsDropdownMenu() {
                     value={filterSpecializations}
                     onChange={handleChange}
                     input={<OutlinedInput label="Name" />}
-                    MenuProps={MenuProps}
+                    // MenuProps={MenuProps}
                 >
                     {specializations.map((specialization) => (
                         <MenuItem
                             key={specialization.specialization}
                             value={specialization.specialization}
-                            style={getStyles(
-                                specializations,
-                                filterSpecializations,
-                                theme
-                            )}
+                            style={{
+                                width: 'fit-content',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'flex-start',
+                            }}
                         >
                             {specialization.specialization}
                         </MenuItem>
