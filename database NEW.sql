@@ -29,7 +29,7 @@ CREATE TABLE "group" (
 );
 
 
----- PROVIDER TABLE ----
+---- PROVIDER TABLE -------
 -- Add "NOT NULL" to columns laters. Allow NULL for testing
 CREATE TABLE "provider" (
 	"id" serial PRIMARY KEY NOT NULL,
