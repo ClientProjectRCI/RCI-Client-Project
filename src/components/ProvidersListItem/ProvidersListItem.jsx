@@ -39,11 +39,12 @@ export default function ProvidersListItem({ provider }) {
                         flexDirection: 'row',
                         justifyContent: 'left',
                         alignItems: 'flex-start',
-                        borderBottom: '0.1rem solid var(--content)',
+                        border: '0.2rem solid var(--content)',
                         height: '22vh',
                         width: '70vw',
                         marginY: 2,
                         borderRadius: 5,
+                    
                         '&:hover': {
                             boxShadow: '0.1rem 0.1rem 1rem 0.1rem gray',
                             cursor: 'pointer',
