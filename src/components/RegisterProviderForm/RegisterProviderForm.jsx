@@ -122,8 +122,7 @@ export default function RegisterProviderForm() {
                         variant="outlined"
                         value={providerName}
                         onChange={(event) =>
-                            // setProviderName(event.target.value)
-                            setProviderName('Isaac Brist')
+                            setProviderName(event.target.value)
                         }
                     />
                 </Box>
@@ -143,12 +142,7 @@ export default function RegisterProviderForm() {
                         maxRows={4}
                         variant="outlined"
                         value={providerBio}
-                        onChange={(event) =>
-                            // setProviderBio(event.target.value)
-                            setProviderBio(
-                                `I'm a father, doctor, love DnD, and avoid sugary foods!`
-                            )
-                        }
+                        onChange={(event) => setProviderBio(event.target.value)}
                     />
                 </Box>
 
@@ -176,8 +170,7 @@ export default function RegisterProviderForm() {
                         variant="outlined"
                         value={providerEmail}
                         onChange={(event) =>
-                            // setProviderEmail(event.target.value)
-                            setProviderEmail(`EnterTheBrist@DnD.com`)
+                            setProviderEmail(event.target.value)
                         }
                     />
                 </Box>
@@ -196,8 +189,7 @@ export default function RegisterProviderForm() {
                         variant="outlined"
                         value={providerPhone}
                         onChange={(event) =>
-                            // setProviderPhone(event.target.value)
-                            setProviderPhone(`111-222-3333`)
+                            setProviderPhone(event.target.value)
                         }
                     />
                 </Box>

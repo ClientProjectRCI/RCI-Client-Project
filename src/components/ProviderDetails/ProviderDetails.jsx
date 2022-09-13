@@ -137,7 +137,9 @@ export default function ProvidersDetail() {
                             name="firstname"
                             placeholder="Your name.."
                             value={firstName}
-                            onChange={() => setFirstName('Nate')}
+                            onChange={(event) =>
+                                setFirstName((event) => event.target.value)
+                            }
                         ></input>
                         <label for="lname">Last Name</label>
                         <input
@@ -146,7 +148,9 @@ export default function ProvidersDetail() {
                             name="lastname"
                             placeholder="Your last name.."
                             value={lastName}
-                            onChange={() => setLastName('Notermann')}
+                            onChange={(event) =>
+                                setLastName((event) => event.target.value)
+                            }
                         ></input>
                         <label for="email">Email</label>
                         <input
@@ -155,7 +159,9 @@ export default function ProvidersDetail() {
                             name="user_email"
                             placeholder="Your email address.."
                             value={email}
-                            onChange={() => setEmail('natenotermann@chs.edu')}
+                            onChange={() =>
+                                setEmail((event) => event.target.value)
+                            }
                         ></input>
                         <label for="subject">Reason OF Inqury</label>
                         <input
@@ -165,7 +171,7 @@ export default function ProvidersDetail() {
                             placeholder="Reason of inqury.."
                             value={reason}
                             onChange={() =>
-                                setReason('Student Mental Health Support')
+                                setReason((event) => event.target.value)
                             }
                         ></input>
                         <label for="message">Message</label>
@@ -177,9 +183,7 @@ export default function ProvidersDetail() {
                             placeholder="How can we help.."
                             value={message}
                             onChange={() =>
-                                setMessage(
-                                    `Hi, Isaac. I have a student seeking mental health support for anxiety and saw that you specialized anxiety. I'd love to connect and see if we can discuss this further. Thanks,`
-                                )
+                                setMessage((event) => event.target.value)
                             }
                         ></textarea>
                         <input
