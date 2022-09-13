@@ -82,10 +82,7 @@ function RegisterAvailabilityDropdown() {
                     id="provider-availability"
                     value={providerAvailability}
                     onChange={(event) => {
-                        // setProviderAvailability(event.target.value);
-                        setProviderAvailability(
-                            `I'm available M-F, 9am - 5pm.`
-                        );
+                        setProviderAvailability(event.target.value);
                     }}
                     label="Type in your availability"
                     variant="outlined"
