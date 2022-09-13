@@ -716,7 +716,7 @@ WHERE provider.user_id = 7;
 -----------------------------------------------------------------------------------------------------------------------------
 
 
------! DELETE/DROP TABLES !-----
+-----! DELETE/DROP TABLES !-------
 DROP TABLE "provider_specializations";
 DROP TABLE "provider_insurance_plan";
 DROP TABLE "provider_service_type";
