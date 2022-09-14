@@ -646,17 +646,13 @@ OR "occupations"."occupation" ILIKE ''
 ORDER BY "provider"."name";
 ------------------------------------------------------------------------------------------
 
+--Profile provider get
 
-
-
+    SELECT "provider"."id", "user_id", "name", "bio", "picture", "phone", "email", "availability", "access_level" FROM "provider" 
+  JOIN "user" ON "provider"."user_id" = "user"."id" WHERE "user_id" = 21;
 -----------------------------EDIT/UPDATE VIEWS ONLY---------------------------------------
--- UPDATE - PROVIDER info by "Provider.user_ID"
-UPDATE "provider" SET "name" = 'updated db name' WHERE "provider"."user_id" = 4;
-UPDATE "provider" SET "bio" = 'updated db bio' WHERE "provider"."user_id" = 4;
-UPDATE "provider" SET "phone" = 'updated db phone' WHERE "provider"."user_id" = 4;
-UPDATE "provider" SET "email" = 'updated db email' WHERE "provider"."user_id" = 4;
-UPDATE "provider" SET "phone" = 'updated db phone' WHERE "provider"."user_id" = 4;
-
+-- UPDATE - PROVIDER info by "Provider.id"
+    UPDATE "provider" SET ("name", "bio", "phone", "email", "availability")  =  ('isaac', 'updated', '55555', 'updated email', 'updatttteeed') WHERE "id" = 13;
 -- UPDATE - GROUP info by "Provider.user_ID"
 UPDATE "group" SET "name" = 'updated db name' WHERE "group"."user_id" = 2;
 UPDATE "group" SET "bio" = 'updated db bio' WHERE "group"."user_id" = 2;
