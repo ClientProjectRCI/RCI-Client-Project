@@ -168,7 +168,7 @@ function* addNewProvider(action){
          try {
     const response = yield axios.post('/api/providers', action.payload);
     console.log('Here is the response in the providers saga-addNewProvider', response.data.id)
-    yield put({ type: 'FETCH_PROVIDER_DETAILS', payload: response.data.providerid});
+    yield put({ type: 'FETCH_PROVIDER_DETAILS', payload: response.data.provider.id});
   } catch (error) {
     console.log('Post this provider error: error in providers saga', error);
   }
