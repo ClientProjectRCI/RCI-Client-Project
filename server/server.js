@@ -22,6 +22,10 @@ app.post('/api/providers/images', upload.single('image'), (req, res) => {
     res.send('File uploaded successfully. Look Here! Here It is!');
 });
 
+app.post('/api/groups/images', upload.single('image'), (req, res) => {
+    res.send('File uploaded successfully. Look Here! Here It is!');
+});
+
 const sessionMiddleware = require('./modules/session-middleware');
 const passport = require('./strategies/user.strategy');
 
