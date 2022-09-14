@@ -40,7 +40,7 @@
     "sweetalert2": "^11.4.31"
   },
   "scripts": {
-    "start": "nodemon server/server.js",
+    "start": "node server/server.js",
     "client": "react-scripts start",
     "server": "nodemon --watch server server/server.js",
     "build": "react-scripts build",
