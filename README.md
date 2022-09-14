@@ -9,12 +9,12 @@ Live Version deployed on Heroku at:
 
 
 ## Screenshot
-![image description](Screenshot.png/HomePage.png)
-![image description](Screenshot.png/ProviderListView.png)
-![image description](Screenshot.png/DetailView.png)
-![image description](Screenshot.png/Login.png)
-![image description](Screenshot.png/ProfileRegister.png)
-![image description](Screenshot.png/ProfileInfoVerification.png)
+![image description](public/Screenshot.png/HomePage.png)
+![image description](public/Screenshot.png/ProviderListView.png)
+![image description](public/Screenshot.png/DetailView.png)
+![image description](public/Screenshot.png/Login.png)
+![image description](public/Screenshot.png/ProfileRegister.png)
+![image description](public/Screenshot.png/ProfileInfoVerification.png)
 
 ## Prerequisites
 Before starting to launch this application, you need to have the following software installed on your computer:
@@ -80,8 +80,8 @@ A very special thanks to our instructors, Liz Kerber and Dane Smith, for providi
 ## Support
 For any Questions, concerns, or suggestions, please feel free to email the developers who worked on this project:
 
-averyang2674@gmail.com
-isaacbrist@gmail.com
-miskiali222@gmail.com
-nate.notermann@gmail.com
-tcmccoy@gmail.com
+- averyang2674@gmail.com
+- isaacbrist@gmail.com
+- miskiali222@gmail.com
+- nate.notermann@gmail.com
+- tcmccoy@gmail.com
