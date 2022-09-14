@@ -18,7 +18,8 @@ export default function ProvidersList() {
     const dispatch = useDispatch();
     const providersReducer = useSelector((store) => store.providers);
     const providers = providersReducer.providersReducer;
-    const groups = useSelector((store) => store.groups);
+    const groupsReducer = useSelector((store) => store.groups);
+    const groups = groupsReducer.groupsReducer
     const specializations = useSelector((store) => store.specializations);
     const insurances = useSelector((store) => store.insurances);
     const occupations = useSelector((store) => store.occupations);
@@ -157,7 +158,7 @@ export default function ProvidersList() {
                         {/* container for groups */}
                         <Grid container spacing={3} id="group-map">
                             <Grid item xs={12} sm={8} md={6} lg={6} xl={4}>
-                                {groups.map((group) => (
+                                {groups?.map((group) => (
                                     <Grid item key={group.id} xs={4}>
                                         <GroupsListItem group={group} />
                                     </Grid>

@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 export default function RegisterGroupVerify() {
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
+
   const user = useSelector((store) => store.user);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ export default function RegisterGroupVerify() {
   const groupBio = useSelector(
     (store) => store.groups.groupBioReducer
   );
-  // const groupPicture = useSelector((store) => store.groups.groupPictureReducer);
+
   const groupPhone = useSelector(
     (store) => store.groups.groupPhoneReducer
   );
@@ -38,7 +38,6 @@ export default function RegisterGroupVerify() {
   const groupZip = useSelector(
     (store) => store.groups.groupZipReducer
   );
-//   const group_id = useSelector((store) => store.user.id);
 
   const addFile = (event) => setGroupPicture(event.target.files[0]);
 
@@ -80,8 +79,8 @@ export default function RegisterGroupVerify() {
      
     });
     sendImage();
-    // history.push to provider's id
-    history.push(`/group`);
+   
+    history.push(`/home`);
   };
 
   return (

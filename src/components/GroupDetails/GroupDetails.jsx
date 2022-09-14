@@ -55,110 +55,112 @@ function GroupDetail() {
     // send email function ends here
 
     return (
-        // group_email
-        <div className="row">
-            <div className="column">
-                <h1>Group detail</h1>
-                <img
-                    style={{ borderRadius: 20 }}
-                    src={details.picture}
-                    alt={details.name}
-                />
-                {/* Start of modal/dialog  */}
-                <Button variant="outlined" onClick={handleClickOpen}>
-                    Email Me!
-                </Button>
-                <Dialog
-                    style={{ borderRadius: 20 }}
-                    open={open}
-                    onClose={handleClose}
-                >
-                    <DialogTitle>{details.name}</DialogTitle>
-                    {/* <DialogContentText name="group_email">
+      // group_email
+      <div className="row">
+        <div className="column">
+          <h1>Group detail</h1>
+          <img
+            src={details.picture}
+            style={{
+              width: 300,
+              height: 300,
+              margin: '1rem',
+              borderRadius: 20,
+            }}
+          />
+          {/* Start of modal/dialog  */}
+          <Button variant="outlined" onClick={handleClickOpen}>
+            Email Me!
+          </Button>
+          <Dialog
+            style={{ borderRadius: 20 }}
+            open={open}
+            onClose={handleClose}
+          >
+            <DialogTitle>{details.name}</DialogTitle>
+            {/* <DialogContentText name="group_email">
             This email will be sent directly to {details.email}.....
           </DialogContentText> */}
-                    <form onSubmit={sendEmail}>
-                        <label for="gEmail">Send To:</label>
-                        <input
-                            type="text"
-                            id="gEmail"
-                            name="group_email"
-                            value={details.email}
-                        />
-                        <label for="fname">First Name</label>
-                        <input
-                            type="text"
-                            id="fname"
-                            name="firstname"
-                            placeholder="Your name.."
-                        ></input>
-                        <label for="lname">Last Name</label>
-                        <input
-                            type="text"
-                            id="lname"
-                            name="lastname"
-                            placeholder="Your last name.."
-                        ></input>
-                        <label for="email">Email</label>
-                        <input
-                            type="text"
-                            id="email"
-                            name="user_email"
-                            placeholder="Your email address.."
-                        ></input>
-                        <label for="subject">Reason OF Inqury</label>
-                        <input
-                            type="text"
-                            id="subject"
-                            name="subject"
-                            placeholder="Reason of inqury.."
-                        ></input>
-                        <label for="message">Message</label>
-                        <textarea
-                            type="text"
-                            id="message"
-                            name="message"
-                            rows="4"
-                            placeholder="How can we help.."
-                        ></textarea>
-                        <input
-                            type="submit"
-                            value="Send"
-                            className="sendBtn"
-                            onClick={handleClose}
-                        />
-                        <Button onClick={handleClose}>Cancel</Button>
-                    </form>
-                </Dialog>
-                {/* End of modal/dialog  */}
-            </div>
-            <div className="column">
-                <div className="info">{details.name}</div>
-                <div className="info">{details.bio}</div>
-                <div className="info">
-                    Address: {details.street}, {details.city}, {details.state},{' '}
-                    {details.zipcode}
-                </div>
-            </div>
-            <div className="column">
-                <div className="info">
-                    <p>{details.website}</p>
-                    <p> {details.email}</p>
-                    <p>{details.phone}</p>
-                </div>
-                <Button
-                    size="large"
-                    color="primary"
-                    variant="contained"
-                    onClick={handleClick}
-                >
-                    Return to List
-                </Button>
-            </div>
-            <div>
-                {user.id && user.access_level === 1 && <DeleteGroupBtn />}
-            </div>
+            <form onSubmit={sendEmail}>
+              <label for="gEmail">Send To:</label>
+              <input
+                type="text"
+                id="gEmail"
+                name="group_email"
+                value={details.email}
+              />
+              <label for="fname">First Name</label>
+              <input
+                type="text"
+                id="fname"
+                name="firstname"
+                placeholder="Your name.."
+              ></input>
+              <label for="lname">Last Name</label>
+              <input
+                type="text"
+                id="lname"
+                name="lastname"
+                placeholder="Your last name.."
+              ></input>
+              <label for="email">Email</label>
+              <input
+                type="text"
+                id="email"
+                name="user_email"
+                placeholder="Your email address.."
+              ></input>
+              <label for="subject">Reason OF Inqury</label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                placeholder="Reason of inqury.."
+              ></input>
+              <label for="message">Message</label>
+              <textarea
+                type="text"
+                id="message"
+                name="message"
+                rows="4"
+                placeholder="How can we help.."
+              ></textarea>
+              <input
+                type="submit"
+                value="Send"
+                className="sendBtn"
+                onClick={handleClose}
+              />
+              <Button onClick={handleClose}>Cancel</Button>
+            </form>
+          </Dialog>
+          {/* End of modal/dialog  */}
         </div>
+        <div className="column">
+          <div className="info">{details.name}</div>
+          <div className="info">{details.bio}</div>
+          <div className="info">
+            Address: {details.street}, {details.city}, {details.state},{' '}
+            {details.zipcode}
+          </div>
+        </div>
+        <div className="column">
+          <div className="info">
+            <p>{details.website}</p>
+            <p> {details.email}</p>
+            <p>{details.phone}</p>
+          </div>
+          <Button
+            size="large"
+            color="primary"
+            variant="contained"
+            onClick={handleClick}
+          >
+            Return to List
+          </Button>
+        </div>
+        <div>{user.id && user.access_level === 1 && <DeleteGroupBtn />}</div>
+      </div>
     );
 }
 

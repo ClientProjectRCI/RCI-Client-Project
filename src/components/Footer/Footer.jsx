@@ -36,7 +36,7 @@ export default function Footer() {
                         color: 'white',
                     }}
                 >
-                    <Grid item style={{ margin: '0 2rem' }}>
+                    {/* <Grid item style={{ margin: '0 2rem' }}>
                         <Link
                             style={{
                                 textDecoration: 'none',
@@ -46,8 +46,8 @@ export default function Footer() {
                         >
                             Support
                         </Link>
-                    </Grid>
-                    <Grid item style={{ margin: '0 2rem' }}>
+                    </Grid> */}
+                    {/* <Grid item style={{ margin: '0 2rem' }}>
                         <Link
                             style={{
                                 textDecoration: 'none',
@@ -57,7 +57,7 @@ export default function Footer() {
                         >
                             Privacy Policy
                         </Link>
-                    </Grid>
+                    </Grid> */}
                     <Grid item style={{ margin: '0 2rem' }}>
                         <Link
                             style={{

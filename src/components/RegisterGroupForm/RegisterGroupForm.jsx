@@ -52,7 +52,7 @@ import RegisterServicesDropdown from '../RegisterServicesDropdown/RegisterServic
 
 
 export default function RegisterGroupForm() {
-    // this component doesn't do much to start, just renders some user reducer info to the DOM
+ 
     const user = useSelector((store) => store.user);
     const history = useHistory();
     const dispatch = useDispatch();
@@ -70,11 +70,7 @@ export default function RegisterGroupForm() {
     useEffect(() => {
       dispatch({ type: 'FETCH_PROVIDERS' });
       dispatch({ type: 'FETCH_GROUPS' });
-    //   dispatch({ type: 'FETCH_SPECIALIZATIONS' });
-    //   dispatch({ type: 'FETCH_INSURANCES' });
-    //   dispatch({ type: 'FETCH_OCCUPATIONS' });
-    // //   dispatch({ type: 'FETCH_AVAILABILITY'});
-    //   dispatch({ type: 'FETCH_SERVICES'});
+
     }, []);
 
     const verifyGroup = () => {
@@ -120,171 +116,164 @@ export default function RegisterGroupForm() {
     };
 
     return (
-        <center>
-                <form className="container" encType="multipart/form-data">
-                <h2>Welcome, {user.username}!</h2>
-                <p>ProviderProfile: {user.id}</p>
-                <p>ProviderProfile: Your ID is: {user.id}</p>
-                
-                {/* <input type='file' 
-                className='input' 
-                name='image' 
-                onChange={addFile}
-                ></input> */}
-                
-                <Box
-                    component="form"
-                    sx={{
-                        '& > :not(style)': { m: 1, width: '50ch' },
-                    }}
-                    noValidate
-                    autoComplete="off"
-                    >
-                    <TextField id="outlined-basic" 
-                    label="Name" 
-                    variant="outlined"
-                    value={groupName}
-                    onChange={(event) => setGroupName(event.target.value)}
-                    />
-                </Box>
-                <Box
-                    component="form"
-                    sx={{
-                        '& > :not(style)': { m: 1, width: '50ch' },
-                    }}
-                    noValidate
-                    autoComplete="off"
-                    >
-                    <TextField id="outlined-basic" 
-                    label="Bio"
-                    multiline
-                    maxRows={4} 
-                    variant="outlined"
-                    value={groupBio}
-                    onChange={(event) => setGroupBio(event.target.value)}
+      <center>
+        <form className="container" encType="multipart/form-data">
+          <h2>Welcome, {user.username}!</h2>
 
-                    />
-                </Box>
-                <Box
-                    component="form"
-                    sx={{
-                        '& > :not(style)': { m: 1, width: '50ch' },
-                    }}
-                    noValidate
-                    autoComplete="off"
-                    >
-                    <TextField id="outlined-basic" 
-                    label="E-mail address" 
-                    variant="outlined"
-                    value={groupEmail}
-                    onChange={(event) => setGroupEmail(event.target.value)}
+          <Box
+            component="form"
+            sx={{
+              '& > :not(style)': { m: 1, width: '50ch' },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              id="outlined-basic"
+              label="Name"
+              variant="outlined"
+              value={groupName}
+              onChange={(event) => setGroupName(event.target.value)}
+            />
+          </Box>
+          <Box
+            component="form"
+            sx={{
+              '& > :not(style)': { m: 1, width: '50ch' },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              id="outlined-basic"
+              label="Bio"
+              multiline
+              maxRows={4}
+              variant="outlined"
+              value={groupBio}
+              onChange={(event) => setGroupBio(event.target.value)}
+            />
+          </Box>
+          <Box
+            component="form"
+            sx={{
+              '& > :not(style)': { m: 1, width: '50ch' },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              id="outlined-basic"
+              label="E-mail address"
+              variant="outlined"
+              value={groupEmail}
+              onChange={(event) => setGroupEmail(event.target.value)}
+            />
+          </Box>
 
-                    />
-                </Box>
-                
-                <Box
-                    component="form"
-                    sx={{
-                        '& > :not(style)': { m: 1, width: '50ch' },
-                    }}
-                    noValidate
-                    autoComplete="off"
-                    >
-                    <TextField id="outlined-basic" 
-                    label="Phone number" 
-                    variant="outlined"
-                    value={groupPhone}
-                    onChange={(event) => setGroupPhone(event.target.value)}
+          <Box
+            component="form"
+            sx={{
+              '& > :not(style)': { m: 1, width: '50ch' },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              id="outlined-basic"
+              label="Phone number"
+              variant="outlined"
+              value={groupPhone}
+              onChange={(event) => setGroupPhone(event.target.value)}
+            />
+          </Box>
+          <Box
+            component="form"
+            sx={{
+              '& > :not(style)': { m: 1, width: '50ch' },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              id="outlined-basic"
+              label="Website"
+              variant="outlined"
+              value={groupWebsite}
+              onChange={(event) => setGroupWebsite(event.target.value)}
+            />
+          </Box>
+          <Box
+            component="form"
+            sx={{
+              '& > :not(style)': { m: 1, width: '50ch' },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              id="outlined-basic"
+              label="Street Address"
+              variant="outlined"
+              value={groupStreet}
+              onChange={(event) => setGroupStreet(event.target.value)}
+            />
+          </Box>
+          <Box
+            component="form"
+            sx={{
+              '& > :not(style)': { m: 1, width: '50ch' },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              id="outlined-basic"
+              label="City"
+              multiline
+              maxRows={4}
+              variant="outlined"
+              value={groupCity}
+              onChange={(event) => setGroupCity(event.target.value)}
+            />
+          </Box>
+          <Box
+            component="form"
+            sx={{
+              '& > :not(style)': { m: 1, width: '50ch' },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              id="outlined-basic"
+              label="State"
+              variant="outlined"
+              value={groupState}
+              onChange={(event) => setGroupState(event.target.value)}
+            />
+          </Box>
 
-                    />
-                </Box>
-                <Box
-                    component="form"
-                    sx={{
-                        '& > :not(style)': { m: 1, width: '50ch' },
-                    }}
-                    noValidate
-                    autoComplete="off"
-                    >
-                    <TextField id="outlined-basic" 
-                    label="Website" 
-                    variant="outlined"
-                    value={groupWebsite}
-                    onChange={(event) => setGroupWebsite(event.target.value)}
-
-                    />
-                </Box>
-                <Box
-                    component="form"
-                    sx={{
-                        '& > :not(style)': { m: 1, width: '50ch' },
-                    }}
-                    noValidate
-                    autoComplete="off"
-                    >
-                    <TextField id="outlined-basic" 
-                    label="Street Address" 
-                    variant="outlined"
-                    value={groupStreet}
-                    onChange={(event) => setGroupStreet(event.target.value)}
-                    />
-                </Box>
-                <Box
-                    component="form"
-                    sx={{
-                        '& > :not(style)': { m: 1, width: '50ch' },
-                    }}
-                    noValidate
-                    autoComplete="off"
-                    >
-                    <TextField id="outlined-basic" 
-                    label="City"
-                    multiline
-                    maxRows={4} 
-                    variant="outlined"
-                    value={groupCity}
-                    onChange={(event) => setGroupCity(event.target.value)}
-
-                    />
-                </Box>
-                <Box
-                    component="form"
-                    sx={{
-                        '& > :not(style)': { m: 1, width: '50ch' },
-                    }}
-                    noValidate
-                    autoComplete="off"
-                    >
-                    <TextField id="outlined-basic" 
-                    label="State" 
-                    variant="outlined"
-                    value={groupState}
-                    onChange={(event) => setGroupState(event.target.value)}
-
-                    />
-                </Box>
-                
-                <Box
-                    component="form"
-                    sx={{
-                        '& > :not(style)': { m: 1, width: '50ch' },
-                    }}
-                    noValidate
-                    autoComplete="off"
-                    >
-                    <TextField id="outlined-basic" 
-                    label="Zip Code" 
-                    variant="outlined"
-                    value={groupZip}
-                    onChange={(event) => setGroupZip(event.target.value)}
-
-                    />
-                </Box>
-                <button className="btn" onClick={verifyGroup}>
-                    Go To Verify
-                </button>
-            </form>
-            {/* <LogOutButton className="btn" /> */}
-        </center>
+          <Box
+            component="form"
+            sx={{
+              '& > :not(style)': { m: 1, width: '50ch' },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              id="outlined-basic"
+              label="Zip Code"
+              variant="outlined"
+              value={groupZip}
+              onChange={(event) => setGroupZip(event.target.value)}
+            />
+          </Box>
+          <button className="btn" onClick={verifyGroup}>
+            Review Information
+          </button>
+        </form>
+      </center>
     );
 }

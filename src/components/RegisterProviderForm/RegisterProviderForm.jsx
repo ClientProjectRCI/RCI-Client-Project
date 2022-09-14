@@ -51,7 +51,7 @@ import RegisterAvailabilityDropdown from '../RegisterAvailabilityDropdown/Regist
 import RegisterServicesDropdown from '../RegisterServicesDropdown/RegisterServicesDropdown';
 
 export default function RegisterProviderForm() {
-    // this component doesn't do much to start, just renders some user reducer info to the DOM
+   
     const user = useSelector((store) => store.user);
     const history = useHistory();
     const dispatch = useDispatch();
@@ -60,15 +60,14 @@ export default function RegisterProviderForm() {
     const [providerBio, setProviderBio] = useState('');
     const [providerPhone, setProviderPhone] = useState('');
     const [providerEmail, setProviderEmail] = useState('');
-    // const [providerWebsite, setProviderWebsite]= useState('');
-
+  
     useEffect(() => {
         dispatch({ type: 'FETCH_PROVIDERS' });
         dispatch({ type: 'FETCH_GROUPS' });
         dispatch({ type: 'FETCH_SPECIALIZATIONS' });
         dispatch({ type: 'FETCH_INSURANCES' });
         dispatch({ type: 'FETCH_OCCUPATIONS' });
-        //   dispatch({ type: 'FETCH_AVAILABILITY'});
+     
         dispatch({ type: 'FETCH_SERVICES' });
     }, []);
 
@@ -81,10 +80,7 @@ export default function RegisterProviderForm() {
             type: 'ADD_PROVIDER_BIO',
             payload: providerBio,
         });
-        // dispatch ({
-        //     type: 'ADD_PROVIDER_PICTURE',
-        //     payload: providerPicture
-        // })
+
         dispatch({
             type: 'ADD_PROVIDER_PHONE',
             payload: providerPhone,
@@ -102,11 +98,7 @@ export default function RegisterProviderForm() {
             <form className="container" encType="multipart/form-data">
                 <h2>Welcome, {user.username}!</h2>
 
-                {/* <input type='file' 
-                className='input' 
-                name='image' 
-                onChange={addFile}
-                ></input> */}
+              
 
                 <Box
                     component="form"
