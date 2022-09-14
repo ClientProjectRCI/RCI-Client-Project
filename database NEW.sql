@@ -179,7 +179,7 @@ INSERT INTO "occupations" ("occupation") VALUES
 --('My office offers evening and weekend appointments'),
 --('Please contact me for appointment availability');
 
--- DUMMY DATA -- 
+-- DUMMY DATA --   
 --  USER Dummy Data --
 INSERT INTO "user" ( "username", "password", "access_level") VALUES 
 ( 'admin', '$2a$10$OsPuAKcp4ip.sb2zZUM9vuJwhoRdGdJVcbIlWobbX4XbFPcg8Zjey', 1),  --user 1
