@@ -50,7 +50,7 @@ export default function RegisterGroupVerify() {
     console.log('data is', data);
 
     axios
-      .post('/api/providers/image', data)
+      .post('/api/providers/images', data)
       .then((response) => {
         console.log(response);
       })
