@@ -1,8 +1,47 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 
+router.post('/', rejectUnauthenticated, (req, res) => {
+  const newGroup = req.body;
+
+  const path = `/images/${newGroup.picture}`;
+
+  console.log('group content is:', req.body);
+
+  let queryText = `INSERT INTO "group" (
+  "user_id", "name", "bio", "picture", 
+  "website", "email", "phone", "street", "city", "state", "zipcode" 
+  )
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+  RETURNING "id";`;
+  pool
+    .query(queryText, [
+      newGroup.user_id,
+      newGroup.name,
+      newGroup.bio,
+      path,
+      newGroup.website,
+      newGroup.email,
+      newGroup.phone,
+      newGroup.street,
+      newGroup.city,
+      newGroup.state,
+      newGroup.zipcode
+      
+    ])
+  .then((result) => {
+    res.send(result.rows);
+  })
+  .catch((err) => {
+    console.log('ERROR: Get all Groups', err);
+    res.sendStatus(500);
+  });
+});
 
 router.get('/', (req, res) => {
   const query = `SELECT * FROM "group" ORDER BY "name" ASC`;
