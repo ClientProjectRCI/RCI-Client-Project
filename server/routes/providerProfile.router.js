@@ -23,7 +23,7 @@ router.get('/:id', (req, res) => {
 
 // PUT route
 router.put('/:id', (req, res) => {
-  const id = req.params;
+  const id = req.params.id;
   const editProvider = req.body;
   const queryText = `UPDATE "provider" SET ("name", "bio", "phone", "email", "availability") 
    =  ($1, $2, $3, $4, $5) WHERE "id" = $6;`;
@@ -36,12 +36,13 @@ router.put('/:id', (req, res) => {
       editProvider.phone,
       editProvider.email,
       editProvider.availability,
+      id
     ])
     .then((result) => {
       //         Second query that updates a Specialization for that provider
 
       const updateProviderSpecializationsQuery = `
-      UPDATE "provider_specializations" SET ( "specializations_id")
+      UPDATE "provider_specializations" SET  "specializations_id"
       = $1 WHERE "provider_id" = $2;
       `;
 
@@ -54,7 +55,7 @@ router.put('/:id', (req, res) => {
           console.log('Result.rows[0] in specializations:', result.rows[0]);
           // Third query that edits a Occupation for that provider
           const updateProviderOccupationsQuery = `
-      UPDATE "provider_occupation" SET ("occupation_id")
+      UPDATE "provider_occupation" SET "occupation_id"
        = $1 WHERE "provider_id" = $2;
       `;
 
@@ -67,23 +68,24 @@ router.put('/:id', (req, res) => {
               // fourth query that edits a Insurance for that provider
               console.log('Result.rows[0] in occupations:', result.rows[0]);
               const updateProviderInsurancesQuery = `
-      UPDATE "provider_insurance_plan" SET ("insurance_plan_id")
+      UPDATE "provider_insurance_plan" SET "insurance_plan_id"
       = $1 WHERE "provider_id" = $2;
       `;
               pool
-                .query(insertProviderInsurancesQuery, [
-                  newProvider.insurance_plan_id,
+                .query(updateProviderInsurancesQuery, [
+                  editProvider.insurance_plan_id,
                   id,
                 ])
                 .then((result) => {
                   // fifth query that adds a serviceType for that new provider
                   console.log('Result.rows[0] in insurances:', result.rows[0]);
                   const updateProviderServicesQuery = `
-      UPDATE "provider_service_type" SET ("service_type_id")
-      = $1 WHERE id= $2;
+      UPDATE "provider_service_type" SET "service_type_id"
+      = $1 WHERE "provider_id" = $2 RETURNING "provider_id";
       `;
                   pool.query(updateProviderServicesQuery, [
-                    newProvider.service_type_id,
+                    // editProvider.service_type_id,
+                    2,
                     id,
                   ]);
                 })

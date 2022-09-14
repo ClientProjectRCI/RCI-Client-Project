@@ -108,7 +108,7 @@ const updatedService = useSelector(
         specializations_id: updatedSpecialization,
       },
     });
-    console.log('HandleSubmit, here is the payload', payload);
+    // console.log('HandleSubmit, here is the payload', payload);
     
     toggleEdit(); //
     // axios.put(`/api/settings${action.payload}`)
@@ -122,7 +122,11 @@ const updatedService = useSelector(
 
   useEffect(() => {
     dispatch({ type: 'FETCH_PROVIDER_PROFILE', payload: user.id });
-  }, []);
+    dispatch({ type: 'FETCH_SPECIALIZATIONS' });
+    dispatch({ type: 'FETCH_INSURANCES' });
+    dispatch({ type: 'FETCH_OCCUPATIONS' });
+    dispatch({ type: 'FETCH_SERVICES' });
+  }, [dispatch]);
   useEffect(() => {
     dispatch({ type: 'FETCH_PROFILE_INSURANCES', payload: user.id });
   }, []);
@@ -197,7 +201,7 @@ const updatedService = useSelector(
                 <TextField
                   label={'Edit Name'}
                   placeholder={profile.name}
-                  value={profile.name}
+                  value={name}
                   onChange={(event) => setName(event.target.value)}
                 />
                 <br></br>
@@ -208,7 +212,7 @@ const updatedService = useSelector(
                 <TextField
                   label={'Edit Bio'}
                   placeholder={profile.bio}
-                  value={profile.bio}
+                  value={bio}
                   onChange={(event) => setBio(event.target.value)}
                 />
                 <br></br>
@@ -228,13 +232,13 @@ const updatedService = useSelector(
                 <br></br>
                 {/* Availability INPUT  */}
                 <Typography fontWeight="bold">
-                  Availiability: {profile.availability}
+                  Availiability: {availability}
                 </Typography>
                 <br></br>
                 <TextField
                   label={'Edit Availability'}
                   placeholder={profile.availability}
-                  value={profile.availability}
+                  value={availability}
                   onChange={(event) => setAvailability(event.target.value)}
                 />
                 <br></br>
@@ -246,19 +250,19 @@ const updatedService = useSelector(
                 <TextField
                   label={'Edit Phone Number'}
                   placeholder={profile.phone}
-                  value={profile.phone}
+                  value={phone}
                   onChange={(event) => setPhone(event.target.value)}
                 />
                 <br></br>
                 {/* email INPUT  */}
                 <Typography fontWeight="bold">
-                  Email: {profile.email}
+                  Email: {email}
                 </Typography>
                 <br></br>
                 <TextField
                   label={'Edit Email'}
                   placeholder={profile.email}
-                  value={profile.email}
+                  value={email}
                   onChange={(event) => setEmail(event.target.value)}
                 />
                 <br></br>

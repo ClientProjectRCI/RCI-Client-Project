@@ -187,17 +187,17 @@ function* addNewProvider(action) {
 
 // Add a new provider
 function*  editProvider(action) {
-    console.log('editProvider, here is the action.payload', action.payload);
+    console.log('editProvider, here is the action.payload.id', action.payload.id);
     try {
-        const response = yield axios.post(`/api/providerProfile${action.payload}`, action.payload);
+        const response = yield axios.put(`/api/providerProfile/${action.payload.id}`, action.payload);
         console.log(
             'Here is the response in the providers saga-editProvider',
             response.data.id
         );
-        // yield put({
-        //     type: 'FETCH_PROVIDER_DETAILS',
-        //     payload: response.data.providerid,
-        // });
+  yield put({
+            type: 'FETCH_PROVIDER_DETAILS',
+            payload: response.data.id,
+        });
     } catch (error) {
         console.log('Edit this provider error: error in providers saga', error);
     }
