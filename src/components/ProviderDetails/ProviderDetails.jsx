@@ -15,6 +15,7 @@ import ReplyIcon from '@mui/icons-material/Reply';
 import MailIcon from '@mui/icons-material/Mail';
 import { Container } from '@mui/material';
 import Swal from 'sweetalert2';
+// import EmailModal from '../EmailModal/EmailModal';
 
 export default function ProvidersDetail() {
     const details = useSelector((store) => store.details);
@@ -43,7 +44,7 @@ export default function ProvidersDetail() {
     // upon click btn close the modal/dialog
     const handleClose = () => {
         SetOpen(false);
-        Swal.fire('Thanks!', 'Your message was sent!', 'success');
+     
     };
 
     // send email function starts here
@@ -62,6 +63,7 @@ export default function ProvidersDetail() {
             .catch((err) =>
                 console.log('EMAIL IS NOT WORKING>>>>>>>>>>>>', err)
             );
+               Swal.fire('Thanks!', 'Your message was sent!', 'success');
     }; // send email function ends here
 
     return (
@@ -87,6 +89,7 @@ export default function ProvidersDetail() {
                         justifyContent: 'center',
                     }}
                 >
+            
                     <Button
                         size="medium"
                         variant="contained"
@@ -128,7 +131,8 @@ export default function ProvidersDetail() {
                             type="text"
                             id="gEmail"
                             name="group_email"
-                            value={details.email}
+                            defaultValue={details.email}
+                        
                         />
                         <label for="fname">First Name</label>
                         <input
@@ -136,10 +140,7 @@ export default function ProvidersDetail() {
                             id="fname"
                             name="firstname"
                             placeholder="Your name.."
-                            value={firstName}
-                            onChange={(event) =>
-                                setFirstName((event) => event.target.value)
-                            }
+                           
                         ></input>
                         <label for="lname">Last Name</label>
                         <input
@@ -147,10 +148,7 @@ export default function ProvidersDetail() {
                             id="lname"
                             name="lastname"
                             placeholder="Your last name.."
-                            value={lastName}
-                            onChange={(event) =>
-                                setLastName((event) => event.target.value)
-                            }
+                          
                         ></input>
                         <label for="email">Email</label>
                         <input
@@ -158,10 +156,7 @@ export default function ProvidersDetail() {
                             id="email"
                             name="user_email"
                             placeholder="Your email address.."
-                            value={email}
-                            onChange={() =>
-                                setEmail((event) => event.target.value)
-                            }
+                         
                         ></input>
                         <label for="subject">Reason OF Inqury</label>
                         <input
@@ -169,10 +164,7 @@ export default function ProvidersDetail() {
                             id="subject"
                             name="subject"
                             placeholder="Reason of inqury.."
-                            value={reason}
-                            onChange={() =>
-                                setReason((event) => event.target.value)
-                            }
+                           
                         ></input>
                         <label for="message">Message</label>
                         <textarea
@@ -181,10 +173,7 @@ export default function ProvidersDetail() {
                             name="message"
                             rows="4"
                             placeholder="How can we help.."
-                            value={message}
-                            onChange={() =>
-                                setMessage((event) => event.target.value)
-                            }
+                           
                         ></textarea>
                         <input
                             type="submit"
