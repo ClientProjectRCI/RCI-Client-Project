@@ -1,121 +1,87 @@
 
-# Prime Solo Project Starting Repo
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+# Rochester Community Inititive
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
+Project Duration: 2 week sprint
 
-## Use the Template for This Repository (Don't Clone)
+Rochester Community Initiative is a database is a resource application that keeps a record of the mental health providers in Rochester. The application allows for mental health providers to make an account and have it be displayed on this platform. Users don't need to log in to be able to use this app. Users can click on the 'providers' button in the navigation bar to see a list of all the providers available on this platform. Users can then search and filter providers by different criterias such as specialty, insurance and occupations. Users are then able to send providers emails by going to each provider's profile, directly connecting each user with a mental health professional.
 
-- Don't Fork or Clone. Instead, click the `Use this Template` button, and make a copy to your personal account. Make the project `PUBLIC`!
+Live Version deployed on Heroku at:
 
+
+## Screenshot
+![image description](Screenshot.png/HomePage.png)
+![image description](Screenshot.png/ProviderListView.png)
+![image description](Screenshot.png/DetailView.png)
+![image description](Screenshot.png/Login.png)
+![image description](Screenshot.png/ProfileRegister.png)
+![image description](Screenshot.png/ProfileInfoVerification.png)
 
 ## Prerequisites
+Before starting to launch this application, you need to have the following software installed on your computer:
 
-Before you get started, make sure you have the following software installed on your computer:
+Node.js
+PostgreSQL
+Nodemon
 
-- [Node.js](https://nodejs.org/en/)
-- [PostrgeSQL](https://www.postgresql.org/)
-- [Nodemon](https://nodemon.io/)
 
-## Create database and table
+## Database Setup
 
-Create a new database called `prime_app` and create a `user` table:
+Make a new database called RCI_mental_database in PostgresSQL and use the database.sql file in the root of this project to set up all of the table that will be used. this file will also include information such as user access levels, provider usernames and contact information.
 
-```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
-```
-**NOTE:** Nate changed the database name to `client_project`, as to not interfere with the database from our the solo-projects.
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
 
-## Development Setup Instructions
+## Creating the .ENV File
 
-- Run `npm install`
-- Create a `.env` file at the root of the project and paste this line into the file:
-  ```
-  SERVER_SESSION_SECRET=superDuperSecret
-  ```
-  While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm run server`
-- Run `npm run client`
-- Navigate to `localhost:3000`
+Create a .env file at the root of the project. thi file will require several pieces of information that will each need to be acquired separately. 
 
-## Debugging
 
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
+## Installation 
 
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
+1. Run npm install
+2. Start PostgreSQL using brew services start postgresql
+3. Run npm run server
+4. Run npm run client 
+5. Naviagate to localhost:3000
 
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
 
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
+## How to Use 
 
-## Testing Routes with Postman
+This application will be used by three types of users, regular users searching for mental health professionals, mental health providers and the admin.
 
-To use Postman with this repo, you will need to set up requests in Postman to register a user and login a user at a minimum.
+- New mental health providers will sign up for an account either as an individual or group/clinic. The registration will require a username and password, providers will then be prompted to fill out information about themselves and their services and add a profile picture. After logging in, providers will be taken to the list view and see their profile and information.
+- Users seeking mental health do not need to login or register. Users can go to the providers page by clicking on the button on the navigation bar. The providers page will have a list of all the providers available and when the user clicks a provider they will see all the detailed information about the provider.
+- The providers page has a search bar and filter options.
+- Admin users will be able to see what all users see on their end and will have a delete button show up on every provider.
 
-Keep in mind that once you using the login route, Postman will manage your session cookie for you just like a browser, ensuring it is sent with each subsequent request. If you delete the `localhost` cookie in Postman, it will effectively log you out.
 
-1. Start the server - `npm run server`
-2. Import the sample routes JSON file [v2](./PostmanPrimeSoloRoutesv2.json) by clicking `Import` in Postman. Select the file.
-3. Click `Collections` and `Send` the following three calls in order:
-   1. `POST /api/user/register` registers a new user, see body to change username/password
-   2. `POST /api/user/login` will login a user, see body to change username/password
-   3. `GET /api/user` will get user information, by default it's not very much
 
-After running the login route above, you can try any other route you've created that requires a logged in user!
+## Built With
 
-## Production Build
+This application uses the following technologies:
 
-Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
+- React
+- Redux
+- Redux-Sagas
+- Express
+- Passport
+- PostgreSQL
+- Material -Ul
+- SweetAlert2
+- Emailjs
+- Multer
 
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm start`
-- Navigate to `localhost:5000`
+(the full list of dependencies can be found in the package.json file)
 
-## Lay of the Land
+## Acknowledgements
 
-There are a few videos linked below that show a walkthrough the client and sever setup to help acclimatize to the boilerplate. Please take some time to watch the videos in order to get a better understanding of what the boilerplate is like.
+First and foremost, we would like to thank Amelia Decker and the RCI team for giving us the pleasure of working with them to make their vision a reality. This is a wonderful project and we are glad to have been a part of it. We would like to thank Prime Digital Academy for allowing us the opportunity to put our acquired skills into action by connecting us with a real-world client with an extraordinary vision.
+A very special thanks to our instructors, Liz Kerber and Dane Smith, for providing us with the tools and knowledge to build this application. Their instruction has been invaluable in leading us down the road to successful careers as software developers.
 
-- [Initial Set](https://vimeo.com/453297271)
-- [Server Walkthrough](https://vimeo.com/453297212)
-- [Client Walkthrough](https://vimeo.com/453297124)
 
-Directory Structure:
+## Support
+For any Questions, concerns, or suggestions, please feel free to email the developers who worked on this project:
 
-- `src/` contains the React application
-- `public/` contains static assets for the client-side
-- `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
-- `server/` contains the Express App
-
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
-
-- src/components
-  - App/App
-  - Footer/Footer
-  - Nav/Nav
-  - AboutPage/AboutPage
-  - InfoPage/InfoPage
-  - UserPage/UserPage
-  - LoginPage/LoginPage
-  - RegisterPage/RegisterPage
-  - LogOutButton/LogOutButton
-  - ProtectedRoute/ProtectedRoute
-
-## Deployment
-
-1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
-
-## Update Documentation
-
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
+averyang2674@gmail.com
+isaacbrist@gmail.com
+miskiali222@gmail.com
+nate.notermann@gmail.com
+tcmccoy@gmail.com
