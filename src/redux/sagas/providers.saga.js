@@ -167,6 +167,7 @@ function* deleteProviders(action) {
     yield put({ type: 'FETCH_PROVIDERS' });
 }
 
+
 // Add a new provider
 function* addNewProvider(action) {
     console.log('addNewProvider, here is the action.payload', action.payload);
@@ -183,6 +184,7 @@ function* addNewProvider(action) {
     } catch (error) {
         console.log('Post this provider error: error in providers saga', error);
     }
+
 }
 
 // Add a new provider

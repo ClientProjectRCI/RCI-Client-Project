@@ -43,6 +43,7 @@ function RegisterSpecializationsDropdown() {
         });
     }
 
+
     return (
         <div>
             {/* specialization dropdown menu */}
@@ -78,6 +79,7 @@ function RegisterSpecializationsDropdown() {
                 variant="contained"
                 size="large"
                 aria-label="outlined primary button group"
+
             >
                 <Button
                     type="submit"

@@ -82,6 +82,7 @@ function RegisterInsurancesDropdown() {
                 variant="contained"
                 size="large"
                 aria-label="outlined primary button group"
+
             >
                 <Button type="submit" onClick={handleSelectedInsurancesSubmit}>
                     add

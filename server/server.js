@@ -22,12 +22,17 @@ app.post('/api/providers/images', upload.single('image'), (req, res) => {
     res.send('File uploaded successfully. Look Here! Here It is!');
 });
 
+app.post('/api/groups/images', upload.single('image'), (req, res) => {
+    res.send('File uploaded successfully. Look Here! Here It is!');
+});
+
 const sessionMiddleware = require('./modules/session-middleware');
 const passport = require('./strategies/user.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
 const groupsRouter = require('./routes/groups.router');
+const groupsImageRouter = require('./routes/groups.router');
 const providersRouter = require('./routes/providers.router');
 const providersImageRouter = require('./routes/providers.router');
 const availabilityRouter = require('./routes/availability.router');
@@ -61,6 +66,7 @@ app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/api/groups', groupsRouter);
+app.use('/api/groups/image', groupsImageRouter);
 app.use('/api/providers', providersRouter);
 app.use('/api/providers/image', providersImageRouter);
 app.use('/api/specializations', specializationsRouter);

@@ -40,6 +40,7 @@ function RegisterServicesDropdown() {
         });
     }
 
+
     return (
         <div>
             {/* specialization dropdown menu */}
@@ -83,6 +84,7 @@ function RegisterServicesDropdown() {
                 variant="contained"
                 size="large"
                 aria-label="outlined primary button group"
+
             >
                 <Button type="submit" onClick={handleSelectedServicesSubmit}>
                     add

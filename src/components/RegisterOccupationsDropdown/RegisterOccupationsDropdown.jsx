@@ -43,6 +43,7 @@ function RegisterOccupationsDropdown() {
         });
     }
 
+
     return (
         <div>
             {/* specialization dropdown menu */}
@@ -86,6 +87,7 @@ function RegisterOccupationsDropdown() {
                 variant="contained"
                 size="large"
                 aria-label="outlined primary button group"
+
             >
                 <Button type="submit" onClick={handleSelectedOccupationsSubmit}>
                     add

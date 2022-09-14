@@ -55,6 +55,18 @@ function* deleteGroups(action){
         yield put({type:"FETCH_GROUPS"});
 }
 
+function* addNewGroup(action){
+
+  console.log('addNewGroup, here is the action.payload', action.payload);
+         try {
+    const response = yield axios.post('/api/groups', action.payload);
+    console.log('Here is the response in the providers saga-addNewGroup', response.data.id)
+    yield put({ type: 'FETCH_GROUP_DETAILS', payload: response.data.group.id});
+  } catch (error) {
+    console.log('Post this provider error: error in providers saga', error);
+  }
+}
+
 
 
 function* groupsSaga() {
@@ -62,6 +74,7 @@ function* groupsSaga() {
   yield takeEvery('FETCH_GROUP_PROFILE', fetchGroupProfile);
   yield takeEvery('FETCH_GROUP_DETAILS', fetchGroupDetails);
   yield takeEvery('DELETE_GROUPS', deleteGroups);
+  yield takeEvery('ADD_NEW_GROUP', addNewGroup);
 
 }
 

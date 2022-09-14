@@ -12,7 +12,7 @@ import AboutPage from '../AboutPage/AboutPage';
 import GroupProfile from '../GroupProfile/GroupProfile';
 import ProviderProfile from '../ProviderProfile/ProviderProfile';
 import RegisterGroupForm from '../RegisterGroupForm/RegisterGroupForm';
-// import RegisterGroupVerify from '../RegisterGroupVerify/RegisterGroupVerify';
+import RegisterGroupVerify from '../RegisterGroupVerify/RegisterGroupVerify';
 import RegisterProviderForm from '../RegisterProviderForm/RegisterProviderForm';
 import RegisterProviderVerify from '../RegisterProviderVerify/RegisterProviderVerify';
 import ContactPage from '../ContactPage/ContactPage';
@@ -118,9 +118,9 @@ export default function App() {
                     <ProtectedRoute exact path="/register-group">
                         <RegisterGroupForm />
                     </ProtectedRoute>
-                    {/* <ProtectedRoute exact path="/register-group-verify">
+                    <ProtectedRoute exact path="/register-group-verify">
                         <RegisterGroupVerify />
-                    </ProtectedRoute> */}
+                    </ProtectedRoute>
                     <ProtectedRoute exact path="/register-provider">
                         <RegisterProviderForm />
                     </ProtectedRoute>
