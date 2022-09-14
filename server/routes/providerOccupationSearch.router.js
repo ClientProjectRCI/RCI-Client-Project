@@ -13,13 +13,13 @@ router.get('/:occupation', (req, res) => {
 
 
   console.log('here is the occupation in the providerSearch router', occupation);
-  const queryText = `SELECT * FROM "provider" 
-JOIN "provider_occupation" 
-ON "provider"."id" = "provider_occupation"."provider_id"
-JOIN "occupations"
-ON "occupations"."id" = "provider_occupation"."occupation_id"
-WHERE "occupations"."occupation" ILIKE '%${occupation}%' 
-ORDER BY "provider"."name";`;
+  const queryText = `SELECT provider.id, occupations.occupation, provider."name", provider.bio, provider.picture, provider.phone, provider.email FROM "provider" 
+  JOIN "provider_occupation" 
+  ON "provider"."id" = "provider_occupation"."provider_id"
+  JOIN "occupations"
+  ON "occupations"."id" = "provider_occupation"."occupation_id"
+  WHERE "occupations"."occupation" ILIKE '%${occupation}%' 
+  ORDER BY "provider"."name";`;
   pool
     .query(queryText)
     .then((result) => {

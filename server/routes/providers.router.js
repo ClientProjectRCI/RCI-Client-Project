@@ -107,6 +107,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     });
 });
 
+
 router.get('/', (req, res) => {
   const query = `SELECT * FROM "provider" ORDER BY "name" ASC`;
   pool

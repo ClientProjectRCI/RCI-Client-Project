@@ -14,7 +14,7 @@ CREATE TABLE "user" (
 -- Add "NOT NULL" to columns laters. Allow NULL for testing
 CREATE TABLE "group" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"user_id" int REFERENCES "user"("id") NOT NULL UNIQUE,
+	"user_id" int REFERENCES "user"("id") ON DELETE CASCADE NOT NULL UNIQUE,
 	"name" varchar(1000) NOT NULL DEFAULT 'My Name',
 	"bio" varchar(1000) DEFAULT 'My Bio',
 	"picture" varchar(1000) DEFAULT 
@@ -33,7 +33,7 @@ CREATE TABLE "group" (
 -- Add "NOT NULL" to columns laters. Allow NULL for testing
 CREATE TABLE "provider" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"user_id" int REFERENCES "user"("id") NOT NULL UNIQUE,
+	"user_id" int REFERENCES "user"("id") ON DELETE CASCADE NOT NULL UNIQUE,
 	"name" varchar(100) DEFAULT 'My Name',
 	"bio" varchar(1000) DEFAULT 'My Bio',
 	"picture" varchar(1000) DEFAULT 
@@ -79,28 +79,28 @@ CREATE TABLE "occupations" (
 ---- specializations JUNCTION TABLE ----
 CREATE TABLE "provider_specializations" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"provider_id" int REFERENCES "provider"("id") NOT NULL,
+	"provider_id" int REFERENCES "provider"("id") ON DELETE CASCADE NOT NULL,
 	"specializations_id" int REFERENCES "specializations"("id") NOT NULL
 );
 
 ---- insurance_plan JUNCTION TABLE ----
 CREATE TABLE "provider_insurance_plan" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"provider_id" int REFERENCES "provider"("id") NOT NULL,
+	"provider_id" int REFERENCES "provider"("id") ON DELETE CASCADE NOT NULL,
 	"insurance_plan_id" int REFERENCES "insurance_plan"("id") NOT NULL
 );
 
 ---- service_type JUNCTION TABLE ----
 CREATE TABLE "provider_service_type" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"provider_id" int REFERENCES "provider"("id") NOT NULL,
+	"provider_id" int REFERENCES "provider"("id") ON DELETE CASCADE NOT NULL,
 	"service_type_id" int REFERENCES "service_type"("id") NOT NULL
 );
 
 ---- provider_occupation JUNCTION TABLE ----
 CREATE TABLE "provider_occupation" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"provider_id" int REFERENCES "provider"("id") NOT NULL,
+	"provider_id" int REFERENCES "provider"("id") ON DELETE CASCADE NOT NULL,
 	"occupation_id" int REFERENCES "occupations"("id") NOT NULL
 );
 
@@ -390,6 +390,15 @@ INSERT INTO "provider_occupation" ( "provider_id", "occupation_id") VALUES
 
 
 
+
+
+----------------------------- DELETE PROVIDER & GROUP ---------------------------------------
+---- Code to TEST the different DELETE ----
+DELETE FROM "user" WHERE "id" = 13;
+DELETE FROM "provider" WHERE "id" = 3;
+DELETE FROM "group" WHERE "id" = 3;
+--------------------------------------------------------------------------------------- 
+
 --------------------- GET/SELECTS for PROVIDER/GROUP LIST & DROP DOWNS ---------------------
 
 ---- GET ALL  ---- 
@@ -469,7 +478,7 @@ SELECT * FROM "group" WHERE "name" ILIKE '%group%' ORDER BY "group"."name" DESC;
 -----------------------------FILTER/SEARCH VIEWS ---------------------------------------
 ---------------- SEARCH by ONE thing ---------------- 
 -- FILTER/SEARCH  Providers by 1 SPECIALIZATION -- 
-SELECT * FROM "provider" 
+SELECT "provider"."id", "provider"."name", "provider"."picture", "provider"."phone", "provider"."email" FROM "provider" 
 JOIN "provider_specializations" 
 ON "provider"."id" = "provider_specializations"."provider_id"
 JOIN "specializations"
@@ -478,7 +487,7 @@ WHERE "specializations"."specialization" ILIKE '%POC Specific%'
 ORDER BY "provider"."name";
 
 -- FILTER/SEARCH  Providers by 1 OCCUPATION -- 
-SELECT * FROM "provider" 
+SELECT "provider"."id", "provider"."name", "provider"."picture", "provider"."phone", "provider"."email" FROM "provider" 
 JOIN "provider_occupation" 
 ON "provider"."id" = "provider_occupation"."provider_id"
 JOIN "occupations"
@@ -487,16 +496,16 @@ WHERE "occupations"."occupation" ILIKE '%counselor%'
 ORDER BY "provider"."name";
 
 -- FILTER/SEARCH  Providers by 1 SERVICE_TYPE -- 
-SELECT * FROM "provider" 
+SELECT "provider"."id", "provider"."name", "provider"."picture", "provider"."phone", "provider"."email", "service_type"."service" FROM "provider" 
 JOIN "provider_service_type" 
 ON "provider"."id" = "provider_service_type"."provider_id"
 JOIN "service_type"
 ON "service_type"."id" = "provider_service_type"."id"
-WHERE "service_type"."service" ILIKE '%line%' 
+WHERE "service_type"."service" ILIKE '%out%' 
 ORDER BY "provider"."name";
 
 -- FILTER/SEARCH  Providers by 1 INSURANCE -- 
-SELECT * FROM "provider" 
+SELECT "provider"."id", "provider"."name", "provider"."picture", "provider"."phone", "provider"."email" FROM "provider" 
 JOIN "provider_insurance_plan" 
 ON "provider"."id" = "provider_insurance_plan"."provider_id"
 JOIN "insurance_plan"
@@ -637,17 +646,13 @@ OR "occupations"."occupation" ILIKE ''
 ORDER BY "provider"."name";
 ------------------------------------------------------------------------------------------
 
+--Profile provider get
 
-
-
+    SELECT "provider"."id", "user_id", "name", "bio", "picture", "phone", "email", "availability", "access_level" FROM "provider" 
+  JOIN "user" ON "provider"."user_id" = "user"."id" WHERE "user_id" = 21;
 -----------------------------EDIT/UPDATE VIEWS ONLY---------------------------------------
--- UPDATE - PROVIDER info by "Provider.user_ID"
-UPDATE "provider" SET "name" = 'updated db name' WHERE "provider"."user_id" = 4;
-UPDATE "provider" SET "bio" = 'updated db bio' WHERE "provider"."user_id" = 4;
-UPDATE "provider" SET "phone" = 'updated db phone' WHERE "provider"."user_id" = 4;
-UPDATE "provider" SET "email" = 'updated db email' WHERE "provider"."user_id" = 4;
-UPDATE "provider" SET "phone" = 'updated db phone' WHERE "provider"."user_id" = 4;
-
+-- UPDATE - PROVIDER info by "Provider.id"
+    UPDATE "provider" SET ("name", "bio", "phone", "email", "availability")  =  ('isaac', 'updated', '55555', 'updated email', 'updatttteeed') WHERE "id" = 13;
 -- UPDATE - GROUP info by "Provider.user_ID"
 UPDATE "group" SET "name" = 'updated db name' WHERE "group"."user_id" = 2;
 UPDATE "group" SET "bio" = 'updated db bio' WHERE "group"."user_id" = 2;
@@ -720,3 +725,12 @@ DROP TABLE "provider";
 DROP TABLE "group";
 DROP TABLE "user";
 -----! DELETE/DROP TABLES !-----
+
+SELECT "provider"."id", "provider"."name", "provider"."picture", "provider"."phone", "provider"."email", "specializations"."specialization"
+ FROM "provider" 
+JOIN "provider_specializations" 
+ON "provider"."id" = "provider_specializations"."provider_id"
+JOIN "specializations"
+ON "specializations"."id" = "provider_specializations"."specializations_id"
+WHERE "specializations"."specialization" ILIKE '%an%' 
+ORDER BY "provider"."name";

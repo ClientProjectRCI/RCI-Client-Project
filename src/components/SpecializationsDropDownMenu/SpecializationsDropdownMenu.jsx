@@ -35,7 +35,7 @@ function SpecializationsDropdownMenu() {
         );
         dispatch({
             type: 'FILTER_PROVIDER_SPECIALIZATIONS',
-            payload: { specialization: filterSpecializations },
+            payload: { specialization: filterSpecializations }, //specialization STRING
         });
     }
 
@@ -52,7 +52,6 @@ function SpecializationsDropdownMenu() {
                     value={filterSpecializations}
                     onChange={handleChange}
                     input={<OutlinedInput label="Name" />}
-                    // MenuProps={MenuProps}
                 >
                     {specializations.map((specialization) => (
                         <MenuItem
