@@ -9,7 +9,7 @@ export default function RegisterGroupVerify() {
   const user = useSelector((store) => store.user);
   const history = useHistory();
   const dispatch = useDispatch();
-  const [providerPicture, setgroupPicture] = useState('');
+  const [groupPicture, setGroupPicture] = useState('');
   const groupName = useSelector(
     (store) => store.groups.groupNameReducer
   );
@@ -50,7 +50,7 @@ export default function RegisterGroupVerify() {
     console.log('data is', data);
 
     axios
-      .post('/api/groups/images', data)
+      .post('/api/groups/image', data)
       .then((response) => {
         console.log(response);
       })

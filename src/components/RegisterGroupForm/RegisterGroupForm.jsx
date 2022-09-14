@@ -67,15 +67,15 @@ export default function RegisterGroupForm() {
     const [groupZip, setGroupZip] = useState('');
 
 
-    // useEffect(() => {
-    //   dispatch({ type: 'FETCH_PROVIDERS' });
-    //   dispatch({ type: 'FETCH_GROUPS' });
+    useEffect(() => {
+      dispatch({ type: 'FETCH_PROVIDERS' });
+      dispatch({ type: 'FETCH_GROUPS' });
     //   dispatch({ type: 'FETCH_SPECIALIZATIONS' });
     //   dispatch({ type: 'FETCH_INSURANCES' });
     //   dispatch({ type: 'FETCH_OCCUPATIONS' });
     // //   dispatch({ type: 'FETCH_AVAILABILITY'});
     //   dispatch({ type: 'FETCH_SERVICES'});
-    // }, []);
+    }, []);
 
     const verifyGroup = () => {
 
@@ -207,7 +207,23 @@ export default function RegisterGroupForm() {
                     autoComplete="off"
                     >
                     <TextField id="outlined-basic" 
-                    label="Street" 
+                    label="Website" 
+                    variant="outlined"
+                    value={groupWebsite}
+                    onChange={(event) => setGroupWebsite(event.target.value)}
+
+                    />
+                </Box>
+                <Box
+                    component="form"
+                    sx={{
+                        '& > :not(style)': { m: 1, width: '50ch' },
+                    }}
+                    noValidate
+                    autoComplete="off"
+                    >
+                    <TextField id="outlined-basic" 
+                    label="Street Address" 
                     variant="outlined"
                     value={groupStreet}
                     onChange={(event) => setGroupStreet(event.target.value)}
@@ -257,7 +273,7 @@ export default function RegisterGroupForm() {
                     autoComplete="off"
                     >
                     <TextField id="outlined-basic" 
-                    label="Phone number" 
+                    label="Zip Code" 
                     variant="outlined"
                     value={groupZip}
                     onChange={(event) => setGroupZip(event.target.value)}
