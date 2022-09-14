@@ -6,7 +6,7 @@ Project Duration: 2 week sprint
 Rochester Community Initiative is a database is a resource application that keeps a record of the mental health providers in Rochester. The application allows for mental health providers to make an account and have it be displayed on this platform. Users don't need to log in to be able to use this app. Users can click on the 'providers' button in the navigation bar to see a list of all the providers available on this platform. Users can then search and filter providers by different criterias such as specialty, insurance and occupations. Users are then able to send providers emails by going to each provider's profile, directly connecting each user with a mental health professional.
 
 Live Version deployed on Heroku at:
-
+https://rcimentalhealth.herokuapp.com/#/home
 
 ## Screenshot
 ![image description](public/Screenshot.png/HomePage.png)
@@ -26,7 +26,7 @@ Nodemon
 
 ## Database Setup
 
-Make a new database called RCI_mental_database in PostgresSQL and use the database.sql file in the root of this project to set up all of the table that will be used. this file will also include information such as user access levels, provider usernames and contact information.
+Make a new database called client_project in PostgresSQL and use the database.sql file in the root of this project to set up all of the table that will be used. this file will also include information such as user access levels, provider usernames and contact information.
 
 
 ## Creating the .ENV File
